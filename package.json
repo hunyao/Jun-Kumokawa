@@ -1,0 +1,74 @@
+{
+  "name": "who-i-am",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.2.5",
+    "@mui/lab": "^5.0.0-alpha.64",
+    "@mui/material": "^5.2.8",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/c3": "^0.7.8",
+    "@types/crypto-js": "^4.1.0",
+    "@types/highlight.js": "^10.1.0",
+    "@types/jest": "^27.0.1",
+    "@types/lodash.kebabcase": "^4.1.6",
+    "@types/markdown-it": "^12.2.3",
+    "@types/markdown-it-highlightjs": "^3.3.1",
+    "@types/node": "^16.7.13",
+    "@types/react": "^17.0.20",
+    "@types/react-dom": "^17.0.9",
+    "@types/unidecode": "^0.1.1",
+    "@types/xterm": "^3.0.0",
+    "axios": "^0.25.0",
+    "c3": "^0.7.20",
+    "crypto-js": "^4.1.1",
+    "highlight.js": "^11.4.0",
+    "lodash.kebabcase": "^4.1.1",
+    "markdown-it": "^12.3.2",
+    "markdown-it-highlightjs": "^3.6.0",
+    "moment": "^2.29.1",
+    "octokit": "^1.7.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "6",
+    "react-scripts": "5.0.0",
+    "typescript": "^4.4.2",
+    "unidecode": "^0.1.8",
+    "web-vitals": "^2.1.0",
+    "xterm": "^4.16.0",
+    "xterm-addon-fit": "^0.5.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "NODE_ENV=development react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "watch": "nodemon -i build -e css,d,jpg,svg,test,ts,tsx --exec yarn build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "mini-css-extract-plugin": "^2.5.2"
+  },
+  "proxy": "http://localhost:3001"
+}
