@@ -9,7 +9,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import 'highlight.js/styles/github-dark.css';
 import { styled } from '@mui/material/styles';
-import Terminal from './pages/terminal'
 
 const Overview = React.lazy(() => import("./pages/home/overview"))
 const Moo = React.lazy(() => import("./pages/cow"))
@@ -24,8 +23,6 @@ const Find = React.lazy(() => import("./pages/home/find"))
 const Header = React.lazy(() => import("./pages/common/header"))
 const Footer = React.lazy(() => import("./pages/common/footer"))
 const RepositoryProvider = React.lazy(() => import("./contexts/repository"))
-const TokenProvider = React.lazy(() => import("./contexts/token"))
-// const Terminal = React.lazy(() => import("./pages/terminal"))
 const theme = createTheme({
   palette: {
     mode: 'dark'
@@ -51,7 +48,6 @@ function App() {
     <div className="App">
       <Suspense fallback={<BorderLinearProgress />}>
         <ThemeProvider theme={theme}>
-          <TokenProvider>
             <RepositoryProvider>
               <Header />
               <Container>
@@ -83,10 +79,8 @@ function App() {
               </Container>
               <Footer />
             </RepositoryProvider>
-          </TokenProvider>
         </ThemeProvider>
       </Suspense>
-      <Terminal />
     </div>
   );
 }

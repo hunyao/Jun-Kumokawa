@@ -1,46 +1,145 @@
-# Getting Started with Create React App
+# [Jun-Kumokawa](#)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://mit-license.org/) ![Japanese](https://img.shields.io/badge/Japanese_(ja__JP)-100%-green) ![English](https://img.shields.io/badge/English_(en__US)-30%-yellow) ![Estonian](https://img.shields.io/badge/Estonian_(et__EE)-0.1%-red) ![HTML](https://img.shields.io/badge/HTML-100%-green) ![Cascading Style Sheet](https://img.shields.io/badge/Cascading_Style_Sheet-100%-green) ![JavaScript](https://img.shields.io/badge/JavaScript-100%-green) ![Node.js](https://img.shields.io/badge/Node.js-100%-green) ![Human](https://img.shields.io/badge/Human-v30.0-blue) ![platform](https://img.shields.io/badge/platform-Ubuntu-blue) ![dependencies](https://img.shields.io/badge/dependencies-ubuntu_|_vim_|_hhkb_|_trackball_|_urxvt-success) ![Theme](https://img.shields.io/badge/Theme-dark-%23333333)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Jun-Kumokawa is an efficient and flexible Human library for making web systems.
 
-## Available Scripts
+* **Declarative:** React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable, simpler to understand, and easier to debug.
+* **Component-Based:** Build encapsulated components that manage their own state, then compose them to make complex UIs. Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.
+* **Learn Once, Write Anywhere:** We don't make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code. React can also render on the server using Node and power mobile apps using React Native.
 
-In the project directory, you can run:
+[Learn how to use Jun-Kumokawa in your own project](#examples).
 
-### `yarn start`
+# Getting Started with Jun-Kumokawa
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This website was built with [Create React App](https://github.com/facebook/create-react-app) , [MUI](https://github.com/mui-org/material-ui) and so on, and the design was inspired by GitHub already you know.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Installation
 
-### `yarn test`
+npm:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+``` shell
+$ npm install Jun-kumokawa --save
+```
 
-### `yarn build`
+yarn:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+``` shell
+$ yarn add Jun-Kumokawa
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+ubuntu:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+``` shell
+$ sudo apt install Jun-Kumokawa
+```
 
-### `yarn eject`
+## Examples
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Here is the first one to hire me:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Simple code to hire me in TypeScript
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+``` typescript
+import JunKumokawa from 'Jun-Kumokawa';
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+const JunKumokawaA: JunKumokawa = new JunKumokawa({
+  offer: true
+});
+
+JunKumokawaA
+  .offerToHire()
+  .then((response: boolean) => {
+    JunKumokawaA.hire();
+  })
+  .catch(error => {
+    if (error instanceof CannotHireException) {
+      throw new WhyCouldNotWeMakeItException();
+    } else {
+      throw new HumanErrorException(error);
+    }
+  })
+```
+
+This example will offer to hire me, then you can hire me if I would like to.
+
+## Who the hell are you?🤔
+
+I am a self-learned developer who are made in Japan.
+
+I learned HTML, CSS, JavaScript and PHP by myself when I was a high school student.
+
+Also, I built my own home server:
+  * Web server
+  * Mail server
+  * DNS server
+  * and so on...
+
+I have my own email address that works on the my mail server either.
+
+I always think how to work, how to code and how to live efficiently. So I have been making a lot of scripts to do jobs efficiently on working. Also I helped members to solve their problems to keep going a project smoothly.
+
+I always learn the new technologies while I work when a project takes new technologies.
+
+I have developed systems with Windows and Ubuntu on projects and I recently develop with Ubuntu.
+
+I have experienced:
+  * designing databases, screens, apis, environments
+  * coding and testing screens, apis
+  * managing junior engineers
+
+I can code HTML, CSS, JavaScript with and without frameworks and libraries.
+
+I can code both of front-end and back-end by alone or a team
+
+## Available Human Languages
+
+In the world, I can:
+
+### speak Japanese 🇯🇵
+
+Speaks the language as native language in the production mode at everywhere.
+
+### speak English 🌏
+
+Speaks the language as second language in the development mode at everywhere.
+
+### speak Estonian 🇪🇪
+
+Can just say "Hi!" so far
+
+## Available Coding Languages
+
+In computers, I can:
+
+### code JavaScript
+
+Codes somethig whatever you want with the language in the production mode at everywhere
+
+### code HTML
+
+Codes somethig whatever you want with the language in the production mode at everywhere
+
+### code CSS
+
+Codes somethig whatever you want with the language in the production mode at everywhere
+
+See the section Skills for more information.
+
+## Contributing
+
+The main purpose of this website is to continue evolving all of us, making it more efficient and smarter to survive in the world. Development of Jun-Kumkoawa happens in the open on GitHub, and we are grateful to the community for contributing bugfixes and improvements.
 
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## License
+
+Jun-Kumokawa is [MIT licensed](https://mit-license.org/).
+
+Copyright (c) 1992-present, Jun-Kumokawa
+
+This Jun-Kumokawa has Super Cow Powers.
+**DO NOT OPEN [THE PAGE](/moo)**
