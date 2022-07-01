@@ -47,7 +47,7 @@
     "build": "NODE_ENV=development react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "watch": "nodemon -i build -e css,d,jpg,svg,test,ts,tsx --exec yarn build"
+    "watch": "nodemon -i build -e css,d,jpg,svg,test,ts,tsx,json --exec yarn build"
   },
   "eslintConfig": {
     "extends": [
