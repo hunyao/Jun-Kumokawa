@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Jun-Kumokawa/static/css/main.28316c08.css",
-    "main.js": "/Jun-Kumokawa/static/js/main.f8617425.js",
+    "main.js": "/Jun-Kumokawa/static/js/main.4dc91313.js",
     "static/js/959.48f00306.chunk.js": "/Jun-Kumokawa/static/js/959.48f00306.chunk.js",
     "static/js/690.eee7cd56.chunk.js": "/Jun-Kumokawa/static/js/690.eee7cd56.chunk.js",
     "static/js/601.5313783f.chunk.js": "/Jun-Kumokawa/static/js/601.5313783f.chunk.js",
@@ -32,7 +32,7 @@
     "static/media/avator.jpg": "/Jun-Kumokawa/static/media/avator.d90db50e7afd2edec489.jpg",
     "index.html": "/Jun-Kumokawa/index.html",
     "main.28316c08.css.map": "/Jun-Kumokawa/static/css/main.28316c08.css.map",
-    "main.f8617425.js.map": "/Jun-Kumokawa/static/js/main.f8617425.js.map",
+    "main.4dc91313.js.map": "/Jun-Kumokawa/static/js/main.4dc91313.js.map",
     "959.48f00306.chunk.js.map": "/Jun-Kumokawa/static/js/959.48f00306.chunk.js.map",
     "690.eee7cd56.chunk.js.map": "/Jun-Kumokawa/static/js/690.eee7cd56.chunk.js.map",
     "601.5313783f.chunk.js.map": "/Jun-Kumokawa/static/js/601.5313783f.chunk.js.map",
@@ -62,6 +62,6 @@
   },
   "entrypoints": [
     "static/css/main.28316c08.css",
-    "static/js/main.f8617425.js"
+    "static/js/main.4dc91313.js"
   ]
 }
