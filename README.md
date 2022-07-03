@@ -142,4 +142,4 @@ Jun-Kumokawa is [MIT licensed](https://mit-license.org/).
 Copyright (c) 1992-present, Jun-Kumokawa
 
 This Jun-Kumokawa has Super Cow Powers.
-**DO NOT OPEN [THE PAGE](/moo)**
+**DO NOT OPEN [THE PAGE](/Jun-Kumokawa/moo)**

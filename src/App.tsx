@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { Suspense } from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import LinearProgress from '@mui/material/LinearProgress';
