@@ -3,29 +3,35 @@ import Paper from '@mui/material/Paper';
 import ListDirectoryHeader from './ListDirectoryHeader'
 import ListDirectoryContent from './ListDirectoryContent'
 import FileView from './FileView';
-import axios from 'axios';
+import { OctokitInstance } from './../plugins/Octokit';
+import { repositoryContext } from '../contexts/repository';
+
 const sorting = (a: any, b: any) => {
   if (a.type !== b.type) {
     return a.type === "tree" ? -1 : 1;
   }
-  const isDotFileA = a.filename[0] === '.';
-  const isDotFileB = b.filename[0] === '.';
+  const isDotFileA = a.path[0] === '.';
+  const isDotFileB = b.path[0] === '.';
   if (isDotFileA !== isDotFileB) {
     return isDotFileA ? -1 : 1;
   }
-  const isStartWithUpperCaseA = /^[A-Z]/.test(a.filename);
-  const isStartWithUpperCaseB = /^[A-Z]/.test(b.filename);
+  const isStartWithUpperCaseA = /^[A-Z]/.test(a.path);
+  const isStartWithUpperCaseB = /^[A-Z]/.test(b.path);
   if (isStartWithUpperCaseA !== isStartWithUpperCaseB) {
     return isStartWithUpperCaseA ? -1 : 1;
   }
 
-  return a.filename < b.filename ? -1 : 1;
+  return a.path < b.path ? -1 : 1;
 }
 const ListDirectory = (props: any) => {
   const {
-    path,
-    type
+    type,
+    sha
   } = props;
+
+  const {
+    getShafromPath
+  } = React.useContext(repositoryContext)
 
   const [ trees, setTree ] = React.useState([]);
   const [ showReadme, setShowReadme ] = React.useState(false);
@@ -35,26 +41,30 @@ const ListDirectory = (props: any) => {
     if (type === "blob") {
       return;
     }
+    if (sha === '') {
+      return;
+    }
     let mounted = true;
-    axios({
-      method: "get",
-      url: '/tree' + path.split('/').map((p: string) => encodeURIComponent(p)).join('/'),
-      baseURL: "/api"
+    OctokitInstance.request('GET /repos/{owner}/{repo}/git/trees/{tree_sha}', {
+      owner: process.env.REACT_APP_REPOSITORY_OWNER as string,
+      repo: process.env.REACT_APP_REPOSITORY_NAME as string,
+      tree_sha: sha
     })
-      .then(({ data }) => {
-        if (mounted) {
-          data.sort(sorting)
-          setTree(data)
-          const containReadme = data
-            .find((file: any) => file.filename === 'README.md') !== undefined;
-          setShowReadme(containReadme);
-        }
-      })
+    .then(({ data }) => {
+      if (mounted) {
+        data.tree.sort(sorting)
+        setTree(data.tree as any)
+        const containReadme = data.tree
+        .find((file: any) => file.path === 'README.md') !== undefined;
+        setShowReadme(containReadme);
+      }
+    })
     return () => {
       mounted = false;
     }
   }, [
-    path
+    sha,
+    type
   ])
 
   React.useEffect(() => {
@@ -62,21 +72,26 @@ const ListDirectory = (props: any) => {
       return;
     }
     let mounted = true;
-    axios({
-      method: "get",
-      url: '/blob' + path + '/README.md',
-      baseURL: "/api"
+    const sha = getShafromPath('README.md');
+    if (sha === undefined) {
+      return;
+    }
+    OctokitInstance.request('GET /repos/{owner}/{repo}/git/blobs/{file_sha}', {
+      owner: process.env.REACT_APP_REPOSITORY_OWNER as string,
+      repo: process.env.REACT_APP_REPOSITORY_NAME as string,
+      file_sha: sha as string
     })
-      .then(({ data }) => {
-        if (mounted) {
-          setReadmeContent(data)
-        }
-      })
+    .then(({ data }) => {
+      if (mounted) {
+        setReadmeContent(atob(data.content))
+      }
+    })
     return () => {
       mounted = false;
     }
   }, [
-    showReadme
+    showReadme,
+    getShafromPath
   ])
 
   return (
@@ -91,7 +106,7 @@ const ListDirectory = (props: any) => {
       >
         <ListDirectoryHeader />
         <ListDirectoryContent
-          path={path}
+          sha={sha}
           trees={trees}
           type={type}
         />

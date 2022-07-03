@@ -7,6 +7,7 @@ import MarkdownView from './MarkdownView';
 import SourceCodeView from './SourceCodeView';
 import FileViewToolbar from './ui/FileViewToolbar'
 import GithubLink from './ui/GithubLink'
+import mimeTypes from "mime-types";
 
 const FileView = (props: any) => {
   const {
@@ -15,11 +16,15 @@ const FileView = (props: any) => {
     mode,
     binary,
     image,
+    mime,
     sx = {}
   } = props;
-  const extention = filename.split(".").pop()
 
   const RenderDom = React.useMemo(() => {
+    if (filename === undefined) {
+      return;
+    }
+    const extention = filename.split(".").pop()
     if (mode === "readme" || extention === 'md') {
       return <MarkdownView text={content} />
     } else if (mode === "sourceCode") {
@@ -28,13 +33,17 @@ const FileView = (props: any) => {
         extention={extention}
         binary={binary}
         image={image}
+        mime={mime === undefined || mime === "" ? mimeTypes.contentType(filename) : mime}
+        filename={filename.split('/').pop()}
       />
     } else {}
   }, [
     mode,
     content,
     binary,
-    image
+    image,
+    mime,
+    filename
   ])
 
   return (

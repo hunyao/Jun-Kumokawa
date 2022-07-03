@@ -3,59 +3,82 @@ import Box from '@mui/material/Box';
 import FileNavigation from '../../../components/FileNavigation';
 import ListDirectory from '../../../components/ListDirectory';
 import FileView from '../../../components/FileView';
-import { useNavigate, useLocation } from "react-router-dom";
-import axios from 'axios';
+import { useParams } from "react-router-dom";
+import { OctokitInstance } from '../../../plugins/Octokit';
+import { fromBlob } from 'file-type/browser';
+import { repositoryContext } from '../../../contexts/repository';
 
 const BlobPage = () => {
-  const location = useLocation();
-  const { pathname } = location;
-  const splited = pathname.split('/');
-  const filename = splited.pop() as string;
   const [ content, setContent ] = React.useState("");
   const [ isBinary, setIsBinary ] = React.useState(false);
   const [ isImage, setIsImage ] = React.useState(false);
+  const [ filename, setFilename ] = React.useState("");
+  const [ mime, setMime ] = React.useState("");
+  const { sha } = useParams();
+
+  const {
+    getPathFromSha
+  } = React.useContext(repositoryContext)
+
+  React.useEffect(() => {
+    setFilename(getPathFromSha(sha))
+  }, [
+    getPathFromSha,
+    sha
+  ])
 
   React.useEffect(() => {
     let mounted = true;
-    axios({
-      method: "get",
-      url: pathname,
-      baseURL: "/api",
-      responseType: 'text',
-      transitional: {
-        silentJSONParsing: false,
-        forcedJSONParsing: false,
-        clarifyTimeoutError: false,
+    OctokitInstance.request('GET /repos/{owner}/{repo}/git/blobs/{file_sha}', {
+      owner: process.env.REACT_APP_REPOSITORY_OWNER as string,
+      repo: process.env.REACT_APP_REPOSITORY_NAME as string,
+      file_sha: sha as string
+    })
+    .then(({ data }) => {
+      if (mounted) {
+        setContent(atob(data.content));
+        const blob = new Blob([atob(data.content)]);
+        return fromBlob(blob)
       }
     })
-      .then(({ data, headers }) => {
-        if (mounted) {
-          setContent(data);
-          setIsBinary(headers["x-file-type"].includes('binary'))
-          setIsImage(/^image\//.test(headers["x-file-type"]))
+    .then((res: any) => {
+      if (mounted) {
+        if (res === undefined) {
+          setIsBinary(false);
+          setIsImage(false);
+          setMime('text/plain')
+        } else {
+          setIsBinary(true)
+          setIsImage(/^image\//.test(res.mime))
+          setMime(res.mime)
         }
-      })
+      }
+    })
+
     return () => {
       mounted = false;
     }
-  }, [])
+  }, [
+    sha
+  ])
 
   return (
     <>
       <Box>
         <FileNavigation
           mode="navigation"
-          path={decodeURIComponent(pathname).replace(/^\/blob/, '')}
+          sha={sha}
         />
         <ListDirectory
-          path={decodeURIComponent(pathname).replace(/^\/blob/, '')}
           type="blob"
+          sha={sha}
         />
         <FileView
           filename={filename}
           content={content}
           binary={isBinary}
           image={isImage}
+          mime={mime}
           mode="sourceCode"
         />
       </Box>

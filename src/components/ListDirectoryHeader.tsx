@@ -20,6 +20,7 @@ const ListDirectoryHeader = (props: any) => {
     }
   } = React.useContext(repositoryContext);
   const [ expend, setExpend ] = React.useState(false);
+  const welcomeMessage = 'Welcome to my website. Enjoy your stay at my website. Now open to work. You can hire me. Feel free to contact to me.'
 
   return (
     <>
@@ -67,13 +68,13 @@ const ListDirectoryHeader = (props: any) => {
           >
             <GithubLink
               href="#"
-              title="Welcome to my website. Enjoy your stay at my website. Now open to work. You can hire me. Contact to me if you wish"
+              title={welcomeMessage}
             >
               <Typography
                 component="span"
                 variant="body2"
               >
-                Welcome to my website. Enjoy your stay at my website. Now open to work. You can hire me. Contact to me if you wish
+                {welcomeMessage}
               </Typography>
             </GithubLink>
           </Grid>
@@ -146,7 +147,7 @@ const ListDirectoryHeader = (props: any) => {
                   }}
                 />
               }
-              number={commits}
+              number={commits.length}
               name="commits"
             />
           </Grid>
@@ -159,7 +160,7 @@ const ListDirectoryHeader = (props: any) => {
           }}
         >
           <GithubLink href="#" className="primary">
-            Welcome to my website. Enjoy your stay at my website. Now open to work. You can hire me. Contact to me if you wish.
+            {welcomeMessage}
           </GithubLink>
         </Box>
       </ListDirectoryToolbar>

@@ -68,12 +68,9 @@ function App() {
                     <Route path="/experience" element={<Experience />} />
                     <Route path="/skill" element={<Skill />} />
                     <Route path="/language" element={<Language />} />
-                    <Route path="/blob">
-                      <Route path="*" element={<Blob />} />
-                    </Route>
-                    <Route path="/tree" element={<Tree />}>
-                      <Route path="*" element={<Tree />} />
-                    </Route>
+                    <Route path="/blob/:sha" element={<Blob />} />
+                    <Route path="/tree" element={<Tree />} />
+                    <Route path="/tree/:sha" element={<Tree />} />
                   </Routes>
                 </Suspense>
               </Container>

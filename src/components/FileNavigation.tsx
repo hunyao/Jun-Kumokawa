@@ -10,22 +10,24 @@ import GithubButton from './ui/GithubButton'
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import GithubLink from './ui/GithubLink';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { repositoryContext } from '../contexts/repository';
 
 // mode: overview | navigation
 const FileNavigation = (props: any) => {
   const {
     mode,
-    path
+    sha
   } = props;
   const navigate = useNavigate();
   const {
     state: {
       branches,
       tags,
-      currentBranch
-    }
+    },
+    selectedBranch,
+    getPathFromSha,
+    getShafromPath
   } = React.useContext(repositoryContext);
 
   const RenderDom = React.useMemo(() => {
@@ -46,7 +48,7 @@ const FileNavigation = (props: any) => {
                   }}
                 />
               }
-              number={branches}
+              number={branches.length}
               name="branches"
             />
           </Grid>
@@ -63,7 +65,7 @@ const FileNavigation = (props: any) => {
                   }}
                 />
               }
-              number={tags}
+              number={tags.length}
               name="tags"
             />
           </Grid>
@@ -95,9 +97,11 @@ const FileNavigation = (props: any) => {
         </>
       )
     } else if (mode === "navigation") {
-      const [
-        , ...uris
-      ] = path.split('/');
+      const res = getPathFromSha(sha);
+      if (res === undefined) {
+        return;
+      }
+      const uris = res.split('/');
       const lastUri = uris.pop();
 
       return (
@@ -123,15 +127,19 @@ const FileNavigation = (props: any) => {
             </GithubLink>
             {uris.map((uri: string, index: number, self: string[]) => {
               return <GithubLink
+                key={index}
                 href="#"
                 className="active"
                 onClick={(e: any) => {
                   e.preventDefault();
-                  navigate("/tree/" + self
-                    .slice(0, index + 1)
-                    .map((p: string) => encodeURIComponent(p))
-                    .join('/')
-                );
+                  navigate(
+                    "/tree/"
+                    + getShafromPath(
+                      self.slice(0, index + 1)
+                      .map((p: string) => encodeURIComponent(p))
+                      .join('/')
+                    )
+                  );
                 }}
               >
                 {uri}
@@ -165,9 +173,12 @@ const FileNavigation = (props: any) => {
     } else {}
   }, [
     mode,
-    path,
-    branches,
-    tags,
+    branches.length,
+    tags.length,
+    getPathFromSha,
+    sha,
+    navigate,
+    getShafromPath
   ])
 
   return (
@@ -185,7 +196,7 @@ const FileNavigation = (props: any) => {
               fontSize="small"
             />
             <span>
-              {currentBranch}
+              {selectedBranch.name}
             </span>
             <SvgIcon component={ArrowDropDownIcon} />
           </GithubButton>

@@ -1,21 +1,20 @@
 import React from 'react'
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import GithubLink from '../../components/ui/GithubLink'
 import InputBase from '@mui/material/InputBase';
-import axios from 'axios';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import SvgIcon from '@mui/material/SvgIcon';
 
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { styled } from '@mui/material/styles';
+
+import { repositoryContext } from '../../contexts/repository';
 
 const TreeBrowserListItem = styled(({className, ...rest}: any) => (
   <ListItem className={className + " tree-browser-list-item"} {...rest} />
@@ -51,16 +50,30 @@ const TreeBrowserListItem = styled(({className, ...rest}: any) => (
 `
 
 const Find = () => {
-  const [ trees, setTrees ] = React.useState<string[]>([]);
   const [ searchText, setSearchText ] = React.useState("");
   const [ acticveRow, setActiceRow ] = React.useState(0);
   const navigate = useNavigate();
 
-  const treesForDisplay = trees
-  .slice(0, 50)
-  .filter(tree => {
-    return tree.toUpperCase().includes(searchText.toUpperCase())
-  })
+  const {
+    allTrees,
+    getShafromPath
+  } = React.useContext(repositoryContext)
+
+  const treesForDisplay = React.useMemo(() => {
+    if (allTrees.length === 0) {
+      return [];
+    }
+    return allTrees.tree
+    .filter((t: any) => t.type === 'blob')
+    .map((t: any) => t.path)
+    .filter((path: any) => {
+      return path.toUpperCase().includes(searchText.toUpperCase())
+    })
+    .slice(0, 50)
+  }, [
+    searchText,
+    allTrees.tree
+  ])
 
   const handleKeydown = ({ key }: any) => {
     let n = acticveRow;
@@ -69,7 +82,7 @@ const Find = () => {
     } else if (key === "ArrowUp") {
       n -= 1;
     } else if (key === "Enter") {
-      navigate('/blob/' + treesForDisplay[acticveRow])
+      navigate('/blob/' + getShafromPath(treesForDisplay[acticveRow]))
     } else {}
 
     n = n < 0 ? 0 : n;
@@ -77,17 +90,6 @@ const Find = () => {
 
     setActiceRow(n);
   }
-
-  React.useEffect(() => {
-    axios({
-      method: "get",
-      url: '/trees',
-      baseURL: "/api"
-    })
-    .then(({ data }) => {
-      setTrees(data);
-    })
-  }, [])
 
   return (
     <>
@@ -119,11 +121,11 @@ const Find = () => {
         }}
       >
         {treesForDisplay
-          .map((tree, index: number) => (
+          .map((tree: any, index: number) => (
           <TreeBrowserListItem
             disablePadding
             className={index === acticveRow ? 'active': ''}
-            onClick={() => navigate('/blob/' + tree)}
+            onClick={() => navigate('/blob/' + getShafromPath(tree))}
           >
             <SvgIcon component={ArrowForwardIosIcon} sx={{ height: 16, width: 16, marginX: 1, visibility: index === acticveRow ? 'visible': 'hidden'}} />
             <SvgIcon component={InsertDriveFileOutlinedIcon} sx={{ height: 16, width: 16}} />
