@@ -18,6 +18,11 @@ const Footer = () => {
             }}
           >
             <Grid container alignItems="center" spacing={1}>
+              <Grid item p={2}>
+                This Jun-Kumokawa has Super Cow Powers. <b>DO NOT OPEN <a href="#/moo">THE PAGE</a></b>
+              </Grid>
+            </Grid>
+            <Grid container alignItems="center" spacing={1}>
               <Grid item>
                 <SvgIcon
                   component={CatIcon}
