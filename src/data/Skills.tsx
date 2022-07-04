@@ -37,6 +37,7 @@ export const skills = [
     [ "Node.js", 10 ],
     [ "TypeScript", 10 ],
     [ "PHP", 10 ],
+    [ "Java", 1 ],
   ].map(([ label, value ], index: number) => ({
     groupName: "Coding Languages",
     label,
@@ -55,7 +56,7 @@ export const skills = [
   ...[
     [ "Japanese", 30 ],
     [ "English", 10 ],
-    [ "Estonian", 1 ],
+    [ "Estonian", 0 ],
   ].map(([ label, value ], index: number) => ({
     groupName: "Human Languages",
     label,
@@ -65,6 +66,7 @@ export const skills = [
   ...[
     [ "Windows", 30 ],
     [ "Ubuntu", 10 ],
+    [ "CentOS", 3 ],
     [ "MacOS", 1 ],
   ].map(([ label, value ], index: number) => ({
     groupName: "Oparationg systems",
@@ -73,9 +75,9 @@ export const skills = [
     color: getColorCode(orange, index)
   })),
   ...[
-    [ "AWS", 30 ],
-    [ "Azure", 10 ],
-    [ "GCP", 1 ],
+    [ "AWS", 6 ],
+    [ "Azure", 2 ],
+    [ "GCP", 0 ],
   ].map(([ label, value ], index: number) => ({
     groupName: "Cloud platforms",
     label,
@@ -90,6 +92,7 @@ export const skills = [
     [ "Zend Framework", 2 ],
     [ "AngularJS", 1 ],
     [ "FuelPHP", 1 ],
+    [ "Spring", 1 ],
   ].map(([ label, value ], index: number) => ({
     groupName: "Frameworks",
     label,
@@ -97,9 +100,9 @@ export const skills = [
     color: getColorCode(deepOrange, index)
   })),
   ...[
-    [ "MUI", 30 ],
-    [ "Vuetify", 10 ],
-    [ "Bootstrap", 1 ],
+    [ "MUI", 3 ],
+    [ "Vuetify", 3 ],
+    [ "Bootstrap", 2 ],
   ].map(([ label, value ], index: number) => ({
     groupName: "UI libraries",
     label,
@@ -107,8 +110,12 @@ export const skills = [
     color: getColorCode(deepPurple, index)
   })),
   ...[
+    [ "Sequalise", 5 ],
+    [ "moment", 5 ],
     [ "jQuery", 5 ],
     [ "Vuex", 3 ],
+    [ "Symfony", 1 ],
+    [ "Redux", 0 ],
   ].map(([ label, value ], index: number) => ({
     groupName: "Libraries",
     label,
@@ -116,11 +123,11 @@ export const skills = [
     color: getColorCode(green, index)
   })),
   ...[
-    [ "MySQL", 30 ],
-    [ "PostgreSQL", 30 ],
-    [ "SQLServer", 30 ],
-    [ "Memcached", 30 ],
-    [ "Redis", 30 ],
+    [ "MySQL", 10 ],
+    [ "PostgreSQL", 5 ],
+    [ "Memcached", 3 ],
+    [ "Redis", 3 ],
+    [ "SQLServer", 2 ],
   ].map(([ label, value ], index: number) => ({
     groupName: "Databases",
     label,
@@ -133,6 +140,8 @@ export const skills = [
     [ "yarn", 5 ],
     [ "Docker", 5 ],
     [ "Subversion", 1 ],
+    [ "Webpack", 1 ],
+    [ "Serverless", 1 ],
   ].map(([ label, value ], index: number) => ({
     groupName: "Tools",
     label,
@@ -162,6 +171,24 @@ export const skills = [
     label,
     value,
     color: getColorCode(lightGreen, index)
+  })),
+  ...[
+    [ "apt", 10 ],
+    [ "yum", 3 ],
+  ].map(([ label, value ], index: number) => ({
+    groupName: "Package Manage Systems",
+    label,
+    value,
+    color: getColorCode(teal, index)
+  })),
+  ...[
+    [ "Wordpress", 3 ],
+    [ "Outsystems", 1 ],
+  ].map(([ label, value ], index: number) => ({
+    groupName: "Other",
+    label,
+    value,
+    color: getColorCode(brown, index)
   })),
 ].map(skill => {
   return {

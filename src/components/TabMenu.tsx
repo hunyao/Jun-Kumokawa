@@ -3,7 +3,6 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 import CodeIcon from '@mui/icons-material/Code';
-import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import InsightsIcon from '@mui/icons-material/Insights';
 import GithubTabs from './ui/GithubTabs';
 import GithubTab from './ui/GithubTab';
@@ -33,12 +32,7 @@ const Menus = [
     name: 'skills',
     path: 'skill',
     icon: <InsightsIcon />,
-  },
-  {
-    name: 'Q&A',
-    path: 'questions',
-    icon: <QuestionAnswerIcon />,
-  },
+  }
 ]
 const TabMenu = (props: any) => {
   const {
