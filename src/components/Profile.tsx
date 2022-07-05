@@ -102,7 +102,7 @@ const Profile = () => {
               Icon: LocationOnOutlinedIcon,
               content: (
                 <LinkGoogleMap target="_blank">
-                  Fukuoka, Japan
+                  Tallinn, Estonia
                 </LinkGoogleMap>
               )
             },
