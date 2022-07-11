@@ -121,10 +121,11 @@ const GithubMenuButton = (props: any) => {
         }}
       >
         <ListSubheader>{subheader}</ListSubheader>
-        {menuItems.map((item: any) => (
+        {menuItems.map((item: any, index: number) => (
           <GithubMenuPoperMenuItem
             className={value === item.value ? 'selected': ''}
             onClick={() => handleClose(item.value)}
+            key={index}
           >
             {item.text}
           </GithubMenuPoperMenuItem>

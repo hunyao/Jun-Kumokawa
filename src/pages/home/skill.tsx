@@ -244,10 +244,11 @@ const Skill = () => {
                     All Technologies
                   </ListItemButton>
                 </GithubNavMenuListItem>
-                {groupList.map(([ groupName ]) => (
+                {groupList.map(([ groupName ], index) => (
                   <GithubNavMenuListItem
                     className={groupName === selectedMenu ? 'selected': ''}
                     onClick={() => setSelectedMenu(groupName)}
+                    key={index}
                   >
                     <ListItemButton
                       component={Button}

@@ -10,11 +10,14 @@ import moment from 'moment';
 import { repositoryContext } from '../contexts/repository';
 
 import { OctokitInstance } from './../plugins/Octokit';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const ListDirectoryContent = (props: any) => {
   const [ root, setRoot ] = React.useState(true);
   const [ treeForDisplaies, setTreeForDisplaies ] = React.useState([]);
   const [ previousSha, setPreviousSha ] = React.useState('');
+  const [ loading, setLoading ] = React.useState(true);
   const {
     sha,
     trees,
@@ -84,6 +87,7 @@ const ListDirectoryContent = (props: any) => {
       })
     })
     .then(setTreeForDisplaies)
+    .then(() => setLoading(false))
   }, [
     trees,
     allTrees,
@@ -91,6 +95,18 @@ const ListDirectoryContent = (props: any) => {
   ])
 
   if (type !== 'tree') return null;
+
+  if (loading) {
+    return <Grid
+      container
+      justifyContent="center"
+      p={2}
+    >
+      <Grid item>
+        <CircularProgress />
+      </Grid>
+    </Grid>
+  }
 
   return (
     <>

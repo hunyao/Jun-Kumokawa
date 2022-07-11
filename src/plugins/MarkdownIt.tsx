@@ -4,6 +4,7 @@ import MarkdownItHighlightjs from 'markdown-it-highlightjs';
 // import HighlightShell from 'highlight.js/lib/languages/shell';
 import Highlightjs from 'highlight.js/lib/core';
 import MarkdownItNamedHeadings from './MarkdownItNamedHeadings';
+import MarkdownItEmoji from 'markdown-it-emoji';
 
 // Highlightjs.registerLanguage(
 //   'typescript',
@@ -20,6 +21,15 @@ const md = new MarkdownIt()
   inline: true,
   hljs: Highlightjs
 })
-.use(MarkdownItNamedHeadings);
+.use(MarkdownItNamedHeadings)
+.use(MarkdownItEmoji, {
+  defs: {
+    japan: '🇯🇵',
+    estonia: '🇪🇪',
+    earth: '🌏',
+    thinking: '🤔',
+  }
+})
+;
 
 export default md;

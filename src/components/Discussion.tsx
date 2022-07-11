@@ -282,37 +282,38 @@ const DiscussionComponent = (props: any) => {
     <>
       <Discussion>
         <DiscussionContent>
-          {timelineItems.map((timelineItem: any, index: number) => (
-            <DiscussionTimelineItem>
-              <DiscussionTimelineItemBadge>
-                <SvgIcon component={timelineItem.icon} />
-              </DiscussionTimelineItemBadge>
-              <DiscussionTimelineItemBody>
-                <Box display="inline-block">
-                  <Box
-                    component="img"
-                    src={avator}
-                    height={20}
-                    width={20}
-                    sx={{
-                      borderRadius: '50%',
-                      verticalAlign: 'middle'
-                    }}
-                    display="inline-block"
-                  />
-                </Box> <Typography
-                  component="span"
-                  className="discussion-username"
-                >
-                  {username}
-                </Typography> <Typography
-                  component="span"
-                >
-                  {timelineItem.text}
-                </Typography>
-              </DiscussionTimelineItemBody>
-            </DiscussionTimelineItem>
-          ))}
+          {timelineItems
+            .map((timelineItem: any, index: number) => (
+              <DiscussionTimelineItem key={index}>
+                <DiscussionTimelineItemBadge>
+                  <SvgIcon component={timelineItem.icon} />
+                </DiscussionTimelineItemBadge>
+                <DiscussionTimelineItemBody>
+                  <Box display="inline-block">
+                    <Box
+                      component="img"
+                      src={avator}
+                      height={20}
+                      width={20}
+                      sx={{
+                        borderRadius: '50%',
+                        verticalAlign: 'middle'
+                      }}
+                      display="inline-block"
+                    />
+                  </Box> <Typography
+                    component="span"
+                    className="discussion-username"
+                  >
+                    {username}
+                  </Typography> <Typography
+                    component="span"
+                  >
+                    {timelineItem.text}
+                  </Typography>
+                </DiscussionTimelineItemBody>
+              </DiscussionTimelineItem>
+            ))}
           <DiscussionItem>
             <DiscussionItemAvator>
               <Box
@@ -351,14 +352,18 @@ const DiscussionComponent = (props: any) => {
                   }}
                 >
                   {additionalItems.map((additionalItem: any, index: number) => (
-                    <AdditionalInformation expanded={expanded === ('panel' + index)} onChange={handleChange('panel' + index)}>
+                    <AdditionalInformation
+                      expanded={expanded === ('panel' + index)}
+                      onChange={handleChange('panel' + index)}
+                      key={index}
+                    >
                       <AdditionalInformationSummary>
                         <span style={{flex: 'auto'}}>{additionalItem.title}</span>
                         <span>Details</span>
                       </AdditionalInformationSummary>
                       <AdditionalInformationDetails>
                         <List>
-                          {additionalItem.items.map((item: any) => <ListItem><ListItemText primary={item} /></ListItem>)}
+                          {additionalItem.items.map((item: any, index: number) => <ListItem key={index}><ListItemText primary={item} /></ListItem>)}
                         </List>
                       </AdditionalInformationDetails>
                     </AdditionalInformation>
@@ -369,8 +374,8 @@ const DiscussionComponent = (props: any) => {
           </DiscussionItem>
         </DiscussionContent>
         <DiscussionSidebar>
-          {sidebarItems.map(([ title, text ]: any) => (
-            <DiscussionSidebarItem>
+          {sidebarItems.map(([ title, text ]: any, index: number) => (
+            <DiscussionSidebarItem key={index}>
               <Box
                 className="discussion-sidebar-item-header"
               >

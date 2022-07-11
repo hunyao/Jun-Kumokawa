@@ -62,7 +62,7 @@ JunKumokawaA
 
 This example will offer to hire me, then you can hire me if I would like to.
 
-## Who the hell are you?🤔
+## Who the hell are you? :thinking:
 
 I am a self-learned developer who are made in Japan.
 
@@ -74,7 +74,7 @@ Also, I built my own home server:
   * DNS server
   * and so on...
 
-I have my own email address that works on the my mail server either.
+I have my own email address that works on the my mail server too.
 
 I always think how to work, how to code and how to live efficiently. So I have been making a lot of scripts to do jobs efficiently on working. Also I helped members to solve their problems to keep going a project smoothly.
 
@@ -95,15 +95,15 @@ I can code both of front-end and back-end by alone or a team
 
 In the world, I can:
 
-### speak Japanese 🇯🇵
+### speak Japanese :japan:
 
 Speaks the language as native language in the production mode at everywhere.
 
-### speak English 🌏
+### speak English :earth:
 
 Speaks the language as second language in the development mode at everywhere.
 
-### speak Estonian 🇪🇪
+### speak Estonian :estonia:
 
 Can just say "Hi!" so far
 

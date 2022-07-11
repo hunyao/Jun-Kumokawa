@@ -12,26 +12,31 @@ const Menus = [
     name: 'overview',
     path: 'overview',
     icon: <HomeOutlinedIcon />,
+    menuId: 0,
   },
   {
     name: 'code',
     path: 'tree',
     icon: <CodeIcon />,
+    menuId: 1,
   },
   {
     name: 'experience',
     path: 'experience',
     icon: <WorkOutlineOutlinedIcon />,
+    menuId: 2,
   },
   {
     name: 'education',
     path: 'education',
     icon: <SchoolOutlinedIcon />,
+    menuId: 3,
   },
   {
     name: 'skills',
     path: 'skill',
     icon: <InsightsIcon />,
+    menuId: 4,
   }
 ]
 const TabMenu = (props: any) => {
@@ -58,6 +63,7 @@ const TabMenu = (props: any) => {
         iconPosition="start"
         label={menu.name}
         key={index}
+        value={menu.menuId}
       />
     ))}
   </GithubTabs>

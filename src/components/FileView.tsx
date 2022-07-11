@@ -1,5 +1,6 @@
 import React from 'react';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import ListIcon from '@mui/icons-material/List';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
@@ -8,6 +9,7 @@ import SourceCodeView from './SourceCodeView';
 import FileViewToolbar from './ui/FileViewToolbar'
 import GithubLink from './ui/GithubLink'
 import mimeTypes from "mime-types";
+import CircularProgress from '@mui/material/CircularProgress';
 
 const FileView = (props: any) => {
   const {
@@ -17,12 +19,24 @@ const FileView = (props: any) => {
     binary,
     image,
     mime,
-    sx = {}
+    sx = {},
+    loading
   } = props;
 
   const RenderDom = React.useMemo(() => {
     if (filename === undefined) {
       return;
+    }
+    if (loading) {
+      return <Grid
+        container
+        justifyContent="center"
+        p={2}
+      >
+        <Grid item>
+          <CircularProgress />
+        </Grid>
+      </Grid>
     }
     const extention = filename.split(".").pop()
     if (mode === "readme" || extention === 'md') {
@@ -43,7 +57,8 @@ const FileView = (props: any) => {
     binary,
     image,
     mime,
-    filename
+    filename,
+    loading
   ])
 
   return (

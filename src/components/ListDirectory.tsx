@@ -36,6 +36,7 @@ const ListDirectory = (props: any) => {
   const [ trees, setTree ] = React.useState([]);
   const [ showReadme, setShowReadme ] = React.useState(false);
   const [ readmeContent, setReadmeContent ] = React.useState("");
+  const [ loading, setLoading ] = React.useState(true);
 
   React.useEffect(() => {
     if (type === "blob") {
@@ -86,6 +87,7 @@ const ListDirectory = (props: any) => {
         setReadmeContent(atob(data.content))
       }
     })
+    .then(() => setLoading(false))
     return () => {
       mounted = false;
     }
@@ -120,6 +122,7 @@ const ListDirectory = (props: any) => {
         sx={{
           display: showReadme ? 'inherit' : 'none'
         }}
+        loading={loading}
       />
     </>
   )

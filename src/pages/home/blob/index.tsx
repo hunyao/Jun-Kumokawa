@@ -14,6 +14,7 @@ const BlobPage = () => {
   const [ isImage, setIsImage ] = React.useState(false);
   const [ filename, setFilename ] = React.useState("");
   const [ mime, setMime ] = React.useState("");
+  const [ loading, setLoading ] = React.useState(true);
   const { sha } = useParams();
 
   const {
@@ -54,6 +55,7 @@ const BlobPage = () => {
         }
       }
     })
+    .then(() => setLoading(false))
 
     return () => {
       mounted = false;
@@ -80,6 +82,7 @@ const BlobPage = () => {
           image={isImage}
           mime={mime}
           mode="sourceCode"
+          loading={loading}
         />
       </Box>
     </>
