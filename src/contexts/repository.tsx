@@ -62,10 +62,7 @@ export function RepositoryProvider({ children }: any) {
     ])
     .then(([ masterBranch, branches, tags, commits ]) => {
       dispatch({
-        branches: Array.from([
-          ...branches,
-          masterBranch.data
-        ]),
+        branches: branches,
         tags: tags,
         commits: commits
       })
@@ -95,9 +92,14 @@ export function RepositoryProvider({ children }: any) {
     if (sha === selectedBranch.commit.sha) {
       return ''
     }
-    return allTrees.tree.find((t: any) => t.sha === sha).path
+    const object = allTrees.tree.find((t: any) => t.sha === sha);
+    if (object === undefined) {
+      return ''
+    }
+    return object.path;
   }, [
-    allTrees
+    allTrees,
+    selectedBranch
   ])
 
   const getShafromPath = React.useCallback((path: string) => {

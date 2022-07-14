@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { Suspense } from 'react';
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -9,6 +9,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import 'highlight.js/styles/github-dark.css';
 import { styled } from '@mui/material/styles';
+import Header from './pages/common/header'
+import Footer from './pages/common/footer'
 
 const Overview = React.lazy(() => import("./pages/home/overview"))
 const Moo = React.lazy(() => import("./pages/cow"))
@@ -20,8 +22,6 @@ const Blob = React.lazy(() => import("./pages/home/blob"))
 const Tree = React.lazy(() => import("./pages/home/tree"))
 const Find = React.lazy(() => import("./pages/home/find"))
 
-const Header = React.lazy(() => import("./pages/common/header"))
-const Footer = React.lazy(() => import("./pages/common/footer"))
 const RepositoryProvider = React.lazy(() => import("./contexts/repository"))
 const theme = createTheme({
   palette: {

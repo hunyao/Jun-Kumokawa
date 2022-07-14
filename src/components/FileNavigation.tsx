@@ -12,6 +12,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import GithubLink from './ui/GithubLink';
 import { useNavigate } from "react-router-dom";
 import { repositoryContext } from '../contexts/repository';
+import BranchSwitching from '../components/BranchSwitching'
 
 // mode: overview | navigation
 const FileNavigation = (props: any) => {
@@ -25,7 +26,6 @@ const FileNavigation = (props: any) => {
       branches,
       tags,
     },
-    selectedBranch,
     getPathFromSha,
     getShafromPath
   } = React.useContext(repositoryContext);
@@ -189,17 +189,7 @@ const FileNavigation = (props: any) => {
         alignItems="center"
       >
         <Grid item>
-          <GithubButton>
-            <SvgIcon
-              component={GitBranchIcon}
-              viewBox="0 0 16 16"
-              fontSize="small"
-            />
-            <span>
-              {selectedBranch.name}
-            </span>
-            <SvgIcon component={ArrowDropDownIcon} />
-          </GithubButton>
+          <BranchSwitching />
         </Grid>
         {RenderDom}
       </Grid>

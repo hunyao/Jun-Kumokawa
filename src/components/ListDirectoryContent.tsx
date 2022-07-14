@@ -10,7 +10,6 @@ import moment from 'moment';
 import { repositoryContext } from '../contexts/repository';
 
 import { OctokitInstance } from './../plugins/Octokit';
-import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const ListDirectoryContent = (props: any) => {
@@ -64,13 +63,14 @@ const ListDirectoryContent = (props: any) => {
     if (allTrees.length === 0) {
       return;
     }
+    setLoading(true);
     Promise.all(trees.map(async (tree: any) => {
       return {
         tree,
         commit: await OctokitInstance.request('GET /repos/{owner}/{repo}/commits?path={path}&sha={sha}&per_page=1', {
           owner: process.env.REACT_APP_REPOSITORY_OWNER as string,
           repo: process.env.REACT_APP_REPOSITORY_NAME as string,
-          path: '/' + allTrees.tree.find((allTree: any) => allTree.sha === tree.sha).path,
+          path: '/' + getPathFromSha(tree.sha),
           sha: commitSha
         })
       }
@@ -78,8 +78,8 @@ const ListDirectoryContent = (props: any) => {
     .then((responses: any) => {
       return responses.map((response: any) => {
         return {
-          subject: response.commit.data[0].commit.message,
-          committerDate: response.commit.data[0].commit.committer.date,
+          subject: response.commit.data[0]?.commit?.message || '',
+          committerDate: response.commit.data[0]?.commit?.committer?.date || '',
           fileType: response.tree.type,
           path: response.tree.path,
           sha: response.tree.sha
@@ -91,7 +91,8 @@ const ListDirectoryContent = (props: any) => {
   }, [
     trees,
     allTrees,
-    commitSha
+    commitSha,
+    getPathFromSha
   ])
 
   if (type !== 'tree') return null;
