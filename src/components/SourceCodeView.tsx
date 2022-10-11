@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import GithubLink from './ui/GithubLink'
 import SourceCodeViewLine from './ui/SourceCodeViewLine'
 import SourceCodeViewLineNum from './ui/SourceCodeViewLineNum'
-import { useLocation } from "react-router-dom";
 
 const SourceCodeView = (props: any) => {
   const {
@@ -61,7 +60,8 @@ const SourceCodeView = (props: any) => {
     binary,
     image,
     extention,
-    mime
+    mime,
+    filename
   ])
 
   return (

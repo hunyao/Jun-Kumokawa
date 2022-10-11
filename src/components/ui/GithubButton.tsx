@@ -32,8 +32,7 @@ const GithubButton = styled(({className, ...rest}: any) => (
 }
 & > svg {
   vertical-align: text-bottom;
-  width: 16px;
-  height: 16px;
+  font-size: 16px;
 }
 & > span {
   vertical-align: top;

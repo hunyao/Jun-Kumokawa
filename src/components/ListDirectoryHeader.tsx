@@ -11,14 +11,10 @@ import GithubDetailLink from './GithubDetailLink';
 import GithubLink from './ui/GithubLink'
 import Expander from './ui/Expander'
 import ListDirectoryToolbar from './ui/ListDirectoryToolbar'
-import { repositoryContext } from '../contexts/repository';
+import useCommits from '../hooks/useCommits'
 
 const ListDirectoryHeader = (props: any) => {
-  const {
-    state: {
-      commits
-    }
-  } = React.useContext(repositoryContext);
+  const [ , commitsNumber ] = useCommits();
   const [ expend, setExpend ] = React.useState(false);
   const welcomeMessage = 'Welcome to my website. Enjoy your stay at my website. Now open to work. You can hire me. Feel free to contact to me.'
 
@@ -140,14 +136,9 @@ const ListDirectoryHeader = (props: any) => {
               icon={
                 <SvgIcon
                   component={HistoryIcon}
-                  sx={{
-                    height: '16px',
-                    width: '16px',
-                    verticalAlign: 'text-bottom'
-                  }}
                 />
               }
-              number={commits.length}
+              number={commitsNumber}
               name="commits"
             />
           </Grid>

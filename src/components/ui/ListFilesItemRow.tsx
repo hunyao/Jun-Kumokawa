@@ -20,8 +20,7 @@ const ListFilesItemRow = styled(({ className, ...rest }: any) => (
   .file_icon {
     display: inline-flex;
     flexBasis: 16px;
-    width: 16px;
-    height: 16px;
+    font-size: 16px;
     color: #8b949e;
   }
   .commit-message {

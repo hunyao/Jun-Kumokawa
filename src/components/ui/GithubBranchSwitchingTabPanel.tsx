@@ -16,8 +16,7 @@ const GithubBranchSwitchingTabPanel = styled(({className, ...rest}: any) => (
   font-size: 12px;
 
   svg.icon {
-    height: 16px;
-    width: 16px;
+    font-size: 16px;
   }
 }
 & .github-branch-swithcing-list-item-text {

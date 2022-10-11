@@ -14,6 +14,7 @@ export const repositoryContext = React.createContext<any>({});
 export const { Provider, Consumer } = repositoryContext;
 
 const initial = {
+  repository: {},
   branches: [],
   tags: [],
   commits: []
@@ -50,26 +51,68 @@ export function RepositoryProvider({ children }: any) {
   }
 
   React.useEffect(() => {
-    // OctokitInstance.request('GET /rate_limit', {})
-    Promise.all([
-      OctokitInstance.request('GET /repos/{owner}/{repo}/branches/master', {
-        owner: process.env.REACT_APP_REPOSITORY_OWNER as string,
-        repo: process.env.REACT_APP_REPOSITORY_NAME as string
-      }),
-      getAllData('GET /repos/{owner}/{repo}/branches'),
-      getAllData('GET /repos/{owner}/{repo}/tags'),
-      getAllData('GET /repos/{owner}/{repo}/commits'),
-    ])
-    .then(([ masterBranch, branches, tags, commits ]) => {
-      dispatch({
-        branches: branches,
-        tags: tags,
-        commits: commits
+    OctokitInstance.request('GET /repos/{owner}/{repo}', {
+      owner: process.env.REACT_APP_REPOSITORY_OWNER as string,
+      repo: process.env.REACT_APP_REPOSITORY_NAME as string
+    })
+    .then(repository => {
+      const { data } = repository;
+      dispatch((prev: any) => {
+        return {
+          ...prev,
+          repository: data
+        }
       })
-      changeBranch(masterBranch.data)
+    })
+  }, [])
+
+  React.useEffect(() => {
+    getAllData('GET /repos/{owner}/{repo}/branches')
+    .then((branches: any) => {
+      dispatch((prev: any) => {
+        return {
+          ...prev,
+          branches: branches
+        }
+      })
     })
   }, [])
   React.useEffect(() => {
+    getAllData('GET /repos/{owner}/{repo}/tags')
+    .then((tags: any) => {
+      dispatch((prev: any) => {
+        return {
+          ...prev,
+          tags: tags
+        }
+      })
+    })
+  }, [])
+  React.useEffect(() => {
+    getAllData('GET /repos/{owner}/{repo}/commits')
+    .then((commits: any) => {
+      dispatch((prev: any) => {
+        return {
+          ...prev,
+          commits: commits
+        }
+      })
+    })
+  }, [])
+  React.useEffect(() => {
+    if (state.repository.default_branch === undefined) {
+      return;
+    }
+    changeBranch(state.branches.find((b: any) => b.name === state.repository.default_branch))
+  }, [
+    state.repository,
+    state.branches
+  ])
+
+  React.useEffect(() => {
+    if (selectedBranch === undefined) {
+      return;
+    }
     if (selectedBranch.commit.sha === '') {
       return;
     }
@@ -85,32 +128,6 @@ export function RepositoryProvider({ children }: any) {
     selectedBranch
   ])
 
-  const getPathFromSha = React.useCallback((sha: string) => {
-    if (allTrees.length === 0 || sha === "") {
-      return;
-    }
-    if (sha === selectedBranch.commit.sha) {
-      return ''
-    }
-    const object = allTrees.tree.find((t: any) => t.sha === sha);
-    if (object === undefined) {
-      return ''
-    }
-    return object.path;
-  }, [
-    allTrees,
-    selectedBranch
-  ])
-
-  const getShafromPath = React.useCallback((path: string) => {
-    if (allTrees.length === 0) {
-      return;
-    }
-    return allTrees.tree.find((t: any) => t.path === path).sha
-  }, [
-    allTrees
-  ])
-
   return (
     <>
       <Provider
@@ -120,8 +137,6 @@ export function RepositoryProvider({ children }: any) {
           selectedBranch,
           changeBranch,
           allTrees,
-          getPathFromSha,
-          getShafromPath
         }}>
         {children}
       </Provider>

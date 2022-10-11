@@ -5,31 +5,12 @@ import Typography from '@mui/material/Typography';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import GithubLink from './ui/GithubLink'
 import Chip from '@mui/material/Chip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-
-const LinkGoogleMap = (props: any) => {
-  const { children, ...rest } = props;
-  const href = "https://www.google.com/maps/place/" + children;
-  return (
-    <GithubLink
-      href={href}
-      {...rest}
-    >
-      <OpenInNewIcon
-        sx={{
-          fontSize: 'inherit'
-        }}
-      />
-      {children}
-    </GithubLink>
-  )
-}
-
+import LinkGoogleMap from './LinkGoogleMap';
 
 const Profile = () => {
   const [ kanji, setKanji ] = React.useState(false);

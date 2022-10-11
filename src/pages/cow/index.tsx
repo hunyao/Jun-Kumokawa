@@ -1,6 +1,6 @@
 import Grid from '@mui/material/Grid';
 import { useSearchParams } from 'react-router-dom';
-import messages from './cow.json';
+import useCow from '../../hooks/useCow'
 
 // Add more "v" on the param, it will be...
 const Moo = () => {
@@ -10,14 +10,12 @@ const Moo = () => {
   .from(searchParams.entries())
   .map(([ key, ]) => key);
 
-  let i;
-  if (level === "" || !/^v+$/.test(level)) {
-    i = 0;
-  } else {
-    i = level.length < messages.length ? level.length : messages.length-1;
+  const [ msg ] = useCow(level)
+  if (msg === '') {
+    return <></>
   }
 
-  console.error(messages[i])
+  console.error(msg)
   return (
     <>
       <Grid
@@ -29,7 +27,7 @@ const Moo = () => {
           whiteSpace: 'pre',
         }}
       >
-        {messages[i]}
+        {msg}
       </Grid>
     </>
   )

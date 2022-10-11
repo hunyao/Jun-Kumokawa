@@ -11,8 +11,12 @@ import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import GithubLink from './ui/GithubLink';
 import { useNavigate } from "react-router-dom";
-import { repositoryContext } from '../contexts/repository';
 import BranchSwitching from '../components/BranchSwitching'
+import GithubCloneButton from '../components/GithubCloneButton'
+import useBranches from '../hooks/useBranches'
+import useTags from '../hooks/useTags'
+import usePathToSha from '../hooks/usePathToSha'
+import useShaToPath from '../hooks/useShaToPath'
 
 // mode: overview | navigation
 const FileNavigation = (props: any) => {
@@ -21,14 +25,10 @@ const FileNavigation = (props: any) => {
     sha
   } = props;
   const navigate = useNavigate();
-  const {
-    state: {
-      branches,
-      tags,
-    },
-    getPathFromSha,
-    getShafromPath
-  } = React.useContext(repositoryContext);
+  const [ , branchesNumber ] = useBranches();
+  const [ , tagsNumber ] = useTags();
+  const getShafromPath = usePathToSha();
+  const getPathFromSha = useShaToPath();
 
   const RenderDom = React.useMemo(() => {
     if (mode === "overview") {
@@ -41,14 +41,9 @@ const FileNavigation = (props: any) => {
                 <SvgIcon
                   component={GitBranchIcon}
                   viewBox="0 0 16 16"
-                  sx={{
-                    height: '16px',
-                    width: '16px',
-                    verticalAlign: 'text-bottom'
-                  }}
                 />
               }
-              number={branches.length}
+              number={branchesNumber}
               name="branches"
             />
           </Grid>
@@ -58,14 +53,9 @@ const FileNavigation = (props: any) => {
               icon={
                 <SvgIcon
                   component={LocalOfferOutlinedIcon}
-                  sx={{
-                    height: '16px',
-                    width: '16px',
-                    verticalAlign: 'text-bottom'
-                  }}
                 />
               }
-              number={tags.length}
+              number={tagsNumber}
               name="tags"
             />
           </Grid>
@@ -87,21 +77,16 @@ const FileNavigation = (props: any) => {
             </GithubButton>
           </Grid>
           <Grid item ml={1}>
-            <GithubButton className="primary">
-              <span>
-                Code
-              </span>
-              <SvgIcon component={ArrowDropDownIcon} />
-            </GithubButton>
+            <GithubCloneButton />
           </Grid>
         </>
       )
     } else if (mode === "navigation") {
-      const res = getPathFromSha(sha);
-      if (res === undefined) {
+      const [ path ] = getPathFromSha(sha);
+      if (path === undefined) {
         return;
       }
-      const uris = res.split('/');
+      const uris = path.split('/');
       const lastUri = uris.pop();
 
       return (
@@ -123,7 +108,7 @@ const FileNavigation = (props: any) => {
                 navigate("/");
               }}
             >
-              Jun-Kumokawa
+              {process.env.REACT_APP_REPOSITORY_NAME}
             </GithubLink>
             {uris.map((uri: string, index: number, self: string[]) => {
               return <GithubLink
@@ -173,8 +158,8 @@ const FileNavigation = (props: any) => {
     } else {}
   }, [
     mode,
-    branches.length,
-    tags.length,
+    branchesNumber,
+    tagsNumber,
     getPathFromSha,
     sha,
     navigate,

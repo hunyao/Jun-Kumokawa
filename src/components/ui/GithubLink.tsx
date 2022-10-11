@@ -1,9 +1,12 @@
+import React from 'react';
 import Link from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
 
-const GithubLink = styled(({ className, ...rest }: any) => (
-  <Link className={className + " github-link"} { ...rest } />
-))`
+const GithubLink = React.forwardRef(({ className, ...rest }: any, ref) => (
+  <Link className={className + " github-link"} { ...rest } ref={ref} />
+))
+
+export default styled(GithubLink)`
 & {
   color: #8b949e;
   text-decoration: none;
@@ -11,6 +14,7 @@ const GithubLink = styled(({ className, ...rest }: any) => (
 }
 & svg {
   vertical-align: text-bottom;
+  font-size: 16px;
 }
 &.primary {
   color: #c9d1d9;
@@ -40,5 +44,3 @@ const GithubLink = styled(({ className, ...rest }: any) => (
   text-decoration: underline;
 }
 `
-
-export default GithubLink;

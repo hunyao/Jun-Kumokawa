@@ -2,8 +2,6 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import GithubLink from '../../components/ui/GithubLink'
 import C3 from 'c3';
 import { styled } from '@mui/material/styles';
 
@@ -15,24 +13,6 @@ import ListItemButton from '@mui/material/ListItemButton';
 import { skills, groupedSkills, groupList } from '../../data/Skills'
 
 import GithubMenuButton from '../../components/GithubMenuButton'
-
-const LinkGoogleMap = (props: any) => {
-  const { children, ...rest } = props;
-  const href = "https://www.google.com/maps/place/" + children;
-  return (
-    <GithubLink
-      href={href}
-      {...rest}
-    >
-      <OpenInNewIcon
-        sx={{
-          fontSize: 'inherit'
-        }}
-      />
-      {children}
-    </GithubLink>
-  )
-}
 
 const Chart = styled(React.forwardRef(({className, ...rest}: any, ref) => {
   return <div className={className + " c3-chart"} ref={ref} {...rest} />
@@ -180,7 +160,8 @@ const ChartComponent = (props: any) => {
       chart.current.transform(type)
     }
   }, [
-    type
+    type,
+    init
   ])
   React.useEffect(() => {
     if (!init && chart.current) {
@@ -197,7 +178,12 @@ const ChartComponent = (props: any) => {
       })
     }
   }, [
-    groupName
+    groupName,
+    colors,
+    type,
+    data,
+    init,
+    labels
   ])
 
   return <Chart ref={ref} {...rest} />

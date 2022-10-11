@@ -4,27 +4,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import moment from 'moment';
 import DiscussionComponent from '../../components/Discussion';
-import GithubLink from '../../components/ui/GithubLink'
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-
-const LinkGoogleMap = (props: any) => {
-  const { children, ...rest } = props;
-  const href = "https://www.google.com/maps/place/" + children;
-  return (
-    <GithubLink
-      href={href}
-      target="_blank"
-      {...rest}
-    >
-      <OpenInNewIcon
-        sx={{
-          fontSize: 'inherit'
-        }}
-      />
-      {children}
-    </GithubLink>
-  )
-}
+import LinkGoogleMap from '../../components/LinkGoogleMap';
 
 const Experience = () => {
   return (

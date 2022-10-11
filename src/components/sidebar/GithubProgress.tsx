@@ -1,29 +1,21 @@
+import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import { styled } from '@mui/material/styles';
 import CircleIcon from '@mui/icons-material/Circle';
 import Tooltip from '@mui/material/Tooltip';
 import Fade from '@mui/material/Fade';
-
-const ProgressWrappr = styled(({ className, ...rest }: any) => (
-  <span className={className + " github-progress-wrapper"} {...rest} />
-))`
-& {
-  display: flex;
-  height: 8px;
-  overflow: hidden;
-  background-color: rgba(110,118,129,0.4);
-  border-radius: 6px;
-  outline: 1px solid transparent;
-}
-`
+import ProgressWrappr from '../ui/ProgressWrappr';
 
 const GithubProgress = (props: any) => {
   const {
     list
   } = props;
 
-  const TotalValues = list.reduce((prev: any, current: any) => prev + current.value, 0);
+  const TotalValues = React.useMemo(() => {
+    return list.reduce((prev: any, current: any) => prev + current.value, 0)
+  }, [
+    list
+  ])
 
   return (
     <>

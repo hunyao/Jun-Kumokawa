@@ -1,22 +1,10 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-
+import Tree from './tree'
 import Sidebar from '../../components/Sidebar';
-import FileNavigation from '../../components/FileNavigation';
-import ListDirectory from '../../components/ListDirectory';
-
-import { repositoryContext } from '../../contexts/repository';
 
 const Overview = () => {
-  const {
-    selectedBranch: {
-      commit: {
-        sha
-      }
-    }
-  } = React.useContext(repositoryContext)
-
   return (
     <>
       <Box>
@@ -30,12 +18,8 @@ const Overview = () => {
           }}
         >
           <Grid item md={9} xs={12}>
-            <FileNavigation
+            <Tree
               mode="overview"
-            />
-            <ListDirectory
-              type="tree"
-              sha={sha}
             />
           </Grid>
           <Grid item md={3} xs={12}>

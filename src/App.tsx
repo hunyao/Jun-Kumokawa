@@ -4,20 +4,19 @@ import { Suspense } from 'react';
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
-import LinearProgress from '@mui/material/LinearProgress';
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import 'highlight.js/styles/github-dark.css';
-import { styled } from '@mui/material/styles';
 import Header from './pages/common/header'
 import Footer from './pages/common/footer'
+import BorderLinearProgress from './components/ui/BorderLinearProgress'
+import NotFoundPage from './pages/common/404'
 
 const Overview = React.lazy(() => import("./pages/home/overview"))
 const Moo = React.lazy(() => import("./pages/cow"))
 const Education = React.lazy(() => import("./pages/home/education"))
 const Experience = React.lazy(() => import("./pages/home/experience"))
 const Skill = React.lazy(() => import("./pages/home/skill"))
-const Language = React.lazy(() => import("./pages/home/language"))
 const Blob = React.lazy(() => import("./pages/home/blob"))
 const Tree = React.lazy(() => import("./pages/home/tree"))
 const Find = React.lazy(() => import("./pages/home/find"))
@@ -37,11 +36,6 @@ const theme = createTheme({
     }
   }
 })
-
-const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-  background: 'transparent',
-  height: 2
-}));
 
 function App() {
   return (
@@ -67,10 +61,10 @@ function App() {
                     <Route path="/education" element={<Education />} />
                     <Route path="/experience" element={<Experience />} />
                     <Route path="/skill" element={<Skill />} />
-                    <Route path="/language" element={<Language />} />
                     <Route path="/blob/:sha" element={<Blob />} />
                     <Route path="/tree" element={<Tree />} />
                     <Route path="/tree/:sha" element={<Tree />} />
+                    <Route path="*" element={<NotFoundPage />} />
                   </Routes>
                 </Suspense>
               </Container>

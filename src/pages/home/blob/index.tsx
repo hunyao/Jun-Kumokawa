@@ -6,7 +6,8 @@ import FileView from '../../../components/FileView';
 import { useParams } from "react-router-dom";
 import { OctokitInstance } from '../../../plugins/Octokit';
 import { fromBlob } from 'file-type/browser';
-import { repositoryContext } from '../../../contexts/repository';
+import Moo from '../../../components/Moo';
+import useShaToPath from '../../../hooks/useShaToPath'
 
 const BlobPage = () => {
   const [ content, setContent ] = React.useState("");
@@ -15,14 +16,13 @@ const BlobPage = () => {
   const [ filename, setFilename ] = React.useState("");
   const [ mime, setMime ] = React.useState("");
   const [ loading, setLoading ] = React.useState(true);
-  const { sha } = useParams();
-
-  const {
-    getPathFromSha
-  } = React.useContext(repositoryContext)
+  const [ error, setError ] = React.useState(false);
+  const { sha = '' } = useParams();
+  const getPathFromSha = useShaToPath();
 
   React.useEffect(() => {
-    setFilename(getPathFromSha(sha))
+    const [ path ] = getPathFromSha(sha)
+    setFilename(path)
   }, [
     getPathFromSha,
     sha
@@ -33,13 +33,17 @@ const BlobPage = () => {
     OctokitInstance.request('GET /repos/{owner}/{repo}/git/blobs/{file_sha}', {
       owner: process.env.REACT_APP_REPOSITORY_OWNER as string,
       repo: process.env.REACT_APP_REPOSITORY_NAME as string,
-      file_sha: sha as string
+      file_sha: sha
     })
     .then(({ data }) => {
       if (mounted) {
         setContent(atob(data.content));
-        const blob = new Blob([atob(data.content)]);
-        return fromBlob(blob)
+        return fetch("data:image/png;base64," + data.content)
+        .then(fetched => {
+          return fetched.blob()
+        }).then(fetched => {
+          return fromBlob(fetched)
+        })
       }
     })
     .then((res: any) => {
@@ -55,7 +59,10 @@ const BlobPage = () => {
         }
       }
     })
-    .then(() => setLoading(false))
+    .catch(err => {
+      setError(true)
+    })
+    .finally(() => setLoading(false))
 
     return () => {
       mounted = false;
@@ -63,6 +70,10 @@ const BlobPage = () => {
   }, [
     sha
   ])
+
+  if (error) {
+    return <Moo />
+  }
 
   return (
     <>
@@ -74,6 +85,7 @@ const BlobPage = () => {
         <ListDirectory
           type="blob"
           sha={sha}
+          trees={[]}
         />
         <FileView
           filename={filename}

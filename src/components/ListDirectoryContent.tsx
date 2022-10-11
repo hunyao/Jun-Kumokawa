@@ -7,71 +7,34 @@ import GithubLink from './ui/GithubLink'
 import ListFilesItemRow from './ui/ListFilesItemRow'
 import { useNavigate } from "react-router-dom";
 import moment from 'moment';
-import { repositoryContext } from '../contexts/repository';
-
 import { OctokitInstance } from './../plugins/Octokit';
-import CircularProgress from '@mui/material/CircularProgress';
+import useShaToPath from '../hooks/useShaToPath'
+import useCurrentBranch from '../hooks/useCurrentBranch'
+import usePreviousSha from '../hooks/usePreviousSha'
+import Loading from './Loading'
 
 const ListDirectoryContent = (props: any) => {
-  const [ root, setRoot ] = React.useState(true);
   const [ treeForDisplaies, setTreeForDisplaies ] = React.useState([]);
-  const [ previousSha, setPreviousSha ] = React.useState('');
   const [ loading, setLoading ] = React.useState(true);
+  const [ , currentBranchSha ] = useCurrentBranch();
+  const getPathFromSha = useShaToPath();
   const {
     sha,
     trees,
     type
   } = props;
+  const [ previousSha, isRootSha ] = usePreviousSha(sha);
   const navigate = useNavigate();
 
-  const {
-    allTrees,
-    getPathFromSha,
-    selectedBranch: {
-      commit: {
-        sha: commitSha
-      }
-    }
-  } = React.useContext(repositoryContext);
-
   React.useEffect(() => {
-    if (allTrees.length === 0 || sha === "") {
-      return;
-    }
-    setRoot(allTrees.sha === sha);
-    if (allTrees.sha === sha) {
-      return;
-    }
-    const path = getPathFromSha(sha);
-    if (!path.includes('/')) {
-      setPreviousSha(commitSha);
-    } else {
-      setPreviousSha(allTrees.tree.find((t: any) => {
-        const parentPath = path.split('/');
-        parentPath.pop();
-        return t.path === parentPath.join('/')
-      }).sha)
-    }
-  }, [
-    allTrees,
-    sha,
-    commitSha,
-    getPathFromSha
-  ])
-
-  React.useEffect(() => {
-    if (allTrees.length === 0) {
-      return;
-    }
-    setLoading(true);
     Promise.all(trees.map(async (tree: any) => {
       return {
         tree,
         commit: await OctokitInstance.request('GET /repos/{owner}/{repo}/commits?path={path}&sha={sha}&per_page=1', {
           owner: process.env.REACT_APP_REPOSITORY_OWNER as string,
           repo: process.env.REACT_APP_REPOSITORY_NAME as string,
-          path: '/' + getPathFromSha(tree.sha),
-          sha: commitSha
+          path: '/' + getPathFromSha(tree.sha)[0],
+          sha: currentBranchSha
         })
       }
     }))
@@ -87,30 +50,27 @@ const ListDirectoryContent = (props: any) => {
       })
     })
     .then(setTreeForDisplaies)
-    .then(() => setLoading(false))
+    .finally(() => setLoading(false))
   }, [
     trees,
-    allTrees,
-    commitSha,
+    currentBranchSha,
     getPathFromSha
   ])
 
+  const fileTypeIcon: any = React.useCallback((fileType: string) => {
+    if (fileType === 'blob') {
+      return InsertDriveFileOutlinedIcon
+    } else if (fileType === 'tree') {
+      return FolderIcon
+    } else {
+      return <></>
+    }
+  }, [])
+
   if (type !== 'tree') return null;
 
-  if (loading) {
-    return <Grid
-      container
-      justifyContent="center"
-      p={2}
-    >
-      <Grid item>
-        <CircularProgress />
-      </Grid>
-    </Grid>
-  }
-
   return (
-    <>
+    <Loading loading={loading}>
       <Grid
         container
         flexDirection="column"
@@ -118,7 +78,7 @@ const ListDirectoryContent = (props: any) => {
         <ListFilesItemRow
           container
           sx={{
-            display: root ? "none !important" : "inherit"
+            display: isRootSha ? "none !important" : "inherit"
           }}
         >
           <Grid item flex="none">
@@ -159,7 +119,6 @@ const ListDirectoryContent = (props: any) => {
             return null;
           }
 
-          const icon = fileType === 'blob' ? InsertDriveFileOutlinedIcon : FolderIcon;
           const href = [
             fileType,
             sha
@@ -172,7 +131,7 @@ const ListDirectoryContent = (props: any) => {
               <Grid
                 item
                 className="file_icon"
-                component={icon}
+                component={fileTypeIcon(fileType)}
               />
               <Grid item xs={3}>
                 <GithubLink href={"#"} onClick={(e: any) => {
@@ -194,7 +153,7 @@ const ListDirectoryContent = (props: any) => {
           )
         })}
       </Grid>
-    </>
+    </Loading>
   )
 }
 

@@ -10,14 +10,76 @@ import Container from '@mui/material/Container';
 import SvgIcon from '@mui/material/SvgIcon';
 import { useNavigate, useLocation } from "react-router-dom";
 import ForestBackgroundImg from '../../../assets/images/forest-background.jpg';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
+import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
+import CodeIcon from '@mui/icons-material/Code';
+import InsightsIcon from '@mui/icons-material/Insights';
+
+const Menus = [
+  {
+    name: 'overview',
+    path: 'overview',
+    beMatched: [
+      'overview'
+    ],
+    icon: <HomeOutlinedIcon />,
+    menuId: 0,
+  },
+  {
+    name: 'code',
+    path: 'tree',
+    beMatched: [
+      'tree',
+      'blob',
+    ],
+    icon: <CodeIcon />,
+    menuId: 1,
+  },
+  {
+    name: 'experience',
+    path: 'experience',
+    beMatched: [
+      'experience'
+    ],
+    icon: <WorkOutlineOutlinedIcon />,
+    menuId: 2,
+  },
+  {
+    name: 'education',
+    path: 'education',
+    beMatched: [
+      'education'
+    ],
+    icon: <SchoolOutlinedIcon />,
+    menuId: 3,
+  },
+  {
+    name: 'skills',
+    path: 'skill',
+    beMatched: [
+      'skill'
+    ],
+    icon: <InsightsIcon />,
+    menuId: 4,
+  }
+]
 
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
-  const setMenuIdCallback = React.useCallback((menuId: number, menu: any) => {
-    navigate("/" + menu.path)
-  }, [])
+  const [ menuId, setMenuId ] = React.useState<number | boolean>(0);
+  const pathnameWithoutSlash = pathname.replace(/^\//, "");
+
+  React.useEffect(() => {
+    const index = Menus.findIndex((menu: any) => {
+      return menu.beMatched.find((s: string) => pathnameWithoutSlash.indexOf(s) === 0) !== undefined
+    });
+    setMenuId(index === -1 ? false : index);
+  }, [
+    pathnameWithoutSlash
+  ])
 
   const RenderDom = React.useMemo(() => {
     return (
@@ -54,24 +116,27 @@ const Header = () => {
             height: 300
           }}
         />
-          <Box
-            sx={{
-              boxShadow: 'inset 0 -1px 0 #21262d',
-            }}
-          >
-            <Container>
-              <Profile />
-              <TabMenu
-                path={pathname.replace(/^\//, "")}
-                onChange={setMenuIdCallback}
-              />
-            </Container>
+        <Box
+          sx={{
+            boxShadow: 'inset 0 -1px 0 #21262d',
+          }}
+        >
+          <Container>
+            <Profile />
+            <TabMenu
+              menus={Menus}
+              value={menuId}
+              onChange={(val: number) => {
+                navigate("/" + Menus[val].path)
+              }}
+            />
+          </Container>
         </Box>
       </>
     )
   }, [
-    pathname,
-    setMenuIdCallback
+    menuId,
+    navigate
   ])
 
   return (

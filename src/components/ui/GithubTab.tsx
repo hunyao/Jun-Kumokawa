@@ -6,6 +6,7 @@ const GithubTab = styled(Tab)`
   min-height: initial;
   color: #c9d1d9;
   text-transform: capitalize;
+  padding: 8px 16px;
 }
 & .MuiSvgIcon-root {
   color: #484F58;
