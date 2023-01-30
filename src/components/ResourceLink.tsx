@@ -5,7 +5,8 @@ import SvgIcon from '@mui/material/SvgIcon';
 const ResouceLink = (props: any) => {
   const {
     icon,
-    text
+    text,
+    viewBox = '0 0 24 24'
   } = props;
 
   return (
@@ -17,6 +18,7 @@ const ResouceLink = (props: any) => {
         >
           <SvgIcon
             component={icon}
+            viewBox={viewBox}
             sx={{
               height: 16,
               width: 16,

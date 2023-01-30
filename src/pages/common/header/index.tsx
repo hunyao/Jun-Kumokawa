@@ -11,7 +11,6 @@ import SvgIcon from '@mui/material/SvgIcon';
 import { useNavigate, useLocation } from "react-router-dom";
 import ForestBackgroundImg from '../../../assets/images/forest-background.jpg';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 import CodeIcon from '@mui/icons-material/Code';
 import InsightsIcon from '@mui/icons-material/Insights';
@@ -21,6 +20,7 @@ const Menus = [
     name: 'overview',
     path: 'overview',
     beMatched: [
+      '',
       'overview'
     ],
     icon: <HomeOutlinedIcon />,
@@ -46,22 +46,13 @@ const Menus = [
     menuId: 2,
   },
   {
-    name: 'education',
-    path: 'education',
-    beMatched: [
-      'education'
-    ],
-    icon: <SchoolOutlinedIcon />,
-    menuId: 3,
-  },
-  {
     name: 'skills',
     path: 'skill',
     beMatched: [
       'skill'
     ],
     icon: <InsightsIcon />,
-    menuId: 4,
+    menuId: 3,
   }
 ]
 
@@ -70,11 +61,11 @@ const Header = () => {
   const location = useLocation();
   const { pathname } = location;
   const [ menuId, setMenuId ] = React.useState<number | boolean>(0);
-  const pathnameWithoutSlash = pathname.replace(/^\//, "");
+  const pathnameWithoutSlash = pathname.replace(/^\//, "").split('/')[0];
 
   React.useEffect(() => {
     const index = Menus.findIndex((menu: any) => {
-      return menu.beMatched.find((s: string) => pathnameWithoutSlash.indexOf(s) === 0) !== undefined
+      return menu.beMatched.find((s: string) => pathnameWithoutSlash === s) !== undefined
     });
     setMenuId(index === -1 ? false : index);
   }, [
@@ -139,11 +130,7 @@ const Header = () => {
     navigate
   ])
 
-  return (
-    <>
-      {RenderDom}
-    </>
-  )
+  return RenderDom
 }
 
 export default Header

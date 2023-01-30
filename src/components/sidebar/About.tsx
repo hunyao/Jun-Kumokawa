@@ -2,25 +2,32 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import LinkIcon from '@mui/icons-material/Link';
-import GithubLink from '../ui/GithubLink'
-import GithubChip from '../ui/GithubChip'
-import ResouceLink from '../ResourceLink'
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
-import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined';
+import GitForkedIcon from '../../assets/svgs/svg-git-forked'
+import GithubLink from '../ui/GithubLink'
+import GithubChip from '../ui/GithubChip'
+import ResouceLink from '../ResourceLink'
 import SidebarItem from './SidebarItem'
+import useRepository from '../../hooks/useRepository'
 
 const About = () => {
+  const [ description ] = useRepository('description', '');
+  const [ homepage ] = useRepository('homepage', '');
+  const [ topics ] = useRepository('topics', []);
+  const [ subscribersCount ] = useRepository('subscribers_count', '');
+  const [ forksCount ] = useRepository('forks_count', '');
+  const [ watchersCount ] = useRepository('watchers_count', '');
+
   return (
     <>
       <SidebarItem title="About">
         <Typography
           paragraph
         >
-          An efficient and flexible Human library for making web systems.
+          {description}
         </Typography>
         <Grid
           container
@@ -34,23 +41,17 @@ const About = () => {
           />
           <Grid item>
             <GithubLink
-              href="#"
+              href={homepage}
               className="active"
             >
-              https://kumoti.jp
+              {homepage.replace(/^(http|https):\/\//, '')}
             </GithubLink>
           </Grid>
         </Grid>
         <Box
           my={2}
         >
-          <GithubChip>react</GithubChip>
-          <GithubChip>japascript</GithubChip>
-          <GithubChip>library</GithubChip>
-          <GithubChip>ui</GithubChip>
-          <GithubChip>full-stack</GithubChip>
-          <GithubChip>front-end</GithubChip>
-          <GithubChip>back-end</GithubChip>
+          {topics.map((topic: string, key: number) => <GithubChip key={key}>{topic}</GithubChip>)}
         </Box>
         <Box>
           <ResouceLink
@@ -63,19 +64,16 @@ const About = () => {
           />
           <ResouceLink
             icon={StarBorderOutlinedIcon}
-            text="181k stars"
+            text={watchersCount + " stars"}
           />
           <ResouceLink
             icon={RemoveRedEyeOutlinedIcon}
-            text="6.7k watching"
+            text={subscribersCount + " watching"}
           />
           <ResouceLink
-            icon={ThumbUpAltOutlinedIcon}
-            text="123m like"
-          />
-          <ResouceLink
-            icon={ThumbDownAltOutlinedIcon}
-            text="10k dislike"
+            icon={GitForkedIcon}
+            viewBox="0 0 16 16"
+            text={forksCount + " forks"}
           />
         </Box>
       </SidebarItem>

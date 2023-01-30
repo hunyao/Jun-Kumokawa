@@ -68,7 +68,7 @@ const Profile = () => {
             fontSize: 14
           }}
         >
-          Full-stack Developer Who are made in Japan
+          Full-stack Engineer Who is made in Japan
         </Typography>
         <Grid
           container
@@ -114,7 +114,7 @@ const Profile = () => {
                 <GithubLink
                   href="tel:+37253771037"
                 >
-                  +(372)53771037
+                  +(372) 5377 1037
                 </GithubLink>
               )
             },

@@ -62,30 +62,30 @@ JunKumokawaA
 
 This example will offer to hire me, then you can hire me if I would like to.
 
-## Who the hell are you? :thinking:
+## Who am I? :thinking:
 
-I am a self-learned developer who are made in Japan.
+Self-taught Full-stack engineer who is made in Japan.
 
-I learned HTML, CSS, JavaScript and PHP by myself when I was a high school student.
+Learned HTML, CSS, JavaScript and PHP by myself when I was a high school student.
 
-Also, I built my own home server:
+Also, built my own home server:
   * Web server
   * Mail server
   * DNS server
   * and so on...
 
-I have my own email address that works on the my mail server too.
+Have my own email address that works on the my mail server too.
 
-I always think how to work, how to code and how to live efficiently. So I have been making a lot of scripts to do jobs efficiently on working. Also I helped members to solve their problems to keep going a project smoothly.
+Always think how to work, code and live efficiently. So I have been making lots of scripts to do jobs efficiently on working. Also I helped members to solve their problems to keep going a project smoothly.
 
-I always learn the new technologies while I work when a project takes new technologies.
+Always learn new technologies while I work when projects take new technologies.
 
-I have developed systems with Windows and Ubuntu on projects and I recently develop with Ubuntu.
+Have developed with Windows and Ubuntu on projects and I recently develop with Ubuntu.
 
-I have experienced:
+Experienced:
   * designing databases, screens, apis, environments
   * coding and testing screens, apis
-  * managing junior engineers
+  * training junior engineers
 
 I can code HTML, CSS, JavaScript with and without frameworks and libraries.
 
@@ -113,17 +113,17 @@ In computers, I can:
 
 ### code JavaScript
 
-Codes somethig whatever you want with the language in the production mode at everywhere
+Codes something whatever you want with the language in the production mode at everywhere
 
 ### code HTML
 
-Codes somethig whatever you want with the language in the production mode at everywhere
+Codes something whatever you want with the language in the production mode at everywhere
 
 ### code CSS
 
-Codes somethig whatever you want with the language in the production mode at everywhere
+Codes something whatever you want with the language in the production mode at everywhere
 
-See the section Skills for more information.
+See the section [Skills](https://portfolio.kumoti.jp/#/skill) for more information.
 
 ## Contributing
 
