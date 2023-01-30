@@ -10,7 +10,7 @@ import DiscussionContent from './ui/discussion/DiscussionContent'
 import DiscussionSidebar from './ui/discussion/DiscussionSidebar'
 import DiscussionSidebarItem from './ui/discussion/DiscussionSidebarItem'
 import DiscussionItem from './ui/discussion/DiscussionItem'
-import DiscussionItemAvator from './ui/discussion/DiscussionItemAvator'
+import DiscussionItemAvatar from './ui/discussion/DiscussionItemAvatar'
 import DiscussionItemContent from './ui/discussion/DiscussionItemContent'
 import DiscussionItemContentHeader from './ui/discussion/DiscussionItemContentHeader'
 import DiscussionTimelineItem from './ui/discussion/DiscussionTimelineItem'
@@ -28,7 +28,7 @@ const DiscussionComponent = (props: any) => {
   };
   const {
     username,
-    avator,
+    avatar,
     title,
     content,
     timelineItems = [],
@@ -50,7 +50,7 @@ const DiscussionComponent = (props: any) => {
                   <Box display="inline-block">
                     <Box
                       component="img"
-                      src={avator}
+                      src={avatar}
                       height={20}
                       width={20}
                       sx={{
@@ -73,13 +73,13 @@ const DiscussionComponent = (props: any) => {
               </DiscussionTimelineItem>
             ))}
           <DiscussionItem>
-            <DiscussionItemAvator>
+            <DiscussionItemAvatar>
               <Box
                 component="img"
-                src={avator}
-                className="discussion-item-avator-img"
+                src={avatar}
+                className="discussion-item-avatar-img"
               />
-            </DiscussionItemAvator>
+            </DiscussionItemAvatar>
             <DiscussionItemContent>
               <DiscussionItemContentHeader>
                 <Typography

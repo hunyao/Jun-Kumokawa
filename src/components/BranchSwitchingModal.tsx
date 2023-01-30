@@ -48,7 +48,7 @@ const BranchSwitchingModal = (props: any) => {
       <ListItem disablePadding key={index}>
         <ListItemButton onClick={() => changeBranch(item)}>
           <ListItemIcon
-            className="github-branch-swithcing-list-item-icon"
+            className="github-branch-switching-list-item-icon"
           >
             <CheckIcon
               className="icon"
@@ -60,7 +60,7 @@ const BranchSwitchingModal = (props: any) => {
           <ListItemText
             primary={item.name}
             disableTypography
-            className="github-branch-swithcing-list-item-text"
+            className="github-branch-switching-list-item-text"
           />
         </ListItemButton>
       </ListItem>
@@ -87,7 +87,7 @@ const BranchSwitchingModal = (props: any) => {
         pl={2}
         container
         component="header"
-        className="github-branch-swithcing-item"
+        className="github-branch-switching-item"
       >
         <Grid
           item
@@ -115,7 +115,7 @@ const BranchSwitchingModal = (props: any) => {
         <Grid
           item
           p={1}
-          className="github-branch-swithcing-item"
+          className="github-branch-switching-item"
         >
           <GithubInput
             placeholder={placeholderMemo}

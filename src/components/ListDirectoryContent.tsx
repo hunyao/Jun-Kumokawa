@@ -146,7 +146,7 @@ const ListDirectoryContent = (props: any) => {
                   {subject}
                 </GithubLink>
               </Grid>
-              <Grid item className="commited-time">
+              <Grid item className="committed-time">
                 {moment(committerDate).fromNow()}
               </Grid>
             </ListFilesItemRow>

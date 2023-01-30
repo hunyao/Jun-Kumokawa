@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 
 const GithubBranchSwitching = styled(({className, children, ...rest}: any) => {
   return <Box
-    className={className + " github-branch-swithcing"}
+    className={className + " github-branch-switching"}
     sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}
     {...rest}
   >
@@ -43,7 +43,7 @@ const GithubBranchSwitching = styled(({className, children, ...rest}: any) => {
   border: 1px solid #484f58;
   overflow: hidden;
 }
-& .github-branch-swithcing-item {
+& .github-branch-switching-item {
   border-bottom: 1px solid #21262d;
 }
 &.active {

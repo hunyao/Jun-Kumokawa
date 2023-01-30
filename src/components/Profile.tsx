@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import AvatarImg from '../assets/images/avator.jpg';
+import AvatarImg from '../assets/images/avatar.jpg';
 import Typography from '@mui/material/Typography';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -29,7 +29,7 @@ const Profile = () => {
         item
         component="img"
         src={AvatarImg}
-        alt="avator"
+        alt="avatar"
         height="100%"
         sx={{
           borderRadius: '6px'

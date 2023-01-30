@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import AvatarImg from '../../assets/images/avator.jpg';
+import AvatarImg from '../../assets/images/avatar.jpg';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import moment from 'moment';

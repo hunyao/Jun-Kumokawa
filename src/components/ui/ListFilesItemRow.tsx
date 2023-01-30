@@ -27,7 +27,7 @@ const ListFilesItemRow = styled(({ className, ...rest }: any) => (
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .commited-time {
+  .committed-time {
     flexBasis: 100px;
     text-align: right;
   }

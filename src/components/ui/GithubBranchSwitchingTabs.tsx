@@ -3,7 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import { styled } from '@mui/material/styles';
 
 const GithubBranchSwitchingTabs = styled(({className, ...rest}: any) => {
-  return <Tabs className={className + " github-branch-swithcing-tabs"} {...rest} />
+  return <Tabs className={className + " github-branch-switching-tabs"} {...rest} />
 })`
 & {
   padding: 8px 8px 0 8px;
