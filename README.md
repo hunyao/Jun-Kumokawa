@@ -1,11 +1,16 @@
 # [Jun-Kumokawa](#)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://mit-license.org/) ![Japanese](https://img.shields.io/badge/Japanese_(ja__JP)-100%25-green) ![English](https://img.shields.io/badge/English_(en__US)-30%25-yellow) ![Estonian](https://img.shields.io/badge/Estonian_(et__EE)-0.1%25-red) ![HTML](https://img.shields.io/badge/HTML-100%25-green) ![Cascading Style Sheet](https://img.shields.io/badge/Cascading_Style_Sheet-100%25-green) ![JavaScript](https://img.shields.io/badge/JavaScript-100%25-green) ![Node.js](https://img.shields.io/badge/Node.js-100%25-green) ![Human](https://img.shields.io/badge/Human-v30.0-blue) ![platform](https://img.shields.io/badge/platform-Ubuntu-blue) ![dependencies](https://img.shields.io/badge/dependencies-ubuntu_|_vim_|_hhkb_|_trackball_|_urxvt-success) ![Theme](https://img.shields.io/badge/Theme-dark-%23333333)
 
-Jun-Kumokawa is an efficient and flexible Human library for making web systems.
+Jun-Kumokawa is a Human library for making web systems:
 
-* **Declarative:** React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable, simpler to understand, and easier to debug.
-* **Component-Based:** Build encapsulated components that manage their own state, then compose them to make complex UIs. Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.
-* **Learn Once, Write Anywhere:** We don't make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code. React can also render on the server using Node and power mobile apps using React Native.
+* **Adaptability:** Jun-Kumokawa adapts at every situation, because this moment is the most important. It will chose always the best option for people around me including you and myself, because the future is always changing.
+* **Flexibility:** Jun-Kumokawa is flexible at every situation, because it always think what the most important or priority is. There are always urgent changes, request and emergencies, so it will work with those in mind.
+* **Efficiency:** Jun-Kumokawa works efficiently for every tasks, because it hates useless or redundant tasks. It will make scripts for that you will not do same thing every time, so that you can save your time. Even if it takes a time to make it.
+* **Reliability:** Jun-Kumokawa will talk to someone soon about what it think it is important or necessary, because it thinks that what we need trust each other to go projects on smoothly is important. It will provide an alternative idea if the task is impossible to do so that we will not stop walking on projects.
+* **Communication:** Jun-Kumokawa try to communicate with team members smoothly, because rough communications impede work efficiency of whole team. It builds smooth communication between us by reducing distance between team members little by little.
+* **Diligence:** Jun-Kumokawa keeps learning, because technologies are always evolving everyday. It learns new technologies by searching and reading documents and running some codes by myself. Even if it does not know the technology.
+* **Learn once, write Anywhere:** Jun-Kumokawa is coded by everybody at everywhere in the world.
+
 
 [Learn how to use Jun-Kumokawa in your own project](#examples).
 
