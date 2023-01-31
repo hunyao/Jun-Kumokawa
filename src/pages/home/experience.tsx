@@ -14,7 +14,7 @@ const Experience = () => {
       >
         <DiscussionComponent
           username="kumokawa"
-          avator={AvatarImg}
+          avatar={AvatarImg}
           title={'became freelance ' + moment('2016-01-01T00:00:00+0900').fromNow()}
           content='I belonged to a team that managing a lot of in-house systems everybody use in house: mailing-lists, servers, SSL-certificates, and so on. and worked mainly on projects that developing and maintaining front-end and back-end on mobile games and ordering systems. and managed junior co-workers.'
           timelineItems={[
@@ -80,7 +80,7 @@ const Experience = () => {
         />
         <DiscussionComponent
           username="kumokawa"
-          avator={AvatarImg}
+          avatar={AvatarImg}
           title={'joined CLINKS Co. Ltd. ' + moment('2012-04-01T00:00:00+0900').fromNow()}
           content='I belonged to a team that managing a lot of in-house systems everybody use in house: mailing-lists, servers, SSL-certificates, and so on. and worked mainly on projects that developing and maintaining front-end and back-end on mobile games and ordering systems. and managed junior co-workers.'
           timelineItems={[
