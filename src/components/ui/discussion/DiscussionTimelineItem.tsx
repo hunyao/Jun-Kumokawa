@@ -1,9 +1,12 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 
-const DiscussionTimelineItem = styled(({ className, ...rest }: any) => (
-  <div className={className + " discussion-timeline-item"} {...rest} />
-))`
+interface DiscussionTimelineItemUIProps extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string
+}
+const DiscussionTimelineItem = styled(React.forwardRef<HTMLDivElement, DiscussionTimelineItemUIProps>(({ className, ...rest }, ref) => (
+  <div className={className + " discussion-timeline-item"} ref={ref} {...rest} />
+)))`
 & {
   position: relative;
   display: flex;

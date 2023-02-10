@@ -1,6 +1,5 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import AvatarImg from '../assets/images/avatar.jpg';
 import Typography from '@mui/material/Typography';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -11,36 +10,34 @@ import Chip from '@mui/material/Chip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import LinkGoogleMap from './LinkGoogleMap';
+import { PersonalDataContext } from '../contexts/personalData';
+import ProfileWrapper from './ui/ProfileWrapper';
+import ProfileTitle from './ui/ProfileTitle';
+import ProfileAdditional from './ui/ProfileAdditional';
+import ProfileAdditionalItem from './ui/ProfileAdditionalItem';
+import Avatar from './Avatar';
 
 const Profile = () => {
-  const [ kanji, setKanji ] = React.useState(false);
+  const [ kanji, setKanji ] = React.useState<boolean>(false);
+  const { profile } = React.useContext(PersonalDataContext);
 
   return (
-    <Grid
-      container
-      flexDirection="row"
-      flexWrap="nowrap"
-      alignItems="center"
-      my={2}
-      height={100}
-      gap={3}
-    >
-      <Grid
-        item
-        component="img"
-        src={AvatarImg}
-        alt="avatar"
-        height="100%"
+    <ProfileWrapper>
+      <Avatar
+        height={100}
+        width={100}
         sx={{
-          borderRadius: '6px'
+          borderRadius: '6px',
         }}
-      >
-      </Grid>
+      />
       <Grid
         item
         flex={1}
       >
-        <Grid container alignItems="center">
+        <Grid
+          container
+          alignItems="center"
+        >
           <FormControlLabel
             labelPlacement="start"
             control={<Switch
@@ -58,32 +55,19 @@ const Profile = () => {
               marginRight: 1
             }}
           >
-            { kanji ? '雲川 洵' : 'JUN KUMOKAWA' }
+            { kanji ? profile.name.ja.fullName : profile.name.en.fullName }
           </Typography>
         </Grid>
-        <Typography
-          component="div"
-          sx={{
-            color: '#8b949e',
-            fontSize: 14
-          }}
-        >
-          Full-stack Engineer Who is made in Japan
-        </Typography>
-        <Grid
-          container
-          alignItems="center"
-          spacing={1}
-          sx={{
-            fontSize: 14
-          }}
-        >
+        <ProfileTitle>
+          {profile.title}
+        </ProfileTitle>
+        <ProfileAdditional>
           {[
             {
               Icon: LocationOnOutlinedIcon,
               content: (
                 <LinkGoogleMap target="_blank">
-                  Tallinn, Estonia
+                  {profile.location}
                 </LinkGoogleMap>
               )
             },
@@ -91,10 +75,10 @@ const Profile = () => {
               Icon: LinkedInIcon,
               content: (
                 <GithubLink
-                  href="https://www.linkedin.com/in/kumokawa"
+                  href={`https://www.linkedin.com/in/${profile.linkdin}`}
                   target="_blank"
                 >
-                  @kumokawa
+                  @{profile.linkdin}
                 </GithubLink>
               )
             },
@@ -102,9 +86,9 @@ const Profile = () => {
               Icon: EmailOutlinedIcon,
               content: (
                 <GithubLink
-                  href="mailto:jun@kumoti.jp"
+                  href={`mailto:${profile.email}`}
                 >
-                  jun@kumoti.jp
+                  {profile.email}
                 </GithubLink>
               )
             },
@@ -112,47 +96,40 @@ const Profile = () => {
               Icon: LocalPhoneOutlinedIcon,
               content: (
                 <GithubLink
-                  href="tel:+37253771037"
+                  href={"tel:+" + profile.tel.join('')}
                 >
-                  +(372) 5377 1037
+                  +({profile.tel[0]}) {profile.tel[1]} {profile.tel[2]}
                 </GithubLink>
               )
             },
-          ].map(({ Icon, content }, index: number) => (
-            <Grid
-              container
-              item
-              spacing={0.5}
-              alignItems="center"
-              flex={0}
-              flexWrap="nowrap"
-              sx={{
-                whiteSpace: 'nowrap'
-              }}
+          ].map(({ Icon, content }, index) => (
+            <ProfileAdditionalItem
+              icon={Icon}
               key={index}
             >
-              <Grid
-                item
-                component={Icon}
-              />
-              <Grid item>
-                {content}
-              </Grid>
-            </Grid>
+              {content}
+            </ProfileAdditionalItem>
           ))}
           <Grid item>
-            <Chip
+            {profile.employment && <Chip
+              label="Employment"
+              size="small"
+              variant="filled"
+              color="info"
+              title="Employment"
+            />}
+            {profile.employment || <Chip
               label="Open to work"
               size="small"
               variant="outlined"
               color="success"
               title="Open to work"
-            />
+            />}
           </Grid>
-        </Grid>
+        </ProfileAdditional>
       </Grid>
-    </Grid>
+    </ProfileWrapper>
   )
 }
 
-export default React.memo(Profile, () => false);
+export default React.memo(Profile, () => true);

@@ -4,24 +4,31 @@ import Grid from '@mui/material/Grid';
 import CircleIcon from '@mui/icons-material/Circle';
 import Tooltip from '@mui/material/Tooltip';
 import Fade from '@mui/material/Fade';
-import ProgressWrappr from '../ui/ProgressWrappr';
+import ProgressWrapper from '../ui/ProgressWrapper';
+import ProgressChildren from '../ui/ProgressChildren';
+import ProgressLabelWrapper from '../ui/ProgressLabelWrapper';
+import ProgressLabelChildren from '../ui/ProgressLabelChildren';
+import { PersonalDataContextItemSkill } from '../../contexts/personalData';
 
-const GithubProgress = (props: any) => {
+interface GithubProgressProps {
+  items: PersonalDataContextItemSkill['items']
+}
+const GithubProgress: React.FC<GithubProgressProps> = (props) => {
   const {
-    list
+    items
   } = props;
 
   const TotalValues = React.useMemo(() => {
-    return list.reduce((prev: any, current: any) => prev + current.value, 0)
+    return items.reduce((prev, current) => prev + current.value, 0)
   }, [
-    list
+    items
   ])
 
   return (
     <>
       <Box className="github-progress">
-        <ProgressWrappr>
-          {list.map((item: any, index: any) => {
+        <ProgressWrapper>
+          {items.map((item, index) => {
             return (
               <Tooltip
                 TransitionComponent={Fade}
@@ -30,50 +37,25 @@ const GithubProgress = (props: any) => {
                 placement="top-start"
                 key={index}
               >
-                <Box
-                  component="span"
+                <ProgressChildren
                   sx={{
-                    background: item.color,
-                    width: ((item.value / TotalValues) * 100) + "%"
+                    background: item.colorHex,
+                    width: ((item.value / TotalValues) * 100) + "%",
                   }}
                 />
               </Tooltip>
             )
           })}
-        </ProgressWrappr>
-        <Box
-          component="ul"
-          p={0}
-          gap={1}
-          display="flex"
-          flexWrap="wrap"
-        >
-          {list.map((item: any, index: any) => {
+        </ProgressWrapper>
+        <ProgressLabelWrapper>
+          {items.map((item, index) => {
             return (
-              <Grid
-                container
-                item
-                key={index}
-                component="li"
-                display="inline-flex"
-                alignItems="center"
-                flex={0}
-                spacing={0.5}
-                flexWrap="nowrap"
-                sx={{
-                  listStyle: 'none',
-                  fontSize: 12,
-                  whiteSpace: 'nowrap'
-                }}
-              >
+              <ProgressLabelChildren key={index}>
                 <Grid
                   item
                   component={CircleIcon}
-                  sx={{
-                    height: 12,
-                    width: 12,
-                    color: item.color,
-                  }}
+                  className="github-progress-label-children-symbol"
+                  sx={{ color: item.colorHex }}
                 />
                 <Grid
                   item
@@ -87,10 +69,10 @@ const GithubProgress = (props: any) => {
                 >
                   {item.value}y
                 </Grid>
-              </Grid>
+              </ProgressLabelChildren>
             )
           })}
-        </Box>
+        </ProgressLabelWrapper>
       </Box>
     </>
   )

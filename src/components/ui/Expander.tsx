@@ -1,6 +1,12 @@
+import React from 'react';
 import { styled } from '@mui/material/styles';
 
-const Expander = styled("button")`
+interface ExpanderUIProps extends React.HTMLAttributes<HTMLButtonElement> {
+  className?: string
+}
+const Expander = styled(React.forwardRef<HTMLButtonElement, ExpanderUIProps>(({ className, ...rest }, ref) => (
+  <button className={className + " expander"} ref={ref} {...rest} />
+)))`
 & {
   display: inline-block;
   height: 12px;

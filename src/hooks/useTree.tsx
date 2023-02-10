@@ -1,8 +1,13 @@
 import React from 'react';
 import { OctokitInstance } from '../plugins/Octokit';
+import { Unpacked } from '../contexts/repository';
+import { GithubGetTreeResponseType } from '../contexts/repository';
 
-const treeCache: any = {}
-const sorting = (a: any, b: any) => {
+const treeCache: {[key: string]: GithubGetTreeResponseType['tree']} = {}
+const sorting = (a: Unpacked<GithubGetTreeResponseType['tree']>, b: Unpacked<GithubGetTreeResponseType['tree']>) => {
+  if (a.type === undefined || a.path === undefined || b.type === undefined || b.path === undefined) {
+    return 0;
+  }
   if (a.type !== b.type) {
     return a.type === "tree" ? -1 : 1;
   }
@@ -28,23 +33,28 @@ const getTree = async (sha: string) => {
     repo: process.env.REACT_APP_REPOSITORY_NAME as string,
     tree_sha: sha
   })
-  .then(({ data }: any) => {
+  .then(({ data }: { data: GithubGetTreeResponseType }) => {
     data.tree.sort(sorting)
     treeCache[sha] = data.tree
     return data.tree
   })
 }
-const useTree = (sha: string = '') => {
-  const [ tree, setTree ] = React.useState<any>(null);
-  const [ error, setError ] = React.useState(false);
-  const [ loading, setLoading ] = React.useState(true);
+type useTreeResponseType = [
+  GithubGetTreeResponseType['tree'],
+  boolean,
+  boolean
+]
+const useTree: (sha: string) => useTreeResponseType = (sha: string = '') => {
+  const [ tree, setTree ] = React.useState<GithubGetTreeResponseType['tree']>([]);
+  const [ error, setError ] = React.useState<boolean>(false);
+  const [ loading, setLoading ] = React.useState<boolean>(true);
 
   React.useEffect(() => {
     if (sha === '') {
       return;
     }
     getTree(sha)
-    .then(data => {
+    .then((data: GithubGetTreeResponseType['tree']) => {
       setTree(() => {
         return [
           ...data

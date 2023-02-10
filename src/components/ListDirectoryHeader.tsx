@@ -1,21 +1,20 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import AvatarImg from '../assets/images/avatar.jpg';
 import Typography from '@mui/material/Typography';
 import SvgIcon from '@mui/material/SvgIcon';
 import CheckIcon from '@mui/icons-material/Check';
 import HistoryIcon from '@mui/icons-material/History';
-import Avatar from '@mui/material/Avatar';
 import GithubDetailLink from './GithubDetailLink';
 import GithubLink from './ui/GithubLink'
 import Expander from './ui/Expander'
 import ListDirectoryToolbar from './ui/ListDirectoryToolbar'
 import useCommits from '../hooks/useCommits'
+import Avatar from './Avatar'
 
-const ListDirectoryHeader = (props: any) => {
+const ListDirectoryHeader = () => {
   const [ , commitsNumber ] = useCommits();
-  const [ expend, setExpend ] = React.useState(false);
+  const [ expend, setExpend ] = React.useState<boolean>(false);
   const welcomeMessage = 'Welcome to my website. Enjoy your stay at my website. Now open to work. You can hire me. Feel free to contact to me.'
 
   return (
@@ -31,12 +30,7 @@ const ListDirectoryHeader = (props: any) => {
             item
             flex="none"
           >
-            <Avatar
-              alt="Jun Kumokawa"
-              title="Jun Kumokawa"
-              src={AvatarImg}
-              sx={{height: 24, width: 24}}
-            />
+            <Avatar />
           </Grid>
           <Grid
             item

@@ -1,7 +1,11 @@
 import React from 'react';
 import { repositoryContext } from '../contexts/repository';
+import { GithubListRepositoryTagsResponseType } from '../contexts/repository';
 
-const useFilterTags = (filteringText: string) => {
+type useFilterTagsType = [
+  Array<GithubListRepositoryTagsResponseType>
+]
+const useFilterTags: (filteringText: string) => useFilterTagsType = (filteringText: string) => {
   const {
     state: {
       tags
@@ -10,7 +14,7 @@ const useFilterTags = (filteringText: string) => {
 
   return [
     React.useMemo(() => {
-      return tags.filter((branch: any) => branch.name.includes(filteringText))
+      return tags.filter(branch => branch.name.includes(filteringText))
     }, [
       tags,
       filteringText

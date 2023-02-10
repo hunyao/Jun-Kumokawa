@@ -9,17 +9,17 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import GitForkedIcon from '../../assets/svgs/svg-git-forked'
 import GithubLink from '../ui/GithubLink'
 import GithubChip from '../ui/GithubChip'
-import ResouceLink from '../ResourceLink'
+import ResourceLink from '../ResourceLink'
 import SidebarItem from './SidebarItem'
 import useRepository from '../../hooks/useRepository'
 
 const About = () => {
-  const [ description ] = useRepository('description', '');
-  const [ homepage ] = useRepository('homepage', '');
-  const [ topics ] = useRepository('topics', []);
-  const [ subscribersCount ] = useRepository('subscribers_count', '');
-  const [ forksCount ] = useRepository('forks_count', '');
-  const [ watchersCount ] = useRepository('watchers_count', '');
+  const [ description ] = useRepository<'description'>('description', '');
+  const [ homepage ] = useRepository<'homepage'>('homepage', '');
+  const [ topics ] = useRepository<'topics'>('topics', []);
+  const [ subscribersCount ] = useRepository<'subscribers_count'>('subscribers_count', 0);
+  const [ forksCount ] = useRepository<'forks_count'>('forks_count', 0);
+  const [ watchersCount ] = useRepository<'watchers_count'>('watchers_count', 0);
 
   return (
     <>
@@ -41,36 +41,36 @@ const About = () => {
           />
           <Grid item>
             <GithubLink
-              href={homepage}
+              href={homepage || ""}
               className="active"
             >
-              {homepage.replace(/^(http|https):\/\//, '')}
+              {homepage !== null && homepage.replace(/^(http|https):\/\//, '')}
             </GithubLink>
           </Grid>
         </Grid>
         <Box
           my={2}
         >
-          {topics.map((topic: string, key: number) => <GithubChip key={key}>{topic}</GithubChip>)}
+          {topics !== undefined && topics.map((topic, key) => <GithubChip key={key}>{topic}</GithubChip>)}
         </Box>
         <Box>
-          <ResouceLink
+          <ResourceLink
             icon={MenuBookIcon}
             text="Readme"
           />
-          <ResouceLink
+          <ResourceLink
             icon={CopyrightIcon}
             text="MIT License"
           />
-          <ResouceLink
+          <ResourceLink
             icon={StarBorderOutlinedIcon}
             text={watchersCount + " stars"}
           />
-          <ResouceLink
+          <ResourceLink
             icon={RemoveRedEyeOutlinedIcon}
             text={subscribersCount + " watching"}
           />
-          <ResouceLink
+          <ResourceLink
             icon={GitForkedIcon}
             viewBox="0 0 16 16"
             text={forksCount + " forks"}

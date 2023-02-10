@@ -1,19 +1,29 @@
 import React from 'react';
 import { repositoryContext } from '../contexts/repository';
+import { RepositoryContext } from '../contexts/repository';
 
-const useCurrentBranch = () => {
+type useCurrentBranchResponseType = [
+  string,
+  string,
+  RepositoryContext["selectedBranch"],
+  RepositoryContext["changeBranch"]
+]
+const useCurrentBranch: () => useCurrentBranchResponseType = () => {
   const {
     selectedBranch,
     changeBranch
+  }: {
+    selectedBranch: RepositoryContext['selectedBranch'],
+    changeBranch: RepositoryContext['changeBranch'],
   } = React.useContext(repositoryContext);
 
   return [
     React.useMemo(() => {
-      if (selectedBranch === undefined) return '';
+      if (selectedBranch === null || selectedBranch === undefined) return '';
       return selectedBranch.name || ''
     }, [selectedBranch]),
     React.useMemo(() => {
-      if (selectedBranch === undefined) return '';
+      if (selectedBranch === null || selectedBranch === undefined) return '';
       return selectedBranch.commit.sha || ''
     }, [selectedBranch]),
     selectedBranch,

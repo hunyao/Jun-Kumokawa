@@ -1,9 +1,12 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 
-const DiscussionItemContent = styled(({ className, ...rest }: any) => (
-  <div className={className + " discussion-item-content"} {...rest} />
-))`
+interface DiscussionItemContentUIProps extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string
+}
+const DiscussionItemContent = styled(React.forwardRef<HTMLDivElement, DiscussionItemContentUIProps>(({ className, ...rest }, ref) => (
+  <div className={className + " discussion-item-content"} ref={ref} {...rest} />
+)))`
 & {
   margin-left: -16px;
   position: relative;

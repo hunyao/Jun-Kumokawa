@@ -1,9 +1,12 @@
+import React from 'react';
 import ListItem from '@mui/material/ListItem';
+import { ListItemProps } from '@mui/material/ListItem';
 import { styled } from '@mui/material/styles';
 
-const TreeBrowserListItem = styled(({className, ...rest}: any) => (
-  <ListItem className={className + " tree-browser-list-item"} {...rest} />
-))`
+interface TreeBrowserListItemUIProps {}
+const TreeBrowserListItem = styled(React.forwardRef<HTMLLIElement, ListItemProps<'li', TreeBrowserListItemUIProps>>(({className, ...rest}, ref) => (
+  <ListItem className={className + " tree-browser-list-item"} ref={ref} {...rest} />
+)))`
 & {
   padding: 8px 4px;
   color: #8b949e;

@@ -1,15 +1,18 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
+import { AccordionSummaryProps } from '@mui/material/AccordionSummary';
 import CheckIcon from '@mui/icons-material/Check';
 
-const AdditionalInformationSummary = styled(({className, ...rest}: any) => (
+interface AdditionalInformationSummaryUIProps {}
+const AdditionalInformationSummary = styled(React.forwardRef<HTMLDivElement, AccordionSummaryProps<'div', AdditionalInformationSummaryUIProps>>(({className, ...rest}, ref) => (
   <MuiAccordionSummary
     expandIcon={<CheckIcon />}
     className={className + " additional-information-summary"}
+    ref={ref}
     {...rest}
   />
-))(({ theme }) => ({
+)))(({ theme }) => ({
   backgroundColor: '#161b22',
   flexDirection: 'row-reverse',
   '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {

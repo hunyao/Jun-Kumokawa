@@ -19,16 +19,33 @@ import DiscussionTimelineItemBody from './ui/discussion/DiscussionTimelineItemBo
 import AdditionalInformation from './ui/discussion/AdditionalInformation'
 import AdditionalInformationSummary from './ui/discussion/AdditionalInformationSummary'
 import AdditionalInformationDetails from './ui/discussion/AdditionalInformationDetails'
+import Avatar from './Avatar'
 
-const DiscussionComponent = (props: any) => {
-  const [expanded, setExpanded] = React.useState('');
+type DiscussionTimelineItemType = {
+  icon: typeof SvgIcon,
+  text: string
+}
+type DiscussionSidebarItemType = [ string, string | React.ReactElement ];
+type DiscussionAdditionalItemType = {
+  title: string,
+  items: string[]
+}
+interface DiscussionComponentProps {
+  username: string,
+  title: string,
+  content: string | string[],
+  timelineItems: Array<DiscussionTimelineItemType>,
+  sidebarItems: Array<DiscussionSidebarItemType>,
+  additionalItems: Array<DiscussionAdditionalItemType>
+}
+const DiscussionComponent: React.FC<DiscussionComponentProps> = (props) => {
+  const [expanded, setExpanded] = React.useState<string | boolean>('');
 
-  const handleChange = (panel: any) => (event: any, newExpanded: any) => {
+  const handleChange = React.useCallback((panel: string) => (_: React.SyntheticEvent, newExpanded: boolean) => {
     setExpanded(newExpanded ? panel : false);
-  };
+  }, []);
   const {
     username,
-    avatar,
     title,
     content,
     timelineItems = [],
@@ -41,23 +58,20 @@ const DiscussionComponent = (props: any) => {
       <Discussion>
         <DiscussionContent>
           {timelineItems
-            .map((timelineItem: any, index: number) => (
+            .map((timelineItem, index) => (
               <DiscussionTimelineItem key={index}>
                 <DiscussionTimelineItemBadge>
                   <SvgIcon component={timelineItem.icon} />
                 </DiscussionTimelineItemBadge>
                 <DiscussionTimelineItemBody>
                   <Box display="inline-block">
-                    <Box
-                      component="img"
-                      src={avatar}
+                    <Avatar
                       height={20}
                       width={20}
                       sx={{
-                        borderRadius: '50%',
-                        verticalAlign: 'middle'
+                        verticalAlign: 'middle',
+                        display: 'inline-block'
                       }}
-                      display="inline-block"
                     />
                   </Box> <Typography
                     component="span"
@@ -74,10 +88,9 @@ const DiscussionComponent = (props: any) => {
             ))}
           <DiscussionItem>
             <DiscussionItemAvatar>
-              <Box
-                component="img"
-                src={avatar}
-                className="discussion-item-avatar-img"
+              <Avatar
+                height={40}
+                width={40}
               />
             </DiscussionItemAvatar>
             <DiscussionItemContent>
@@ -100,7 +113,7 @@ const DiscussionComponent = (props: any) => {
                     wordBreak: 'break-word'
                   }}
                 >
-                  {content}
+                  {typeof content === 'string' ? content: content.join("\n")}
                 </Box>
                 <Box
                   sx={{
@@ -109,7 +122,7 @@ const DiscussionComponent = (props: any) => {
                     overflow: 'hidden'
                   }}
                 >
-                  {additionalItems.map((additionalItem: any, index: number) => (
+                  {additionalItems.map((additionalItem, index) => (
                     <AdditionalInformation
                       expanded={expanded === ('panel' + index)}
                       onChange={handleChange('panel' + index)}
@@ -121,7 +134,12 @@ const DiscussionComponent = (props: any) => {
                       </AdditionalInformationSummary>
                       <AdditionalInformationDetails>
                         <MuiList>
-                          {additionalItem.items.map((item: any, index: number) => (
+                          {additionalItem.items.length === 0 ?
+                            <MuiListItem>
+                              <MuiListItemText primary="Nothing to show..." />
+                            </MuiListItem>
+                          : null}
+                          {additionalItem.items.map((item, index) => (
                             <MuiListItem key={index}>
                               <MuiListItemText primary={item} />
                             </MuiListItem>
@@ -136,7 +154,7 @@ const DiscussionComponent = (props: any) => {
           </DiscussionItem>
         </DiscussionContent>
         <DiscussionSidebar>
-          {sidebarItems.map(([ title, text ]: any, index: number) => (
+          {sidebarItems.map(([ title, text ], index) => (
             <DiscussionSidebarItem key={index}>
               <Box
                 className="discussion-sidebar-item-header"

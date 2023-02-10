@@ -1,6 +1,12 @@
+import React from 'react';
 import { styled } from '@mui/material/styles';
 
-const MarkdownPaper = styled("div")`
+interface MarkdownPaperUIProps extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string
+}
+const MarkdownPaper = styled(React.forwardRef<HTMLDivElement, MarkdownPaperUIProps>(({ className, ...rest }, ref) => (
+  <div className={className + " markdown-paper"} ref={ref} {...rest} />
+)))`
 & {
   line-height: 1.5;
   font-size: 16px;

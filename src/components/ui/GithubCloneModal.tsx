@@ -1,8 +1,10 @@
 import React from 'react';
 import Box from '@mui/material/Box';
+import { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 
-const GithubCloneModal = React.forwardRef(({ className, children, ...rest }: any, ref) => (
+interface GithubCloneModalUIProps {}
+const GithubCloneModal = React.forwardRef<HTMLDivElement, BoxProps<'div', GithubCloneModalUIProps>>(({ className, children, ...rest }, ref) => (
   <Box className={className + " github-clone-modal"} {...rest} ref={ref}>
     <Box
       className={"modal"}

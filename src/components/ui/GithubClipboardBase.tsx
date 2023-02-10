@@ -1,19 +1,26 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import { BoxProps } from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
+import { InputBaseProps } from '@mui/material/InputBase';
 import Button from '@mui/material/Button';
+import { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 
-const GithubClipboardCopyBase = styled(({ className, inputBaseProps, buttonProps, ...rest }: any) => (
+interface GithubClipboardCopyBaseUIProps {
+  inputBaseProps: InputBaseProps,
+  buttonProps: ButtonProps
+}
+const GithubClipboardCopyBase = styled(React.forwardRef<HTMLDivElement, BoxProps<'div', GithubClipboardCopyBaseUIProps>>(({ className, inputBaseProps, buttonProps, ...rest }, ref) => (
   <Box
     className={className + " github-clipboard-copy-base"}
+    ref={ref}
     {...rest}
   >
     <InputBase {...inputBaseProps} />
     <Button variant="outlined" {...buttonProps} />
   </Box>
-))`
+)))`
 & {
   display: flex;
 

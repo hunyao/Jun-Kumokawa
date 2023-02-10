@@ -1,0 +1,22 @@
+{
+  "profile": {
+    "name": {
+      "en": {
+        "fullName": "JUN KUMOKAWA",
+        "firstName": "JUN",
+        "lastName": "KUMOKAWA"
+      },
+      "ja": {
+        "fullName": "雲川 洵",
+        "firstName": "洵",
+        "lastName": "雲川"
+      }
+    },
+    "title": "Full-stack Engineer Who is made in Japan",
+    "location": "Tallinn, Estonia",
+    "linkdin": "kumokawa",
+    "email": "jun@kumoti.jp",
+    "tel": [ 372, 5377, 1037 ],
+    "employment": false
+  }
+}

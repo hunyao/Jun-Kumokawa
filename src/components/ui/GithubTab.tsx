@@ -1,7 +1,12 @@
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import Tab from '@mui/material/Tab';
+import { TabProps } from '@mui/material/Tab';
 
-const GithubTab = styled(Tab)`
+interface GithubTabUIProps extends TabProps {}
+const GithubTab = styled(React.forwardRef<HTMLDivElement, TabProps<'div', GithubTabUIProps>>(({ className, children, ...rest }, ref) => (
+  <Tab className={className + " github-tab"} ref={ref} {...rest} />
+)))`
 & {
   min-height: initial;
   color: #c9d1d9;

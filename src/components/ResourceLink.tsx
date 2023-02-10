@@ -2,7 +2,12 @@ import Box from '@mui/material/Box';
 import GithubLink from './ui/GithubLink'
 import SvgIcon from '@mui/material/SvgIcon';
 
-const ResouceLink = (props: any) => {
+interface ResourceLinkProps {
+  icon: typeof SvgIcon,
+  text: string,
+  viewBox?: string
+}
+const ResourceLink: React.FC<ResourceLinkProps> = (props) => {
   const {
     icon,
     text,
@@ -32,4 +37,4 @@ const ResouceLink = (props: any) => {
   )
 }
 
-export default ResouceLink;
+export default ResourceLink;

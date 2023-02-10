@@ -13,26 +13,26 @@ import usePathToSha from '../../hooks/usePathToSha'
 import useFilterTrees from '../../hooks/useFilterTrees'
 
 const Find = () => {
-  const [ searchText, setSearchText ] = React.useState("");
-  const [ acticveRow, setActiceRow ] = React.useState(0);
+  const [ searchText, setSearchText ] = React.useState<string>("");
+  const [ activeRow, setActiveRow ] = React.useState<number>(0);
   const [ filteredTrees ] = useFilterTrees(searchText);
-  const getShafromPath = usePathToSha();
+  const getShaFromPath = usePathToSha();
   const navigate = useNavigate();
 
-  const handleKeydown = ({ key }: any) => {
-    let n = acticveRow;
+  const handleKeydown = ({ key }: React.KeyboardEvent<HTMLInputElement>) => {
+    let n = activeRow;
     if (key === "ArrowDown") {
       n += 1;
     } else if (key === "ArrowUp") {
       n -= 1;
     } else if (key === "Enter") {
-      navigate('/blob/' + getShafromPath(filteredTrees[acticveRow]))
+      navigate('/blob/' + getShaFromPath(filteredTrees[activeRow]))
     } else {}
 
     n = n < 0 ? 0 : n;
     n = n >= filteredTrees.length ? filteredTrees.length-1 : n;
 
-    setActiceRow(n);
+    setActiveRow(n);
   }
 
   return (
@@ -65,18 +65,18 @@ const Find = () => {
         }}
       >
         {filteredTrees
-          .map((tree: any, index: number) => (
+          .map((tree, index) => (
           <TreeBrowserListItem
             disablePadding
-            className={index === acticveRow ? 'active': ''}
-            onClick={() => navigate('/blob/' + getShafromPath(tree))}
+            className={index === activeRow ? 'active': ''}
+            onClick={() => navigate('/blob/' + getShaFromPath(tree))}
           >
             <SvgIcon
               component={ArrowForwardIosIcon}
               sx={{
                 fontSize: 16,
                 marginX: 1,
-                visibility: index === acticveRow ? 'visible': 'hidden'
+                visibility: index === activeRow ? 'visible': 'hidden'
               }}
             />
             <SvgIcon

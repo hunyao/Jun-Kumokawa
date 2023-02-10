@@ -11,6 +11,7 @@ import Header from './pages/common/header'
 import Footer from './pages/common/footer'
 import BorderLinearProgress from './components/ui/BorderLinearProgress'
 import NotFoundPage from './pages/common/404'
+import PersonalDataProvider from './contexts/personalData'
 
 const Overview = React.lazy(() => import("./pages/home/overview"))
 const Moo = React.lazy(() => import("./pages/cow"))
@@ -39,8 +40,9 @@ const theme = createTheme({
 function App() {
   return (
     <div className="App">
-      <Suspense fallback={<BorderLinearProgress />}>
-        <ThemeProvider theme={theme}>
+      <PersonalDataProvider>
+        <Suspense fallback={<BorderLinearProgress />}>
+          <ThemeProvider theme={theme}>
             <RepositoryProvider>
               <Header />
               <Container>
@@ -68,8 +70,9 @@ function App() {
               </Container>
               <Footer />
             </RepositoryProvider>
-        </ThemeProvider>
-      </Suspense>
+          </ThemeProvider>
+        </Suspense>
+      </PersonalDataProvider>
     </div>
   );
 }

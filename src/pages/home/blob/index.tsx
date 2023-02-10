@@ -5,24 +5,28 @@ import ListDirectory from '../../../components/ListDirectory';
 import FileView from '../../../components/FileView';
 import { useParams } from "react-router-dom";
 import { OctokitInstance } from '../../../plugins/Octokit';
-import { fromBlob } from 'file-type/browser';
+import { fromBlob, FileTypeResult } from 'file-type/browser';
 import Moo from '../../../components/Moo';
 import useShaToPath from '../../../hooks/useShaToPath'
 
 const BlobPage = () => {
-  const [ content, setContent ] = React.useState("");
-  const [ isBinary, setIsBinary ] = React.useState(false);
-  const [ isImage, setIsImage ] = React.useState(false);
-  const [ filename, setFilename ] = React.useState("");
-  const [ mime, setMime ] = React.useState("");
-  const [ loading, setLoading ] = React.useState(true);
-  const [ error, setError ] = React.useState(false);
+  const [ content, setContent ] = React.useState<string>("");
+  const [ isBinary, setIsBinary ] = React.useState<boolean>(false);
+  const [ isImage, setIsImage ] = React.useState<boolean>(false);
+  const [ filename, setFilename ] = React.useState<string>("");
+  const [ mime, setMime ] = React.useState<string>("");
+  const [ loading, setLoading ] = React.useState<boolean>(true);
+  const [ error, setError ] = React.useState<boolean>(false);
   const { sha = '' } = useParams();
   const getPathFromSha = useShaToPath();
 
   React.useEffect(() => {
-    const [ path ] = getPathFromSha(sha)
-    setFilename(path)
+    const [ path, err ] = getPathFromSha(sha)
+    if (err) {
+      setError(true);
+    } else {
+      setFilename(path)
+    }
   }, [
     getPathFromSha,
     sha
@@ -30,6 +34,9 @@ const BlobPage = () => {
 
   React.useEffect(() => {
     let mounted = true;
+    if (error) {
+      return;
+    }
     OctokitInstance.request('GET /repos/{owner}/{repo}/git/blobs/{file_sha}', {
       owner: process.env.REACT_APP_REPOSITORY_OWNER as string,
       repo: process.env.REACT_APP_REPOSITORY_NAME as string,
@@ -46,7 +53,7 @@ const BlobPage = () => {
         })
       }
     })
-    .then((res: any) => {
+    .then((res: FileTypeResult | undefined) => {
       if (mounted) {
         if (res === undefined) {
           setIsBinary(false);
@@ -68,7 +75,8 @@ const BlobPage = () => {
       mounted = false;
     }
   }, [
-    sha
+    sha,
+    error
   ])
 
   if (error) {

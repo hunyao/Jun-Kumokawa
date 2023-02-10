@@ -2,7 +2,17 @@ import React from 'react';
 import GithubTabs from './ui/GithubTabs';
 import GithubTab from './ui/GithubTab';
 
-const TabMenu = (props: any) => {
+type TabMenuType = {
+  name: string,
+  icon?: React.ReactElement,
+  menuId: number
+}
+interface TabMenuProps {
+  value: number | boolean,
+  onChange: (value: number) => void,
+  menus: Array<TabMenuType>
+}
+const TabMenu: React.FC<TabMenuProps> = (props) => {
   const {
     value,
     onChange,
@@ -11,9 +21,9 @@ const TabMenu = (props: any) => {
 
   return <GithubTabs
     value={value}
-    onChange={(_:any, menuId:number) => onChange(menuId)}
+    onChange={(_: React.SyntheticEvent, menuId:number) => onChange(menuId)}
   >
-    {menus.map((menu: any, index: number) => (
+    {menus.map((menu, index) => (
       <GithubTab
         icon={menu.icon}
         iconPosition="start"

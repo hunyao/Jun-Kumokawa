@@ -1,11 +1,14 @@
 import React from 'react'
 import Box from '@mui/material/Box';
+import { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 
-const GithubBranchSwitching = styled(({className, children, ...rest}: any) => {
-  return <Box
+interface GithubBranchSwitchingUIProps {}
+const GithubBranchSwitching = styled(React.forwardRef<HTMLDivElement, BoxProps<'div', GithubBranchSwitchingUIProps>>(({className, children, ...rest}, ref) => (
+  <Box
     className={className + " github-branch-switching"}
     sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}
+    ref={ref}
     {...rest}
   >
     <Box
@@ -14,7 +17,7 @@ const GithubBranchSwitching = styled(({className, children, ...rest}: any) => {
       {children}
     </Box>
   </Box>
-})`
+)))`
 & {
   position: absolute;
   top: auto;

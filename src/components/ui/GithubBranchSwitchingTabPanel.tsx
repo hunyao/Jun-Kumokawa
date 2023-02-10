@@ -1,10 +1,12 @@
 import React from 'react'
 import TabPanel from '@mui/lab/TabPanel';
+import { TabPanelProps } from '@mui/lab/TabPanel';
 import { styled } from '@mui/material/styles';
 
-const GithubBranchSwitchingTabPanel = styled(({className, ...rest}: any) => (
-  <TabPanel className={className + " github-branch-switching-tab-panel"} {...rest} />
-))`
+interface GithubBranchSwitchingTabPanelUIProps extends TabPanelProps {}
+const GithubBranchSwitchingTabPanel = styled(React.forwardRef<HTMLDivElement, GithubBranchSwitchingTabPanelUIProps>(({className, ...rest}, ref) => (
+  <TabPanel className={className + " github-branch-switching-tab-panel"} ref={ref} {...rest} />
+)))`
 & {
   padding: 0;
   max-height: 357px;

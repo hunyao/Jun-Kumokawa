@@ -4,10 +4,21 @@ import GithubButton from './ui/GithubButton'
 import SvgIcon from '@mui/material/SvgIcon';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ListSubheader from '@mui/material/ListSubheader';
-import GithubMenuPoper from './ui/GithubMenuPoper'
-import GithubMenuPoperMenuItem from './ui/GithubMenuPoperMenuItem'
+import GithubMenuPopper from './ui/GithubMenuPopper'
+import GithubMenuPopperMenuItem from './ui/GithubMenuPopperMenuItem'
+import C3 from 'c3';
 
-const GithubMenuButton = (props: any) => {
+interface GithubMenuButtonProps<T> {
+  menuItems: Array<{
+    value: T,
+    text: string
+  }>,
+  value: T,
+  onChange: (value: T) => void,
+  subheader: string,
+  buttonText: string
+}
+const GithubMenuButton = function<T extends C3.ChartType>(props: GithubMenuButtonProps<T>): React.ReactElement {
   const {
     menuItems,
     value,
@@ -22,7 +33,7 @@ const GithubMenuButton = (props: any) => {
   const handleClick = () => {
     setAnchorEl(anchorRef.current);
   };
-  const handleClose = (selectedValue: any) => {
+  const handleClose = (selectedValue: T) => {
     onChange(selectedValue);
     setAnchorEl(null);
   };
@@ -42,7 +53,7 @@ const GithubMenuButton = (props: any) => {
         top={5}
         ref={anchorRef}
       />
-      <GithubMenuPoper
+      <GithubMenuPopper
         anchorEl={anchorEl}
         open={open}
         onClose={() => setAnchorEl(null)}
@@ -57,16 +68,16 @@ const GithubMenuButton = (props: any) => {
         }}
       >
         <ListSubheader>{subheader}</ListSubheader>
-        {menuItems.map((item: any, index: number) => (
-          <GithubMenuPoperMenuItem
+        {menuItems.map((item, index) => (
+          <GithubMenuPopperMenuItem
             className={value === item.value ? 'selected': ''}
             onClick={() => handleClose(item.value)}
             key={index}
           >
             {item.text}
-          </GithubMenuPoperMenuItem>
+          </GithubMenuPopperMenuItem>
         ))}
-      </GithubMenuPoper>
+      </GithubMenuPopper>
     </>
   )
 }

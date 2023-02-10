@@ -6,11 +6,21 @@ import IconButton from '@mui/material/IconButton';
 import MarkdownView from './MarkdownView';
 import SourceCodeView from './SourceCodeView';
 import FileViewToolbar from './ui/FileViewToolbar'
-import GithubLink from './ui/GithubLink'
 import mimeTypes from "mime-types";
-import Loading from './Loading'
+import Loading from './Loading';
+import { SxProps } from '@mui/system';
 
-const FileView = (props: any) => {
+interface FileViewProps {
+  filename: string,
+  content: string,
+  mode: "sourceCode" | "readme",
+  binary: boolean,
+  image: boolean,
+  mime?: string,
+  sx?: SxProps,
+  loading: boolean
+}
+const FileView: React.FC<FileViewProps> = (props) => {
   const {
     filename,
     content,
@@ -26,17 +36,17 @@ const FileView = (props: any) => {
     if (filename === undefined) {
       return;
     }
-    const extention = filename.split(".").pop()
-    if (mode === "readme" || extention === 'md') {
+    const extension = filename.split(".").pop() as string
+    if (mode === "readme" || extension === 'md') {
       return <MarkdownView text={content} />
     } else if (mode === "sourceCode") {
       return <SourceCodeView
         content={content}
-        extention={extention}
+        extension={extension}
         binary={binary}
         image={image}
-        mime={mime === undefined || mime === "" ? mimeTypes.contentType(filename) : mime}
-        filename={filename.split('/').pop()}
+        mime={mime === undefined || mime === "" ? mimeTypes.contentType(filename) as string : mime}
+        filename={filename.split('/').pop() as string}
       />
     } else {}
   }, [
@@ -50,7 +60,6 @@ const FileView = (props: any) => {
 
   return (
     <>
-      <span id="contentView" />
       <Paper
         variant="outlined"
         sx={{
@@ -63,7 +72,7 @@ const FileView = (props: any) => {
           <IconButton>
             <ListIcon />
           </IconButton>
-          <GithubLink href="#contentView">{filename}</GithubLink>
+          {filename}
         </FileViewToolbar>
         <Box
           sx={{

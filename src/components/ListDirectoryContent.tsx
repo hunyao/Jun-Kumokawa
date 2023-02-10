@@ -12,10 +12,23 @@ import useShaToPath from '../hooks/useShaToPath'
 import useCurrentBranch from '../hooks/useCurrentBranch'
 import usePreviousSha from '../hooks/usePreviousSha'
 import Loading from './Loading'
+import { GithubGetTreeResponseType, GithubListCommitsResponseType, Unpacked } from '../contexts/repository';
 
-const ListDirectoryContent = (props: any) => {
-  const [ treeForDisplaies, setTreeForDisplaies ] = React.useState([]);
-  const [ loading, setLoading ] = React.useState(true);
+type ListDirectoryTreeType = {
+  subject: string,
+  committerDate: string,
+  fileType: string,
+  path: string,
+  sha: string
+}
+interface ListDirectoryContentProps {
+  sha: string | undefined,
+  trees: GithubGetTreeResponseType['tree'],
+  type: "tree" | "blob"
+}
+const ListDirectoryContent: React.FC<ListDirectoryContentProps> = (props) => {
+  const [ treeForDisplays, setTreeForDisplays ] = React.useState<Array<ListDirectoryTreeType>>([]);
+  const [ loading, setLoading ] = React.useState<boolean>(true);
   const [ , currentBranchSha ] = useCurrentBranch();
   const getPathFromSha = useShaToPath();
   const {
@@ -27,7 +40,7 @@ const ListDirectoryContent = (props: any) => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    Promise.all(trees.map(async (tree: any) => {
+    Promise.all(trees.map(async (tree) => {
       return {
         tree,
         commit: await OctokitInstance.request('GET /repos/{owner}/{repo}/commits?path={path}&sha={sha}&per_page=1', {
@@ -38,18 +51,18 @@ const ListDirectoryContent = (props: any) => {
         })
       }
     }))
-    .then((responses: any) => {
-      return responses.map((response: any) => {
+    .then((responses) => {
+      return responses.map(({ commit, tree }: { commit: { data: Array<GithubListCommitsResponseType> }, tree: Unpacked<GithubGetTreeResponseType['tree']> }) => {
         return {
-          subject: response.commit.data[0]?.commit?.message || '',
-          committerDate: response.commit.data[0]?.commit?.committer?.date || '',
-          fileType: response.tree.type,
-          path: response.tree.path,
-          sha: response.tree.sha
+          subject: commit.data[0]?.commit?.message || '' as string,
+          committerDate: commit.data[0]?.commit?.committer?.date || '' as string,
+          fileType: tree.type as string,
+          path: tree.path as string,
+          sha: tree.sha as string
         }
       })
     })
-    .then(setTreeForDisplaies)
+    .then(setTreeForDisplays)
     .finally(() => setLoading(false))
   }, [
     trees,
@@ -57,13 +70,13 @@ const ListDirectoryContent = (props: any) => {
     getPathFromSha
   ])
 
-  const fileTypeIcon: any = React.useCallback((fileType: string) => {
+  const fileTypeIcon = React.useCallback((fileType: string) => {
     if (fileType === 'blob') {
       return InsertDriveFileOutlinedIcon
     } else if (fileType === 'tree') {
       return FolderIcon
     } else {
-      return <></>
+      throw Error('The fileType ' + fileType + ' is unavailable')
     }
   }, [])
 
@@ -91,7 +104,7 @@ const ListDirectoryContent = (props: any) => {
                 fontWeight: 600,
                 textAlign: 'center'
               }}
-              onClick={(e: any) => {
+              onClick={(e: React.MouseEvent) => {
                 e.preventDefault();
                 navigate('/tree/' + previousSha)
               }}
@@ -107,7 +120,7 @@ const ListDirectoryContent = (props: any) => {
           <Grid item flex={1}>
           </Grid>
         </ListFilesItemRow>
-        {treeForDisplaies.map((tree: any, index: number) => {
+        {treeForDisplays.map((tree, index) => {
           const {
             fileType,
             path,
@@ -134,7 +147,7 @@ const ListDirectoryContent = (props: any) => {
                 component={fileTypeIcon(fileType)}
               />
               <Grid item xs={3}>
-                <GithubLink href={"#"} onClick={(e: any) => {
+                <GithubLink href={"#"} onClick={(e: React.MouseEvent) => {
                   e.preventDefault();
                   navigate('/' + href)
                 }}>

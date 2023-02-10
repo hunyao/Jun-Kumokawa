@@ -1,6 +1,12 @@
+import React from 'react';
 import { styled } from '@mui/material/styles';
 
-const SourceCodeViewLine = styled('td')`
+interface SourceCodeViewLineUIProps extends React.HTMLAttributes<HTMLTableCellElement> {
+  className?: string
+}
+const SourceCodeViewLine = styled(React.forwardRef<HTMLTableCellElement, SourceCodeViewLineUIProps>(({ className, ...rest }, ref) => (
+  <td className={className + " source-code-view-line"} ref={ref} {...rest} />
+)))`
 &:before {
   content: attr(data-line-number);
 }

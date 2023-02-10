@@ -2,8 +2,14 @@ import React from 'react';
 import { OctokitInstance } from '../plugins/Octokit';
 import useShaToPath from './useShaToPath';
 import useCurrentBranch from './useCurrentBranch'
+import { GithubGetRepositoryReadmeResponseType } from '../contexts/repository'
 
-const treeReadmeCache: any = {}
+type useTreeReadmeResponseType = [
+  string,
+  boolean,
+  boolean
+]
+const treeReadmeCache: { [key: string]: string } = {}
 const getTreeReadme = async (path: string = '', currentBranchName: string) => {
   if (treeReadmeCache[path] !== undefined) {
     return treeReadmeCache[path]
@@ -14,25 +20,25 @@ const getTreeReadme = async (path: string = '', currentBranchName: string) => {
       path: path,
       ref: currentBranchName
     })
-  .then(({ data }: any) => {
+    .then(({ data }: { data: GithubGetRepositoryReadmeResponseType }) => {
     treeReadmeCache[path] = data.content;
     return data.content
   })
 }
-const useTreeReadme = (sha: string = '') => {
-  const [ content, setContent ] = React.useState('');
-  const [ error, setError ] = React.useState(false);
+const useTreeReadme: (sha: string) => useTreeReadmeResponseType = (sha: string = '') => {
+  const [ content, setContent ] = React.useState<string>('');
+  const [ error, setError ] = React.useState<boolean>(false);
   const getPathFromSha = useShaToPath();
-  const [ path ] = getPathFromSha(sha);
+  const [ path, err ] = getPathFromSha(sha);
   const [ currentBranchName ] = useCurrentBranch();
-  const [ loading, setLoading ] = React.useState(true);
+  const [ loading, setLoading ] = React.useState<boolean>(true);
 
   React.useEffect(() => {
     if (sha === '') {
       setLoading(false);
       return;
     }
-    if (path === undefined) {
+    if (err) {
       setLoading(false);
       return;
     }
@@ -48,6 +54,7 @@ const useTreeReadme = (sha: string = '') => {
   }, [
     sha,
     path,
+    err,
     currentBranchName
   ])
 

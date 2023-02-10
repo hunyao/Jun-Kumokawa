@@ -1,0 +1,173 @@
+{
+  "experiences": [
+    {
+      "companyName": "Aakel Technologies",
+      "employmentType": "Contract",
+      "employedAt": "2020-10-01T00:00:00+0900",
+      "leftAt": "2022-03-02T00:00:00+0900",
+      "homepage": "https://aakel.co.jp/en",
+      "industry": "Information Technology",
+      "location": "Fukuoka, Japan",
+      "title": "Full-stack Engineer",
+      "summary": "Experienced 3 projects, designed, developed, tested websites from scratch with a few member, trained and assisted junior engineers",
+      "responsibilities": [
+        "Designed and created databases and tables",
+        "Designed and developed APIs to provide information that front needs",
+        "Created web pages using HTML and CSS based on design that are made by Adobe XD",
+        "Built infrastructure on AWS with Amplify, Serverless Framework",
+        "Designed and developed website from scratch with 2  members for Administrative scriveners. (Part of the website is private to the customers.)",
+        "  - The private pages for managing what customers inputted what they are going to apply to get a garage certification for customers",
+        "  - Communication by REST API with Kintone to collect and manage data they inputted",
+        "  - Reproduce forms that are made by customers on Kintone on the website and send the data that customers inputted on the website to Kintone",
+        "Designed and developed private website from scratch with 2 members for membership of a gas company",
+        "  - Collecting from core system by REST API and displaying information of cost of electricity and gas that customers used",
+        "  - Displaying graphs information of cost of electricity and gas that customers month by month",
+        "  - Linking user account on core system to the website",
+        "Designed and developed private website from scratch for efficient forklift battery charging",
+        "  - Displaying predicted schedule of beginning of time to charge battery by predicting system with schedule of planned to use forklift on a day and the past batteries data used"
+      ],
+      "achievements": [
+        "Trained and assisted junior engineers for a year and they learned how to code, compile, deploy, use libraries, Git, and more. Maintained a good working environment for engineers",
+        "Saved time for the company by making scripts to do a job efficiently",
+        "Learned Typescript, React.js and Serverless Framework on the job"
+      ],
+      "usedSkills": [
+        "React.js",
+        "Vue.js",
+        "Typescript",
+        "MUI",
+        "AWS",
+        "Node.js",
+        "PostgreSQL",
+        "Serverless Framework",
+        "Kintone",
+        "AWS",
+        "Azure",
+        "Axios",
+        "Express"
+      ]
+    },
+    {
+      "companyName": "Saibu Gas Information Systems",
+      "employmentType": "Contract",
+      "employedAt": "2020-01-01T00:00:00+0900",
+      "leftAt": "2020-09-02T00:00:00+0900",
+      "homepage": "https://www.sgis.co.jp/",
+      "industry": "Information Technology",
+      "location": "Fukuoka, Japan",
+      "title": "Full-stack Engineer",
+      "summary": "Developed website to receive, save and manage gas orders from customers using Outsystems no-code software",
+      "responsibilities": [
+        "Developed website to receive, save and manage gas orders from customers using Outsystems no-code software"
+      ],
+      "achievements": [
+        "Learned Outsystems which is no-code software on the job"
+      ],
+      "usedSkills": [
+        "Outsystems"
+      ]
+    },
+    {
+      "companyName": "Doreming",
+      "employmentType": "Contract",
+      "employedAt": "2019-08-02T00:00:00+0900",
+      "leftAt": "2019-12-02T00:00:00+0900",
+      "homepage": "https://www.doreming.com/",
+      "industry": "Information Technology",
+      "location": "Fukuoka, Japan",
+      "title": "Full-stack Engineer",
+      "summary": "Developed Real Time Payroll Software for Employee Wellbeing in PHP, Symfony, Javascript on MacOS",
+      "responsibilities": [
+        "Developed Real Time Payroll Software for Employee Wellbeing on MacOS"
+      ],
+      "achievements": [
+        "Saved time for the company by making a script so that I can create a pull request, push to the branch and send a notify to Slack by one Enter key"
+      ],
+      "usedSkills": [
+        "PHP",
+        "Symfony",
+        "Javascript",
+        "Docker",
+        "PostgreSQL",
+        "Git"
+      ]
+    },
+    {
+      "companyName": "Kyushu Ten Limited",
+      "employmentType": "Contract",
+      "employedAt": "2018-07-02T00:00:00+0900",
+      "leftAt": "2019-07-02T00:00:00+0900",
+      "homepage": "https://www.qten.co.jp/english",
+      "industry": "Information Technology",
+      "location": "Fukuoka, Japan",
+      "title": "Full-stack Engineer",
+      "summary": "Developed private website in Nodejs, Sequelize, Javascript and Vue.js for displaying information dashboard camera collected. Learned Sequelize on the job. Learned Vue.js, Sequelize on the job.",
+      "responsibilities": [],
+      "achievements": [
+        "Learned Sequelize, Vue.js on the job"
+      ],
+      "usedSkills": [
+        "Node.js",
+        "Sequelize",
+        "Vue.js",
+        "SQLServer"
+      ]
+    },
+    {
+      "companyName": "PHC",
+      "employmentType": "Contract",
+      "employedAt": "2016-10-02T00:00:00+0900",
+      "leftAt": "2018-06-02T00:00:00+0900",
+      "homepage": "https://xirapha.jp/",
+      "industry": "Information Technology",
+      "location": "Fukuoka, Japan",
+      "title": "Full-stack Engineer",
+      "summary": "Developed on existing customized web systems in Javascript, Vue.js and CakePHP for cloud-based electronic medical records for clinics. Learned AngularJs on the job.",
+      "responsibilities": [
+        "Developed on existing customized web systems for cloud-based electronic medical records for clinics"
+      ],
+      "achievements": [
+        "Saved time by learning editor called VIM so that I can code more easily and faster. Even if I worked on my computer which moves slowly",
+        "Learned AngularJs on the job"
+      ],
+      "usedSkills": [
+        "AngularJs",
+        "Vue.js",
+        "Javascript",
+        "CakePHP"
+      ]
+    },
+    {
+      "companyName": "CLINKS",
+      "employmentType": "Permanent",
+      "employedAt": "2012-04-02T00:00:00+0900",
+      "leftAt": "2015-04-02T00:00:00+0900",
+      "homepage": "https://www.clinks.jp",
+      "industry": "Information Technology",
+      "location": "Tokyo, Japan",
+      "title": "Full-stack Engineer",
+      "summary": "Experienced 6 projects and was responsible for designing, developing, training junior engineer, and managing servers the company has including SSL Certificates.",
+      "responsibilities": [
+        "Designing and developing databases, UI screens and apis",
+        "Fixing bugs",
+        "Worked as a support team for members of my department:",
+        " - Managing servers for ourselves and customers",
+        " - Renewing SSL Certificates every year",
+        " - Managing user accounts on servers",
+        " - Managing mailing lists for ourselves and customers"
+      ],
+      "achievements": [
+        "Saved time by making script so that I can connect to server by one-password through SSH and switch easily"
+      ],
+      "usedSkills": [
+        "Git", "Subversion",
+        "HTML", "CSS", "Javascript", "Canvas", "jQuery",
+        "PHP", "CakePHP", "FuelPHP", "ZendFramework",
+        "Memcached", "Redis",
+        "CentOS", "Ubuntu", "Bash",
+        "Apache", "Nginx", "Nagios", "Redmine", "Mailman",
+        "Wordpress", "MySQL", "AWS"
+      ]
+    }
+  ]
+}

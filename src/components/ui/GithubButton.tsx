@@ -1,8 +1,12 @@
+import React from 'react';
 import { styled } from '@mui/material/styles';
 
-const GithubButton = styled(({className, ...rest}: any) => (
-  <a className={className + " github-button"} {...rest} />
-))`
+interface GithubButtonUIProps extends React.HTMLAttributes<HTMLAnchorElement> {
+  className?: string
+}
+const GithubButton = styled(React.forwardRef<HTMLAnchorElement, GithubButtonUIProps>(({ className, ...rest }, ref) => (
+  <a className={className + " github-button"} ref={ref} {...rest} />
+)))`
 & {
   position: relative;
   padding: 5px 16px;

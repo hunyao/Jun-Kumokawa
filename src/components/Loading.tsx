@@ -2,7 +2,10 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const Loading = (props: any) => {
+interface LoadingProps {
+  loading: boolean
+}
+const Loading: React.FC<LoadingProps> = (props) => {
   const {
     children,
     loading
@@ -19,7 +22,7 @@ const Loading = (props: any) => {
       </Grid>
     </Grid>
   } else {
-    return children;
+    return <>{children}</>
   }
 
 }

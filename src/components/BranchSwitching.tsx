@@ -8,12 +8,13 @@ import ClickAwayListener from '@mui/material/ClickAwayListener';
 import BranchSwitchingModal from './BranchSwitchingModal';
 import useCurrentBranch from '../hooks/useCurrentBranch'
 
-const BranchSwitching = (props: any) => {
-  const [ open, setOpen ] = React.useState(false);
+const BranchSwitching = () => {
+  const [ open, setOpen ] = React.useState<boolean>(false);
   const [ currentBranchName ] = useCurrentBranch();
+  const closeFn = React.useCallback(() => setOpen(false), [])
 
   return (
-    <ClickAwayListener onClickAway={() => setOpen(false)}>
+    <ClickAwayListener onClickAway={closeFn}>
       <Box>
         <GithubButton onClick={() => setOpen(!open)}>
           <SvgIcon
@@ -35,7 +36,7 @@ const BranchSwitching = (props: any) => {
           </Box>
           <SvgIcon component={ArrowDropDownIcon} />
         </GithubButton>
-        <BranchSwitchingModal open={open} />
+        <BranchSwitchingModal open={open} onClose={closeFn} />
       </Box>
     </ClickAwayListener>
   )

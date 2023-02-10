@@ -1,7 +1,12 @@
 import React from 'react';
 import { repositoryContext } from '../contexts/repository';
+import { GithubGetBranchResponseType } from '../contexts/repository'
 
-const useBranches = () => {
+type useBranchesResponseType = [
+  Array<GithubGetBranchResponseType>,
+  number
+]
+const useBranches: () => useBranchesResponseType = () => {
   const {
     state: {
       branches

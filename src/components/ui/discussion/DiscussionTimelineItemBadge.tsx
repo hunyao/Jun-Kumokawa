@@ -1,9 +1,12 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 
-const DiscussionTimelineItemBadge = styled(({ className, ...rest }: any) => (
-  <div className={className + " discussion-timeline-item-badge"} {...rest} />
-))`
+interface DiscussionTimelineItemBadgeUIProps extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string
+}
+const DiscussionTimelineItemBadge = styled(React.forwardRef<HTMLDivElement, DiscussionTimelineItemBadgeUIProps>(({ className, ...rest }, ref) => (
+  <div className={className + " discussion-timeline-item-badge"} ref={ref} {...rest} />
+)))`
 & {
   position: relative;
   z-index: 1;

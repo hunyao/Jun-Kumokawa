@@ -5,7 +5,10 @@ import CopyIcon from '../assets/svgs/svg-copy';
 import CheckIcon from '@mui/icons-material/Check';
 import SvgIcon from '@mui/material/SvgIcon';
 
-const GithubClipboardCopy = (props: any) => {
+interface GithubClipboardCopyProps {
+  copyText: string
+}
+const GithubClipboardCopy: React.FC<GithubClipboardCopyProps> = (props) => {
   const {
     copyText
   } = props;
@@ -17,11 +20,11 @@ const GithubClipboardCopy = (props: any) => {
     return <SvgIcon component={CheckIcon} sx={{color: '#238636'}} />
   }, [])
 
-  const [ clicked, setClicked ] = React.useState(false);
-  const [ icon, setIcon ] = React.useState(defaultIcon);
+  const [ clicked, setClicked ] = React.useState<boolean>(false);
+  const [ icon, setIcon ] = React.useState<React.ReactElement>(defaultIcon);
 
-  const onClickInput = (e: any) => {
-    e.target.select();
+  const onClickInput = (e: React.MouseEvent<HTMLInputElement>) => {
+    (e.target as HTMLInputElement).select()
   }
 
   const onClickButton = () => {

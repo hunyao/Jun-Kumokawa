@@ -1,16 +1,20 @@
 import React from 'react';
 import { repositoryContext } from '../contexts/repository';
 
-const usePathToSha = () => {
+type usePathToShaType = string | undefined;
+const usePathToSha: () => (path: string) => usePathToShaType = () => {
   const {
     allTrees
   } = React.useContext(repositoryContext);
 
-  const getShafromPath = React.useCallback((path: string) => {
-    if (allTrees.length === 0) {
+  const getShaFromPath = React.useCallback((path: string) => {
+    if (allTrees === null) {
       return;
     }
-    const result = allTrees.tree.find((t: any) => {
+    if (allTrees.tree.length === 0) {
+      return;
+    }
+    const result = allTrees.tree.find(t => {
       return t.path === path
     });
     if (result === undefined) {
@@ -21,7 +25,7 @@ const usePathToSha = () => {
     allTrees
   ])
 
-  return getShafromPath
+  return getShaFromPath
 }
 
 export default usePathToSha

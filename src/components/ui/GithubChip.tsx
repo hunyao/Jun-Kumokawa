@@ -1,6 +1,12 @@
+import React from 'react';
 import { styled } from '@mui/material/styles';
 
-const GithubChip = styled("a")`
+interface GithubChipUIProps extends React.HTMLAttributes<HTMLAnchorElement> {
+  className?: string
+}
+const GithubChip = styled(React.forwardRef<HTMLAnchorElement, GithubChipUIProps>(({ className, ...rest }, ref) => (
+  <a className={className + " github-chip"} ref={ref} {...rest} />
+)))`
 & {
   display: inline-block;
   padding: 0 7px;

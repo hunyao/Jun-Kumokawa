@@ -2,8 +2,14 @@ import React from 'react';
 import Paper from '@mui/material/Paper';
 import ListDirectoryHeader from './ListDirectoryHeader'
 import ListDirectoryContent from './ListDirectoryContent'
+import { GithubGetTreeResponseType } from '../contexts/repository';
 
-const ListDirectory = (props: any) => {
+interface ListDirectoryProps {
+  type: 'tree' | 'blob',
+  sha: string,
+  trees: GithubGetTreeResponseType['tree']
+}
+const ListDirectory: React.FC<ListDirectoryProps> = (props) => {
   const {
     type,
     sha,

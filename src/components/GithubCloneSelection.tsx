@@ -4,33 +4,36 @@ import TabMenu from './TabMenu';
 import { repositoryContext } from '../contexts/repository';
 import GithubClipboardCopy from './GithubClipboardCopy';
 
-const Menus = [
+type GithubCloneMenu = {
+  name: 'HTTPS' | 'SSH' | 'Github CLI',
+  menuId: number,
+  keyName: 'clone_url' | 'ssh_url' | 'git_url',
+  subtitle: string
+}
+const Menus: Array<GithubCloneMenu> = [
   {
     name: 'HTTPS',
     menuId: 0,
-    icon: null,
     keyName: 'clone_url',
     subtitle: 'Use Git or checkout with SVN using the web URL.'
   },
   {
     name: 'SSH',
     menuId: 1,
-    icon: null,
     keyName: 'ssh_url',
     subtitle: 'Use a password-protected SSH key.'
   },
   {
     name: 'Github CLI',
     menuId: 2,
-    icon: null,
     keyName: 'git_url',
     subtitle: 'Work fast with our official CLI. Learn more.'
   }
 ]
 
-const GithubCloneSelection = (props: any) => {
-  const [ menuId, setMenuId ] = React.useState(0);
-  const [ copyText, setCopyText ] = React.useState('');
+const GithubCloneSelection = () => {
+  const [ menuId, setMenuId ] = React.useState<number>(0);
+  const [ copyText, setCopyText ] = React.useState<string>('');
 
   const {
     state: {
@@ -39,6 +42,7 @@ const GithubCloneSelection = (props: any) => {
   } = React.useContext(repositoryContext);
 
   React.useEffect(() => {
+    if (repository === null) return;
     if (repository[Menus[menuId].keyName] !== undefined) {
       setCopyText(repository[Menus[menuId].keyName]);
     }

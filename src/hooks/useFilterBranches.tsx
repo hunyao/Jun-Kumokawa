@@ -1,7 +1,11 @@
 import React from 'react';
 import { repositoryContext } from '../contexts/repository';
+import { GithubGetBranchResponseType } from '../contexts/repository';
 
-const useFilterBranches = (filteringText: string) => {
+type useFilterBranchesType = [
+  Array<GithubGetBranchResponseType>
+]
+const useFilterBranches: (filteringText: string) => useFilterBranchesType = (filteringText: string) => {
   const {
     state: {
       branches
@@ -10,7 +14,7 @@ const useFilterBranches = (filteringText: string) => {
 
   return [
     React.useMemo(() => {
-      return branches.filter((branch: any) => branch.name.includes(filteringText))
+      return branches.filter((branch) => branch.name.includes(filteringText))
     }, [
       branches,
       filteringText

@@ -1,9 +1,9 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
 
-const moo = '                 (__) \n                 (oo) \n           /------\\/ \n          / |    ||   \n         *  /\\---/\\ \n            ~~   ~~   \n..."Have you mooed today?"...\n'
+const moo = '                 (__) \n                 (oo) \n           /------\\/ \n          / |    ||   \n         *  /\\---/\\ \n            ~~   ~~   \n..."How may I help you sir?"...\n'
 
-const Moo = (props: any) => {
+const Moo = () => {
   return (
     <Grid
       container

@@ -1,6 +1,12 @@
 import GithubLink from './ui/GithubLink'
 
-const GithubDetailLink = (props: any) => {
+interface GithubDetailLinkProps {
+  href: string,
+  icon: React.ReactElement,
+  number: number,
+  name: string
+}
+const GithubDetailLink: React.FC<GithubDetailLinkProps> = (props) => {
   const {
     href,
     icon,

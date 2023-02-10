@@ -1,9 +1,12 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 
-const DiscussionSidebar = styled(({ className, ...rest }: any) => (
-  <div className={className + " discussion-sidebar"} {...rest} />
-))`
+interface DiscussionSidebarUIProps extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string
+}
+const DiscussionSidebar = styled(React.forwardRef<HTMLDivElement, DiscussionSidebarUIProps>(({ className, ...rest }, ref) => (
+  <div className={className + " discussion-sidebar"} ref={ref} {...rest} />
+)))`
 & {
   flex-basis: 25%;
   flex-grow: 0;

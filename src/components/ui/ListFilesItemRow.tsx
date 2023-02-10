@@ -1,7 +1,10 @@
+import React from 'react';
 import Grid from '@mui/material/Grid';
+import { GridProps } from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 
-const ListFilesItemRow = styled(({ className, ...rest }: any) => (
+interface ListFilesItemRowUIProps {}
+const ListFilesItemRow = styled(React.forwardRef<HTMLDivElement, GridProps<'div', ListFilesItemRowUIProps>>(({ className, ...rest }, ref) => (
   <Grid
     container
     py={1}
@@ -9,9 +12,10 @@ const ListFilesItemRow = styled(({ className, ...rest }: any) => (
     flexWrap="nowrap"
     alignItems="center"
     className={className + " list-files-item-row"}
+    ref={ref}
     {...rest}
   />
-))`
+)))`
 & {
   border-top: 1px solid #21262d;
   font-size: 14px;

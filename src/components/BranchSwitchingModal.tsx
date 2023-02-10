@@ -20,14 +20,20 @@ import useCurrentBranch from '../hooks/useCurrentBranch'
 import useFilterBranches from '../hooks/useFilterBranches'
 import useFilterTags from '../hooks/useFilterTags'
 import useTags from '../hooks/useTags'
+import { GithubGetBranchResponseType, GithubListRepositoryTagsResponseType } from '../contexts/repository'
 
-const BranchSwitchingModal = (props: any) => {
+interface BranchSwitchingModalProps {
+  open: boolean,
+  onClose: () => void
+}
+const BranchSwitchingModal:React.FC<BranchSwitchingModalProps> = (props) => {
   const {
-    open
+    open,
+    onClose
   } = props;
 
-  const [ selectedTab, setSelectedTab ] = React.useState(0);
-  const [ searchingWords, setSearchingWords ] = React.useState("");
+  const [ selectedTab, setSelectedTab ] = React.useState<number>(0);
+  const [ searchingWords, setSearchingWords ] = React.useState<string>("");
   const [ currentBranchName, , ,changeBranch ] = useCurrentBranch();
   const [ filteredBranches ] = useFilterBranches(searchingWords);
   const [ filteredTags ] = useFilterTags(searchingWords);
@@ -43,10 +49,10 @@ const BranchSwitchingModal = (props: any) => {
     selectedTab
   ])
 
-  const renderList = React.useCallback((filteredItems) => {
-    return filteredItems.map((item: any, index: number) => (
+  const renderList = React.useCallback((filteredItems: Array<GithubGetBranchResponseType | GithubListRepositoryTagsResponseType>) => {
+    return filteredItems.map((item, index) => (
       <ListItem disablePadding key={index}>
-        <ListItemButton onClick={() => changeBranch(item)}>
+        <ListItemButton onClick={changeBranch.bind(null, item)}>
           <ListItemIcon
             className="github-branch-switching-list-item-icon"
           >
@@ -101,6 +107,7 @@ const BranchSwitchingModal = (props: any) => {
           item
           component={IconButton}
           p={0}
+          onClick={onClose}
         >
           <SvgIcon
             component={CloseIcon}
@@ -120,7 +127,7 @@ const BranchSwitchingModal = (props: any) => {
           <GithubInput
             placeholder={placeholderMemo}
             value={searchingWords}
-            onChange={({target: { value }}: any) => setSearchingWords(value)}
+            onChange={({target: { value }}: React.ChangeEvent<HTMLInputElement>) => setSearchingWords(value)}
           />
         </Grid>
         <Grid
@@ -130,7 +137,7 @@ const BranchSwitchingModal = (props: any) => {
           <TabContext value={String(selectedTab)}>
             <GithubBranchSwitchingTabs
               value={selectedTab}
-              onChange={(_: any, newValue: number) => setSelectedTab(newValue)}
+              onChange={(_: React.SyntheticEvent, newValue: number) => setSelectedTab(newValue)}
             >
               <Tab label="Branches" disableRipple value={0} />
               <Tab label="Tags" disableRipple value={1} />

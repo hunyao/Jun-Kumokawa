@@ -10,9 +10,12 @@ import useTree from '../../../hooks/useTree'
 import useTreeReadme from '../../../hooks/useTreeReadme'
 import Loading from '../../../components/Loading'
 
-const Tree = (props: any) => {
+interface TreeProps {
+  mode?: 'navigation' | 'overview'
+}
+const Tree: React.FC<TreeProps> = (props) => {
   const params = useParams();
-  const [ sha, setSha ] = React.useState('');
+  const [ sha, setSha ] = React.useState<string>('');
   const [ trees, treesError, treeLoading ] = useTree(sha);
   const [ readmeContent, readmeContentError, readmeContentLoading ] = useTreeReadme(sha);
   const [ , currentBranchSha ] = useCurrentBranch();

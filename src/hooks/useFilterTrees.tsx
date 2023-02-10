@@ -1,20 +1,27 @@
 import React from 'react'
 import { repositoryContext } from '../contexts/repository';
 
-const useFilterTrees = (filteringText: string = '') => {
+type useFilterTreesType = [
+  Array<string>
+]
+const useFilterTrees: (filteringText: string) => useFilterTreesType = (filteringText: string = '') => {
   const {
     allTrees,
   } = React.useContext(repositoryContext)
 
   return [
     React.useMemo(() => {
-      if (allTrees.length === 0) {
+      if (allTrees === null) {
+        return [];
+      }
+      if (allTrees.tree.length === 0) {
         return [];
       }
       return allTrees.tree
-      .filter((t: any) => t.type === 'blob')
-      .map((t: any) => t.path)
-      .filter((path: any) => {
+      .filter(t => t.type === 'blob')
+      .filter(t => t.path !== undefined)
+      .map(t => t.path as string)
+      .filter(path => {
         return path.toUpperCase().includes(filteringText.toUpperCase())
       })
       .slice(0, 50)

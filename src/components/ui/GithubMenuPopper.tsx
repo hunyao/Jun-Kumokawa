@@ -1,9 +1,12 @@
+import React from 'react'
 import Menu from '@mui/material/Menu';
+import { MenuProps } from '@mui/material/Menu';
 import { styled } from '@mui/material/styles';
 
-const GithubMenuPoper = styled(({className, ...rest}: any) => (
-  <Menu className={className + " github-menu-poper"} {...rest} />
-))`
+interface GithubMenuPopperUIProps extends MenuProps {}
+const GithubMenuPopper = styled(React.forwardRef<HTMLDivElement, GithubMenuPopperUIProps>(({className, ...rest}, ref) => (
+  <Menu className={className + " github-menu-popper"} ref={ref} {...rest} />
+)))`
 & .MuiMenu-list {
   width: 300px;
   overflow: hidden;
@@ -19,7 +22,7 @@ const GithubMenuPoper = styled(({className, ...rest}: any) => (
 & .MuiListSubheader-root {
   padding: 8px 10px;
   line-height: 16px;
-  broder-bottom: 1px solid #21262d;
+  border-bottom: 1px solid #21262d;
   font-size: 12px;
   background: #161b22;
   color: #c9d1d9;
@@ -27,4 +30,4 @@ const GithubMenuPoper = styled(({className, ...rest}: any) => (
 }
 `
 
-export default GithubMenuPoper;
+export default GithubMenuPopper;

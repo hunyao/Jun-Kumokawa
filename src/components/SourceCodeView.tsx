@@ -5,9 +5,17 @@ import GithubLink from './ui/GithubLink'
 import SourceCodeViewLine from './ui/SourceCodeViewLine'
 import SourceCodeViewLineNum from './ui/SourceCodeViewLineNum'
 
-const SourceCodeView = (props: any) => {
+interface SourceCodeViewProps {
+  extension: string,
+  content: string,
+  binary: boolean,
+  image: boolean,
+  mime: string,
+  filename: string
+}
+const SourceCodeView: React.FC<SourceCodeViewProps> = (props) => {
   const {
-    extention,
+    extension,
     content,
     binary,
     image,
@@ -35,7 +43,7 @@ const SourceCodeView = (props: any) => {
         p={2}
       />
     } else {
-      const supportedLangeage = Highlightjs.getLanguage(extention) !== undefined;
+      const supportedLanguage = Highlightjs.getLanguage(extension) !== undefined;
       return <table>
         <tbody>
         {content.split("\n").map((line: string, index: number) => {
@@ -45,8 +53,8 @@ const SourceCodeView = (props: any) => {
             />
             <SourceCodeViewLine
               dangerouslySetInnerHTML={{
-                __html: supportedLangeage ? Highlightjs.highlight(line, {
-                  language: extention
+                __html: supportedLanguage ? Highlightjs.highlight(line, {
+                  language: extension
                 }).value : line
               }}
             />
@@ -59,7 +67,7 @@ const SourceCodeView = (props: any) => {
     content,
     binary,
     image,
-    extention,
+    extension,
     mime,
     filename
   ])

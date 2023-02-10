@@ -1,7 +1,10 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-const SidebarItem = (props: any) => {
+interface SidebarItemProps {
+  title: string
+}
+const SidebarItem: React.FC<SidebarItemProps> = (props) => {
   const {
     title,
     children

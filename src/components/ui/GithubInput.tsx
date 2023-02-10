@@ -1,9 +1,13 @@
 import React from 'react'
 import { styled } from '@mui/material/styles';
 
-const GithubInput = styled(({className, ...rest}: any) => {
-  return <input className={className + " github-input"} {...rest} />
-})`
+interface GithubInputUIProps extends React.HTMLAttributes<HTMLInputElement> {
+  className?: string,
+  value: any
+}
+const GithubInput = styled(React.forwardRef<HTMLInputElement, GithubInputUIProps>(({className, ...rest}, ref) => (
+  <input className={className + " github-input"} ref={ref} {...rest} />
+)))`
 & {
   font-size: 14px;
   display: block;

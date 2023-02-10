@@ -9,10 +9,8 @@
     "@mui/icons-material": "^5.2.5",
     "@mui/lab": "^5.0.0-alpha.64",
     "@mui/material": "^5.2.8",
-    "@octokit/core": "^3.6.0",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.0.0",
-    "@testing-library/user-event": "^13.2.1",
+    "@octokit/core": "^4.2.0",
+    "@octokit/rest": "^19.0.7",
     "@types/c3": "^0.7.8",
     "@types/crypto-js": "^4.1.0",
     "@types/highlight.js": "^10.1.0",
@@ -27,6 +25,7 @@
     "@types/unidecode": "^0.1.1",
     "buffer": "^6.0.3",
     "c3": "^0.7.20",
+    "color": "^4.2.3",
     "crypto-js": "^4.1.1",
     "file-type": "16.5.3",
     "gh-pages": "^4.0.0",
@@ -37,7 +36,7 @@
     "markdown-it-highlightjs": "^3.6.0",
     "mime-types": "^2.1.35",
     "moment": "^2.29.1",
-    "octokit": "^1.7.1",
+    "octokit": "^2.0.14",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "react": "^17.0.2",
@@ -48,7 +47,8 @@
     "stream-browserify": "^3.0.0",
     "typescript": "^4.4.2",
     "unidecode": "^0.1.8",
-    "web-vitals": "^2.1.0"
+    "web-vitals": "^2.1.0",
+    "yargs": "^17.6.2"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -56,7 +56,8 @@
     "predeploy": "react-app-rewired build",
     "deploy": "gh-pages -d build",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "spellCheck": "node ./bin/spellCheck.js -r -n ./bin/.spellCheckIgnore -p src"
   },
   "eslintConfig": {
     "extends": [
@@ -77,6 +78,9 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "12.1.5",
+    "@testing-library/user-event": "^14.4.3",
     "mini-css-extract-plugin": "^2.5.2"
   }
 }

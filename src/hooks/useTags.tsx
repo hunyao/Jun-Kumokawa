@@ -1,7 +1,12 @@
 import React from 'react';
 import { repositoryContext } from '../contexts/repository';
+import { GithubListRepositoryTagsResponseType } from '../contexts/repository'
 
-const useTags = () => {
+type useTagsResponseType = [
+  Array<GithubListRepositoryTagsResponseType>,
+  number
+]
+const useTags: () => useTagsResponseType = () => {
   const {
     state: {
       tags

@@ -1,8 +1,11 @@
 import React from 'react';
 import Link from '@mui/material/Link';
+import { LinkProps } from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
 
-const GithubLink = React.forwardRef(({ className, ...rest }: any, ref) => (
+type LinkOverrideProps = {}
+export type GithubLinkUIProps = LinkProps<'a', LinkOverrideProps>
+const GithubLink = React.forwardRef<HTMLAnchorElement, GithubLinkUIProps>(({ className, ...rest }, ref) => (
   <Link className={className + " github-link"} { ...rest } ref={ref} />
 ))
 

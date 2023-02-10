@@ -1,14 +1,17 @@
+import React from 'react';
 import SvgIcon from '@mui/material/SvgIcon';
 import MenuItem from '@mui/material/MenuItem';
+import { MenuItemProps } from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
 import CheckIcon from '@mui/icons-material/Check';
 
-const GithubMenuPoperMenuItem = styled(({className, children, ...rest}: any) => (
-  <MenuItem className={className + " github-menu-poper-menu-item"} {...rest}>
+interface GithubMenuPopperMenuItemUIProps {}
+const GithubMenuPopperMenuItem = styled(React.forwardRef<HTMLLIElement, MenuItemProps<'li', GithubMenuPopperMenuItemUIProps>>(({className, children, ...rest}, ref) => (
+  <MenuItem className={className + " github-menu-popper-menu-item"} ref={ref} {...rest}>
     <SvgIcon component={CheckIcon} />
     {children}
   </MenuItem>
-))`
+)))`
 &.MuiMenuItem-root {
   padding: 8px 8px 8px 30px;
   overflow: hidden;
@@ -39,4 +42,4 @@ const GithubMenuPoperMenuItem = styled(({className, children, ...rest}: any) => 
 }
 `
 
-export default GithubMenuPoperMenuItem;
+export default GithubMenuPopperMenuItem;

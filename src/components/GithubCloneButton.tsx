@@ -14,8 +14,8 @@ import GithubCloneSelection from './GithubCloneSelection'
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import useCurrentBranch from '../hooks/useCurrentBranch'
 
-const GithubCloneButton = (props: any) => {
-  const [open, setOpen] = React.useState(false);
+const GithubCloneButton = () => {
+  const [open, setOpen] = React.useState<boolean>(false);
   const [ currentBranchName ] = useCurrentBranch();
 
   return (

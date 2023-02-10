@@ -1,20 +1,28 @@
+import React from 'react';
 import Box from '@mui/material/Box';
 import About from './sidebar/About'
-import GithubProgress from './sidebar/GithubProgress'
-import SidebarItem from './sidebar/SidebarItem'
-import { groupedSkills } from '../data/Skills'
+import LanguageSidebar from './sidebar/LanguageSidebar'
+import { PersonalDataContext } from '../contexts/personalData'
 
-const Sidebar = () => {
+const Sidebar: React.FC = () => {
+  const { skills } = React.useContext(PersonalDataContext);
+  const LanguageSidebarDom = React.useMemo(() => {
+      return skills.map(({ groupName, items }, index: number) => (
+          <LanguageSidebar
+              groupName={groupName}
+              items={items}
+              key={index}
+          />
+      ))
+  }, [
+      skills
+  ])
+
   return (
     <>
       <Box>
         <About />
-        {Object.entries(groupedSkills)
-          .map(([ groupName, items ], index: number) => (
-            <SidebarItem title={groupName} key={index}>
-              <GithubProgress list={items} />
-            </SidebarItem>
-          ))}
+        {LanguageSidebarDom}
       </Box>
     </>
   )

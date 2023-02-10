@@ -1,32 +1,38 @@
 import React from 'react';
 import { repositoryContext } from '../contexts/repository';
 
-const useShaToPath = () => {
+type useShaToPathResponseType = [
+  string,
+  boolean
+]
+
+const useShaToPath: () => (sha: string | undefined) => useShaToPathResponseType = () => {
   const {
     allTrees,
     selectedBranch
   } = React.useContext(repositoryContext);
 
-  const getPathFromSha = React.useCallback((sha: string) => {
-    if (allTrees.length === 0) {
-      return [
-        undefined,
-        undefined
-      ]
-    }
-    const result = allTrees.tree.find((t: any) => {
-      return t.sha === sha
-    });
-    if (result === undefined) {
+  const getPathFromSha: (sha: string | undefined) => useShaToPathResponseType = React.useCallback((sha: string | undefined) => {
+    if (sha === undefined || selectedBranch === null || selectedBranch === undefined || allTrees === null || allTrees.tree.length === 0) {
       return [
         '',
-        selectedBranch.commit.sha === sha
+        true
       ]
     }
-    return [
-      result.path,
-      false
-    ]
+    const result = allTrees.tree.find(t => {
+      return t.sha === sha
+    });
+    if (result === undefined || result.path === undefined) {
+      return [
+        '',
+        false
+      ]
+    } else {
+      return [
+        result.path,
+        false
+      ]
+    }
   }, [
     allTrees,
     selectedBranch

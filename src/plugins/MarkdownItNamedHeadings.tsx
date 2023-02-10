@@ -8,8 +8,11 @@ function plugin(md: MarkdownIt, options: MarkdownIt.Options) {
   md.core.ruler.push('named_headings', namedHeadings.bind(null, md))
 }
 
+type namedHeadingsIdType = {
+  [key: string]: boolean
+}
 function namedHeadings (md: MarkdownIt, state: StateCore) {
-  var ids: any = {}
+  var ids: namedHeadingsIdType = {}
 
   state.tokens.forEach(function (token: Token, i: number) {
     if (token.type === 'heading_open') {
@@ -22,7 +25,7 @@ function namedHeadings (md: MarkdownIt, state: StateCore) {
   })
 }
 
-function uncollide (ids: any, id: string) {
+function uncollide (ids: namedHeadingsIdType, id: string) {
   if (!ids[id]) return id
     var i = 1
   while (ids[id + '-' + i]) { i++ }

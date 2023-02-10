@@ -1,9 +1,12 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 
-const DiscussionSidebarItem = styled(({ className, ...rest }: any) => (
+interface DiscussionSidebarItemUIProps extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string
+}
+const DiscussionSidebarItem = styled(React.forwardRef<HTMLDivElement, DiscussionSidebarItemUIProps>(({ className, ...rest }, ref) => (
   <div className={className + " discussion-sidebar-item"} {...rest} />
-))`
+)))`
 & {
   padding-top: 16px;
   font-size: 12px;

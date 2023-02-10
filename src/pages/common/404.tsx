@@ -1,7 +1,7 @@
 import React from 'react'
 import Moo from '../../components/Moo'
 
-const NotFoundPage = (props: any) => {
+const NotFoundPage = () => {
   return (
     <Moo />
   )

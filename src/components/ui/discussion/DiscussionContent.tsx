@@ -1,9 +1,12 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 
-const DiscussionContent = styled(({ className, ...rest }: any) => (
-  <div className={className + " discussion-content"} {...rest} />
-))`
+interface DiscussionContentUIProps extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string
+}
+const DiscussionContent = styled(React.forwardRef<HTMLDivElement, DiscussionContentUIProps>(({ className, ...rest }, ref) => (
+  <div className={className + " discussion-content"} ref={ref} {...rest} />
+)))`
 & {
   flex-basis: 75%;
   flex-grow: 0;

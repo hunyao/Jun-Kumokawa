@@ -3,13 +3,13 @@
 
 Jun-Kumokawa is a Human library for making web systems:
 
-* **Adaptability:** Jun-Kumokawa adapts at every situation, because this moment is the most important. It will chose always the best option for people around me including you and myself, because the future is always changing.
-* **Flexibility:** Jun-Kumokawa is flexible at every situation, because it always think what the most important or priority is. There are always urgent changes, request and emergencies, so it will work with those in mind.
-* **Efficiency:** Jun-Kumokawa works efficiently for every tasks, because it hates useless or redundant tasks. It will make scripts for that you will not do same thing every time, so that you can save your time. Even if it takes a time to make it.
-* **Reliability:** Jun-Kumokawa will talk to someone soon about what it think it is important or necessary, because it thinks that what we need trust each other to go projects on smoothly is important. It will provide an alternative idea if the task is impossible to do so that we will not stop walking on projects.
-* **Communication:** Jun-Kumokawa try to communicate with team members smoothly, because rough communications impede work efficiency of whole team. It builds smooth communication between us by reducing distance between team members little by little.
-* **Diligence:** Jun-Kumokawa keeps learning, because technologies are always evolving everyday. It learns new technologies by searching and reading documents and running some codes by myself. Even if it does not know the technology.
-* **Learn once, write Anywhere:** Jun-Kumokawa is coded by everybody at everywhere in the world.
+* **Adaptability:** Jun-Kumokawa adapts to every situation, because this moment is the most important. It will always choose the best option for people around it including you and myself, because the future is always changing.
+* **Flexibility:** Jun-Kumokawa is flexible in every situation, because it always thinks about what the most important priority is. There are always urgent changes, requests and emergencies, so it will work with those in mind.
+* **Efficiency:** Jun-Kumokawa works efficiently for every task, because it hates useless or redundant tasks. It will make scripts so that you will not do the same thing every time and you can save your time.
+* **Reliability:** Jun-Kumokawa will talk to someone soon about what it thinks are important or necessary things, because it thinks that we need to trust each other for projects to go smoothly. It will provide an alternative idea if the task is impossible to do so that we will not stop working on projects.
+* **Communication:** Jun-Kumokawa will try to communicate with team members smoothly, because poor communication impedes the work efficiency of the whole team. It builds smooth communication between us by reducing distance between team members little by little.
+* **Diligence:** Jun-Kumokawa keeps learning, because technologies are always evolving every day. It learns new technologies by searching for and reading documents and running code. Even if it does not know the technology.
+* **Learn once, write Anywhere:** Jun-Kumokawa codes everywhere for everybody in the world.
 
 # Getting Started with Jun-Kumokawa
 
@@ -97,15 +97,15 @@ In the world, I can:
 
 ### speak Japanese :japan:
 
-Speaks the language as native language in the production mode at everywhere.
+as native language as native level in the production mode at everywhere.
 
 ### speak English :earth:
 
-Speaks the language as second language in the development mode at everywhere.
+as second language as B2 level in the development mode at everywhere.
 
 ### speak Estonian :estonia:
 
-Can just say "Hi!" so far
+Can just say "Hi!" and "Thank you" so far
 
 ## Available Coding Languages
 
@@ -113,15 +113,15 @@ In computers, I can:
 
 ### code JavaScript
 
-Codes something whatever you want with the language in the production mode at everywhere
+something whatever you want with the language in the production mode at everywhere
 
 ### code HTML
 
-Codes something whatever you want with the language in the production mode at everywhere
+something whatever you want with the language in the production mode at everywhere
 
 ### code CSS
 
-Codes something whatever you want with the language in the production mode at everywhere
+something whatever you want with the language in the production mode at everywhere
 
 See the section [Skills](https://portfolio.kumoti.jp/#/skill) for more information.
 

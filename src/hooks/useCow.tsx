@@ -1,8 +1,11 @@
 import React from 'react'
 import messages from '../pages/cow/cow.json';
 
-const useCow = (level: string) => {
-  const [ msg, setMsg ] = React.useState('');
+type useCowType = [
+  string
+]
+const useCow: (level: string) => useCowType = (level: string) => {
+  const [ msg, setMsg ] = React.useState<string>('');
 
   React.useEffect(() => {
     let i;

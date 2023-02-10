@@ -18,8 +18,11 @@ import useTags from '../hooks/useTags'
 import usePathToSha from '../hooks/usePathToSha'
 import useShaToPath from '../hooks/useShaToPath'
 
-// mode: overview | navigation
-const FileNavigation = (props: any) => {
+interface FileNavigationProps {
+  mode: 'overview' | 'navigation'
+  sha: string
+}
+const FileNavigation: React.FC<FileNavigationProps> = (props) => {
   const {
     mode,
     sha
@@ -27,7 +30,7 @@ const FileNavigation = (props: any) => {
   const navigate = useNavigate();
   const [ , branchesNumber ] = useBranches();
   const [ , tagsNumber ] = useTags();
-  const getShafromPath = usePathToSha();
+  const getShaFromPath = usePathToSha();
   const getPathFromSha = useShaToPath();
 
   const RenderDom = React.useMemo(() => {
@@ -82,8 +85,8 @@ const FileNavigation = (props: any) => {
         </>
       )
     } else if (mode === "navigation") {
-      const [ path ] = getPathFromSha(sha);
-      if (path === undefined) {
+      const [ path, err ] = getPathFromSha(sha);
+      if (err) {
         return;
       }
       const uris = path.split('/');
@@ -103,7 +106,7 @@ const FileNavigation = (props: any) => {
               sx={{
                 fontWeight: 600
               }}
-              onClick={(e: any) => {
+              onClick={(e: React.MouseEvent) => {
                 e.preventDefault();
                 navigate("/");
               }}
@@ -115,11 +118,11 @@ const FileNavigation = (props: any) => {
                 key={index}
                 href="#"
                 className="active"
-                onClick={(e: any) => {
+                onClick={(e: React.MouseEvent) => {
                   e.preventDefault();
                   navigate(
                     "/tree/"
-                    + getShafromPath(
+                    + getShaFromPath(
                       self.slice(0, index + 1)
                       .map((p: string) => encodeURIComponent(p))
                       .join('/')
@@ -163,7 +166,7 @@ const FileNavigation = (props: any) => {
     getPathFromSha,
     sha,
     navigate,
-    getShafromPath
+    getShaFromPath
   ])
 
   return (

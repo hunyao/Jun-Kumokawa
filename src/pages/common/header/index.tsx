@@ -37,7 +37,7 @@ const Menus = [
     menuId: 1,
   },
   {
-    name: 'experience',
+    name: 'experiences',
     path: 'experience',
     beMatched: [
       'experience'
@@ -64,7 +64,7 @@ const Header = () => {
   const pathnameWithoutSlash = pathname.replace(/^\//, "").split('/')[0];
 
   React.useEffect(() => {
-    const index = Menus.findIndex((menu: any) => {
+    const index = Menus.findIndex((menu) => {
       return menu.beMatched.find((s: string) => pathnameWithoutSlash === s) !== undefined
     });
     setMenuId(index === -1 ? false : index);

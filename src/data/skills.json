@@ -1,0 +1,318 @@
+{
+  "skills": [
+    {
+      "groupName": "Coding Languages",
+      "colorCode": [ 0, 0, 255 ],
+      "items": [
+        {
+          "label": "JavaScript",
+          "value": 10
+        },
+        {
+          "label": "HTML",
+          "value": 10
+        },
+        {
+          "label": "CSS",
+          "value": 10
+        },
+        {
+          "label": "Node.js",
+          "value": 10
+        },
+        {
+          "label": "TypeScript",
+          "value": 10
+        },
+        {
+          "label": "PHP",
+          "value": 10
+        },
+        {
+          "label": "Java",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "groupName": "Shell Languages",
+      "colorCode": [ 0, 128, 255 ],
+      "items": [
+        {
+          "label": "Bash",
+          "value": 10
+        },
+        {
+          "label": "sh",
+          "value": 10
+        }
+      ]
+    },
+    {
+      "groupName": "Operating systems",
+      "colorCode": [ 128, 0, 255 ],
+      "items": [
+        {
+          "label": "Windows",
+          "value": 30
+        },
+        {
+          "label": "Ubuntu",
+          "value": 10
+        },
+        {
+          "label": "CentOS",
+          "value": 3
+        },
+        {
+          "label": "MacOS",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "groupName": "Cloud platforms",
+      "colorCode": [ 128, 128, 255 ],
+      "items": [
+        {
+          "label": "AWS",
+          "value": 6
+        },
+        {
+          "label": "Azure",
+          "value": 2
+        },
+        {
+          "label": "GCP",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "groupName": "Frameworks",
+      "colorCode": [ 255, 0, 0 ],
+      "items": [
+        {
+          "label": "React.js",
+          "value": 5
+        },
+        {
+          "label": "Vue.js",
+          "value": 5
+        },
+        {
+          "label": "Express",
+          "value": 4
+        },
+        {
+          "label": "CakePHP",
+          "value": 3
+        },
+        {
+          "label": "Zend Framework",
+          "value": 2
+        },
+        {
+          "label": "AngularJS",
+          "value": 1
+        },
+        {
+          "label": "FuelPHP",
+          "value": 1
+        },
+        {
+          "label": "Spring",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "groupName": "UI libraries",
+      "colorCode": [ 255, 128, 0 ],
+      "items": [
+        {
+          "label": "MUI",
+          "value": 3
+        },
+        {
+          "label": "Vuetify",
+          "value": 3
+        },
+        {
+          "label": "Bootstrap",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "groupName": "Libraries",
+      "colorCode": [ 255, 0, 128 ],
+      "items": [
+        {
+          "label": "Sequalise",
+          "value": 5
+        },
+        {
+          "label": "moment",
+          "value": 5
+        },
+        {
+          "label": "jQuery",
+          "value": 5
+        },
+        {
+          "label": "Vuex",
+          "value": 3
+        },
+        {
+          "label": "Symfony",
+          "value": 1
+        },
+        {
+          "label": "Redux",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "groupName": "Databases",
+      "colorCode": [ 255, 128, 128 ],
+      "items": [
+        {
+          "label": "MySQL",
+          "value": 10
+        },
+        {
+          "label": "PostgreSQL",
+          "value": 5
+        },
+        {
+          "label": "Memcached",
+          "value": 3
+        },
+        {
+          "label": "Redis",
+          "value": 3
+        },
+        {
+          "label": "SQLServer",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "groupName": "Tools",
+      "colorCode": [ 0, 255, 0 ],
+      "items": [
+        {
+          "label": "Git",
+          "value": 8
+        },
+        {
+          "label": "npm",
+          "value": 5
+        },
+        {
+          "label": "yarn",
+          "value": 5
+        },
+        {
+          "label": "Docker",
+          "value": 5
+        },
+        {
+          "label": "Subversion",
+          "value": 1
+        },
+        {
+          "label": "Webpack",
+          "value": 1
+        },
+        {
+          "label": "Serverless",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "groupName": "Editors",
+      "colorCode": [ 128, 255, 0 ],
+      "items": [
+        {
+          "label": "Vim",
+          "value": 5
+        },
+        {
+          "label": "Aptana Studio",
+          "value": 2
+        },
+        {
+          "label": "Eclipse",
+          "value": 1
+        },
+        {
+          "label": "Atom",
+          "value": 1
+        },
+        {
+          "label": "VSCode",
+          "value": 0
+        },
+        {
+          "label": "IntelliJ IDEA",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "groupName": "Middlewares",
+      "colorCode": [ 0, 255, 128 ],
+      "items": [
+        {
+          "label": "Apache",
+          "value": 10
+        },
+        {
+          "label": "Postfix",
+          "value": 10
+        },
+        {
+          "label": "BIND9",
+          "value": 10
+        },
+        {
+          "label": "Nginx",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "groupName": "Package Manage Systems",
+      "colorCode": [ 128, 255, 128 ],
+      "items": [
+        {
+          "label": "apt",
+          "value": 10
+        },
+        {
+          "label": "yum",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "groupName": "Other",
+      "colorCode": [ 255, 255, 0 ],
+      "items": [
+        {
+          "label": "Wordpress",
+          "value": 3
+        },
+        {
+          "label": "Outsystems",
+          "value": 1
+        }
+      ]
+    }
+  ]
+}
