@@ -16,9 +16,15 @@ const Loading: React.FC<LoadingProps> = (props) => {
       container
       justifyContent="center"
       p={2}
+      flexDirection="column"
     >
-      <Grid item>
-        <CircularProgress />
+      <Grid item textAlign="center">
+        <CircularProgress
+          data-testid="loading-circular-progress"
+        />
+      </Grid>
+      <Grid item textAlign="center">
+        Loading....
       </Grid>
     </Grid>
   } else {

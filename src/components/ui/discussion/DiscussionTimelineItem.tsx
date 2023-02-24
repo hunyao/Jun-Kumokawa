@@ -5,7 +5,12 @@ interface DiscussionTimelineItemUIProps extends React.HTMLAttributes<HTMLDivElem
   className?: string
 }
 const DiscussionTimelineItem = styled(React.forwardRef<HTMLDivElement, DiscussionTimelineItemUIProps>(({ className, ...rest }, ref) => (
-  <div className={className + " discussion-timeline-item"} ref={ref} {...rest} />
+  <div
+    className={className + " discussion-timeline-item"}
+    ref={ref}
+    data-testid="discussion-timeline-item"
+    {...rest}
+  />
 )))`
 & {
   position: relative;

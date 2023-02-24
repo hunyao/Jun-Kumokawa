@@ -2,6 +2,7 @@ import React from 'react';
 import { Octokit } from '@octokit/rest'
 import { GetResponseDataTypeFromEndpointMethod, } from "@octokit/types";
 import { OctokitInstance } from './../plugins/Octokit';
+import Loading from '../components/Loading'
 
 export type Unpacked<T> = T extends (infer U)[] ? U : T;
 const octokit = new Octokit();
@@ -38,7 +39,8 @@ export interface RepositoryContext {
   dispatch: React.Dispatch<RepositoryData>,
   selectedBranch: GithubGetBranchResponseType | GithubListRepositoryTagsResponseType | null,
   changeBranch: React.Dispatch<React.SetStateAction<GithubGetBranchResponseType | GithubListRepositoryTagsResponseType | null>>,
-  allTrees: GithubGetTreeResponseType | null
+  allTrees: GithubGetTreeResponseType | null,
+  loading: boolean
 }
 
 const initialState = {
@@ -52,7 +54,8 @@ const initialContext = {
   dispatch: () => {},
   selectedBranch: null,
   changeBranch: () => {},
-  allTrees: null
+  allTrees: null,
+  loading: true
 }
 export const repositoryContext = React.createContext<RepositoryContext>(initialContext);
 export const { Provider, Consumer } = repositoryContext;
@@ -60,6 +63,12 @@ export const RepositoryProvider: React.FC = function ({ children }) {
   const [ state, dispatch ] = React.useState<RepositoryData>(initialState);
   const [ selectedBranch, changeBranch ] = React.useState<GithubGetBranchResponseType | GithubListRepositoryTagsResponseType | null>(null);
   const [ allTrees, setAllTrees ] = React.useState<GithubGetTreeResponseType | null>(null);
+  const [ loadingForRepo, setLoadingForRepo ] = React.useState<boolean>(true);
+  const [ loadingForBranch, setLoadingForBranch ] = React.useState<boolean>(true);
+  const [ loadingForTag, setLoadingForTag ] = React.useState<boolean>(true);
+  const [ loadingForCommit, setLoadingForCommit ] = React.useState<boolean>(true);
+  const [ loadingForTree, setLoadingForTree ] = React.useState<boolean>(true);
+  const [ loading, setLoading ] = React.useState<boolean>(true);
 
   async function getAllData<T>(uri: string): Promise<Array<T>> {
     let p = 1
@@ -95,6 +104,7 @@ export const RepositoryProvider: React.FC = function ({ children }) {
         }
       })
     })
+    .then(() => setLoadingForRepo(false));
   }, [])
 
   React.useEffect(() => {
@@ -107,6 +117,7 @@ export const RepositoryProvider: React.FC = function ({ children }) {
         }
       })
     })
+    .then(() => setLoadingForBranch(false));
   }, [])
   React.useEffect(() => {
     getAllData<GithubListRepositoryTagsResponseType>('GET /repos/{owner}/{repo}/tags')
@@ -118,6 +129,7 @@ export const RepositoryProvider: React.FC = function ({ children }) {
         }
       })
     })
+    .then(() => setLoadingForTag(false));
   }, [])
   React.useEffect(() => {
     getAllData<GithubListCommitsResponseType>('GET /repos/{owner}/{repo}/commits')
@@ -129,6 +141,7 @@ export const RepositoryProvider: React.FC = function ({ children }) {
         }
       })
     })
+    .then(() => setLoadingForCommit(false));
   }, [])
   React.useEffect(() => {
     if (state.repository === null) {
@@ -144,6 +157,7 @@ export const RepositoryProvider: React.FC = function ({ children }) {
   ])
 
   React.useEffect(() => {
+    setLoadingForTree(true);
     const branch = selectedBranch as GithubGetBranchResponseType | null;
     if (branch === null || branch === undefined) {
       return;
@@ -159,22 +173,50 @@ export const RepositoryProvider: React.FC = function ({ children }) {
     .then(({ data }: {data: GithubGetTreeResponseType}) => {
       setAllTrees(data)
     })
+    .then(() => setLoadingForTree(false));
   }, [
     selectedBranch
   ])
 
+  React.useEffect(() => {
+    if ([
+      loadingForTag,
+      loadingForTree,
+      loadingForRepo,
+      loadingForBranch,
+      loadingForCommit
+    ].some(Boolean) === true) {
+      if (!loading) {
+        setLoading(true);
+      }
+      return;
+    }
+    setLoading(false);
+  }, [
+    loadingForTag,
+    loadingForTree,
+    loadingForRepo,
+    loadingForBranch,
+    loadingForCommit,
+    loading
+  ])
+
   return (
     <>
-      <Provider
-        value={{
-          state,
-          dispatch,
-          selectedBranch,
-          changeBranch,
-          allTrees,
-        }}>
-        {children}
-      </Provider>
+      <Loading loading={loading}>
+        <Provider
+          value={{
+            state,
+            dispatch,
+            selectedBranch,
+            changeBranch,
+            allTrees,
+            loading
+          }}
+        >
+          {children}
+        </Provider>
+      </Loading>
     </>
   )
 }

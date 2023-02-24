@@ -71,7 +71,12 @@ const Experience: React.FC = () => {
     profile
   ]);
 
-  return <Box mt={2}>{RenderDom}</Box>
+  return <Box
+    mt={2}
+    data-testid="page-experience"
+  >
+    {RenderDom}
+  </Box>
 }
 
 export default Experience;

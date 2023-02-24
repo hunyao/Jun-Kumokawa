@@ -5,7 +5,13 @@ import { styled } from '@mui/material/styles';
 
 interface GithubNavMenuUIProps {}
 const GithubNavMenu = styled(React.forwardRef<HTMLDivElement, PaperProps<'nav', GithubNavMenuUIProps>>(({className, ...rest}, ref) => (
-  <Paper component="nav" className={className + " github-nav-menu"} ref={ref} {...rest} />
+  <Paper
+    component="nav"
+    className={className + " github-nav-menu"}
+    ref={ref}
+    data-testid="github-nav-menu"
+    {...rest}
+  />
 )))`
 & {
   border-radius: 6px;

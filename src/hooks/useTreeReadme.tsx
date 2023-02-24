@@ -15,12 +15,12 @@ const getTreeReadme = async (path: string = '', currentBranchName: string) => {
     return treeReadmeCache[path]
   }
   return OctokitInstance.request('GET /repos/{owner}/{repo}/readme/{path}?ref={ref}', {
-      owner: process.env.REACT_APP_REPOSITORY_OWNER as string,
-      repo: process.env.REACT_APP_REPOSITORY_NAME as string,
-      path: path,
-      ref: currentBranchName
-    })
-    .then(({ data }: { data: GithubGetRepositoryReadmeResponseType }) => {
+    owner: process.env.REACT_APP_REPOSITORY_OWNER as string,
+    repo: process.env.REACT_APP_REPOSITORY_NAME as string,
+    path: path,
+    ref: currentBranchName
+  })
+  .then(({ data }: { data: GithubGetRepositoryReadmeResponseType }) => {
     treeReadmeCache[path] = data.content;
     return data.content
   })
@@ -39,6 +39,7 @@ const useTreeReadme: (sha: string) => useTreeReadmeResponseType = (sha: string =
       return;
     }
     if (err) {
+      setError(true)
       setLoading(false);
       return;
     }
@@ -50,12 +51,14 @@ const useTreeReadme: (sha: string) => useTreeReadmeResponseType = (sha: string =
       setContent('')
       setError(code !== 404)
     })
-    .finally(() => setLoading(false))
+    .finally(() => {
+      setLoading(false)
+    })
   }, [
     sha,
     path,
     err,
-    currentBranchName
+    currentBranchName,
   ])
 
   return [

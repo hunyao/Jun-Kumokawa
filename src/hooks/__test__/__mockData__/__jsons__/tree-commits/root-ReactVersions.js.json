@@ -1,0 +1,81 @@
+[
+  {
+    "sha": "cf3932be5ca95bf5507a9566e4a9605bce0c5e21",
+    "node_id": "C_kwDOAJy2KtoAKGNmMzkzMmJlNWNhOTViZjU1MDdhOTU2NmU0YTk2MDViY2UwYzVlMjE",
+    "commit": {
+      "author": {
+        "name": "Sebastian Markbåge",
+        "email": "sebastian@calyptus.eu",
+        "date": "2022-10-27T21:52:53Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2022-10-27T21:52:53Z"
+      },
+      "message": "Remove old react-fetch, react-fs and react-pg libraries (#25577)\n\nTo avoid confusion. We are patching `fetch`, and only `fetch`, for a\r\nsmall fix scoped to react renders elsewhere, but this code is not it.\r\n\r\nThis code was for the strategy used in the original [React Server\r\nComponents demo](https://github.com/reactjs/server-components-demo).\r\nWhich [we\r\nannounced](https://reactjs.org/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022.html)\r\nthat we're moving away from in favor of [First class support for\r\npromises and async/await](https://github.com/reactjs/rfcs/pull/229).\r\n\r\nWe might explore using these package for other instrumentation in the\r\nfuture but not now and not like this.",
+      "tree": {
+        "sha": "650113520ccc538c3c7666125a066bc2aba8cab8",
+        "url": "https://api.github.com/repos/facebook/react/git/trees/650113520ccc538c3c7666125a066bc2aba8cab8"
+      },
+      "url": "https://api.github.com/repos/facebook/react/git/commits/cf3932be5ca95bf5507a9566e4a9605bce0c5e21",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJjWv21CRBK7hj4Ov3rIwAAQI4IAJ9uISHcKCMEcASEmJGAvkyC\nHjHBqHBhIXQ69pX4/9O36zCGktjuSl2z9F1KJJdEs39t4X3N6m6uoQc0Rm5oS60D\noX6g1JltPoDLF7Ke2wTPBLHc0En3gQFTM2MOiuiB2gMiyJjZ2rOyed8wIOcEYLvc\n2P6hQgvCp8Tu2PX0K7hASowVEIbZtOFFfxR/4ZPUMQzZRajOfOmH0NQLJuCYfmmY\nyhvgyo2jPDo7iy7fYEzOP3jTZfdIn10bSgBeCmrmELDJcO1uwkHtowsuq3Aub5un\nX52cGxH7wT2LznHGOgPv5f+AbxyGtxYCnqSdngVhgioqYIwLSJKb8VKNkZ4M80Y=\n=ng3n\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 650113520ccc538c3c7666125a066bc2aba8cab8\nparent 28a574ea8f5d0efa95f861abca26a67af47dd0c0\nauthor Sebastian Markbåge <sebastian@calyptus.eu> 1666907573 -0400\ncommitter GitHub <noreply@github.com> 1666907573 -0400\n\nRemove old react-fetch, react-fs and react-pg libraries (#25577)\n\nTo avoid confusion. We are patching `fetch`, and only `fetch`, for a\r\nsmall fix scoped to react renders elsewhere, but this code is not it.\r\n\r\nThis code was for the strategy used in the original [React Server\r\nComponents demo](https://github.com/reactjs/server-components-demo).\r\nWhich [we\r\nannounced](https://reactjs.org/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022.html)\r\nthat we're moving away from in favor of [First class support for\r\npromises and async/await](https://github.com/reactjs/rfcs/pull/229).\r\n\r\nWe might explore using these package for other instrumentation in the\r\nfuture but not now and not like this."
+      }
+    },
+    "url": "https://api.github.com/repos/facebook/react/commits/cf3932be5ca95bf5507a9566e4a9605bce0c5e21",
+    "html_url": "https://github.com/facebook/react/commit/cf3932be5ca95bf5507a9566e4a9605bce0c5e21",
+    "comments_url": "https://api.github.com/repos/facebook/react/commits/cf3932be5ca95bf5507a9566e4a9605bce0c5e21/comments",
+    "author": {
+      "login": "sebmarkbage",
+      "id": 63648,
+      "node_id": "MDQ6VXNlcjYzNjQ4",
+      "avatar_url": "https://avatars.githubusercontent.com/u/63648?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/sebmarkbage",
+      "html_url": "https://github.com/sebmarkbage",
+      "followers_url": "https://api.github.com/users/sebmarkbage/followers",
+      "following_url": "https://api.github.com/users/sebmarkbage/following{/other_user}",
+      "gists_url": "https://api.github.com/users/sebmarkbage/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/sebmarkbage/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/sebmarkbage/subscriptions",
+      "organizations_url": "https://api.github.com/users/sebmarkbage/orgs",
+      "repos_url": "https://api.github.com/users/sebmarkbage/repos",
+      "events_url": "https://api.github.com/users/sebmarkbage/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/sebmarkbage/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "28a574ea8f5d0efa95f861abca26a67af47dd0c0",
+        "url": "https://api.github.com/repos/facebook/react/commits/28a574ea8f5d0efa95f861abca26a67af47dd0c0",
+        "html_url": "https://github.com/facebook/react/commit/28a574ea8f5d0efa95f861abca26a67af47dd0c0"
+      }
+    ]
+  }
+]

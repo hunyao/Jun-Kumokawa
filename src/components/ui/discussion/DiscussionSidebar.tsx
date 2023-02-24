@@ -5,12 +5,14 @@ interface DiscussionSidebarUIProps extends React.HTMLAttributes<HTMLDivElement> 
   className?: string
 }
 const DiscussionSidebar = styled(React.forwardRef<HTMLDivElement, DiscussionSidebarUIProps>(({ className, ...rest }, ref) => (
-  <div className={className + " discussion-sidebar"} ref={ref} {...rest} />
+  <div
+    className={className + " discussion-sidebar"}
+    ref={ref}
+    data-testid="discussion-sidebar"
+    {...rest}
+  />
 )))`
 & {
-  flex-basis: 25%;
-  flex-grow: 0;
-  max-width: 25%;
   margin: 0;
 }
 `

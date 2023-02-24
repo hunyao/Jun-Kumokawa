@@ -1,0 +1,81 @@
+[
+  {
+    "sha": "c60033920011043b4aee92ab3cc668ad7e146e1e",
+    "node_id": "C_kwDOAJy2KtoAKGM2MDAzMzkyMDAxMTA0M2I0YWVlOTJhYjNjYzY2OGFkN2UxNDZlMWU",
+    "commit": {
+      "author": {
+        "name": "dependabot[bot]",
+        "email": "49699333+dependabot[bot]@users.noreply.github.com",
+        "date": "2022-12-07T16:10:33Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2022-12-07T16:10:33Z"
+      },
+      "message": "Bump qs from 6.5.2 to 6.5.3 in /fixtures/concurrent/time-slicing (#25846)",
+      "tree": {
+        "sha": "d1e15cd7f00c115e268b18089133914353b3bc61",
+        "url": "https://api.github.com/repos/facebook/react/git/trees/d1e15cd7f00c115e268b18089133914353b3bc61"
+      },
+      "url": "https://api.github.com/repos/facebook/react/git/commits/c60033920011043b4aee92ab3cc668ad7e146e1e",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJjkLr5CRBK7hj4Ov3rIwAAcRMIACsSLZy98sR24/HlIpQeOREq\nkXvv7PgyWZOwzFvzSgwrexcMuPlxF1nvKjfFyBhWuBUo74Sy1yzfPE/SizeFw7KM\nE3K5+ToZKEBrXz06OOejSKneGlpO8WMmzsSt9Cl1EgZeINAvnk+FCx3cd+BVZM94\nzPQmX5SecuxhBiGMR4U02snqCSPiFRV+39opBfKKhcDVPfrHcjuny34HBh2Qt+Em\nWr427zoKf8VX6GAaWX3KtsshKTDYZMgjzPQ3lh/EcmIJGt3jwVGesRA2U0+5bfqp\nuAgkrB8JYeZhKdEMmF+5Q75QoSvJRUaUv9R/hvV330PIjcXW7y6KtR2mYNUeYuE=\n=e+Rm\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree d1e15cd7f00c115e268b18089133914353b3bc61\nparent a0619e26ca46cb848a23e71b0ab8a2bd51d2053d\nauthor dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com> 1670429433 +0000\ncommitter GitHub <noreply@github.com> 1670429433 +0000\n\nBump qs from 6.5.2 to 6.5.3 in /fixtures/concurrent/time-slicing (#25846)\n\n"
+      }
+    },
+    "url": "https://api.github.com/repos/facebook/react/commits/c60033920011043b4aee92ab3cc668ad7e146e1e",
+    "html_url": "https://github.com/facebook/react/commit/c60033920011043b4aee92ab3cc668ad7e146e1e",
+    "comments_url": "https://api.github.com/repos/facebook/react/commits/c60033920011043b4aee92ab3cc668ad7e146e1e/comments",
+    "author": {
+      "login": "dependabot[bot]",
+      "id": 49699333,
+      "node_id": "MDM6Qm90NDk2OTkzMzM=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dependabot%5Bbot%5D",
+      "html_url": "https://github.com/apps/dependabot",
+      "followers_url": "https://api.github.com/users/dependabot%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/dependabot%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/dependabot%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/dependabot%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/dependabot%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/dependabot%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/dependabot%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/dependabot%5Bbot%5D/received_events",
+      "type": "Bot",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "a0619e26ca46cb848a23e71b0ab8a2bd51d2053d",
+        "url": "https://api.github.com/repos/facebook/react/commits/a0619e26ca46cb848a23e71b0ab8a2bd51d2053d",
+        "html_url": "https://github.com/facebook/react/commit/a0619e26ca46cb848a23e71b0ab8a2bd51d2053d"
+      }
+    ]
+  }
+]

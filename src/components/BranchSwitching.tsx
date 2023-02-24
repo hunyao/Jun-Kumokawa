@@ -15,8 +15,13 @@ const BranchSwitching = () => {
 
   return (
     <ClickAwayListener onClickAway={closeFn}>
-      <Box>
-        <GithubButton onClick={() => setOpen(!open)}>
+      <Box
+        data-testid="branch-switching"
+      >
+        <GithubButton
+          onClick={() => setOpen(!open)}
+          data-testid="branch-switching-button"
+        >
           <SvgIcon
             component={GitBranchIcon}
             viewBox="0 0 16 16"
@@ -31,12 +36,19 @@ const BranchSwitching = () => {
               whiteSpace: 'nowrap',
               display: 'inline-block'
             }}
+            data-testid="branch-switching-button-label"
           >
             {currentBranchName}
           </Box>
-          <SvgIcon component={ArrowDropDownIcon} />
+          <SvgIcon
+            component={ArrowDropDownIcon}
+          />
         </GithubButton>
-        <BranchSwitchingModal open={open} onClose={closeFn} />
+        <BranchSwitchingModal
+          open={open}
+          onClose={closeFn}
+          data-testid="branch-switching-modal"
+        />
       </Box>
     </ClickAwayListener>
   )

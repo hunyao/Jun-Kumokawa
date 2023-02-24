@@ -5,7 +5,12 @@ interface GithubButtonUIProps extends React.HTMLAttributes<HTMLAnchorElement> {
   className?: string
 }
 const GithubButton = styled(React.forwardRef<HTMLAnchorElement, GithubButtonUIProps>(({ className, ...rest }, ref) => (
-  <a className={className + " github-button"} ref={ref} {...rest} />
+  <a
+    className={className + " github-button"}
+    ref={ref}
+    data-testid="github-button"
+    {...rest}
+  />
 )))`
 & {
   position: relative;

@@ -20,12 +20,13 @@ const Moo = () => {
     <>
       <Grid
         container
-        alignItems="center"
-        justifyContent="center"
         p={3}
         sx={{
           whiteSpace: 'pre',
+          overflow: 'hidden',
+          overflowX: 'auto'
         }}
+        data-testid="page-moo"
       >
         {msg}
       </Grid>

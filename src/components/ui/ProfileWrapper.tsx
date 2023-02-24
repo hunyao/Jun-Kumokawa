@@ -6,17 +6,28 @@ import { styled } from '@mui/material/styles';
 interface ProfileWrapperUIProps {}
 const ProfileWrapper = styled(React.forwardRef<HTMLDivElement, GridProps<"div", ProfileWrapperUIProps>>(({ className, ...rest }, ref) => (
   <Grid
-    container
-    flexDirection="row"
-    flexWrap="nowrap"
-    alignItems="center"
-    my={2}
-    height={100}
-    gap={3}
     className={className + " profile-wrapper"}
     ref={ref}
+    data-testid="profile-wrapper"
     {...rest}
   />
-)))``
+)))(({theme}) => ({
+  '&': {
+    'margin': '16px 0',
+    'display': 'grid',
+    'gridTemplateColumns': 'min-content auto',
+    'gridTemplateAreas': "'avatar name' 'avatar title' 'avatar additional'",
+    'gridColumnGap': '16px',
+    [theme.breakpoints.down('laptop')]: {
+      'gridTemplateAreas': "'avatar name' 'avatar title' 'additional additional'",
+      'gridRowGap': '16px'
+    },
+    [theme.breakpoints.down('tablet')]: {
+      'gridTemplateAreas': "'avatar name' 'avatar title' 'additional additional'",
+      'gridRowGap': '6px',
+      'gridColumnGap': '16px',
+    }
+  }
+}))
 
 export default ProfileWrapper;

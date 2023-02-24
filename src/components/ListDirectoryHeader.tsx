@@ -11,18 +11,24 @@ import Expander from './ui/Expander'
 import ListDirectoryToolbar from './ui/ListDirectoryToolbar'
 import useCommits from '../hooks/useCommits'
 import Avatar from './Avatar'
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const ListDirectoryHeader = () => {
   const [ , commitsNumber ] = useCommits();
   const [ expend, setExpend ] = React.useState<boolean>(false);
   const welcomeMessage = 'Welcome to my website. Enjoy your stay at my website. Now open to work. You can hire me. Feel free to contact to me.'
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('desktop'));
 
   return (
     <>
-      <ListDirectoryToolbar>
+      <ListDirectoryToolbar
+        data-testid="list-directory-header"
+      >
         <Grid
           container
-          spacing={1}
+          gap={1}
           flexWrap="nowrap"
           alignItems="center"
         >
@@ -38,6 +44,7 @@ const ListDirectoryHeader = () => {
           >
             <GithubLink
               href="#"
+              data-testid="github-link-for-name"
             >
               <Typography
                 component="span"
@@ -54,11 +61,12 @@ const ListDirectoryHeader = () => {
               whiteSpace: 'nowrap',
               textOverflow: 'ellipsis'
             }}
-            xs={8}
+            xs={12}
           >
             <GithubLink
               href="#"
               title={welcomeMessage}
+              data-testid="github-link-for-welcome-message"
             >
               <Typography
                 component="span"
@@ -72,26 +80,34 @@ const ListDirectoryHeader = () => {
             item
             flex="none"
           >
-            <Expander onClick={() => setExpend(!expend)}>...</Expander>
+            <Expander
+              onClick={() => setExpend(!expend)}
+              data-testid="list-directory-header-expander"
+            >
+              ...
+            </Expander>
           </Grid>
           <Grid
             container
             item
             alignItems="center"
-            spacing={1}
+            gap={0}
             flex={0}
             flexWrap="nowrap"
+            display={matches ? 'none': ''}
           >
             <Grid
               item
               component={CheckIcon}
               sx={{
                 color: '#3fd950',
+                fontSize: '1em'
               }}
             />
             <Grid item>
               <GithubLink
                 href="#"
+                data-testid="github-link-for-sha"
               >
                 <Typography
                   component="span"
@@ -110,6 +126,7 @@ const ListDirectoryHeader = () => {
           >
             <GithubLink
               href="#"
+              data-testid="github-link-for-date"
             >
               <Typography
                 component="span"
@@ -117,7 +134,7 @@ const ListDirectoryHeader = () => {
                   fontSize: '14px'
                 }}
               >
-                9 hours ago
+                right now
               </Typography>
             </GithubLink>
           </Grid>
@@ -128,12 +145,11 @@ const ListDirectoryHeader = () => {
             <GithubDetailLink
               href="#"
               icon={
-                <SvgIcon
-                  component={HistoryIcon}
-                />
+                <SvgIcon component={HistoryIcon} />
               }
               number={commitsNumber}
               name="commits"
+              className={matches ? 'no-name': ''}
             />
           </Grid>
         </Grid>
@@ -143,8 +159,13 @@ const ListDirectoryHeader = () => {
             width: '100%',
             paddingLeft: 4
           }}
+          data-testid="list-directory-header-expand"
         >
-          <GithubLink href="#" className="primary">
+          <GithubLink
+            href="#"
+            className="primary"
+            data-testid="github-link-for-full-message"
+          >
             {welcomeMessage}
           </GithubLink>
         </Box>

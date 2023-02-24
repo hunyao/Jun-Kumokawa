@@ -19,13 +19,19 @@ const useShaToPath: () => (sha: string | undefined) => useShaToPathResponseType 
         true
       ]
     }
+    if (allTrees.sha === sha) {
+      return [
+        '',
+        false
+      ]
+    }
     const result = allTrees.tree.find(t => {
       return t.sha === sha
     });
     if (result === undefined || result.path === undefined) {
       return [
         '',
-        false
+        true
       ]
     } else {
       return [

@@ -27,6 +27,9 @@ const ChartComponent: React.FC<ChartComponentProps> = (props) => {
     if (ref && ref.current) {
       chart.current = C3.generate({
         bindto: ref.current,
+        size: {
+          height: 500
+        },
         padding: {
           top: 10
         },
@@ -40,7 +43,22 @@ const ChartComponent: React.FC<ChartComponentProps> = (props) => {
         },
         bar: {
           width: {
-            ratio: 0.5
+            //ratio: 0.5
+            ratio: 1
+          }
+        },
+        pie: {
+          label: {
+            format: function (value, ratio, id) {
+              return `${value}y`
+            }
+          }
+        },
+        donut: {
+          label: {
+            format: function (value, ratio, id) {
+              return `${value}y`
+            }
           }
         },
         tooltip: {

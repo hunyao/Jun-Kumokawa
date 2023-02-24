@@ -5,7 +5,12 @@ interface DiscussionItemUIProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
 }
 const DiscussionItem = styled(React.forwardRef<HTMLDivElement, DiscussionItemUIProps>(({ className, ...rest }, ref) => (
-  <div className={className + " discussion-item"} ref={ref} {...rest} />
+  <div
+    className={className + " discussion-item"}
+    ref={ref}
+    data-testid="discussion-item"
+    {...rest}
+  />
 )))`
 & {
   position: relative;

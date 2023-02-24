@@ -6,7 +6,12 @@ interface GithubInputUIProps extends React.HTMLAttributes<HTMLInputElement> {
   value: any
 }
 const GithubInput = styled(React.forwardRef<HTMLInputElement, GithubInputUIProps>(({className, ...rest}, ref) => (
-  <input className={className + " github-input"} ref={ref} {...rest} />
+  <input
+    className={className + " github-input"}
+    ref={ref}
+    data-testid="github-input"
+    {...rest}
+  />
 )))`
 & {
   font-size: 14px;

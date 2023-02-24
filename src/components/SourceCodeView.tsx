@@ -25,12 +25,17 @@ const SourceCodeView: React.FC<SourceCodeViewProps> = (props) => {
 
   const RenderDom = React.useMemo(() => {
     if (binary && !image) {
-      return <Box display="flex" justifyContent="center">
+      return <Box
+        display="flex"
+        justifyContent="center"
+        data-testid="source-code-view-binary"
+      >
         <Box p={2}>
           <GithubLink
             href={`data:${mime};base64,${btoa(content)}`}
             className="active"
             download={filename}
+            data-testid="source-code-view-binary-button"
           >
             View raw
           </GithubLink>
@@ -41,15 +46,19 @@ const SourceCodeView: React.FC<SourceCodeViewProps> = (props) => {
         component="img"
         src={`data:${mime};base64,${btoa(content)}`}
         p={2}
+        data-testid="source-code-view-image"
       />
     } else {
       const supportedLanguage = Highlightjs.getLanguage(extension) !== undefined;
-      return <table>
+      return <table
+        data-testid="source-code-view-text"
+      >
         <tbody>
         {content.split("\n").map((line: string, index: number) => {
           return <tr key={index}>
             <SourceCodeViewLineNum
               data-line-number={index+1}
+              data-testid={"source-code-view-line-num-" + index}
             />
             <SourceCodeViewLine
               dangerouslySetInnerHTML={{
@@ -57,6 +66,7 @@ const SourceCodeView: React.FC<SourceCodeViewProps> = (props) => {
                   language: extension
                 }).value : line
               }}
+              data-testid={"source-code-view-line-" + index}
             />
           </tr>
         })}

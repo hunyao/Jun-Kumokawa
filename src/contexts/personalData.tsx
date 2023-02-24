@@ -97,7 +97,7 @@ const skillGroupList = skills.map(skill => {
     kebabcase(skill.groupName)
   ]
 })
-const initial = {
+export const initial = {
   profile,
   experiences,
   skills: addedColorHexSkills,

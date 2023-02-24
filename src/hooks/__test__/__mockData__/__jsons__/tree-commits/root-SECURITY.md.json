@@ -1,0 +1,81 @@
+[
+  {
+    "sha": "1b6e269751c28030429503a60590114e252fc86c",
+    "node_id": "MDY6Q29tbWl0MTAyNzAyNTA6MWI2ZTI2OTc1MWMyODAzMDQyOTUwM2E2MDU5MDExNGUyNTJmYzg2Yw==",
+    "commit": {
+      "author": {
+        "name": "Alican Çubukçuoğlu",
+        "email": "alicancubukcuoglu@gmail.com",
+        "date": "2020-01-09T22:07:41Z"
+      },
+      "committer": {
+        "name": "Nicolas Gallagher",
+        "email": "necolas@fb.com",
+        "date": "2020-01-09T22:07:41Z"
+      },
+      "message": "Create SECURITY.md (#15784)\n\nAdds SECURITY.md as mentioned in #15722.",
+      "tree": {
+        "sha": "8e00413b91835921418ea6d892e6c7ce10749975",
+        "url": "https://api.github.com/repos/facebook/react/git/trees/8e00413b91835921418ea6d892e6c7ce10749975"
+      },
+      "url": "https://api.github.com/repos/facebook/react/git/commits/1b6e269751c28030429503a60590114e252fc86c",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/facebook/react/commits/1b6e269751c28030429503a60590114e252fc86c",
+    "html_url": "https://github.com/facebook/react/commit/1b6e269751c28030429503a60590114e252fc86c",
+    "comments_url": "https://api.github.com/repos/facebook/react/commits/1b6e269751c28030429503a60590114e252fc86c/comments",
+    "author": {
+      "login": "AlicanC",
+      "id": 412180,
+      "node_id": "MDQ6VXNlcjQxMjE4MA==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/412180?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AlicanC",
+      "html_url": "https://github.com/AlicanC",
+      "followers_url": "https://api.github.com/users/AlicanC/followers",
+      "following_url": "https://api.github.com/users/AlicanC/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AlicanC/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AlicanC/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AlicanC/subscriptions",
+      "organizations_url": "https://api.github.com/users/AlicanC/orgs",
+      "repos_url": "https://api.github.com/users/AlicanC/repos",
+      "events_url": "https://api.github.com/users/AlicanC/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AlicanC/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "necolas",
+      "id": 239676,
+      "node_id": "MDQ6VXNlcjIzOTY3Ng==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/239676?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/necolas",
+      "html_url": "https://github.com/necolas",
+      "followers_url": "https://api.github.com/users/necolas/followers",
+      "following_url": "https://api.github.com/users/necolas/following{/other_user}",
+      "gists_url": "https://api.github.com/users/necolas/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/necolas/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/necolas/subscriptions",
+      "organizations_url": "https://api.github.com/users/necolas/orgs",
+      "repos_url": "https://api.github.com/users/necolas/repos",
+      "events_url": "https://api.github.com/users/necolas/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/necolas/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "3ac81a57fbb7bd272f62444820c0451e0b344408",
+        "url": "https://api.github.com/repos/facebook/react/commits/3ac81a57fbb7bd272f62444820c0451e0b344408",
+        "html_url": "https://github.com/facebook/react/commit/3ac81a57fbb7bd272f62444820c0451e0b344408"
+      }
+    ]
+  }
+]

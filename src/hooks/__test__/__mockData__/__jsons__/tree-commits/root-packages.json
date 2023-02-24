@@ -1,0 +1,81 @@
+[
+  {
+    "sha": "62e6c4612ec704cf07c99b318bc8f26d3ec3f588",
+    "node_id": "C_kwDOAJy2KtoAKDYyZTZjNDYxMmVjNzA0Y2YwN2M5OWIzMThiYzhmMjZkM2VjM2Y1ODg",
+    "commit": {
+      "author": {
+        "name": "Sebastian Markbåge",
+        "email": "sebastian@calyptus.eu",
+        "date": "2023-02-20T20:03:22Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2023-02-20T20:03:22Z"
+      },
+      "message": "Move Mutation/Persistence fork inline into the functions (#26206)\n\nWe should never use any logic beyond declarations in the module scope,\r\nincluding conditions, because in a cycle that can lead to problems.\r\n\r\nMore importantly, the compiler can't safely reorder statements between\r\nthese points which limits the optimizations we can do.",
+      "tree": {
+        "sha": "dd0904c21d13c29a61b90943a06a3c71600eacc4",
+        "url": "https://api.github.com/repos/facebook/react/git/trees/dd0904c21d13c29a61b90943a06a3c71600eacc4"
+      },
+      "url": "https://api.github.com/repos/facebook/react/git/commits/62e6c4612ec704cf07c99b318bc8f26d3ec3f588",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJj89IKCRBK7hj4Ov3rIwAACF4IAC/opK98XzO/OmYVFhPzCQKq\nKh4dfzV1yc27VO6qr5fnX6uYD6i70ej3u/dOzmBvsWNFfIDFAXZMFocuMi0iDZzP\nG+Jzqk3xfKxaAsL6/MJVVciSuKLs8zmGStK2UtPIklF12RGC9HPk6daaNAxCONdw\nF+Zsc9bBAALOqgpUOpLHDyiRmiiqbS/gEDcI2XfxoqbERLN6DceFF2dSGYtFX24D\nfXTgYgatfJ7zm0OFUhaR2lFGQhTCraeKJaGL8dwf+AlXKUu+DsktUsYjCII58t5y\nIb3awXubLhmc0+mWjrKZH4yu9cpGCVXVlV/awZWKAbDKwr4ZSkT/c916lQdP/ao=\n=aXK5\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree dd0904c21d13c29a61b90943a06a3c71600eacc4\nparent 80cf4a099e99bbd4ed13e02d30136f669f2868b9\nauthor Sebastian Markbåge <sebastian@calyptus.eu> 1676923402 -0500\ncommitter GitHub <noreply@github.com> 1676923402 -0500\n\nMove Mutation/Persistence fork inline into the functions (#26206)\n\nWe should never use any logic beyond declarations in the module scope,\r\nincluding conditions, because in a cycle that can lead to problems.\r\n\r\nMore importantly, the compiler can't safely reorder statements between\r\nthese points which limits the optimizations we can do."
+      }
+    },
+    "url": "https://api.github.com/repos/facebook/react/commits/62e6c4612ec704cf07c99b318bc8f26d3ec3f588",
+    "html_url": "https://github.com/facebook/react/commit/62e6c4612ec704cf07c99b318bc8f26d3ec3f588",
+    "comments_url": "https://api.github.com/repos/facebook/react/commits/62e6c4612ec704cf07c99b318bc8f26d3ec3f588/comments",
+    "author": {
+      "login": "sebmarkbage",
+      "id": 63648,
+      "node_id": "MDQ6VXNlcjYzNjQ4",
+      "avatar_url": "https://avatars.githubusercontent.com/u/63648?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/sebmarkbage",
+      "html_url": "https://github.com/sebmarkbage",
+      "followers_url": "https://api.github.com/users/sebmarkbage/followers",
+      "following_url": "https://api.github.com/users/sebmarkbage/following{/other_user}",
+      "gists_url": "https://api.github.com/users/sebmarkbage/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/sebmarkbage/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/sebmarkbage/subscriptions",
+      "organizations_url": "https://api.github.com/users/sebmarkbage/orgs",
+      "repos_url": "https://api.github.com/users/sebmarkbage/repos",
+      "events_url": "https://api.github.com/users/sebmarkbage/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/sebmarkbage/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "80cf4a099e99bbd4ed13e02d30136f669f2868b9",
+        "url": "https://api.github.com/repos/facebook/react/commits/80cf4a099e99bbd4ed13e02d30136f669f2868b9",
+        "html_url": "https://github.com/facebook/react/commit/80cf4a099e99bbd4ed13e02d30136f669f2868b9"
+      }
+    ]
+  }
+]

@@ -5,7 +5,12 @@ interface DiscussionItemContentUIProps extends React.HTMLAttributes<HTMLDivEleme
   className?: string
 }
 const DiscussionItemContent = styled(React.forwardRef<HTMLDivElement, DiscussionItemContentUIProps>(({ className, ...rest }, ref) => (
-  <div className={className + " discussion-item-content"} ref={ref} {...rest} />
+  <div
+    className={className + " discussion-item-content"}
+    ref={ref}
+    data-testid="discussion-item-content"
+    {...rest}
+  />
 )))`
 & {
   margin-left: -16px;

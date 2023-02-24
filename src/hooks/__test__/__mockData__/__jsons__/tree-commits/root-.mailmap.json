@@ -1,0 +1,81 @@
+[
+  {
+    "sha": "ebb2253428315bfa3237df403082b0d2ec2f9c5c",
+    "node_id": "MDY6Q29tbWl0MTAyNzAyNTA6ZWJiMjI1MzQyODMxNWJmYTMyMzdkZjQwMzA4MmIwZDJlYzJmOWM1Yw==",
+    "commit": {
+      "author": {
+        "name": "Seth Webster",
+        "email": "sethwebster@gmail.com",
+        "date": "2020-09-12T17:05:52Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2020-09-12T17:05:52Z"
+      },
+      "message": "updates mailmap entries (#19824)",
+      "tree": {
+        "sha": "08da66bbfeea10294fcf2e50a6a4946172596e56",
+        "url": "https://api.github.com/repos/facebook/react/git/trees/08da66bbfeea10294fcf2e50a6a4946172596e56"
+      },
+      "url": "https://api.github.com/repos/facebook/react/git/commits/ebb2253428315bfa3237df403082b0d2ec2f9c5c",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJfXP/wCRBK7hj4Ov3rIwAAdHIIAJUbT2soNXo42XRFgOLL6Kfa\nOSnRAyFzhimMlyCQNCkVk4Yb68lhGG5vHrpM7xtQt+CSPDMgSZuUj9ND8VI573Cc\nl/2FVh5EpfHrGZ+qyURH/aBIq8JU2vAImfc7bXHihjd+32CHCvaIWsDlv6/H4Agp\ndVfOPZCYcDxKknZOGXGhJD3DWMkP8tX/kBLmCAdL8IZPIi3dmfutWQjfoVKd0X5p\nYH+LxnYr/FzpDqsLd39H8O99228ZoUWlWvaaYOoWlz2rt/QQewke07kuQ8ZoEzsG\nHv6v6lquek1wi/C9N+WrElrOvfUo4AsUDPnAvpdtpGu/4Pygrxn090g5f5Ynp0I=\n=o+rz\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 08da66bbfeea10294fcf2e50a6a4946172596e56\nparent cc581065df5e4bc986af3c38253b265be0dbaac4\nauthor Seth Webster <sethwebster@gmail.com> 1599930352 -0400\ncommitter GitHub <noreply@github.com> 1599930352 -0400\n\nupdates mailmap entries (#19824)\n\n"
+      }
+    },
+    "url": "https://api.github.com/repos/facebook/react/commits/ebb2253428315bfa3237df403082b0d2ec2f9c5c",
+    "html_url": "https://github.com/facebook/react/commit/ebb2253428315bfa3237df403082b0d2ec2f9c5c",
+    "comments_url": "https://api.github.com/repos/facebook/react/commits/ebb2253428315bfa3237df403082b0d2ec2f9c5c/comments",
+    "author": {
+      "login": "sethwebster",
+      "id": 680625,
+      "node_id": "MDQ6VXNlcjY4MDYyNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/680625?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/sethwebster",
+      "html_url": "https://github.com/sethwebster",
+      "followers_url": "https://api.github.com/users/sethwebster/followers",
+      "following_url": "https://api.github.com/users/sethwebster/following{/other_user}",
+      "gists_url": "https://api.github.com/users/sethwebster/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/sethwebster/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/sethwebster/subscriptions",
+      "organizations_url": "https://api.github.com/users/sethwebster/orgs",
+      "repos_url": "https://api.github.com/users/sethwebster/repos",
+      "events_url": "https://api.github.com/users/sethwebster/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/sethwebster/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "cc581065df5e4bc986af3c38253b265be0dbaac4",
+        "url": "https://api.github.com/repos/facebook/react/commits/cc581065df5e4bc986af3c38253b265be0dbaac4",
+        "html_url": "https://github.com/facebook/react/commit/cc581065df5e4bc986af3c38253b265be0dbaac4"
+      }
+    ]
+  }
+]

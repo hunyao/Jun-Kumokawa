@@ -13,7 +13,10 @@ import ResourceLink from '../ResourceLink'
 import SidebarItem from './SidebarItem'
 import useRepository from '../../hooks/useRepository'
 
-const About = () => {
+interface AboutProps {
+  sx?: any
+}
+const About: React.FC<AboutProps> = (props) => {
   const [ description ] = useRepository<'description'>('description', '');
   const [ homepage ] = useRepository<'homepage'>('homepage', '');
   const [ topics ] = useRepository<'topics'>('topics', []);
@@ -23,9 +26,14 @@ const About = () => {
 
   return (
     <>
-      <SidebarItem title="About">
+      <SidebarItem
+        title="About"
+        data-testid="about"
+        {...props}
+      >
         <Typography
           paragraph
+          data-testid="about-description"
         >
           {description}
         </Typography>
@@ -34,6 +42,7 @@ const About = () => {
           alignItems="center"
           my={2}
           spacing={0.5}
+          data-testid="about-homepage"
         >
           <Grid
             item
@@ -43,6 +52,7 @@ const About = () => {
             <GithubLink
               href={homepage || ""}
               className="active"
+              data-testid="about-homepage-link"
             >
               {homepage !== null && homepage.replace(/^(http|https):\/\//, '')}
             </GithubLink>
@@ -50,30 +60,49 @@ const About = () => {
         </Grid>
         <Box
           my={2}
+          data-testid="about-topics"
         >
           {topics !== undefined && topics.map((topic, key) => <GithubChip key={key}>{topic}</GithubChip>)}
         </Box>
-        <Box>
+        <Box
+          data-testid="about-others"
+          display={{
+            'xs': 'flex',
+            'laptop': 'block'
+          }}
+          gap={2}
+          sx={{
+            '& > .resource-link': {
+              xs: { 'marginTop': 4 }
+            },
+            flexWrap: 'wrap'
+          }}
+        >
           <ResourceLink
             icon={MenuBookIcon}
             text="Readme"
+            data-testid="about-others-readme"
           />
           <ResourceLink
             icon={CopyrightIcon}
             text="MIT License"
+            data-testid="about-others-license"
           />
           <ResourceLink
             icon={StarBorderOutlinedIcon}
             text={watchersCount + " stars"}
+            data-testid="about-others-stars"
           />
           <ResourceLink
             icon={RemoveRedEyeOutlinedIcon}
             text={subscribersCount + " watching"}
+            data-testid="about-others-subscribers"
           />
           <ResourceLink
             icon={GitForkedIcon}
             viewBox="0 0 16 16"
             text={forksCount + " forks"}
+            data-testid="about-others-forks"
           />
         </Box>
       </SidebarItem>

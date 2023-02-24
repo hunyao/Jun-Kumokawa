@@ -5,7 +5,12 @@ import { LinearProgressProps } from '@mui/material/LinearProgress';
 
 interface BorderLinearProgressUIProps extends LinearProgressProps {}
 const BorderLinearProgress = styled(React.forwardRef<HTMLAnchorElement, BorderLinearProgressUIProps>(({ className, ...rest }, ref) => (
-  <LinearProgress className={className + " border-linear-progress"} ref={ref} {...rest} />
+  <LinearProgress
+    className={className + " border-linear-progress"}
+    ref={ref}
+    data-testid="border-linear-progress"
+    {...rest}
+  />
 )))`
 & {
   background: transparent;

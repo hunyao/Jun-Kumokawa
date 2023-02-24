@@ -5,7 +5,12 @@ interface DiscussionItemAvatarUIProps extends React.HTMLAttributes<HTMLDivElemen
   className?: string
 }
 const DiscussionItemAvatar = styled(React.forwardRef<HTMLDivElement, DiscussionItemAvatarUIProps>(({ className, ...rest }, ref) => (
-  <div className={className + " discussion-item-avatar"} ref={ref} {...rest} />
+  <div
+    className={className + " discussion-item-avatar"}
+    ref={ref}
+    data-testid="discussion-item-avatar"
+    {...rest}
+  />
 )))`
 & {
   position: absolute;

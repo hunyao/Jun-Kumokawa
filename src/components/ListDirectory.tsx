@@ -25,6 +25,7 @@ const ListDirectory: React.FC<ListDirectoryProps> = (props) => {
           margin: '1rem 0',
           color: 'inherit'
         }}
+        data-testid="list-directory"
       >
         <ListDirectoryHeader />
         <ListDirectoryContent

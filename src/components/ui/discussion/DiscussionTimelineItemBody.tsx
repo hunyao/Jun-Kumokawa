@@ -5,7 +5,12 @@ interface DiscussionTimelineItemBodyUIProps extends React.HTMLAttributes<HTMLDiv
   className?: string
 }
 const DiscussionTimelineItemBody = styled(React.forwardRef<HTMLDivElement, DiscussionTimelineItemBodyUIProps>(({ className, ...rest }, ref) => (
-  <div className={className + " discussion-timeline-item-body"} ref={ref} {...rest} />
+  <div
+    className={className + " discussion-timeline-item-body"}
+    ref={ref}
+    data-testid="discussion-timeline-item-body"
+    {...rest}
+  />
 )))`
 & {
   min-width: 0;

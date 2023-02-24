@@ -9,10 +9,12 @@ const GithubBranchSwitching = styled(React.forwardRef<HTMLDivElement, BoxProps<'
     className={className + " github-branch-switching"}
     sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}
     ref={ref}
+    data-testid="github-branch-switching"
     {...rest}
   >
     <Box
       className="modal"
+      data-testid="github-branch-switching-modal"
     >
       {children}
     </Box>

@@ -2,8 +2,14 @@ import React from 'react';
 import { OctokitInstance } from '../plugins/Octokit';
 import { Unpacked } from '../contexts/repository';
 import { GithubGetTreeResponseType } from '../contexts/repository';
+import useCurrentBranch from '../hooks/useCurrentBranch'
+import { repositoryContext } from '../contexts/repository';
 
-const treeCache: {[key: string]: GithubGetTreeResponseType['tree']} = {}
+const treeCache: {
+  [branchName: string]: {
+    [key: string]: GithubGetTreeResponseType['tree']
+  }
+} = {}
 const sorting = (a: Unpacked<GithubGetTreeResponseType['tree']>, b: Unpacked<GithubGetTreeResponseType['tree']>) => {
   if (a.type === undefined || a.path === undefined || b.type === undefined || b.path === undefined) {
     return 0;
@@ -24,9 +30,12 @@ const sorting = (a: Unpacked<GithubGetTreeResponseType['tree']>, b: Unpacked<Git
 
   return a.path < b.path ? -1 : 1;
 }
-const getTree = async (sha: string) => {
-  if (treeCache[sha] !== undefined) {
-    return treeCache[sha]
+const getTree = async (sha: string, branchName: string) => {
+  if (treeCache[branchName] === undefined) {
+    treeCache[branchName] = {};
+  }
+  if (treeCache[branchName][sha] !== undefined) {
+    return treeCache[branchName][sha]
   }
   return OctokitInstance.request('GET /repos/{owner}/{repo}/git/trees/{tree_sha}', {
     owner: process.env.REACT_APP_REPOSITORY_OWNER as string,
@@ -35,7 +44,7 @@ const getTree = async (sha: string) => {
   })
   .then(({ data }: { data: GithubGetTreeResponseType }) => {
     data.tree.sort(sorting)
-    treeCache[sha] = data.tree
+    treeCache[branchName][sha] = data.tree
     return data.tree
   })
 }
@@ -48,12 +57,24 @@ const useTree: (sha: string) => useTreeResponseType = (sha: string = '') => {
   const [ tree, setTree ] = React.useState<GithubGetTreeResponseType['tree']>([]);
   const [ error, setError ] = React.useState<boolean>(false);
   const [ loading, setLoading ] = React.useState<boolean>(true);
+  const [ currentBranchName ] = useCurrentBranch();
+  const { allTrees } = React.useContext(repositoryContext);
 
   React.useEffect(() => {
     if (sha === '') {
+      setLoading(false);
       return;
     }
-    getTree(sha)
+    if (allTrees === null) {
+      return;
+    }
+    if (allTrees.sha !== sha && !allTrees.tree.find(t => t.sha === sha)) {
+      setTree([]);
+      setError(true)
+      setLoading(false);
+      return;
+    }
+    getTree(sha, currentBranchName)
     .then((data: GithubGetTreeResponseType['tree']) => {
       setTree(() => {
         return [
@@ -68,7 +89,11 @@ const useTree: (sha: string) => useTreeResponseType = (sha: string = '') => {
     .finally(() => {
       setLoading(false)
     })
-  }, [sha])
+  }, [
+    sha,
+    currentBranchName,
+    allTrees
+  ])
 
   return [
     tree,

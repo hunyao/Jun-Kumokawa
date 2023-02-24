@@ -29,7 +29,8 @@ interface BranchSwitchingModalProps {
 const BranchSwitchingModal:React.FC<BranchSwitchingModalProps> = (props) => {
   const {
     open,
-    onClose
+    onClose,
+    ...rest
   } = props;
 
   const [ selectedTab, setSelectedTab ] = React.useState<number>(0);
@@ -51,13 +52,21 @@ const BranchSwitchingModal:React.FC<BranchSwitchingModalProps> = (props) => {
 
   const renderList = React.useCallback((filteredItems: Array<GithubGetBranchResponseType | GithubListRepositoryTagsResponseType>) => {
     return filteredItems.map((item, index) => (
-      <ListItem disablePadding key={index}>
-        <ListItemButton onClick={changeBranch.bind(null, item)}>
+      <ListItem
+        disablePadding
+        key={index}
+        data-testid={"github-branch-switching-list-item-" + item.name}
+      >
+        <ListItemButton
+          onClick={changeBranch.bind(null, item)}
+          data-testid={"github-branch-switching-list-item-button-" + item.name}
+        >
           <ListItemIcon
             className="github-branch-switching-list-item-icon"
           >
             <CheckIcon
               className="icon"
+              data-testid={"github-branch-switching-list-item-icon-" + item.name}
               sx={{
                 display: currentBranchName === item.name ? 'inherit': 'none'
               }}
@@ -87,6 +96,8 @@ const BranchSwitchingModal:React.FC<BranchSwitchingModalProps> = (props) => {
   return (
     <GithubBranchSwitching
       className={open ? 'active': ''}
+      data-testid="github-branch-switching"
+      {...rest}
     >
       <Grid
         p={1}
@@ -94,6 +105,7 @@ const BranchSwitchingModal:React.FC<BranchSwitchingModalProps> = (props) => {
         container
         component="header"
         className="github-branch-switching-item"
+        data-testid="github-branch-switching-header"
       >
         <Grid
           item
@@ -108,6 +120,7 @@ const BranchSwitchingModal:React.FC<BranchSwitchingModalProps> = (props) => {
           component={IconButton}
           p={0}
           onClick={onClose}
+          data-testid="github-branch-switching-header-close"
         >
           <SvgIcon
             component={CloseIcon}
@@ -118,6 +131,7 @@ const BranchSwitchingModal:React.FC<BranchSwitchingModalProps> = (props) => {
       <Grid
         container
         flexDirection="column"
+        data-testid="github-branch-switching-body"
       >
         <Grid
           item
@@ -128,6 +142,7 @@ const BranchSwitchingModal:React.FC<BranchSwitchingModalProps> = (props) => {
             placeholder={placeholderMemo}
             value={searchingWords}
             onChange={({target: { value }}: React.ChangeEvent<HTMLInputElement>) => setSearchingWords(value)}
+            data-testid="github-branch-switching-input"
           />
         </Grid>
         <Grid
@@ -139,15 +154,21 @@ const BranchSwitchingModal:React.FC<BranchSwitchingModalProps> = (props) => {
               value={selectedTab}
               onChange={(_: React.SyntheticEvent, newValue: number) => setSelectedTab(newValue)}
             >
-              <Tab label="Branches" disableRipple value={0} />
-              <Tab label="Tags" disableRipple value={1} />
+              <Tab label="Branches" disableRipple value={0} data-testid="github-branch-switching-tabs-1" />
+              <Tab label="Tags" disableRipple value={1} data-testid="github-branch-switching-tabs-2" />
             </GithubBranchSwitchingTabs>
-            <GithubBranchSwitchingTabPanel value="0">
+            <GithubBranchSwitchingTabPanel
+              value="0"
+              data-testid="github-branch-switching-tab-0"
+            >
               <List>
                 {renderList(filteredBranches)}
               </List>
             </GithubBranchSwitchingTabPanel>
-            <GithubBranchSwitchingTabPanel value="1">
+            <GithubBranchSwitchingTabPanel
+              value="1"
+              data-testid="github-branch-switching-tab-1"
+            >
               <List>
                 {tagsNumber === 0 &&
                 <ListItem

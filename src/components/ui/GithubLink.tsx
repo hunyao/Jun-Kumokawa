@@ -6,7 +6,12 @@ import { styled } from '@mui/material/styles';
 type LinkOverrideProps = {}
 export type GithubLinkUIProps = LinkProps<'a', LinkOverrideProps>
 const GithubLink = React.forwardRef<HTMLAnchorElement, GithubLinkUIProps>(({ className, ...rest }, ref) => (
-  <Link className={className + " github-link"} { ...rest } ref={ref} />
+  <Link
+    className={className + " github-link"}
+    ref={ref}
+    data-testid="github-link"
+    { ...rest }
+  />
 ))
 
 export default styled(GithubLink)`
@@ -45,5 +50,10 @@ export default styled(GithubLink)`
 &:hover {
   color: #58a6ff;
   text-decoration: underline;
+}
+&.no-name {
+  & > .name {
+    display: none;
+  }
 }
 `

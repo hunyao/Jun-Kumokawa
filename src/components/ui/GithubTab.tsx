@@ -5,7 +5,12 @@ import { TabProps } from '@mui/material/Tab';
 
 interface GithubTabUIProps extends TabProps {}
 const GithubTab = styled(React.forwardRef<HTMLDivElement, TabProps<'div', GithubTabUIProps>>(({ className, children, ...rest }, ref) => (
-  <Tab className={className + " github-tab"} ref={ref} {...rest} />
+  <Tab
+    className={className + " github-tab"}
+    ref={ref}
+    data-testid="github-tab"
+    {...rest}
+  />
 )))`
 & {
   min-height: initial;

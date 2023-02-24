@@ -30,6 +30,7 @@ const TabMenu: React.FC<TabMenuProps> = (props) => {
         label={menu.name}
         key={index}
         value={menu.menuId}
+        data-testid={"github-tab-" + index}
       />
     ))}
   </GithubTabs>

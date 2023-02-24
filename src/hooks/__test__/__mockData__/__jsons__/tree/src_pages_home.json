@@ -1,0 +1,53 @@
+{
+  "sha": "564a0acf5d790c6cf937a84aa7934ec88b5ab6e0",
+  "url": "https://api.github.com/repos/facebook/react/git/trees/564a0acf5d790c6cf937a84aa7934ec88b5ab6e0",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d30f40ef4422ff27041df9dba83e4bd26849dc48",
+      "size": 285,
+      "url": "https://api.github.com/repos/facebook/react/git/blobs/d30f40ef4422ff27041df9dba83e4bd26849dc48"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c2b90faa6cbd24d20ef953a40e846b2f1f5faf0",
+      "size": 1280,
+      "url": "https://api.github.com/repos/facebook/react/git/blobs/2c2b90faa6cbd24d20ef953a40e846b2f1f5faf0"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e6f4f0b0ce8599ebeae44daa9f4b0e04b577709",
+      "size": 550,
+      "url": "https://api.github.com/repos/facebook/react/git/blobs/0e6f4f0b0ce8599ebeae44daa9f4b0e04b577709"
+    },
+    {
+      "path": "public",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2ff1dc9ba4545f20d2764ead0be10b88dcb9fa01",
+      "url": "https://api.github.com/repos/facebook/react/git/trees/2ff1dc9ba4545f20d2764ead0be10b88dcb9fa01"
+    },
+    {
+      "path": "src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "de9c4446355e3b936b42adb54e99f35364dc94a4",
+      "url": "https://api.github.com/repos/facebook/react/git/trees/de9c4446355e3b936b42adb54e99f35364dc94a4"
+    },
+    {
+      "path": "yarn.lock",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49371b778a0de4eb1926d5278e744039c6e49ddc",
+      "size": 353905,
+      "url": "https://api.github.com/repos/facebook/react/git/blobs/49371b778a0de4eb1926d5278e744039c6e49ddc"
+    }
+  ],
+  "truncated": false
+}

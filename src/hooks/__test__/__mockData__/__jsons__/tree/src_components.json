@@ -1,0 +1,37 @@
+{
+  "sha": "7d7b301c77302e8a74c1e2fdb0e3cecc52f11952",
+  "url": "https://api.github.com/repos/facebook/react/git/trees/7d7b301c77302e8a74c1e2fdb0e3cecc52f11952",
+  "tree": [
+    {
+      "path": "ISSUE_TEMPLATE",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ead9b57a429a2139179a376b9f12e12da90085b7",
+      "url": "https://api.github.com/repos/facebook/react/git/trees/ead9b57a429a2139179a376b9f12e12da90085b7"
+    },
+    {
+      "path": "PULL_REQUEST_TEMPLATE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23fbc65ab57691edbddc22cb3c1b35ba8dc6472b",
+      "size": 1715,
+      "url": "https://api.github.com/repos/facebook/react/git/blobs/23fbc65ab57691edbddc22cb3c1b35ba8dc6472b"
+    },
+    {
+      "path": "stale.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25f65e7c3d4aa2e268c862d5b3e3c20079c5afd2",
+      "size": 1818,
+      "url": "https://api.github.com/repos/facebook/react/git/blobs/25f65e7c3d4aa2e268c862d5b3e3c20079c5afd2"
+    },
+    {
+      "path": "workflows",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "dbed197cf8d8d543c1a512c3efd87dad452351fe",
+      "url": "https://api.github.com/repos/facebook/react/git/trees/dbed197cf8d8d543c1a512c3efd87dad452351fe"
+    }
+  ],
+  "truncated": false
+}

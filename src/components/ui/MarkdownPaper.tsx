@@ -5,7 +5,12 @@ interface MarkdownPaperUIProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
 }
 const MarkdownPaper = styled(React.forwardRef<HTMLDivElement, MarkdownPaperUIProps>(({ className, ...rest }, ref) => (
-  <div className={className + " markdown-paper"} ref={ref} {...rest} />
+  <div
+    className={className + " markdown-paper"}
+    ref={ref}
+    data-testid="markdown-paper"
+    {...rest}
+  />
 )))`
 & {
   line-height: 1.5;

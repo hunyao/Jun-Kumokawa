@@ -40,30 +40,43 @@ const ListDirectoryContent: React.FC<ListDirectoryContentProps> = (props) => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    Promise.all(trees.map(async (tree) => {
-      return {
-        tree,
-        commit: await OctokitInstance.request('GET /repos/{owner}/{repo}/commits?path={path}&sha={sha}&per_page=1', {
-          owner: process.env.REACT_APP_REPOSITORY_OWNER as string,
-          repo: process.env.REACT_APP_REPOSITORY_NAME as string,
-          path: '/' + getPathFromSha(tree.sha)[0],
-          sha: currentBranchSha
-        })
-      }
-    }))
-    .then((responses) => {
-      return responses.map(({ commit, tree }: { commit: { data: Array<GithubListCommitsResponseType> }, tree: Unpacked<GithubGetTreeResponseType['tree']> }) => {
+    let mounted = true;
+    setLoading(true)
+    Promise
+      .all(trees.map(async (tree) => {
         return {
-          subject: commit.data[0]?.commit?.message || '' as string,
-          committerDate: commit.data[0]?.commit?.committer?.date || '' as string,
-          fileType: tree.type as string,
-          path: tree.path as string,
-          sha: tree.sha as string
+          tree,
+          commit: await OctokitInstance.request('GET /repos/{owner}/{repo}/commits?path={path}&sha={sha}&per_page=1', {
+            owner: process.env.REACT_APP_REPOSITORY_OWNER as string,
+            repo: process.env.REACT_APP_REPOSITORY_NAME as string,
+            path: '/' + getPathFromSha(tree.sha)[0],
+            sha: currentBranchSha
+          })
         }
+      }))
+      .then((responses) => {
+        if (!mounted) return [];
+        return responses.map(({ commit, tree }: { commit: { data: Array<GithubListCommitsResponseType> }, tree: Unpacked<GithubGetTreeResponseType['tree']> }) => {
+          return {
+            subject: commit.data[0]?.commit?.message || '' as string,
+            committerDate: commit.data[0]?.commit?.committer?.date || '' as string,
+            fileType: tree.type as string,
+            path: tree.path as string,
+            sha: tree.sha as string
+          }
+        })
       })
-    })
-    .then(setTreeForDisplays)
-    .finally(() => setLoading(false))
+      .then((response) => {
+        if (!mounted) return;
+        setTreeForDisplays(response)
+      })
+      .finally(() => {
+        if (!mounted) return;
+        setLoading(false);
+      })
+    return () => {
+      mounted = false;
+    }
   }, [
     trees,
     currentBranchSha,
@@ -87,12 +100,14 @@ const ListDirectoryContent: React.FC<ListDirectoryContentProps> = (props) => {
       <Grid
         container
         flexDirection="column"
+        data-testid="list-directory-content"
       >
         <ListFilesItemRow
           container
           sx={{
             display: isRootSha ? "none !important" : "inherit"
           }}
+          data-testid="list-directory-content-root-item"
         >
           <Grid item flex="none">
             <GithubLink
@@ -108,6 +123,7 @@ const ListDirectoryContent: React.FC<ListDirectoryContentProps> = (props) => {
                 e.preventDefault();
                 navigate('/tree/' + previousSha)
               }}
+              data-testid="list-directory-content-root-item-link"
             >
               <Box
                 component="span"
@@ -116,8 +132,6 @@ const ListDirectoryContent: React.FC<ListDirectoryContentProps> = (props) => {
                 ..
               </Box>
             </GithubLink>
-          </Grid>
-          <Grid item flex={1}>
           </Grid>
         </ListFilesItemRow>
         {treeForDisplays.map((tree, index) => {
@@ -140,26 +154,48 @@ const ListDirectoryContent: React.FC<ListDirectoryContentProps> = (props) => {
             .join('/')
 
           return (
-            <ListFilesItemRow key={index}>
+            <ListFilesItemRow
+              key={index}
+              data-testid={"list-files-item-row-" + index}
+            >
               <Grid
                 item
-                className="file_icon"
+                className={"file_icon icon-type-" + fileType}
                 component={fileTypeIcon(fileType)}
+                data-testid={"list-files-item-row-icon-" + index}
               />
-              <Grid item xs={3}>
-                <GithubLink href={"#"} onClick={(e: React.MouseEvent) => {
-                  e.preventDefault();
-                  navigate('/' + href)
-                }}>
+              <Grid
+                item
+                xs={12}
+                laptop={3}
+              >
+                <GithubLink
+                  href={"#"}
+                  onClick={(e: React.MouseEvent) => {
+                    e.preventDefault();
+                    navigate('/' + href)
+                  }}
+                  data-testid={"list-files-item-row-link-" + index}
+                >
                   {path}
                 </GithubLink>
               </Grid>
-              <Grid item xs={8} className="commit-message">
+              <Grid
+                item
+                xs={8}
+                className="commit-message"
+                data-testid={"list-files-item-row-subject-" + index}
+                display={{xs: 'none', laptop: 'inherit'}}
+              >
                 <GithubLink href="#">
                   {subject}
                 </GithubLink>
               </Grid>
-              <Grid item className="committed-time">
+              <Grid
+                item
+                className="committed-time"
+                data-testid={"list-files-item-row-date-" + index}
+              >
                 {moment(committerDate).fromNow()}
               </Grid>
             </ListFilesItemRow>

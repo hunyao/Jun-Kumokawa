@@ -5,7 +5,12 @@ interface GithubChipUIProps extends React.HTMLAttributes<HTMLAnchorElement> {
   className?: string
 }
 const GithubChip = styled(React.forwardRef<HTMLAnchorElement, GithubChipUIProps>(({ className, ...rest }, ref) => (
-  <a className={className + " github-chip"} ref={ref} {...rest} />
+  <a
+    className={className + " github-chip"}
+    ref={ref}
+    data-testid="github-chip"
+    {...rest}
+  />
 )))`
 & {
   display: inline-block;

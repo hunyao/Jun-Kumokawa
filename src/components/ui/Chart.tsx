@@ -5,7 +5,12 @@ interface ChartUIProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
 }
 const Chart = styled(React.forwardRef<HTMLDivElement, ChartUIProps>(({className, ...rest}, ref) => (
-  <div className={className + " c3-chart"} ref={ref} {...rest} />
+  <div
+    className={className + " c3-chart"}
+    ref={ref}
+    data-testid="c3-chart"
+    {...rest}
+  />
 )))`
 & {
   .c3-axis > .domain {

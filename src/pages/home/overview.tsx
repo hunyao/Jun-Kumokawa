@@ -1,33 +1,43 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Tree from './tree'
-import Sidebar from '../../components/Sidebar';
+import About from '../../components/sidebar/About'
+import LanguageSidebars from '../../components/sidebar/LanguageSidebars'
 
 const Overview = () => {
   return (
-    <>
-      <Box>
-        <Grid
-          container
-          gap={3}
-          flexWrap="nowrap"
-          flexDirection={{
-            xs: 'column-reverse',
-            md: 'row',
+    <Box
+      data-testid="page-overview"
+    >
+      <Box
+        display="grid"
+        gap={3}
+        sx={{
+          gridTemplateColumns: {
+            xs: '100%',
+            laptop: '74% 24%'
+          }
+        }}
+      >
+        <Tree
+          mode="overview"
+          sx={{
+            gridRowStart: {
+              xs: 2,
+              laptop: 1
+            },
+            gridRowEnd: {
+              xs: 2,
+              laptop: 5
+            }
           }}
-        >
-          <Grid item md={9} xs={12}>
-            <Tree
-              mode="overview"
-            />
-          </Grid>
-          <Grid item md={3} xs={12}>
-            <Sidebar />
-          </Grid>
-        </Grid>
+        />
+        <About />
+        <Box>
+          <LanguageSidebars />
+        </Box>
       </Box>
-    </>
+    </Box>
   )
 }
 

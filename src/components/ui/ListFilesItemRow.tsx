@@ -13,6 +13,7 @@ const ListFilesItemRow = styled(React.forwardRef<HTMLDivElement, GridProps<'div'
     alignItems="center"
     className={className + " list-files-item-row"}
     ref={ref}
+    data-testid="list-files-item-row"
     {...rest}
   />
 )))`
@@ -38,6 +39,7 @@ const ListFilesItemRow = styled(React.forwardRef<HTMLDivElement, GridProps<'div'
 }
 & > .MuiGrid-item {
   white-space: nowrap;
+  height: 100%;
 }
 & > .MuiGrid-item:not(:last-child) {
   margin-right: 16px;

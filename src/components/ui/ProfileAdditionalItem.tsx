@@ -11,12 +11,12 @@ const ProfileAdditionalItem = styled(React.forwardRef<HTMLDivElement, GridProps<
   <Grid
     container
     item
-    spacing={0.5}
     alignItems="center"
     flex={0}
     flexWrap="nowrap"
     className={className + " profile-additional-item"}
     ref={ref}
+    data-testid="profile-additional-item"
     {...rest}
   >
     <Grid
@@ -29,7 +29,7 @@ const ProfileAdditionalItem = styled(React.forwardRef<HTMLDivElement, GridProps<
   </Grid>
 )))`
 & {
-  white-space: nowrap
+  white-space: nowrap;
 }
 `
 

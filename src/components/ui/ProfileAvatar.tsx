@@ -15,6 +15,7 @@ const ProfileAvatar = styled(React.forwardRef<HTMLImageElement, GridProps<"img",
     height="100%"
     className={className + " profile-avatar"}
     ref={ref}
+    data-testid="profile-avatar"
     {...rest}
   />
 )))`

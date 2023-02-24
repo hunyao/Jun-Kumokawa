@@ -1,0 +1,81 @@
+[
+  {
+    "sha": "29b45596354035754d598d8b23a8233f3d2414f0",
+    "node_id": "MDY6Q29tbWl0MTAyNzAyNTA6MjliNDU1OTYzNTQwMzU3NTRkNTk4ZDhiMjNhODIzM2YzZDI0MTRmMA==",
+    "commit": {
+      "author": {
+        "name": "Andrew Clark",
+        "email": "git@andrewclark.io",
+        "date": "2019-07-12T02:01:02Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2019-07-12T02:01:02Z"
+      },
+      "message": ".watchmanconfig must be valid json (#16118)\n\nfaceworldproblems?",
+      "tree": {
+        "sha": "b5d1e9a42e15f29cba72276c27e0a7810396cd29",
+        "url": "https://api.github.com/repos/facebook/react/git/trees/b5d1e9a42e15f29cba72276c27e0a7810396cd29"
+      },
+      "url": "https://api.github.com/repos/facebook/react/git/commits/29b45596354035754d598d8b23a8233f3d2414f0",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJdJ+neCRBK7hj4Ov3rIwAAdHIIACD9nLf18THJwc42IZBPJV0h\naZU9mxW+G/gAvbxZpS384iZfW8dfRu1DIY+LrL/Y1k6VwxbdJ9HdpMl6hbY6+e3G\ntvL6j64OgdiYzgM8WA19YU/WSFKI1+ZgmGQNYwwqQ8kgp0mCpVhjYBUQm+BT1ocN\n4jyHdrX5q3CVYhoHSCMokgwV2q7I6Bo5laiAO9lBYHny7015542eQGUyNqRhUJhf\nU6GOGr/zJ6kz4Wy/kPANOJHr0yBo2lS7qhb3jnVcgGIsOZfWdpTKSOwsS1wATfRi\nPQzFra+iOCJJS0K6ot9KZNA9QyyAH4XwXS+kS3uqJTI3v2v62FdUjFgdYhF8Ot0=\n=YWrA\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree b5d1e9a42e15f29cba72276c27e0a7810396cd29\nparent ca4d78f9b6178de97ba4692ffb86647f2e2ef04d\nauthor Andrew Clark <git@andrewclark.io> 1562896862 -0700\ncommitter GitHub <noreply@github.com> 1562896862 -0700\n\n.watchmanconfig must be valid json (#16118)\n\nfaceworldproblems?"
+      }
+    },
+    "url": "https://api.github.com/repos/facebook/react/commits/29b45596354035754d598d8b23a8233f3d2414f0",
+    "html_url": "https://github.com/facebook/react/commit/29b45596354035754d598d8b23a8233f3d2414f0",
+    "comments_url": "https://api.github.com/repos/facebook/react/commits/29b45596354035754d598d8b23a8233f3d2414f0/comments",
+    "author": {
+      "login": "acdlite",
+      "id": 3624098,
+      "node_id": "MDQ6VXNlcjM2MjQwOTg=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3624098?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/acdlite",
+      "html_url": "https://github.com/acdlite",
+      "followers_url": "https://api.github.com/users/acdlite/followers",
+      "following_url": "https://api.github.com/users/acdlite/following{/other_user}",
+      "gists_url": "https://api.github.com/users/acdlite/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/acdlite/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/acdlite/subscriptions",
+      "organizations_url": "https://api.github.com/users/acdlite/orgs",
+      "repos_url": "https://api.github.com/users/acdlite/repos",
+      "events_url": "https://api.github.com/users/acdlite/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/acdlite/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "ca4d78f9b6178de97ba4692ffb86647f2e2ef04d",
+        "url": "https://api.github.com/repos/facebook/react/commits/ca4d78f9b6178de97ba4692ffb86647f2e2ef04d",
+        "html_url": "https://github.com/facebook/react/commit/ca4d78f9b6178de97ba4692ffb86647f2e2ef04d"
+      }
+    ]
+  }
+]

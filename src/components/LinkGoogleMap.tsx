@@ -10,6 +10,7 @@ const LinkGoogleMap: React.FC<GithubLinkUIProps> = (props) => {
     <GithubLink
       href={href}
       target="_blank"
+      data-testid="link-google-map"
       {...rest}
     >
       <SvgIcon

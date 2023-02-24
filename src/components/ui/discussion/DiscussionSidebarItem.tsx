@@ -5,7 +5,11 @@ interface DiscussionSidebarItemUIProps extends React.HTMLAttributes<HTMLDivEleme
   className?: string
 }
 const DiscussionSidebarItem = styled(React.forwardRef<HTMLDivElement, DiscussionSidebarItemUIProps>(({ className, ...rest }, ref) => (
-  <div className={className + " discussion-sidebar-item"} {...rest} />
+  <div
+    className={className + " discussion-sidebar-item"}
+    data-testid="discussion-sidebar-item"
+    {...rest}
+  />
 )))`
 & {
   padding-top: 16px;

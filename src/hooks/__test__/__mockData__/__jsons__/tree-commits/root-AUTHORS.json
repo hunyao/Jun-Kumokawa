@@ -1,0 +1,81 @@
+[
+  {
+    "sha": "0e96bdd4eefa0771fe1e7747bb79fd3c0e612b9c",
+    "node_id": "MDY6Q29tbWl0MTAyNzAyNTA6MGU5NmJkZDRlZWZhMDc3MWZlMWU3NzQ3YmI3OWZkM2MwZTYxMmI5Yw==",
+    "commit": {
+      "author": {
+        "name": "Lea Rosema",
+        "email": "terabaud@gmail.com",
+        "date": "2021-03-31T22:13:13Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2021-03-31T22:13:13Z"
+      },
+      "message": "Remove my deadname from AUTHORS (#21152)",
+      "tree": {
+        "sha": "47feaecdc716d11f8eb2982040a917ffb539d8b7",
+        "url": "https://api.github.com/repos/facebook/react/git/trees/47feaecdc716d11f8eb2982040a917ffb539d8b7"
+      },
+      "url": "https://api.github.com/repos/facebook/react/git/commits/0e96bdd4eefa0771fe1e7747bb79fd3c0e612b9c",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJgZPP5CRBK7hj4Ov3rIwAAdHIIAH3BZB2iDQaeFJyn+WICks7x\n43CCdhCWqFoqRtt1iuZaNMJu4N8a2geXMp/eSeQLPlfboWPa/Gu6Wi2f9I7g/Rri\no4gt8lKJLParMjQgMsWqqIC8yRuIFEylr2LP4Y72jvR3bnorQt5hRcIUu+kfoKq0\nP2rQb9Gwuf7TuMwSwIZfDvIOSaRV6Wimwd4/0zCPABYD+h+byD0awvEU+dRBVffi\nmPyVtIz0EA/MAoeemDiVfYvg4CeAv/ifYzoj5e3n9zSMEaWRbmkle+a9szgV/GsF\nXDgHzJ2FxK1N+Edx9C0whi4RkgfUr22R7sOaXoapJ26FV7+4393BGDRFyFmpnlg=\n=n5N6\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 47feaecdc716d11f8eb2982040a917ffb539d8b7\nparent f8ef4ff571db3de73b0bfab566c1ce9d69c6582f\nauthor Lea Rosema <terabaud@gmail.com> 1617228793 +0200\ncommitter GitHub <noreply@github.com> 1617228793 +0100\n\nRemove my deadname from AUTHORS (#21152)\n\n"
+      }
+    },
+    "url": "https://api.github.com/repos/facebook/react/commits/0e96bdd4eefa0771fe1e7747bb79fd3c0e612b9c",
+    "html_url": "https://github.com/facebook/react/commit/0e96bdd4eefa0771fe1e7747bb79fd3c0e612b9c",
+    "comments_url": "https://api.github.com/repos/facebook/react/commits/0e96bdd4eefa0771fe1e7747bb79fd3c0e612b9c/comments",
+    "author": {
+      "login": "learosema",
+      "id": 949950,
+      "node_id": "MDQ6VXNlcjk0OTk1MA==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/949950?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/learosema",
+      "html_url": "https://github.com/learosema",
+      "followers_url": "https://api.github.com/users/learosema/followers",
+      "following_url": "https://api.github.com/users/learosema/following{/other_user}",
+      "gists_url": "https://api.github.com/users/learosema/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/learosema/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/learosema/subscriptions",
+      "organizations_url": "https://api.github.com/users/learosema/orgs",
+      "repos_url": "https://api.github.com/users/learosema/repos",
+      "events_url": "https://api.github.com/users/learosema/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/learosema/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "f8ef4ff571db3de73b0bfab566c1ce9d69c6582f",
+        "url": "https://api.github.com/repos/facebook/react/commits/f8ef4ff571db3de73b0bfab566c1ce9d69c6582f",
+        "html_url": "https://github.com/facebook/react/commit/f8ef4ff571db3de73b0bfab566c1ce9d69c6582f"
+      }
+    ]
+  }
+]

@@ -5,7 +5,12 @@ import { AccordionDetailsProps } from '@mui/material/AccordionDetails';
 
 interface AdditionalInformationDetailsUIProp extends AccordionDetailsProps {}
 const AdditionalInformationDetails = styled(React.forwardRef<HTMLDivElement, AdditionalInformationDetailsUIProp>(({className, ...rest}, ref) => (
-  <MuiAccordionDetails className={className + " additional-information-details"} ref={ref} {...rest} />
+  <MuiAccordionDetails
+    className={className + " additional-information-details"}
+    ref={ref}
+    data-testid="additional-information-details"
+    {...rest}
+  />
 )))(({ theme }) => ({
   padding: 0,
   borderTop: '1px solid rgba(0, 0, 0, .125)',

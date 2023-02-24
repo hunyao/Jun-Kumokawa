@@ -7,13 +7,18 @@ import CheckIcon from '@mui/icons-material/Check';
 
 interface GithubMenuPopperMenuItemUIProps {}
 const GithubMenuPopperMenuItem = styled(React.forwardRef<HTMLLIElement, MenuItemProps<'li', GithubMenuPopperMenuItemUIProps>>(({className, children, ...rest}, ref) => (
-  <MenuItem className={className + " github-menu-popper-menu-item"} ref={ref} {...rest}>
+  <MenuItem
+    className={className + " github-menu-popper-menu-item"}
+    ref={ref}
+    data-testid="github-menu-popper-menu-item"
+    {...rest}
+  >
     <SvgIcon component={CheckIcon} />
     {children}
   </MenuItem>
 )))`
 &.MuiMenuItem-root {
-  padding: 8px 8px 8px 30px;
+  padding: 8px 8px 8px 8px;
   overflow: hidden;
   color: inherit;
   cursor: pointer;
@@ -25,15 +30,13 @@ const GithubMenuPopperMenuItem = styled(React.forwardRef<HTMLLIElement, MenuItem
   border-left: 0;
   font-size: inherit;
   position: relative;
+  gap: 4px;
 }
 &.MuiMenuItem-root:hover {
   color: #f0f6fc;
   background-color: #1f6feb;
 }
 & > .MuiSvgIcon-root {
-  position: absolute;
-  top: 8px;
-  left: 8px;
   font-size: 16px;
   visibility: hidden;
 }

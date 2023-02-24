@@ -1,6 +1,6 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import GithubClipboardCopyBase from './ui/GithubClipboardBase'
+import GithubClipboardCopyBase from './ui/GithubClipboardCopyBase'
 import CopyIcon from '../assets/svgs/svg-copy';
 import CheckIcon from '@mui/icons-material/Check';
 import SvgIcon from '@mui/material/SvgIcon';
@@ -47,7 +47,10 @@ const GithubClipboardCopy: React.FC<GithubClipboardCopyProps> = (props) => {
   ])
 
   return (
-    <Box py={1}>
+    <Box
+      py={1}
+      data-testid="github-clipboard-copy"
+    >
       <GithubClipboardCopyBase
         inputBaseProps={{
           value: copyText,

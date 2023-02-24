@@ -59,7 +59,10 @@ const DiscussionComponent: React.FC<DiscussionComponentProps> = (props) => {
         <DiscussionContent>
           {timelineItems
             .map((timelineItem, index) => (
-              <DiscussionTimelineItem key={index}>
+              <DiscussionTimelineItem
+                key={index}
+                data-testid={"discussion-timeline-item-" + index}
+              >
                 <DiscussionTimelineItemBadge>
                   <SvgIcon component={timelineItem.icon} />
                 </DiscussionTimelineItemBadge>
@@ -112,6 +115,7 @@ const DiscussionComponent: React.FC<DiscussionComponentProps> = (props) => {
                   sx={{
                     wordBreak: 'break-word'
                   }}
+                  data-testid="discussion-item-content-body-content"
                 >
                   {typeof content === 'string' ? content: content.join("\n")}
                 </Box>
@@ -121,18 +125,24 @@ const DiscussionComponent: React.FC<DiscussionComponentProps> = (props) => {
                     borderBottomRightRadius: '6px',
                     overflow: 'hidden'
                   }}
+                  data-testid="discussion-item-content-body-items"
                 >
                   {additionalItems.map((additionalItem, index) => (
                     <AdditionalInformation
                       expanded={expanded === ('panel' + index)}
                       onChange={handleChange('panel' + index)}
                       key={index}
+                      data-testid={"additional-information-" + index}
                     >
-                      <AdditionalInformationSummary>
+                      <AdditionalInformationSummary
+                        data-testid={"additional-information-summary-" + index}
+                      >
                         <span style={{flex: 'auto'}}>{additionalItem.title}</span>
                         <span>Details</span>
                       </AdditionalInformationSummary>
-                      <AdditionalInformationDetails>
+                      <AdditionalInformationDetails
+                        data-testid={"additional-information-details-" + index}
+                      >
                         <MuiList>
                           {additionalItem.items.length === 0 ?
                             <MuiListItem>
@@ -155,7 +165,10 @@ const DiscussionComponent: React.FC<DiscussionComponentProps> = (props) => {
         </DiscussionContent>
         <DiscussionSidebar>
           {sidebarItems.map(([ title, text ], index) => (
-            <DiscussionSidebarItem key={index}>
+            <DiscussionSidebarItem
+              key={index}
+              data-testid={"discussion-sidebar-item-" + index}
+            >
               <Box
                 className="discussion-sidebar-item-header"
               >

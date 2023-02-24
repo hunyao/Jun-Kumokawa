@@ -5,7 +5,12 @@ interface SourceCodeViewLineUIProps extends React.HTMLAttributes<HTMLTableCellEl
   className?: string
 }
 const SourceCodeViewLine = styled(React.forwardRef<HTMLTableCellElement, SourceCodeViewLineUIProps>(({ className, ...rest }, ref) => (
-  <td className={className + " source-code-view-line"} ref={ref} {...rest} />
+  <td
+    className={className + " source-code-view-line"}
+    ref={ref}
+    data-testid="source-code-view-line"
+    {...rest}
+  />
 )))`
 &:before {
   content: attr(data-line-number);

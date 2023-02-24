@@ -5,7 +5,12 @@ import { styled } from '@mui/material/styles';
 
 interface GithubMenuPopperUIProps extends MenuProps {}
 const GithubMenuPopper = styled(React.forwardRef<HTMLDivElement, GithubMenuPopperUIProps>(({className, ...rest}, ref) => (
-  <Menu className={className + " github-menu-popper"} ref={ref} {...rest} />
+  <Menu
+    className={className + " github-menu-popper"}
+    ref={ref}
+    data-testid="github-menu-popper"
+    {...rest}
+  />
 )))`
 & .MuiMenu-list {
   width: 300px;

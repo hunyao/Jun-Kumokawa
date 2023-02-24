@@ -5,7 +5,12 @@ interface DiscussionTimelineItemBadgeUIProps extends React.HTMLAttributes<HTMLDi
   className?: string
 }
 const DiscussionTimelineItemBadge = styled(React.forwardRef<HTMLDivElement, DiscussionTimelineItemBadgeUIProps>(({ className, ...rest }, ref) => (
-  <div className={className + " discussion-timeline-item-badge"} ref={ref} {...rest} />
+  <div
+    className={className + " discussion-timeline-item-badge"}
+    ref={ref}
+    data-testid="discussion-timeline-item-badge"
+    {...rest}
+  />
 )))`
 & {
   position: relative;

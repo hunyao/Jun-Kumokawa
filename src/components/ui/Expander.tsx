@@ -5,7 +5,12 @@ interface ExpanderUIProps extends React.HTMLAttributes<HTMLButtonElement> {
   className?: string
 }
 const Expander = styled(React.forwardRef<HTMLButtonElement, ExpanderUIProps>(({ className, ...rest }, ref) => (
-  <button className={className + " expander"} ref={ref} {...rest} />
+  <button
+    className={className + " expander"}
+    ref={ref}
+    data-testid="expander"
+    {...rest}
+  />
 )))`
 & {
   display: inline-block;

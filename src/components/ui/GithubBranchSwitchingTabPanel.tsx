@@ -5,7 +5,12 @@ import { styled } from '@mui/material/styles';
 
 interface GithubBranchSwitchingTabPanelUIProps extends TabPanelProps {}
 const GithubBranchSwitchingTabPanel = styled(React.forwardRef<HTMLDivElement, GithubBranchSwitchingTabPanelUIProps>(({className, ...rest}, ref) => (
-  <TabPanel className={className + " github-branch-switching-tab-panel"} ref={ref} {...rest} />
+  <TabPanel
+    className={className + " github-branch-switching-tab-panel"}
+    ref={ref}
+    data-testid="github-branch-switching-tab-panel"
+    {...rest}
+  />
 )))`
 & {
   padding: 0;

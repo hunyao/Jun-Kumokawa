@@ -1,0 +1,81 @@
+[
+  {
+    "sha": "7a227276e653b481b73ed9e9178244b53d61f730",
+    "node_id": "C_kwDOAJy2KtoAKDdhMjI3Mjc2ZTY1M2I0ODFiNzNlZDllOTE3ODI0NGI1M2Q2MWY3MzA",
+    "commit": {
+      "author": {
+        "name": "ZA Syed",
+        "email": "49692373+zahad-a-s@users.noreply.github.com",
+        "date": "2022-08-10T19:14:31Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2022-08-10T19:14:31Z"
+      },
+      "message": "revert last grammatical edit (#25067)\n\non line 29, #24798 edited (others') to (other's); however, the subject here is plural (e.g. \"others in the community\"), thus (others') is grammatically correct",
+      "tree": {
+        "sha": "74ece4ce388e9ad4b0253ee8c6ee9c6176b0bb41",
+        "url": "https://api.github.com/repos/facebook/react/git/trees/74ece4ce388e9ad4b0253ee8c6ee9c6176b0bb41"
+      },
+      "url": "https://api.github.com/repos/facebook/react/git/commits/7a227276e653b481b73ed9e9178244b53d61f730",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJi9AOXCRBK7hj4Ov3rIwAA0/YIAII7wNtfnO3XR1Ovtxf9vq0y\noajsTtxnmwHjP5tMHNLVyDApWdEV7H+4q6T+2FrPX9yBJ/KsCmlQZ6SM6Zk2yz5b\nQERS3mrEdoSex2rOW2HZQ1fIChLjhorm3msj7LnlAy78zFQvjX11wLEXou7ftK50\n+XHIyqbRgcfEZfPDA75rySo8JABhyzkVI4wJlrh/04kyoTry1P41XFDoGvQX9qhQ\nBV0hWQu9xuaYLYnTdoG7uMM17Ikt8Hqq9m55liUTrD6Np0T4A6UlAARDQqgo7yWW\n9Ubq3Wron2eGIPejCjLrx3bim2eQ6jXWCmUH73A2Rxa4xkl8PKuOHqzXv0E+ui8=\n=/uRA\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 74ece4ce388e9ad4b0253ee8c6ee9c6176b0bb41\nparent 17e2a15bea2df9232411a35c6d967fa18f6e8b25\nauthor ZA Syed <49692373+zahad-a-s@users.noreply.github.com> 1660158871 -0400\ncommitter GitHub <noreply@github.com> 1660158871 +0100\n\nrevert last grammatical edit (#25067)\n\non line 29, #24798 edited (others') to (other's); however, the subject here is plural (e.g. \"others in the community\"), thus (others') is grammatically correct"
+      }
+    },
+    "url": "https://api.github.com/repos/facebook/react/commits/7a227276e653b481b73ed9e9178244b53d61f730",
+    "html_url": "https://github.com/facebook/react/commit/7a227276e653b481b73ed9e9178244b53d61f730",
+    "comments_url": "https://api.github.com/repos/facebook/react/commits/7a227276e653b481b73ed9e9178244b53d61f730/comments",
+    "author": {
+      "login": "zahad-a-s",
+      "id": 49692373,
+      "node_id": "MDQ6VXNlcjQ5NjkyMzcz",
+      "avatar_url": "https://avatars.githubusercontent.com/u/49692373?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/zahad-a-s",
+      "html_url": "https://github.com/zahad-a-s",
+      "followers_url": "https://api.github.com/users/zahad-a-s/followers",
+      "following_url": "https://api.github.com/users/zahad-a-s/following{/other_user}",
+      "gists_url": "https://api.github.com/users/zahad-a-s/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/zahad-a-s/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/zahad-a-s/subscriptions",
+      "organizations_url": "https://api.github.com/users/zahad-a-s/orgs",
+      "repos_url": "https://api.github.com/users/zahad-a-s/repos",
+      "events_url": "https://api.github.com/users/zahad-a-s/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/zahad-a-s/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "17e2a15bea2df9232411a35c6d967fa18f6e8b25",
+        "url": "https://api.github.com/repos/facebook/react/commits/17e2a15bea2df9232411a35c6d967fa18f6e8b25",
+        "html_url": "https://github.com/facebook/react/commit/17e2a15bea2df9232411a35c6d967fa18f6e8b25"
+      }
+    ]
+  }
+]

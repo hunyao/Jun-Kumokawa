@@ -1,0 +1,81 @@
+[
+  {
+    "sha": "1af2a10891cad4d6bd1f9489dc52f83b16099041",
+    "node_id": "MDY6Q29tbWl0MTAyNzAyNTA6MWFmMmExMDg5MWNhZDRkNmJkMWY5NDg5ZGM1MmY4M2IxNjA5OTA0MQ==",
+    "commit": {
+      "author": {
+        "name": "Rodrigo Graça",
+        "email": "1134310+rodrigograca31@users.noreply.github.com",
+        "date": "2020-03-29T14:18:52Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2020-03-29T14:18:52Z"
+      },
+      "message": "https link to editorconfig.org (#18421)",
+      "tree": {
+        "sha": "4757e4423dfec4d476499500345fed00020f0ed3",
+        "url": "https://api.github.com/repos/facebook/react/git/trees/4757e4423dfec4d476499500345fed00020f0ed3"
+      },
+      "url": "https://api.github.com/repos/facebook/react/git/commits/1af2a10891cad4d6bd1f9489dc52f83b16099041",
+      "comment_count": 1,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJegK5MCRBK7hj4Ov3rIwAAdHIIAAAeG0KGKBZJVKfxmiWPXoP6\nr2+N5Rz7SLr/P6XInEDPyaMtxQenBV2ZUVhWAHdESvdTzCb7w9YE02Z0k7n+1Fmn\nvxaO9TwZaQRxygSLGZPLIil9nRHIAdtybMIU0j0vQ6WPFCBHzhGGmW5MLtookxtE\neJ/ahXDhH+C7H9LWv5HbZ7YHi2E6GHCso+cgFLNsZRO7c4Ym+UiCIwnRsMJSE62p\nG5a21EsEYRMC5kEoMH4qJtqtS4M49iCfJeoBvcrQod5jNgTaAYodF3PwdLajONmr\nFl4eNvD194QkbPSK1pUBFQCm5Zd9MNjxoPkJ3MHpuYICFqEe/e60O95b7kgr7G0=\n=Efgz\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 4757e4423dfec4d476499500345fed00020f0ed3\nparent d7918f4a9b74a44aa9d665b5860db76914615f89\nauthor Rodrigo Graça <1134310+rodrigograca31@users.noreply.github.com> 1585491532 +0100\ncommitter GitHub <noreply@github.com> 1585491532 +0100\n\nhttps link to editorconfig.org (#18421)\n\n"
+      }
+    },
+    "url": "https://api.github.com/repos/facebook/react/commits/1af2a10891cad4d6bd1f9489dc52f83b16099041",
+    "html_url": "https://github.com/facebook/react/commit/1af2a10891cad4d6bd1f9489dc52f83b16099041",
+    "comments_url": "https://api.github.com/repos/facebook/react/commits/1af2a10891cad4d6bd1f9489dc52f83b16099041/comments",
+    "author": {
+      "login": "rodrigograca31",
+      "id": 1134310,
+      "node_id": "MDQ6VXNlcjExMzQzMTA=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1134310?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rodrigograca31",
+      "html_url": "https://github.com/rodrigograca31",
+      "followers_url": "https://api.github.com/users/rodrigograca31/followers",
+      "following_url": "https://api.github.com/users/rodrigograca31/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rodrigograca31/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rodrigograca31/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rodrigograca31/subscriptions",
+      "organizations_url": "https://api.github.com/users/rodrigograca31/orgs",
+      "repos_url": "https://api.github.com/users/rodrigograca31/repos",
+      "events_url": "https://api.github.com/users/rodrigograca31/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rodrigograca31/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "d7918f4a9b74a44aa9d665b5860db76914615f89",
+        "url": "https://api.github.com/repos/facebook/react/commits/d7918f4a9b74a44aa9d665b5860db76914615f89",
+        "html_url": "https://github.com/facebook/react/commit/d7918f4a9b74a44aa9d665b5860db76914615f89"
+      }
+    ]
+  }
+]

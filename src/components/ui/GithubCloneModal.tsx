@@ -5,7 +5,12 @@ import { styled } from '@mui/material/styles';
 
 interface GithubCloneModalUIProps {}
 const GithubCloneModal = React.forwardRef<HTMLDivElement, BoxProps<'div', GithubCloneModalUIProps>>(({ className, children, ...rest }, ref) => (
-  <Box className={className + " github-clone-modal"} {...rest} ref={ref}>
+  <Box
+    className={className + " github-clone-modal"}
+    {...rest}
+    data-testid="github-clone-modal"
+    ref={ref}
+  >
     <Box
       className={"modal"}
       sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}

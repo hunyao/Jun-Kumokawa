@@ -5,7 +5,12 @@ import { styled } from '@mui/material/styles';
 
 interface ListDirectoryToolbarUIProps extends React.HTMLAttributes<HTMLDivElement> {}
 const ListDirectoryToolbar = styled(React.forwardRef<HTMLDivElement, ToolbarProps<'div', ListDirectoryToolbarUIProps>>(({ className, ...rest }, ref) => (
-  <Toolbar className={className + " list-directory-toolbar"} ref={ref} {...rest} />
+  <Toolbar
+    className={className + " list-directory-toolbar"}
+    ref={ref}
+    data-testid="list-directory-toolbar"
+    {...rest}
+  />
 )))`
 & {
   border-bottom: 1px solid #21262d;

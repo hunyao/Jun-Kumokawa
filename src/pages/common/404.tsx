@@ -3,7 +3,7 @@ import Moo from '../../components/Moo'
 
 const NotFoundPage = () => {
   return (
-    <Moo />
+    <Moo data-testid="page-404" />
   )
 }
 

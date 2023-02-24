@@ -1,0 +1,81 @@
+[
+  {
+    "sha": "db5e6250d4bbb70c5085c58694a2e9c78c3f6371",
+    "node_id": "C_kwDOAJy2KtoAKGRiNWU2MjUwZDRiYmI3MGM1MDg1YzU4Njk0YTJlOWM3OGMzZjYzNzE",
+    "commit": {
+      "author": {
+        "name": "Sebastian Markbåge",
+        "email": "sebastian@calyptus.eu",
+        "date": "2023-02-17T21:00:18Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2023-02-17T21:00:18Z"
+      },
+      "message": "Rename yarn build-combined to just yarn build (#26192)\n\nIt's confusing to new contributors, and me, that you're supposed to use\r\n`yarn build-combined` for almost everything but not fixtures.\r\n\r\nWe should use only one build command for everything.\r\n\r\nUpdated fixtures to use the folder convention of build-combined.",
+      "tree": {
+        "sha": "d6d3936914fb4e7e9ef8662baf5f2f5f44401692",
+        "url": "https://api.github.com/repos/facebook/react/git/trees/d6d3936914fb4e7e9ef8662baf5f2f5f44401692"
+      },
+      "url": "https://api.github.com/repos/facebook/react/git/commits/db5e6250d4bbb70c5085c58694a2e9c78c3f6371",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJj7+riCRBK7hj4Ov3rIwAATRgIAAsWnHS0pMlrdktayHXNbTXO\nCQ66nwGw708b9bm0q8hbiTB+jEU4PkWIXUXZotIOOuyAPlTZekBPy1MaaA69E0M8\n1lYL4vXU94GVuI+CEuvSpA4ubsDerkaFdzTfeFZOPJ7t4mfrfVKAcdNmP7G/rkZ+\nd3yD1ngQtepzYmO/pnCbxe2mMLHEFOYv180nRnCkkW/7KqNoJZczvLWA/W92R/tv\n1VZtfy1WvKgJXaMoJ0fIq1Zwe3mw5Fm3XuBcjvBiFF450ARkWdeZxrkv3MYQECjz\npX7x5GjE4VoTwFGUAqGi7g4LNMS0rXkYrBKyi74aMWDqAkDcWQkDhSiNJ7Vhqmo=\n=gHYb\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree d6d3936914fb4e7e9ef8662baf5f2f5f44401692\nparent c9d9f524d7deaf3ec94e3d13dc84240bd63cded2\nauthor Sebastian Markbåge <sebastian@calyptus.eu> 1676667618 -0500\ncommitter GitHub <noreply@github.com> 1676667618 -0500\n\nRename yarn build-combined to just yarn build (#26192)\n\nIt's confusing to new contributors, and me, that you're supposed to use\r\n`yarn build-combined` for almost everything but not fixtures.\r\n\r\nWe should use only one build command for everything.\r\n\r\nUpdated fixtures to use the folder convention of build-combined."
+      }
+    },
+    "url": "https://api.github.com/repos/facebook/react/commits/db5e6250d4bbb70c5085c58694a2e9c78c3f6371",
+    "html_url": "https://github.com/facebook/react/commit/db5e6250d4bbb70c5085c58694a2e9c78c3f6371",
+    "comments_url": "https://api.github.com/repos/facebook/react/commits/db5e6250d4bbb70c5085c58694a2e9c78c3f6371/comments",
+    "author": {
+      "login": "sebmarkbage",
+      "id": 63648,
+      "node_id": "MDQ6VXNlcjYzNjQ4",
+      "avatar_url": "https://avatars.githubusercontent.com/u/63648?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/sebmarkbage",
+      "html_url": "https://github.com/sebmarkbage",
+      "followers_url": "https://api.github.com/users/sebmarkbage/followers",
+      "following_url": "https://api.github.com/users/sebmarkbage/following{/other_user}",
+      "gists_url": "https://api.github.com/users/sebmarkbage/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/sebmarkbage/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/sebmarkbage/subscriptions",
+      "organizations_url": "https://api.github.com/users/sebmarkbage/orgs",
+      "repos_url": "https://api.github.com/users/sebmarkbage/repos",
+      "events_url": "https://api.github.com/users/sebmarkbage/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/sebmarkbage/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "c9d9f524d7deaf3ec94e3d13dc84240bd63cded2",
+        "url": "https://api.github.com/repos/facebook/react/commits/c9d9f524d7deaf3ec94e3d13dc84240bd63cded2",
+        "html_url": "https://github.com/facebook/react/commit/c9d9f524d7deaf3ec94e3d13dc84240bd63cded2"
+      }
+    ]
+  }
+]

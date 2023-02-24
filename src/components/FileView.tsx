@@ -1,11 +1,11 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import ListIcon from '@mui/icons-material/List';
-import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import MarkdownView from './MarkdownView';
 import SourceCodeView from './SourceCodeView';
 import FileViewToolbar from './ui/FileViewToolbar'
+import FileViewWrapper from './ui/FileViewWrapper'
 import mimeTypes from "mime-types";
 import Loading from './Loading';
 import { SxProps } from '@mui/system';
@@ -60,14 +60,7 @@ const FileView: React.FC<FileViewProps> = (props) => {
 
   return (
     <>
-      <Paper
-        variant="outlined"
-        sx={{
-          margin: '1rem 0',
-          color: 'inherit',
-          ...sx
-        }}
-      >
+      <FileViewWrapper sx={sx}>
         <FileViewToolbar>
           <IconButton>
             <ListIcon />
@@ -78,12 +71,13 @@ const FileView: React.FC<FileViewProps> = (props) => {
           sx={{
             overflow: 'auto'
           }}
+          data-testid="file-view-content"
         >
           <Loading loading={loading}>
             {RenderDom}
           </Loading>
         </Box>
-      </Paper>
+      </FileViewWrapper>
     </>
   )
 }

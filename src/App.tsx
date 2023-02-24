@@ -22,9 +22,40 @@ const Tree = React.lazy(() => import("./pages/home/tree"))
 const Find = React.lazy(() => import("./pages/home/find"))
 
 const RepositoryProvider = React.lazy(() => import("./contexts/repository"))
+
+declare module '@mui/material/styles' {
+  interface BreakpointOverrides {
+    xs: true;
+    sm: true;
+    md: true;
+    lg: true;
+    xl: true;
+    ms: true;
+    mm: true;
+    ml: true;
+    tablet: true;
+    laptop: true;
+    desktop: true;
+  }
+}
 const theme = createTheme({
   palette: {
     mode: 'dark'
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+      ms: 0,
+      mm: 320,
+      ml: 375,
+      tablet: 425,
+      laptop: 768,
+      desktop: 1024,
+    }
   },
   components: {
     MuiTypography: {
@@ -45,7 +76,14 @@ function App() {
           <ThemeProvider theme={theme}>
             <RepositoryProvider>
               <Header />
-              <Container>
+              <Container
+                data-testid="container"
+                sx={{
+                  '&': {
+                    'padding': '0 16px'
+                  }
+                }}
+              >
                 <Suspense fallback={
                   <Backdrop
                     sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}

@@ -73,6 +73,7 @@ const GithubMenuButton = function<T extends C3.ChartType>(props: GithubMenuButto
             className={value === item.value ? 'selected': ''}
             onClick={() => handleClose(item.value)}
             key={index}
+            data-testid={"github-menu-popper-menu-item-" + index}
           >
             {item.text}
           </GithubMenuPopperMenuItem>

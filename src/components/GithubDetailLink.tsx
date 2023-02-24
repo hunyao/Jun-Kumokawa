@@ -4,21 +4,24 @@ interface GithubDetailLinkProps {
   href: string,
   icon: React.ReactElement,
   number: number,
-  name: string
+  name: string,
+  className?: string
 }
 const GithubDetailLink: React.FC<GithubDetailLinkProps> = (props) => {
   const {
     href,
     icon,
     number,
-    name
+    name,
+    className = ''
   } = props;
 
   return (
     <>
       <GithubLink
-        className="no-underline primary"
+        className={"no-underline primary " + className}
         href={href}
+        data-testid="github-detail-link"
       >
         <strong>
           <span>

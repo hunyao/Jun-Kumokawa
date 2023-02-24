@@ -1,0 +1,81 @@
+[
+  {
+    "sha": "c7967b194b41cb16907eed718b78d89120089f6a",
+    "node_id": "C_kwDOAJy2KtoAKGM3OTY3YjE5NGI0MWNiMTY5MDdlZWQ3MThiNzhkODkxMjAwODlmNmE",
+    "commit": {
+      "author": {
+        "name": "Sebastian Silbermann",
+        "email": "silbermann.sebastian@gmail.com",
+        "date": "2023-02-20T21:16:23Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2023-02-20T21:16:23Z"
+      },
+      "message": "Distribute bundles more evenly into CI shards (#26208)\n\n## Summary\r\n\r\nPreviously, we distributed bundles into shards and then checked if we\r\nneed to actually build that bundle. This can under-utilize shards\r\nheavily (e.g.\r\nhttps://app.circleci.com/pipelines/github/facebook/react/38611/workflows/df9e56e7-d476-49ee-9392-d8b37c81aa66/jobs/630545/parallel-runs/28?filterBy=ALL\r\nonly building a single bundle).\r\n\r\nThis won't result in an optimal distribution but, if we're lucky, we\r\nmight end up with shard #26 not taking 7mins anymore. The slowest shard\r\nultimately decicdes when we can start with testing builds.\r\n\r\n## How did you test this change?\r\n\r\n- [x] `CIRCLE_NODE_INDEX=28 CIRCLE_NODE_TOTAL=40 yarn build` building\r\nmore than 1 bundle\r\n- [x] Check timings of `yarn_build` so that we don't up with an\r\nover-stuffed shard (e.g. a shard having to build all the expensive\r\nbundles). Casually dropping 60min idle time 🎉:\r\n- Before:\r\nhttps://app.circleci.com/pipelines/github/facebook/react/38683/workflows/a41533d7-811c-439d-9751-214ba06035c5/jobs/632230/timing\r\n- After:\r\nhttps://app.circleci.com/pipelines/github/facebook/react/38686/workflows/8a770df6-5b3e-41ea-b3b5-10abeae703e7/jobs/632247/timing",
+      "tree": {
+        "sha": "52c553f1b17a475091ca57456f7aaeefe331d820",
+        "url": "https://api.github.com/repos/facebook/react/git/trees/52c553f1b17a475091ca57456f7aaeefe331d820"
+      },
+      "url": "https://api.github.com/repos/facebook/react/git/commits/c7967b194b41cb16907eed718b78d89120089f6a",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJj8+MnCRBK7hj4Ov3rIwAAfqwIAG8N/yAFkoK1zBjsLh0DSiMt\n16CKb0vWOkdfBF5BBStZBOFaNPh6YDlC5gijUtLni6xBd0yEuRTtEqMseCtxzQFk\nDJ2U4EOGCEQSblo6vJaj/WC6pM1G4ZXrntquTE0JARX8Qi2nJ85cQ1kQMauNm+UN\nochSzR2I5opWSE/jihtLXKijOo6KW+wPYtHSZl6FgMTblUNlpFwXBYqX7UXW6Gua\nATMxzr1jH4LqT2omPisqaycAnwZabQ0zeyjUFBKhMGu8mpR2F2GG3mXjE848tPrV\n4Ls8Io6WB5SPA1qb3M6YV8jcjWPwDIG8jnvHYqQKVtPC1kZeOShMaNr/gyNC0Gw=\n=lPg4\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 52c553f1b17a475091ca57456f7aaeefe331d820\nparent bb1e3d0e19f1e36ecb5b9e58d40bbf59fa220b73\nauthor Sebastian Silbermann <silbermann.sebastian@gmail.com> 1676927783 +0100\ncommitter GitHub <noreply@github.com> 1676927783 +0100\n\nDistribute bundles more evenly into CI shards (#26208)\n\n## Summary\r\n\r\nPreviously, we distributed bundles into shards and then checked if we\r\nneed to actually build that bundle. This can under-utilize shards\r\nheavily (e.g.\r\nhttps://app.circleci.com/pipelines/github/facebook/react/38611/workflows/df9e56e7-d476-49ee-9392-d8b37c81aa66/jobs/630545/parallel-runs/28?filterBy=ALL\r\nonly building a single bundle).\r\n\r\nThis won't result in an optimal distribution but, if we're lucky, we\r\nmight end up with shard #26 not taking 7mins anymore. The slowest shard\r\nultimately decicdes when we can start with testing builds.\r\n\r\n## How did you test this change?\r\n\r\n- [x] `CIRCLE_NODE_INDEX=28 CIRCLE_NODE_TOTAL=40 yarn build` building\r\nmore than 1 bundle\r\n- [x] Check timings of `yarn_build` so that we don't up with an\r\nover-stuffed shard (e.g. a shard having to build all the expensive\r\nbundles). Casually dropping 60min idle time 🎉:\r\n- Before:\r\nhttps://app.circleci.com/pipelines/github/facebook/react/38683/workflows/a41533d7-811c-439d-9751-214ba06035c5/jobs/632230/timing\r\n- After:\r\nhttps://app.circleci.com/pipelines/github/facebook/react/38686/workflows/8a770df6-5b3e-41ea-b3b5-10abeae703e7/jobs/632247/timing"
+      }
+    },
+    "url": "https://api.github.com/repos/facebook/react/commits/c7967b194b41cb16907eed718b78d89120089f6a",
+    "html_url": "https://github.com/facebook/react/commit/c7967b194b41cb16907eed718b78d89120089f6a",
+    "comments_url": "https://api.github.com/repos/facebook/react/commits/c7967b194b41cb16907eed718b78d89120089f6a/comments",
+    "author": {
+      "login": "eps1lon",
+      "id": 12292047,
+      "node_id": "MDQ6VXNlcjEyMjkyMDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12292047?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/eps1lon",
+      "html_url": "https://github.com/eps1lon",
+      "followers_url": "https://api.github.com/users/eps1lon/followers",
+      "following_url": "https://api.github.com/users/eps1lon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/eps1lon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/eps1lon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/eps1lon/subscriptions",
+      "organizations_url": "https://api.github.com/users/eps1lon/orgs",
+      "repos_url": "https://api.github.com/users/eps1lon/repos",
+      "events_url": "https://api.github.com/users/eps1lon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/eps1lon/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "bb1e3d0e19f1e36ecb5b9e58d40bbf59fa220b73",
+        "url": "https://api.github.com/repos/facebook/react/commits/bb1e3d0e19f1e36ecb5b9e58d40bbf59fa220b73",
+        "html_url": "https://github.com/facebook/react/commit/bb1e3d0e19f1e36ecb5b9e58d40bbf59fa220b73"
+      }
+    ]
+  }
+]

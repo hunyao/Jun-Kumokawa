@@ -8,9 +8,10 @@ const ProfileAdditional = styled(React.forwardRef<HTMLDivElement, GridProps<"div
   <Grid
     container
     alignItems="center"
-    spacing={1}
     className={className + " profile-additional"}
     ref={ref}
+    data-testid="profile-additional"
+    gap={1}
     {...rest}
   />
 )))`

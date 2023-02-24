@@ -10,6 +10,7 @@ const AdditionalInformationSummary = styled(React.forwardRef<HTMLDivElement, Acc
     expandIcon={<CheckIcon />}
     className={className + " additional-information-summary"}
     ref={ref}
+    data-testid="additional-information-summary"
     {...rest}
   />
 )))(({ theme }) => ({

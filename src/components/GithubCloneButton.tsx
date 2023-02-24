@@ -20,10 +20,13 @@ const GithubCloneButton = () => {
 
   return (
     <ClickAwayListener onClickAway={() => setOpen(false)}>
-      <Box>
+      <Box
+        data-testid="github-clone-button"
+      >
         <GithubButton
           className="primary"
           onClick={() => setOpen(!open)}
+          data-testid="github-clone-button-button"
         >
           <span>
             Code
@@ -32,13 +35,17 @@ const GithubCloneButton = () => {
         </GithubButton>
         <GithubCloneModal
           className={open ? 'active': ''}
+          data-testid="github-clone-modal"
         >
           <Box p={2}>
             <Grid
               container
               className="header"
             >
-              <Grid item>
+              <Grid
+                item
+                data-testid="github-clone-modal-header"
+              >
                 <SvgIcon
                   component={TerminalIcon}
                   sx={{
@@ -51,6 +58,7 @@ const GithubCloneButton = () => {
               <Grid
                 item
                 ml="auto"
+                data-testid="github-clone-modal-header-help"
               >
                 <Tooltip title="Which remote URL should I use?">
                   <GithubLink
@@ -94,6 +102,7 @@ const GithubCloneButton = () => {
                 '&:hover': {
                   textDecoration: 'none'
               }}}
+              data-testid="github-clone-modal-download-zip"
             >
               <SvgIcon
                 component={ZipIcon}

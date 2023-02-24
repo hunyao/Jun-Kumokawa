@@ -10,11 +10,15 @@ import GithubNavMenu from '../../components/ui/GithubNavMenu'
 import GithubNavMenuListItem from '../../components/ui/GithubNavMenuListItem'
 import ChartComponent from '../../components/ChartComponent'
 import C3 from 'c3';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Skill = () => {
   const { skillGroupList, skillAllInOne } = React.useContext(PersonalDataContext);
   const [ selectedMenu, setSelectedMenu ] = React.useState<string>("All Technologies");
   const [ selectedChartType, setSelectedCartType ] = React.useState<C3.ChartType>("bar");
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('laptop'));
 
   const selectedItems = React.useMemo(() => {
     if (selectedMenu === 'All Technologies') {
@@ -34,14 +38,15 @@ const Skill = () => {
         flexWrap="nowrap"
         gap={2}
         mt={2}
+        data-testid="page-skill"
+        flexDirection={matches ? 'column': 'row'}
       >
         <Grid
+          xs={12}
+          laptop={3}
           item
-          xs={3}
         >
-          <Box
-            top={16}
-          >
+          <Box>
             <GithubNavMenu>
               <List disablePadding>
                 <GithubNavMenuListItem
@@ -74,7 +79,8 @@ const Skill = () => {
         <Grid
           item
           container
-          xs={9}
+          xs={12}
+          laptop={9}
           flexDirection="column"
         >
           <Grid

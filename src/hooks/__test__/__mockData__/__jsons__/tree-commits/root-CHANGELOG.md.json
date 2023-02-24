@@ -1,0 +1,81 @@
+[
+  {
+    "sha": "b0671f9ea03133298144f169f1062d274f7f57c0",
+    "node_id": "C_kwDOAJy2KtoAKGIwNjcxZjllYTAzMTMzMjk4MTQ0ZjE2OWYxMDYyZDI3NGY3ZjU3YzA",
+    "commit": {
+      "author": {
+        "name": "Sebastian Silbermann",
+        "email": "silbermann.sebastian@gmail.com",
+        "date": "2023-01-30T07:12:48Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2023-01-30T07:12:48Z"
+      },
+      "message": "Include removal of scheduler/tracing in changelog (#26063)",
+      "tree": {
+        "sha": "d21d23d28193035679bea9ebb586709835505237",
+        "url": "https://api.github.com/repos/facebook/react/git/trees/d21d23d28193035679bea9ebb586709835505237"
+      },
+      "url": "https://api.github.com/repos/facebook/react/git/commits/b0671f9ea03133298144f169f1062d274f7f57c0",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJj123wCRBK7hj4Ov3rIwAAae0IAHQdtHyFi+7W95GhBrMvqzV+\nPYzAcYjMOgq1+lzjHkRws5RlBIjhkVroFy8Od2XPzZDsQDtnbmhl3yDJSELxVaCP\ni//8r+T23G5u51AmsajSsvWbOpq6w4J9K0oYvsJL/MLMHX4icgw3C1wX601v/VFt\nbMntAX1jSdeHTWA5D7zuPpDQ90T1M0p1zZUqLsOQWtIpQd2m3r46dAfJ/iILsgDl\nhq2Y8FEluKV53etFFOK8TVKhddslazVFRexMceqyoQhWKj14SiMfxgR+EkgmyYy8\nuba3jEA6ntcd/+x7N0zT40zQaA/mMdmAB858owixh8gmEjanZpf2umjybmuKjHM=\n=017J\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree d21d23d28193035679bea9ebb586709835505237\nparent ce09ace9a23b61dfba53f5a83d52b377bc642bae\nauthor Sebastian Silbermann <silbermann.sebastian@gmail.com> 1675062768 +0100\ncommitter GitHub <noreply@github.com> 1675062768 +0100\n\nInclude removal of scheduler/tracing in changelog (#26063)\n\n"
+      }
+    },
+    "url": "https://api.github.com/repos/facebook/react/commits/b0671f9ea03133298144f169f1062d274f7f57c0",
+    "html_url": "https://github.com/facebook/react/commit/b0671f9ea03133298144f169f1062d274f7f57c0",
+    "comments_url": "https://api.github.com/repos/facebook/react/commits/b0671f9ea03133298144f169f1062d274f7f57c0/comments",
+    "author": {
+      "login": "eps1lon",
+      "id": 12292047,
+      "node_id": "MDQ6VXNlcjEyMjkyMDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12292047?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/eps1lon",
+      "html_url": "https://github.com/eps1lon",
+      "followers_url": "https://api.github.com/users/eps1lon/followers",
+      "following_url": "https://api.github.com/users/eps1lon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/eps1lon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/eps1lon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/eps1lon/subscriptions",
+      "organizations_url": "https://api.github.com/users/eps1lon/orgs",
+      "repos_url": "https://api.github.com/users/eps1lon/repos",
+      "events_url": "https://api.github.com/users/eps1lon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/eps1lon/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "ce09ace9a23b61dfba53f5a83d52b377bc642bae",
+        "url": "https://api.github.com/repos/facebook/react/commits/ce09ace9a23b61dfba53f5a83d52b377bc642bae",
+        "html_url": "https://github.com/facebook/react/commit/ce09ace9a23b61dfba53f5a83d52b377bc642bae"
+      }
+    ]
+  }
+]

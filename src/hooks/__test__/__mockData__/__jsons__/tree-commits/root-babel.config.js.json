@@ -1,0 +1,81 @@
+[
+  {
+    "sha": "b12a982062ff3be7fdb95a104b800607f1d25976",
+    "node_id": "MDY6Q29tbWl0MTAyNzAyNTA6YjEyYTk4MjA2MmZmM2JlN2ZkYjk1YTEwNGI4MDA2MDdmMWQyNTk3Ng==",
+    "commit": {
+      "author": {
+        "name": "lunaruan",
+        "email": "lunaris.ruan@gmail.com",
+        "date": "2019-08-09T00:46:35Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2019-08-09T00:46:35Z"
+      },
+      "message": "Babel 7 (#16297)\n\nUpgraded from Babel 6 to Babel 7.\r\n\r\nThe only significant change seems to be the way `@babel/plugin-transform-classes` handles classes differently from `babel-plugin-transform-es2015-classes`. In regular mode, the former injects a `_createClass` function that increases the bundle size, and in the latter it removes the safeguard checks. However, this is okay because we don't all classes in new features, and we want to deprecate class usage in the future in the react repo.\r\n\r\nCo-authored-by: Luna Ruan <luna@fb.com>\r\nCo-authored-by: Abdul Rauf <abdulraufmujahid@gmail.com>\r\nCo-authored-by: Maksim Markelov <maks-markel@mail.ru>",
+      "tree": {
+        "sha": "2edb8025612da043a2c308179ee5dc2994c4a708",
+        "url": "https://api.github.com/repos/facebook/react/git/trees/2edb8025612da043a2c308179ee5dc2994c4a708"
+      },
+      "url": "https://api.github.com/repos/facebook/react/git/commits/b12a982062ff3be7fdb95a104b800607f1d25976",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJdTMJrCRBK7hj4Ov3rIwAAdHIIAI5LtKBkVMWEjxq/LHrlcWab\nS5IC6ekmDAaASYntW/l6TEukd3c0K8RW5As2eB2YyNOK28GcRFhaoE1JRUythhU6\nGVWCXPr6CGN+dRbeQbPNO92qBphHh2IYZ+y48G73lbgS54Yl1NWH2tzLG6kIgwA6\nXYb7RPryHvvkVGEFgp3zaPL3lh+6rSmsJmJ5yFoKNDumv2bZ7pSZXzt6kCad5OkU\nnGIASviuG8cBzvutV1EzvP8x8SdSwgP4MB+aGu8x1SplxYU+7Rewx/QKqZWx6wQo\nCJxc6f/d5xIEEZh8NHRV76utO16CTqo18KfB4iAP9sOkrzy/mmoVuUbrJ+SVmlo=\n=0Cql\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 2edb8025612da043a2c308179ee5dc2994c4a708\nparent d77c6232d37238013dd96f3c37b7e4f77384e0f9\nauthor lunaruan <lunaris.ruan@gmail.com> 1565311595 -0700\ncommitter GitHub <noreply@github.com> 1565311595 -0700\n\nBabel 7 (#16297)\n\nUpgraded from Babel 6 to Babel 7.\r\n\r\nThe only significant change seems to be the way `@babel/plugin-transform-classes` handles classes differently from `babel-plugin-transform-es2015-classes`. In regular mode, the former injects a `_createClass` function that increases the bundle size, and in the latter it removes the safeguard checks. However, this is okay because we don't all classes in new features, and we want to deprecate class usage in the future in the react repo.\r\n\r\nCo-authored-by: Luna Ruan <luna@fb.com>\r\nCo-authored-by: Abdul Rauf <abdulraufmujahid@gmail.com>\r\nCo-authored-by: Maksim Markelov <maks-markel@mail.ru>\r\n"
+      }
+    },
+    "url": "https://api.github.com/repos/facebook/react/commits/b12a982062ff3be7fdb95a104b800607f1d25976",
+    "html_url": "https://github.com/facebook/react/commit/b12a982062ff3be7fdb95a104b800607f1d25976",
+    "comments_url": "https://api.github.com/repos/facebook/react/commits/b12a982062ff3be7fdb95a104b800607f1d25976/comments",
+    "author": {
+      "login": "lunaruan",
+      "id": 2735514,
+      "node_id": "MDQ6VXNlcjI3MzU1MTQ=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2735514?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/lunaruan",
+      "html_url": "https://github.com/lunaruan",
+      "followers_url": "https://api.github.com/users/lunaruan/followers",
+      "following_url": "https://api.github.com/users/lunaruan/following{/other_user}",
+      "gists_url": "https://api.github.com/users/lunaruan/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/lunaruan/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/lunaruan/subscriptions",
+      "organizations_url": "https://api.github.com/users/lunaruan/orgs",
+      "repos_url": "https://api.github.com/users/lunaruan/repos",
+      "events_url": "https://api.github.com/users/lunaruan/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/lunaruan/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "d77c6232d37238013dd96f3c37b7e4f77384e0f9",
+        "url": "https://api.github.com/repos/facebook/react/commits/d77c6232d37238013dd96f3c37b7e4f77384e0f9",
+        "html_url": "https://github.com/facebook/react/commit/d77c6232d37238013dd96f3c37b7e4f77384e0f9"
+      }
+    ]
+  }
+]

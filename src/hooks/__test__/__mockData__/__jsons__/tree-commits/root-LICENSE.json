@@ -1,0 +1,81 @@
+[
+  {
+    "sha": "9cdf8a99edcfd94d7420835ea663edca04237527",
+    "node_id": "C_kwDOAJy2KtoAKDljZGY4YTk5ZWRjZmQ5NGQ3NDIwODM1ZWE2NjNlZGNhMDQyMzc1Mjc",
+    "commit": {
+      "author": {
+        "name": "Andrew Clark",
+        "email": "git@andrewclark.io",
+        "date": "2022-10-18T15:19:24Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2022-10-18T15:19:24Z"
+      },
+      "message": "[Codemod] Update copyright header to Meta (#25315)\n\n* Facebook -> Meta in copyright\r\n\r\nrg --files | xargs sed -i 's#Copyright (c) Facebook, Inc. and its affiliates.#Copyright (c) Meta Platforms, Inc. and affiliates.#g'\r\n\r\n* Manual tweaks",
+      "tree": {
+        "sha": "f1d0293a8d2f53fed35394f953c74ab4ebf0a30c",
+        "url": "https://api.github.com/repos/facebook/react/git/trees/f1d0293a8d2f53fed35394f953c74ab4ebf0a30c"
+      },
+      "url": "https://api.github.com/repos/facebook/react/git/commits/9cdf8a99edcfd94d7420835ea663edca04237527",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJjTsP8CRBK7hj4Ov3rIwAAi9gIAFGaDcl1EcAZ1T5A3Dey8I28\nV2hLPQDhNaVseidac1efhylNxFm5IUzu7BGquYQtMbheOALbPbEGS28Agx4v8Npq\nAfTIrUIMvvDV0/AQfYCXozNsypUv9yeeBqXEgoXSK8EORb6d79TE8rKDpxEDlSMN\nswkau3kN+M1B84Se/hVXhdUfMXrAfGzeTgB/e92ATJho7Y15Ty5lVJ7dZlxiH7nG\n2KS/7hSPjg6sqWLqpUI6udFXKCBDFblwwRkvR1KdXvYaLN6v3NilxgWEKmKiPGX4\nuSvP96I0nK5Jgsh2x0aeAWEAxnku4J0YFh8wQtGyZb/0MbX8nPs8s+TRSoJZXhw=\n=MWhO\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree f1d0293a8d2f53fed35394f953c74ab4ebf0a30c\nparent e54015e267698a23ee85ddf192769d716ed04742\nauthor Andrew Clark <git@andrewclark.io> 1666106364 -0400\ncommitter GitHub <noreply@github.com> 1666106364 -0400\n\n[Codemod] Update copyright header to Meta (#25315)\n\n* Facebook -> Meta in copyright\r\n\r\nrg --files | xargs sed -i 's#Copyright (c) Facebook, Inc. and its affiliates.#Copyright (c) Meta Platforms, Inc. and affiliates.#g'\r\n\r\n* Manual tweaks"
+      }
+    },
+    "url": "https://api.github.com/repos/facebook/react/commits/9cdf8a99edcfd94d7420835ea663edca04237527",
+    "html_url": "https://github.com/facebook/react/commit/9cdf8a99edcfd94d7420835ea663edca04237527",
+    "comments_url": "https://api.github.com/repos/facebook/react/commits/9cdf8a99edcfd94d7420835ea663edca04237527/comments",
+    "author": {
+      "login": "acdlite",
+      "id": 3624098,
+      "node_id": "MDQ6VXNlcjM2MjQwOTg=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3624098?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/acdlite",
+      "html_url": "https://github.com/acdlite",
+      "followers_url": "https://api.github.com/users/acdlite/followers",
+      "following_url": "https://api.github.com/users/acdlite/following{/other_user}",
+      "gists_url": "https://api.github.com/users/acdlite/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/acdlite/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/acdlite/subscriptions",
+      "organizations_url": "https://api.github.com/users/acdlite/orgs",
+      "repos_url": "https://api.github.com/users/acdlite/repos",
+      "events_url": "https://api.github.com/users/acdlite/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/acdlite/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "e54015e267698a23ee85ddf192769d716ed04742",
+        "url": "https://api.github.com/repos/facebook/react/commits/e54015e267698a23ee85ddf192769d716ed04742",
+        "html_url": "https://github.com/facebook/react/commit/e54015e267698a23ee85ddf192769d716ed04742"
+      }
+    ]
+  }
+]

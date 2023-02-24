@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 
 const moo = '                 (__) \n                 (oo) \n           /------\\/ \n          / |    ||   \n         *  /\\---/\\ \n            ~~   ~~   \n..."How may I help you sir?"...\n'
 
-const Moo = () => {
+const Moo: React.FC = (props) => {
   return (
     <Grid
       container
@@ -13,6 +13,8 @@ const Moo = () => {
       sx={{
         whiteSpace: 'pre',
       }}
+      data-testid="moo"
+      {...props}
     >
       {moo}
     </Grid>

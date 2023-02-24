@@ -52,7 +52,10 @@ const GithubCloneSelection = () => {
   ])
 
   return (
-    <Box mt={1}>
+    <Box
+      mt={1}
+      data-testid="github-clone-selection"
+    >
       <TabMenu
         menus={Menus}
         value={menuId}

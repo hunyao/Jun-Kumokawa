@@ -1,0 +1,81 @@
+[
+  {
+    "sha": "81b79c7c2966d08eb74954805394fe6cb290b796",
+    "node_id": "C_kwDOAJy2KtoAKDgxYjc5YzdjMjk2NmQwOGViNzQ5NTQ4MDUzOTRmZTZjYjI5MGI3OTY",
+    "commit": {
+      "author": {
+        "name": "Brandon Chan",
+        "email": "70081031+Bchan1999@users.noreply.github.com",
+        "date": "2022-09-06T15:06:18Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2022-09-06T15:06:18Z"
+      },
+      "message": "Added the word 'own' to the README file for design consistency (#25185)",
+      "tree": {
+        "sha": "f21109f0ed6b243a3132a28a474087813b305756",
+        "url": "https://api.github.com/repos/facebook/react/git/trees/f21109f0ed6b243a3132a28a474087813b305756"
+      },
+      "url": "https://api.github.com/repos/facebook/react/git/commits/81b79c7c2966d08eb74954805394fe6cb290b796",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJjF2HqCRBK7hj4Ov3rIwAA4UkIACi4ttHAOuoST7LT2rjRqNGH\nDzqaa+DX6Ab7sos+lXc9rV59tFFMSvBDxCZdZSViaMm4fp+7Pea99qS2vypMJKvc\nVNUOThVjWraxW8Rj/KYb5CqXB9VzQDKWcHe62vcN+LVZ4pigMuI5Q+k+o/qZWX9c\nkqQ0/f32avasXK4bT+TvHHVMPLiW6Ndh1LiFzge6WhpXUpeFtlEDTplhV3qX55FV\nRy6X9SH5Ctoo9EeL68hYejxW5aqTnxx3eJFU92pt9jMTwA3EGDbD8Uh9vUCu8sjj\nYEfo1f8jhIIPIPjxnZyRNmY1csQfs4ldWo2yzylHmMYS2Ic1eUIA30udvk6RMrs=\n=GWp8\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree f21109f0ed6b243a3132a28a474087813b305756\nparent f0efa1164b7ca8523b081223954d05c88e92053b\nauthor Brandon Chan <70081031+Bchan1999@users.noreply.github.com> 1662476778 -0600\ncommitter GitHub <noreply@github.com> 1662476778 -0400\n\nAdded the word 'own' to the README file for design consistency (#25185)\n\n"
+      }
+    },
+    "url": "https://api.github.com/repos/facebook/react/commits/81b79c7c2966d08eb74954805394fe6cb290b796",
+    "html_url": "https://github.com/facebook/react/commit/81b79c7c2966d08eb74954805394fe6cb290b796",
+    "comments_url": "https://api.github.com/repos/facebook/react/commits/81b79c7c2966d08eb74954805394fe6cb290b796/comments",
+    "author": {
+      "login": "Bchan1999",
+      "id": 70081031,
+      "node_id": "MDQ6VXNlcjcwMDgxMDMx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/70081031?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Bchan1999",
+      "html_url": "https://github.com/Bchan1999",
+      "followers_url": "https://api.github.com/users/Bchan1999/followers",
+      "following_url": "https://api.github.com/users/Bchan1999/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Bchan1999/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Bchan1999/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Bchan1999/subscriptions",
+      "organizations_url": "https://api.github.com/users/Bchan1999/orgs",
+      "repos_url": "https://api.github.com/users/Bchan1999/repos",
+      "events_url": "https://api.github.com/users/Bchan1999/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Bchan1999/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "f0efa1164b7ca8523b081223954d05c88e92053b",
+        "url": "https://api.github.com/repos/facebook/react/commits/f0efa1164b7ca8523b081223954d05c88e92053b",
+        "html_url": "https://github.com/facebook/react/commit/f0efa1164b7ca8523b081223954d05c88e92053b"
+      }
+    ]
+  }
+]

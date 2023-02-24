@@ -9,13 +9,18 @@ const ProfileTitle = styled(React.forwardRef<HTMLDivElement, TypographyProps<"di
     component="div"
     className={className + " profile-title"}
     ref={ref}
+    data-testid="profile-title"
     {...rest}
   />
-)))`
-& {
-  color: #8b949e;
-  font-size: 14px;
-}
-`
+)))(({theme}) => ({
+  '&': {
+    'color': '#8b949e',
+    'fontSize': '14px',
+    'padding': '8px 0',
+    [theme.breakpoints.down('laptop')]: {
+      'padding': 0
+    }
+  }
+}))
 
 export default ProfileTitle;

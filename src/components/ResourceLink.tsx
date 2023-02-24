@@ -11,12 +11,16 @@ const ResourceLink: React.FC<ResourceLinkProps> = (props) => {
   const {
     icon,
     text,
-    viewBox = '0 0 24 24'
+    viewBox = '0 0 24 24',
+    ...rest
   } = props;
 
   return (
     <>
-      <Box mt={1}>
+      <Box
+        className="resource-link"
+        {...rest}
+      >
         <GithubLink
           href="#"
           className="no-underline"

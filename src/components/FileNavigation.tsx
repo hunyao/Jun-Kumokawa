@@ -37,7 +37,7 @@ const FileNavigation: React.FC<FileNavigationProps> = (props) => {
     if (mode === "overview") {
       return (
         <>
-          <Grid item ml={2}>
+          <Grid item ml={2} data-testid="file-navigation-branches">
             <GithubDetailLink
               href="#"
               icon={
@@ -50,7 +50,7 @@ const FileNavigation: React.FC<FileNavigationProps> = (props) => {
               name="branches"
             />
           </Grid>
-          <Grid item ml={2}>
+          <Grid item ml={2} data-testid="file-navigation-tags">
             <GithubDetailLink
               href="#"
               icon={
@@ -62,16 +62,17 @@ const FileNavigation: React.FC<FileNavigationProps> = (props) => {
               name="tags"
             />
           </Grid>
-          <Grid item ml="auto">
+          <Grid item ml="auto" data-testid="file-navigation-go-to-file">
             <GithubButton
               onClick={() => navigate('/find')}
+              data-testid="file-navigation-go-to-file-button"
             >
               <span>
                 Go to file
               </span>
             </GithubButton>
           </Grid>
-          <Grid item ml={1}>
+          <Grid item ml={1} data-testid="file-navigation-add-file">
             <GithubButton>
               <span>
                 Add file
@@ -79,7 +80,7 @@ const FileNavigation: React.FC<FileNavigationProps> = (props) => {
               <SvgIcon component={ArrowDropDownIcon} />
             </GithubButton>
           </Grid>
-          <Grid item ml={1}>
+          <Grid item ml={1} data-testid="file-navigation-clone-button">
             <GithubCloneButton />
           </Grid>
         </>
@@ -99,6 +100,7 @@ const FileNavigation: React.FC<FileNavigationProps> = (props) => {
             sx={{
               marginLeft: 1
             }}
+            data-testid="file-navigation-breadcrumbs"
           >
             <GithubLink
               href="#"
@@ -110,6 +112,7 @@ const FileNavigation: React.FC<FileNavigationProps> = (props) => {
                 e.preventDefault();
                 navigate("/");
               }}
+              data-testid="file-navigation-breadcrumbs-root"
             >
               {process.env.REACT_APP_REPOSITORY_NAME}
             </GithubLink>
@@ -118,6 +121,7 @@ const FileNavigation: React.FC<FileNavigationProps> = (props) => {
                 key={index}
                 href="#"
                 className="active"
+                data-testid={"file-navigation-breadcrumbs-" + index}
                 onClick={(e: React.MouseEvent) => {
                   e.preventDefault();
                   navigate(
@@ -138,20 +142,30 @@ const FileNavigation: React.FC<FileNavigationProps> = (props) => {
               sx={{
                 fontSize: 14
               }}
+              data-testid="file-navigation-breadcrumbs-last"
             >
               {lastUri}
             </Typography>
           </Breadcrumbs>
-          <Grid item ml="auto">
+          <Grid
+            item
+            ml="auto"
+            data-testid="file-navigation-go-to-file"
+          >
             <GithubButton
               onClick={() => navigate('/find')}
+              data-testid="file-navigation-go-to-file-button"
             >
               <span>
                 Go to file
               </span>
             </GithubButton>
           </Grid>
-          <Grid item ml={1}>
+          <Grid
+            item
+            ml={1}
+            data-testid="file-navigation-other-button"
+          >
             <GithubButton>
               <SvgIcon component={MoreHorizIcon} />
             </GithubButton>
@@ -175,6 +189,7 @@ const FileNavigation: React.FC<FileNavigationProps> = (props) => {
         container
         mt={3}
         alignItems="center"
+        data-testid="file-navigation"
       >
         <Grid item>
           <BranchSwitching />

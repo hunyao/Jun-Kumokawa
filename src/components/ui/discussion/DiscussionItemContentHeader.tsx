@@ -5,7 +5,12 @@ interface DiscussionItemContentHeaderUIProps extends React.HTMLAttributes<HTMLDi
   className?: string
 }
 const DiscussionItemContentHeader = styled(React.forwardRef<HTMLDivElement, DiscussionItemContentHeaderUIProps>(({ className, ...rest }, ref) => (
-  <div className={className + " discussion-item-content-header"} ref={ref} {...rest} />
+  <div
+    className={className + " discussion-item-content-header"}
+    ref={ref}
+    data-testid="discussion-item-content-header"
+    {...rest}
+  />
 )))`
 & {
   display: flex;

@@ -5,7 +5,13 @@ import { styled } from '@mui/material/styles';
 
 interface GithubNavMenuListItemUIProps {}
 const GithubNavMenuListItem = styled(React.forwardRef<HTMLLIElement, ListItemProps<'li', GithubNavMenuListItemUIProps>>(({className, ...rest}, ref) => (
-  <ListItem disablePadding className={className + " github-nav-menu-list-item"} ref={ref} {...rest} />
+  <ListItem
+    disablePadding
+    className={className + " github-nav-menu-list-item"}
+    ref={ref}
+    data-testid="github-nav-menu-list-item"
+    {...rest}
+  />
 )))`
 & {
   background: #0d1117;

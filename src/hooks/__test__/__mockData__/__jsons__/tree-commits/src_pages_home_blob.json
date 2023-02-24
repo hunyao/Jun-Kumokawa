@@ -1,0 +1,81 @@
+[
+  {
+    "sha": "6b3083266686f62b29462d32de75c6e71f7ba3e3",
+    "node_id": "C_kwDOAJy2KtoAKDZiMzA4MzI2NjY4NmY2MmIyOTQ2MmQzMmRlNzVjNmU3MWY3YmEzZTM",
+    "commit": {
+      "author": {
+        "name": "Jan Kassens",
+        "email": "jkassens@meta.com",
+        "date": "2023-01-31T13:25:05Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2023-01-31T13:25:05Z"
+      },
+      "message": "Upgrade prettier (#26081)\n\nThe old version of prettier we were using didn't support the Flow syntax\r\nto access properties in a type using `SomeType['prop']`. This updates\r\n`prettier` and `rollup-plugin-prettier` to the latest versions.\r\n\r\nI added the prettier config `arrowParens: \"avoid\"` to reduce the diff\r\nsize as the default has changed in Prettier 2.0. The largest amount of\r\nchanges comes from function expressions now having a space. This doesn't\r\nhave an option to preserve the old behavior, so we have to update this.",
+      "tree": {
+        "sha": "7dc47a4b08da2c7ad8cc3dd28d4a5685853fb08a",
+        "url": "https://api.github.com/repos/facebook/react/git/trees/7dc47a4b08da2c7ad8cc3dd28d4a5685853fb08a"
+      },
+      "url": "https://api.github.com/repos/facebook/react/git/commits/6b3083266686f62b29462d32de75c6e71f7ba3e3",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJj2RaxCRBK7hj4Ov3rIwAAP9EIAAkR8v0Ca1SqDXyt7VOI3D9y\nYfSiWgXymi4x81mq5Q1gmUz2T5tBqM/LeUznlDwwDDCE853z3iCxP75btPn5937G\nOnp7S9AGW/ExF0bWcfb4MKnUHm42XGBMWZ1jPwaPgdgRmww0gFinfladZyZJL5Xt\nVKbHJI4yGx4MqrMrE3MXb8ApStId1j11BOZ+kZB0r6rx2S8zfbNcV/k9l2Ytoeve\nFEwMTsWoXf5gTXBL5OPe2HxMZZ5reh1GEFTNYAFmpEgapWu2sLP3MccEgZ4liII7\nEIu81LsuAkmvGY9YaF+EKw30STfb5vMWACN/22qZMjIIzx/mj5Ux3Tr3HpeJ8sM=\n=TIE7\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 7dc47a4b08da2c7ad8cc3dd28d4a5685853fb08a\nparent 1f5ce59dd7b6869b1a17ede65aa301002ef31d4b\nauthor Jan Kassens <jkassens@meta.com> 1675171505 -0500\ncommitter GitHub <noreply@github.com> 1675171505 -0500\n\nUpgrade prettier (#26081)\n\nThe old version of prettier we were using didn't support the Flow syntax\r\nto access properties in a type using `SomeType['prop']`. This updates\r\n`prettier` and `rollup-plugin-prettier` to the latest versions.\r\n\r\nI added the prettier config `arrowParens: \"avoid\"` to reduce the diff\r\nsize as the default has changed in Prettier 2.0. The largest amount of\r\nchanges comes from function expressions now having a space. This doesn't\r\nhave an option to preserve the old behavior, so we have to update this."
+      }
+    },
+    "url": "https://api.github.com/repos/facebook/react/commits/6b3083266686f62b29462d32de75c6e71f7ba3e3",
+    "html_url": "https://github.com/facebook/react/commit/6b3083266686f62b29462d32de75c6e71f7ba3e3",
+    "comments_url": "https://api.github.com/repos/facebook/react/commits/6b3083266686f62b29462d32de75c6e71f7ba3e3/comments",
+    "author": {
+      "login": "kassens",
+      "id": 11849,
+      "node_id": "MDQ6VXNlcjExODQ5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11849?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/kassens",
+      "html_url": "https://github.com/kassens",
+      "followers_url": "https://api.github.com/users/kassens/followers",
+      "following_url": "https://api.github.com/users/kassens/following{/other_user}",
+      "gists_url": "https://api.github.com/users/kassens/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/kassens/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/kassens/subscriptions",
+      "organizations_url": "https://api.github.com/users/kassens/orgs",
+      "repos_url": "https://api.github.com/users/kassens/repos",
+      "events_url": "https://api.github.com/users/kassens/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/kassens/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "1f5ce59dd7b6869b1a17ede65aa301002ef31d4b",
+        "url": "https://api.github.com/repos/facebook/react/commits/1f5ce59dd7b6869b1a17ede65aa301002ef31d4b",
+        "html_url": "https://github.com/facebook/react/commit/1f5ce59dd7b6869b1a17ede65aa301002ef31d4b"
+      }
+    ]
+  }
+]
