@@ -1,8 +1,8 @@
 import { renderHook } from '@testing-library/react-hooks';
 import useTree from '../useTree';
-import { wrapper } from './customRender'
+import { wrapper } from '../../mockData/customRender'
 import { OctokitInstance } from '../../plugins/Octokit';
-import MockTree1Json from './__mockData__/__jsons__/tree/src_assets.json'
+import MockTree1Json from '../../mockData/__jsons__/tree/src_assets.json'
 
 jest.mock('../../plugins/Octokit')
 describe('Testing useTree', () => {

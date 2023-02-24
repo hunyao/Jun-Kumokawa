@@ -2,7 +2,7 @@ import React from 'react'
 import {render, fireEvent, waitFor, screen} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import Profile from '../Profile'
-import { wrapperForPersonal } from '../../hooks/__test__/customRender'
+import { wrapperForPersonal } from '../../mockData/customRender'
 import ProfileJSON from '../../data/profile.json'
 
 describe('Testing Profile', () => {

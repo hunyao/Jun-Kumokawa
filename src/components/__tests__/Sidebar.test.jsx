@@ -4,7 +4,7 @@ import '@testing-library/jest-dom'
 import Sidebar from '../Sidebar'
 import About from '../sidebar/About'
 import LanguageSidebar from '../sidebar/LanguageSidebar'
-import { wrapperForPersonal } from '../../hooks/__test__/customRender'
+import { wrapperForPersonal } from '../../mockData/customRender'
 
 jest.mock('../sidebar/About')
 jest.mock('../sidebar/LanguageSidebar')

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Provider as RepositoryProvider } from '../../contexts/repository'
-import { Provider as PersonalProvider } from '../../contexts/personalData'
-import MockData from './__mockData__'
-import {initial as personalData} from '../../contexts/personalData'
+import { Provider as RepositoryProvider } from '../contexts/repository'
+import { Provider as PersonalProvider } from '../contexts/personalData'
+import MockData from './'
+import {initial as personalData} from '../contexts/personalData'
 
 export const dispatchMockFn = jest.fn()
   .mockName('dispatchMockFn')

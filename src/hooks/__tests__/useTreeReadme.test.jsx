@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 import useTreeReadme from '../useTreeReadme';
-import { wrapper, wrapperWithoutData } from './customRender'
+import { wrapper, wrapperWithoutData } from '../../mockData/customRender'
 import { OctokitInstance } from '../../plugins/Octokit';
 
 jest.mock('../../plugins/Octokit')

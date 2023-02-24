@@ -49,6 +49,7 @@ const Profile = () => {
         container
         alignItems="center"
         flexDirection={matches ? 'column': 'row'}
+        data-testid="profile-name"
         sx={{
           gridArea: 'name'
         }}

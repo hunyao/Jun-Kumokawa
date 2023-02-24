@@ -6,8 +6,8 @@ import ListDirectoryContent from '../ListDirectoryContent'
 import useCurrentBranch from '../../hooks/useCurrentBranch'
 import useShaToPath from '../../hooks/useShaToPath'
 import usePreviousSha from '../../hooks/usePreviousSha'
-import * as MockTreeCommitsJson from '../../hooks/__test__/__mockData__/__jsons__/tree-commits/fixtures_concurrent_time-slicing'
-import MockTreeJson from '../../hooks/__test__/__mockData__/__jsons__/tree/fixtures_concurrent_time-slicing.json'
+import * as MockTreeCommitsJson from '../../mockData/__jsons__/tree-commits/fixtures_concurrent_time-slicing'
+import MockTreeJson from '../../mockData/__jsons__/tree/fixtures_concurrent_time-slicing.json'
 import { OctokitInstance } from '../../plugins/Octokit';
 import moment from 'moment';
 

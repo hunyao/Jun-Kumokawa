@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 import usePreviousSha from '../usePreviousSha';
-import { wrapper, wrapperWithoutData } from './customRender'
+import { wrapper, wrapperWithoutData } from '../../mockData/customRender'
 import useCurrentBranch from '../useCurrentBranch'
 
 jest.mock('../useCurrentBranch')

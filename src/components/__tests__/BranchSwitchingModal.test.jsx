@@ -2,7 +2,7 @@ import React from 'react'
 import {render, fireEvent, waitFor, screen} from '@testing-library/react'
 import UserEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom'
-import MockData from '../../hooks/__test__/__mockData__';
+import MockData from '../../mockData';
 import BranchSwitchingModal from '../BranchSwitchingModal'
 import useCurrentBranch from '../../hooks/useCurrentBranch'
 import useFilterBranches from '../../hooks/useFilterBranches'

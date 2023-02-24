@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks';
 import useRepository from '../useRepository';
-import MockData from './__mockData__'
-import { wrapper, wrapperWithoutData } from './customRender'
+import MockData from '../../mockData'
+import { wrapper, wrapperWithoutData } from '../../mockData/customRender'
 
 describe('Testing useRepository without any data', () => {
   test('if it is a property what should exist', () => {

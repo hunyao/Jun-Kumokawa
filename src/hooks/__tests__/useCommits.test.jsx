@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks';
 import useCommits from '../useCommits';
-import MockData from './__mockData__'
-import { wrapper, wrapperWithoutData } from './customRender'
+import MockData from '../../mockData'
+import { wrapper, wrapperWithoutData } from '../../mockData/customRender'
 
 describe('Testing useCommits', () => {
   test('if there is no data in the context', () => {

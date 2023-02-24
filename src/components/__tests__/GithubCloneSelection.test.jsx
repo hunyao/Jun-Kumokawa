@@ -2,8 +2,8 @@ import React from 'react'
 import {render, fireEvent, waitFor, screen} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import GithubCloneSelection from '../GithubCloneSelection';
-import { wrapper } from '../../hooks/__test__/customRender'
-import MockData from '../../hooks/__test__/__mockData__';
+import { wrapper } from '../../mockData/customRender'
+import MockData from '../../mockData';
 
 jest.mock('../GithubClipboardCopy', () => {
   return ({copyText, ...rest}) => <div {...rest} data-testid="github-clipboard-copy">This is GithubClipboardCopy component. The copyText is {copyText}</div>

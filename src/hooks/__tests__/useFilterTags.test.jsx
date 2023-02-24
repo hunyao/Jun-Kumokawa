@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks';
 import useFilterTags from '../useFilterTags';
-import MockData from './__mockData__'
-import { wrapper, wrapperWithoutData } from './customRender'
+import MockData from '../../mockData'
+import { wrapper, wrapperWithoutData } from '../../mockData/customRender'
 
 describe('Testing useFilterTags', () => {
   test('if there is no data in the context', () => {

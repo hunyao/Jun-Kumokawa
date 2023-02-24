@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks';
 import useFilterTrees from '../useFilterTrees';
-import MockData from './__mockData__'
-import { wrapper, wrapperWithoutData } from './customRender'
+import MockData from '../../mockData'
+import { wrapper, wrapperWithoutData } from '../../mockData/customRender'
 
 const filtering = (str) => {
   return MockData.trees.tree

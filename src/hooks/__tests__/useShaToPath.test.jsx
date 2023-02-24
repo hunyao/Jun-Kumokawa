@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 import useShaToPath from '../useShaToPath';
-import { wrapper, wrapperWithoutData } from './customRender'
+import { wrapper, wrapperWithoutData } from '../../mockData/customRender'
 
 describe('Testing useShaToPath', () => {
   test('if there is no data in the context', () => {

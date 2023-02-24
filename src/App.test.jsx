@@ -3,10 +3,10 @@ import { render, screen, waitFor } from '@testing-library/react';
 import App from './App';
 import { MemoryRouter } from 'react-router';
 import { OctokitInstance } from './plugins/Octokit';
-import MockData from './hooks/__test__/__mockData__';
-import MockTreeDataRoot from './hooks/__test__/__mockData__/__jsons__/tree/root.json'
-import MockTreeDataA from './hooks/__test__/__mockData__/__jsons__/tree/fixtures_concurrent_time-slicing.json'
-import * as MockRootTreeCommitsJson from './hooks/__test__/__mockData__/__jsons__/tree-commits/root'
+import MockData from './mockData';
+import MockTreeDataRoot from './mockData/__jsons__/tree/root.json'
+import MockTreeDataA from './mockData/__jsons__/tree/fixtures_concurrent_time-slicing.json'
+import * as MockRootTreeCommitsJson from './mockData/__jsons__/tree-commits/root'
 import CowJson from './pages/cow/cow.json'
 
 jest.mock('./plugins/Octokit')
@@ -93,22 +93,19 @@ describe('Testing App', () => {
     await waitFor(async () => expect(await screen.findByTestId('common-footer')).toBeInTheDocument())
     await waitFor(async () => expect(await screen.findByTestId(testId)).toBeInTheDocument())
   })
-  test.each([
-    [ '/moo', 'page-moo', 0 ],
-    [ '/moo?v', 'page-moo', 1 ],
-    [ '/moo?vv', 'page-moo', 2 ],
-    [ '/moo?vvv', 'page-moo', 3 ],
-    [ '/moo?vvvv', 'page-moo', 4 ],
-    [ '/moo?vvvvv', 'page-moo', 5 ],
-    [ '/moo?vvvvvv', 'page-moo', 6 ],
-    [ '/moo?vvvvvvv', 'page-moo', 7 ],
-    [ '/moo?vvvvvvvv', 'page-moo', 8 ],
-    [ '/moo?vvvvvvvvv', 'page-moo', 9 ],
-    [ '/moo?vvvvvvvvvv', 'page-moo', 10 ],
-    [ '/moo?vvvvvvvvvvv', 'page-moo', 11 ],
-    [ '/moo?vvvvvvvvvvvv', 'page-moo', 12 ],
-    [ '/moo?vvvvvvvvvvvvv', 'page-moo', 13 ],
-  ])('Testing routing %s', async (path, testId, index) => {
+  test.each(
+    ((max) => {
+      return Array
+        .from(Array(max).keys())
+        .map(i => {
+          return [
+            '/moo?' + 'v'.repeat(i),
+            'page-moo',
+            i
+          ]
+        })
+    })(14)
+  )('Testing routing %s', async (path, testId, index) => {
     render(
       <MemoryRouter initialEntries={[path]}>
         <App />
