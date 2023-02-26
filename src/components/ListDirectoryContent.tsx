@@ -13,6 +13,8 @@ import useCurrentBranch from '../hooks/useCurrentBranch'
 import usePreviousSha from '../hooks/usePreviousSha'
 import Loading from './Loading'
 import { GithubGetTreeResponseType, GithubListCommitsResponseType, Unpacked } from '../contexts/repository';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 type ListDirectoryTreeType = {
   subject: string,
@@ -29,6 +31,7 @@ interface ListDirectoryContentProps {
 const ListDirectoryContent: React.FC<ListDirectoryContentProps> = (props) => {
   const [ treeForDisplays, setTreeForDisplays ] = React.useState<Array<ListDirectoryTreeType>>([]);
   const [ loading, setLoading ] = React.useState<boolean>(true);
+  const [ show, setShow ] = React.useState<boolean>(false);
   const [ , currentBranchSha ] = useCurrentBranch();
   const getPathFromSha = useShaToPath();
   const {
@@ -38,6 +41,8 @@ const ListDirectoryContent: React.FC<ListDirectoryContentProps> = (props) => {
   } = props;
   const [ previousSha, isRootSha ] = usePreviousSha(sha);
   const navigate = useNavigate();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('laptop'));
 
   React.useEffect(() => {
     let mounted = true;
@@ -103,11 +108,22 @@ const ListDirectoryContent: React.FC<ListDirectoryContentProps> = (props) => {
         data-testid="list-directory-content"
       >
         <ListFilesItemRow
+          display={matches && !show ? '': 'none'}
+        >
+          <GithubLink
+            className="active"
+            sx={{
+              margin: '0 auto'
+            }}
+            onClick={() => setShow(true)}
+          >
+            View code
+          </GithubLink>
+        </ListFilesItemRow>
+        <ListFilesItemRow
           container
-          sx={{
-            display: isRootSha ? "none !important" : "inherit"
-          }}
           data-testid="list-directory-content-root-item"
+          display={((matches && show) || (!matches && !show)) && !isRootSha ? '': 'none'}
         >
           <Grid item flex="none">
             <GithubLink
@@ -157,6 +173,7 @@ const ListDirectoryContent: React.FC<ListDirectoryContentProps> = (props) => {
             <ListFilesItemRow
               key={index}
               data-testid={"list-files-item-row-" + index}
+              display={!matches || show ? '': 'none'}
             >
               <Grid
                 item

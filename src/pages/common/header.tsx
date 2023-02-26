@@ -9,12 +9,13 @@ import CatIcon from '../../assets/svgs/svg-cat';
 import Container from '@mui/material/Container';
 import SvgIcon from '@mui/material/SvgIcon';
 import { useNavigate, useLocation } from "react-router-dom";
-import ForestBackgroundImg from '../../assets/images/forest-background.jpg';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 import CodeIcon from '@mui/icons-material/Code';
 import InsightsIcon from '@mui/icons-material/Insights';
-import BackgrounPhoto from '../../components/ui/BackgroundPhoto'
+import BackgroundPhoto from '../../components/ui/BackgroundPhoto'
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Menus = [
   {
@@ -63,6 +64,8 @@ const Header = () => {
   const { pathname } = location;
   const [ menuId, setMenuId ] = React.useState<number | boolean>(0);
   const pathnameWithoutSlash = pathname.replace(/^\//, "").split('/')[0];
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('laptop'));
 
   React.useEffect(() => {
     const index = Menus.findIndex((menu) => {
@@ -109,11 +112,14 @@ const Header = () => {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <BackgrounPhoto />
-        <Box
+        <BackgroundPhoto
           sx={{
             boxShadow: 'inset 0 -1px 0 #21262d',
+            paddingTop: 2,
+            top: 0,
+            zIndex: 10
           }}
+          position={matches ? 'static': 'sticky'}
         >
           <Container>
             <Profile />
@@ -125,10 +131,11 @@ const Header = () => {
               }}
             />
           </Container>
-        </Box>
+        </BackgroundPhoto>
       </>
     )
   }, [
+    matches,
     menuId,
     navigate
   ])

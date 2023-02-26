@@ -14,15 +14,8 @@ const BackgroundPhoto = styled(React.forwardRef<HTMLDivElement, BoxProps<"div", 
   />
 )))(({theme}) => ({
   '&': {
-    'background': 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url(' + ForestBackgroundImg + ')',
-    'backgroundSize': 'cover',
-    'height': 200,
-    [theme.breakpoints.down('laptop')]: {
-      'height': 100
-    },
-    [theme.breakpoints.down('tablet')]: {
-      'display': 'none'
-    }
+    'background': 'linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.96)), url(' + ForestBackgroundImg + ')',
+    'backgroundSize': 'cover'
   }
 }))
 

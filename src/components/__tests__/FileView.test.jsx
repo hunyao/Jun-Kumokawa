@@ -47,7 +47,7 @@ describe('Testing FileView', () => {
 
     const { rerender } = render(<FileView {...props} />)
 
-    const element = screen.getByTestId('file-view')
+    const element = screen.getByTestId('file-view-wrapper')
     const elementContent = screen.getByTestId('file-view-content')
 
     expect(element).toBeInTheDocument();
@@ -74,7 +74,7 @@ describe('Testing FileView', () => {
 
     render(<FileView {...props} />)
 
-    const element = screen.getByTestId('file-view')
+    const element = screen.getByTestId('file-view-wrapper')
     const elementContent = screen.getByTestId('file-view-content')
     const markdownView = screen.getByTestId('markdown-view')
 
@@ -99,7 +99,7 @@ describe('Testing FileView', () => {
 
     render(<FileView {...props} />)
 
-    const element = screen.getByTestId('file-view')
+    const element = screen.getByTestId('file-view-wrapper')
     const elementContent = screen.getByTestId('file-view-content')
 
     expect(element).toBeInTheDocument();

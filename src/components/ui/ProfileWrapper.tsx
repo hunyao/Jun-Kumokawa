@@ -13,7 +13,7 @@ const ProfileWrapper = styled(React.forwardRef<HTMLDivElement, GridProps<"div", 
   />
 )))(({theme}) => ({
   '&': {
-    'margin': '16px 0',
+    'marginBottom': '16px',
     'display': 'grid',
     'gridTemplateColumns': 'min-content auto',
     'gridTemplateAreas': "'avatar name' 'avatar title' 'avatar additional'",

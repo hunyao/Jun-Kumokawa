@@ -46,6 +46,7 @@ describe('Testing ListDirectoryContent', () => {
   const spy = jest.spyOn(React, 'useState');
   const setTreeForDisplaysFn = jest.fn();
   const setLoadingFn = jest.fn();
+  const setShowFn = jest.fn();
   const navigateFn = jest.fn();
   const getPathFromShaFn = jest.fn();
   const regExpForNoLine = /(\r|\n)+/g
@@ -69,6 +70,7 @@ describe('Testing ListDirectoryContent', () => {
     spy
     .mockReturnValueOnce([mockDataForTree, setTreeForDisplaysFn])
     .mockReturnValueOnce([true, setLoadingFn])
+    .mockReturnValueOnce([false, setShowFn])
     usePreviousSha.mockReturnValue(['e5fa44f2b31c1fb553b6021e7360d07d5d91ff5e', true])
 
     const props = {
@@ -86,6 +88,7 @@ describe('Testing ListDirectoryContent', () => {
     spy
     .mockReturnValueOnce([mockDataForTree, setTreeForDisplaysFn])
     .mockReturnValueOnce([false, setLoadingFn])
+    .mockReturnValueOnce([false, setShowFn])
     usePreviousSha.mockReturnValue(['e5fa44f2b31c1fb553b6021e7360d07d5d91ff5e', true])
 
     const props = {
@@ -146,6 +149,7 @@ describe('Testing ListDirectoryContent', () => {
     spy
     .mockReturnValueOnce([mockDataForTree, setTreeForDisplaysFn])
     .mockReturnValueOnce([false, setLoadingFn])
+    .mockReturnValueOnce([false, setShowFn])
     usePreviousSha.mockReturnValue(['e5fa44f2b31c1fb553b6021e7360d07d5d91ff5e', false])
 
     const props = {
@@ -206,6 +210,7 @@ describe('Testing ListDirectoryContent', () => {
     spy
     .mockReturnValueOnce([mockDataForTree, setTreeForDisplaysFn])
     .mockReturnValueOnce([false, setLoadingFn])
+    .mockReturnValueOnce([false, setShowFn])
     usePreviousSha.mockReturnValue(['e5fa44f2b31c1fb553b6021e7360d07d5d91ff5e', false])
 
     const props = {

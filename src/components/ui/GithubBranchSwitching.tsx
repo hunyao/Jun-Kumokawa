@@ -38,7 +38,7 @@ const GithubBranchSwitching = styled(React.forwardRef<HTMLDivElement, BoxProps<'
   width: 300px;
   height: auto;
   max-height: 480px;
-  margin: 8px 0 16px 0;
+  top: 8px;
   font-size: 12px;
   border-color: #30363d;
   border-radius: 6px;

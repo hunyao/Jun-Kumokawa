@@ -23,6 +23,7 @@ describe('Testing FileNavigation', () => {
     useNavigate.mockReturnValue(useNavigateFn)
     useBranches.mockReturnValue([null, 123])
     useTags.mockReturnValue([null, 456])
+    useShaToPath.mockReturnValue(() => ['', false])
 
     const props = {
       mode: 'overview',
@@ -35,7 +36,6 @@ describe('Testing FileNavigation', () => {
     const elementBranches = screen.getByTestId('file-navigation-branches')
     const elementTags = screen.getByTestId('file-navigation-tags')
     const elementGoToFile = screen.getByTestId('file-navigation-go-to-file')
-    const elementAddFile = screen.getByTestId('file-navigation-add-file')
     const elementCloneButton = screen.getByTestId('file-navigation-clone-button')
     const githubCloneButton = screen.getByTestId('github-clone-button')
     const elementGoToFileButton = screen.getByTestId('file-navigation-go-to-file-button')
@@ -44,7 +44,6 @@ describe('Testing FileNavigation', () => {
     expect(element).toContainElement(elementBranches);
     expect(element).toContainElement(elementTags);
     expect(element).toContainElement(elementGoToFile);
-    expect(element).toContainElement(elementAddFile);
     expect(element).toContainElement(elementCloneButton);
     expect(elementCloneButton).toContainElement(githubCloneButton);
     expect(elementBranches).toHaveTextContent('123');
