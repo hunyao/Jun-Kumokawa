@@ -13,7 +13,6 @@ const GithubButton = styled(React.forwardRef<HTMLAnchorElement, GithubButtonUIPr
   />
 )))`
 & {
-  position: relative;
   padding: 5px 16px;
   font-size: 14px;
   font-weight: 500;

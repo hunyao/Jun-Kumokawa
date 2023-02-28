@@ -18,6 +18,7 @@ const ListDirectoryToolbar = styled(React.forwardRef<HTMLDivElement, ToolbarProp
   min-height: initial;
   background: #161b22;
   flex-wrap: wrap;
+  position: initial;
 }
 `
 

@@ -62,7 +62,7 @@ const FileView: React.FC<FileViewProps> = (props) => {
     <>
       <FileViewWrapper sx={sx}>
         <FileViewToolbar>
-          <IconButton>
+          <IconButton sx={{position: 'initial'}}>
             <ListIcon />
           </IconButton>
           {filename.split('/').pop()}

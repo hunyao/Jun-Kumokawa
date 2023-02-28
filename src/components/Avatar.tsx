@@ -22,7 +22,7 @@ const Avatar: React.FC<MuiAvatarProps<"div", AvatarProps>> = (props) => {
       alt={profile.name.en.fullName}
       title={profile.name.en.fullName}
       src={AvatarImg}
-      sx={{...sx, height, width}}
+      sx={{...sx, height, width, position: 'initial'}}
       data-testid="avatar"
       {...rest}
     />

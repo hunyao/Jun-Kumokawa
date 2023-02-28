@@ -19,51 +19,73 @@ const GithubBranchSwitching = styled(React.forwardRef<HTMLDivElement, BoxProps<'
       {children}
     </Box>
   </Box>
-)))`
-& {
-  position: absolute;
-  top: auto;
-  right: auto;
-  bottom: auto;
-  left: auto;
-  padding: 0;
-  pointer-events: none;
-  display: none;
-  transition: ease;
-  animation-name: GithubBranchSwitchingAnimation;
-  animation-duration: 0.3s;
-}
-& .modal {
-  pointer-events: auto;
-  width: 300px;
-  height: auto;
-  max-height: 480px;
-  top: 8px;
-  font-size: 12px;
-  border-color: #30363d;
-  border-radius: 6px;
-  box-shadow: 0 8px 24px #010409;
-  position: relative;
-  background-color: #161b22;
-  border: 1px solid #484f58;
-  overflow: hidden;
-}
-& .github-branch-switching-item {
-  border-bottom: 1px solid #21262d;
-}
-&.active {
-  display: block;
-}
-@keyframes GithubBranchSwitchingAnimation {
-  0% {
-    opacity: 0;
-    transform: translateY(-10px);
+)))(({theme}) => ({
+  '&': {
+    position: 'absolute',
+    display: 'none',
+    pointerEvents: 'none',
+    transition: 'ease',
+    animationName: 'GithubBranchSwitchingAnimation',
+    animationDuration: '0.3s',
+    flexDirection: 'column',
+    [theme.breakpoints.down('laptop')]: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      flexDirection: 'column',
+      padding: '16px',
+      '&::before': {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: 'rgba(0, 0, 0, 0.5)',
+        content: '""'
+      },
+    },
+    '&.active': {
+      display: 'flex'
+    },
+
+    '> .modal': {
+      position: 'relative',
+      pointerEvents: 'auto',
+      width: '300px',
+      height: 'auto',
+      maxHeight: '480px',
+      top: '8px',
+      fontSize: '14px',
+      borderColor: '#30363d',
+      borderRadius: '12px',
+      boxShadow: '0 8px 24px #010409',
+      backgroundColor: '#161b22',
+      border: '1px solid #484f58',
+      overflow: 'hidden',
+      zIndex: 1,
+      [theme.breakpoints.down('laptop')]: {
+        width: 'unset',
+        margin: 'auto 0'
+      },
+    },
+
+    '.github-branch-switching-item': {
+      borderBottom: '1px solid #21262d'
+    },
+
+    '@keyframes GithubBranchSwitchingAnimation': {
+      '0%': {
+        opacity: 0,
+        transform: 'translateY(-10px)',
+      },
+      '100%': {
+        opacity: 1,
+        transform: 'translateY(0)',
+      }
+    }
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-`
+}))
 
 export default GithubBranchSwitching;

@@ -16,6 +16,7 @@ const FileViewToolbar = styled(React.forwardRef<HTMLDivElement, ToolbarProps<'di
   border-bottom: 1px solid #21262d;
   padding: 8px;
   min-height: initial;
+  position: initial;
 }
 `
 
