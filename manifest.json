@@ -1,25 +1,24 @@
 {
+  "id": "91fe930f-a5bb-45e7-9160-92492083779d",
   "short_name": "Jun-Kumokawa",
   "name": "Jun-Kumokawa",
+  "description": "An efficient, flexible, useful, adaptable and friendly Human library for making web systems",
+  "lang": "en",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
+      "src": "avatar_192x192.jpg",
+      "type": "image/jpeg",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
+      "src": "avatar_512x512.jpg",
+      "type": "image/jpeg",
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#FF0000",
+  "background_color": "#0000FF"
 }
