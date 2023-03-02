@@ -47,7 +47,7 @@ const usePreviousSha: (sha: string | undefined) => usePreviousShaType = (sha: st
       getPathFromSha,
       sha
     ]),
-    React.useMemo(() => allTrees !== null && allTrees.sha === sha, [allTrees, sha])
+    React.useMemo(() => allTrees === null || allTrees.sha === sha, [allTrees, sha])
   ]
 }
 

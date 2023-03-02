@@ -40,7 +40,9 @@ export interface RepositoryContext {
   selectedBranch: GithubGetBranchResponseType | GithubListRepositoryTagsResponseType | null,
   changeBranch: React.Dispatch<React.SetStateAction<GithubGetBranchResponseType | GithubListRepositoryTagsResponseType | null>>,
   allTrees: GithubGetTreeResponseType | null,
-  loading: boolean
+  loading: boolean,
+  limited: boolean,
+  rateLimitResetTime: number,
 }
 
 const initialState = {
@@ -55,7 +57,9 @@ const initialContext = {
   selectedBranch: null,
   changeBranch: () => {},
   allTrees: null,
-  loading: true
+  loading: true,
+  limited: false,
+  rateLimitResetTime: 0
 }
 export const repositoryContext = React.createContext<RepositoryContext>(initialContext);
 export const { Provider, Consumer } = repositoryContext;
@@ -67,8 +71,10 @@ export const RepositoryProvider: React.FC = function ({ children }) {
   const [ loadingForBranch, setLoadingForBranch ] = React.useState<boolean>(true);
   const [ loadingForTag, setLoadingForTag ] = React.useState<boolean>(true);
   const [ loadingForCommit, setLoadingForCommit ] = React.useState<boolean>(true);
-  const [ loadingForTree, setLoadingForTree ] = React.useState<boolean>(true);
+  const [ loadingForTree, setLoadingForTree ] = React.useState<boolean>(false);
   const [ loading, setLoading ] = React.useState<boolean>(true);
+  const [ limited, setLimited] = React.useState<boolean>(false);
+  const [ rateLimitResetTime, setRateLimitResetTime] = React.useState<number>(0);
 
   async function getAllData<T>(uri: string): Promise<Array<T>> {
     let p = 1
@@ -90,6 +96,16 @@ export const RepositoryProvider: React.FC = function ({ children }) {
     return arr;
   }
 
+  function checkRateLimit(response: any) {
+    const {
+      headers
+    } = response;
+    if (headers['x-ratelimit-remaining'] === "0") {
+      setLimited(true);
+      setRateLimitResetTime(Number(headers['x-ratelimit-reset']));
+    }
+  }
+
   React.useEffect(() => {
     OctokitInstance.request('GET /repos/{owner}/{repo}', {
       owner: process.env.REACT_APP_REPOSITORY_OWNER as string,
@@ -104,7 +120,10 @@ export const RepositoryProvider: React.FC = function ({ children }) {
         }
       })
     })
-    .then(() => setLoadingForRepo(false));
+    .catch((err) => {
+      checkRateLimit(err.response)
+    })
+    .finally(() => setLoadingForRepo(false))
   }, [])
 
   React.useEffect(() => {
@@ -117,7 +136,10 @@ export const RepositoryProvider: React.FC = function ({ children }) {
         }
       })
     })
-    .then(() => setLoadingForBranch(false));
+    .catch((err) => {
+      checkRateLimit(err.response)
+    })
+    .finally(() => setLoadingForBranch(false));
   }, [])
   React.useEffect(() => {
     getAllData<GithubListRepositoryTagsResponseType>('GET /repos/{owner}/{repo}/tags')
@@ -129,7 +151,10 @@ export const RepositoryProvider: React.FC = function ({ children }) {
         }
       })
     })
-    .then(() => setLoadingForTag(false));
+    .catch((err) => {
+      checkRateLimit(err.response)
+    })
+    .finally(() => setLoadingForTag(false));
   }, [])
   React.useEffect(() => {
     getAllData<GithubListCommitsResponseType>('GET /repos/{owner}/{repo}/commits')
@@ -141,7 +166,10 @@ export const RepositoryProvider: React.FC = function ({ children }) {
         }
       })
     })
-    .then(() => setLoadingForCommit(false));
+    .catch((err) => {
+      checkRateLimit(err.response)
+    })
+    .finally(() => setLoadingForCommit(false));
   }, [])
   React.useEffect(() => {
     if (state.repository === null) {
@@ -157,7 +185,6 @@ export const RepositoryProvider: React.FC = function ({ children }) {
   ])
 
   React.useEffect(() => {
-    setLoadingForTree(true);
     const branch = selectedBranch as GithubGetBranchResponseType | null;
     if (branch === null || branch === undefined) {
       return;
@@ -165,6 +192,7 @@ export const RepositoryProvider: React.FC = function ({ children }) {
     if (branch.commit.sha === '') {
       return;
     }
+    setLoadingForTree(true);
     OctokitInstance.request('GET /repos/{owner}/{repo}/git/trees/{tree_sha}?recursive=1', {
       owner: process.env.REACT_APP_REPOSITORY_OWNER as string,
       repo: process.env.REACT_APP_REPOSITORY_NAME as string,
@@ -173,7 +201,10 @@ export const RepositoryProvider: React.FC = function ({ children }) {
     .then(({ data }: {data: GithubGetTreeResponseType}) => {
       setAllTrees(data)
     })
-    .then(() => setLoadingForTree(false));
+    .catch((err) => {
+      checkRateLimit(err.response)
+    })
+    .finally(() => setLoadingForTree(false));
   }, [
     selectedBranch
   ])
@@ -211,7 +242,9 @@ export const RepositoryProvider: React.FC = function ({ children }) {
             selectedBranch,
             changeBranch,
             allTrees,
-            loading
+            loading,
+            limited,
+            rateLimitResetTime
           }}
         >
           {children}

@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import Box from '@mui/material/Box';
 import { BoxProps } from '@mui/material/Box';
 import FileNavigation from '../../components/FileNavigation';
@@ -10,6 +11,8 @@ import useCurrentBranch from '../../hooks/useCurrentBranch'
 import useTree from '../../hooks/useTree'
 import useTreeReadme from '../../hooks/useTreeReadme'
 import Loading from '../../components/Loading'
+import { repositoryContext } from '../../contexts/repository';
+import SyazaiKaikenImage from '../../assets/images/syazai_kaiken.png'
 
 interface TreeProps {
   mode?: 'navigation' | 'overview'
@@ -20,6 +23,7 @@ const Tree: React.FC<BoxProps<'div', TreeProps>> = (props) => {
   const [ trees, treesError, treeLoading ] = useTree(sha);
   const [ readmeContent, readmeContentError, readmeContentLoading ] = useTreeReadme(sha);
   const [ , currentBranchSha ] = useCurrentBranch();
+  const { limited, rateLimitResetTime } = React.useContext(repositoryContext);
 
   const {
     mode = 'navigation',
@@ -37,8 +41,42 @@ const Tree: React.FC<BoxProps<'div', TreeProps>> = (props) => {
     params
   ])
 
+  if (limited) {
+    return <Box
+      sx={props.sx}
+    >
+      <Box
+        sx={{
+          borderRadius: '6px',
+          border: '1px solid rgba(248,81,73,0.4)',
+          background: 'rgba(248,81,73,0.15)',
+          padding: 2,
+          margin: 2
+        }}
+      >
+        We apologize for the inconvenience. Currently, Github's API limit is applied. It will be recovered {moment(rateLimitResetTime*1000).fromNow()}
+      </Box>
+      <Box
+        sx={{
+          textAlign: 'center'
+        }}
+      >
+        <Box
+          component="img"
+          src={SyazaiKaikenImage}
+          sx={{
+            maxWidth: '400px',
+            width: '100%'
+          }}
+        />
+      </Box>
+    </Box>
+  }
   if (treesError || readmeContentError) {
-    return <Moo />
+    return <Moo sx={{
+      ...props.sx,
+      alignItems: 'initial'
+    }} />
   }
   return (
     <Loading loading={treeLoading}>

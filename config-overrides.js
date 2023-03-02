@@ -4,8 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const path = require('path')
 
+const prod = process.env.NODE_ENV === 'production';
 module.exports = function override(config, env) {
   //do stuff with the webpack config...
+  config.devtool = prod ? false : 'source-map';
   config.resolve.fallback = {
     ...config.resolve.fallback,
     stream: require.resolve("stream-browserify"),
