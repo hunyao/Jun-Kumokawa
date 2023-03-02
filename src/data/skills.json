@@ -27,10 +27,6 @@
         {
           "label": "PHP",
           "value": 10
-        },
-        {
-          "label": "Java",
-          "value": 1
         }
       ]
     },
@@ -54,7 +50,7 @@
       "items": [
         {
           "label": "Windows",
-          "value": 30
+          "value": 20
         },
         {
           "label": "Ubuntu",
@@ -81,10 +77,6 @@
         {
           "label": "Azure",
           "value": 2
-        },
-        {
-          "label": "GCP",
-          "value": 0
         }
       ]
     },
@@ -113,15 +105,15 @@
           "value": 2
         },
         {
+          "label": "Amplify Framework",
+          "value": 2
+        },
+        {
           "label": "AngularJS",
           "value": 1
         },
         {
           "label": "FuelPHP",
-          "value": 1
-        },
-        {
-          "label": "Spring",
           "value": 1
         }
       ]
@@ -149,11 +141,19 @@
       "colorCode": [ 255, 0, 128 ],
       "items": [
         {
+          "label": "ReactRouter",
+          "value": 5
+        },
+        {
           "label": "Sequalise",
           "value": 5
         },
         {
           "label": "moment",
+          "value": 5
+        },
+        {
+          "label": "Axios",
           "value": 5
         },
         {
@@ -165,12 +165,20 @@
           "value": 3
         },
         {
+          "label": "Styled-component",
+          "value": 3
+        },
+        {
           "label": "Symfony",
           "value": 1
         },
         {
-          "label": "Redux",
-          "value": 0
+          "label": "SCSS",
+          "value": 1
+        },
+        {
+          "label": "SASS",
+          "value": 1
         }
       ]
     },
@@ -201,13 +209,23 @@
       ]
     },
     {
-      "groupName": "Tools",
+      "groupName": "Version Control Systems",
       "colorCode": [ 0, 255, 0 ],
       "items": [
         {
           "label": "Git",
           "value": 8
         },
+        {
+          "label": "Subversion",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "groupName": "Tools",
+      "colorCode": [ 128, 255, 0 ],
+      "items": [
         {
           "label": "npm",
           "value": 5
@@ -221,7 +239,11 @@
           "value": 5
         },
         {
-          "label": "Subversion",
+          "label": "Jest",
+          "value": 1
+        },
+        {
+          "label": "Vagrant",
           "value": 1
         },
         {
@@ -236,7 +258,7 @@
     },
     {
       "groupName": "Editors",
-      "colorCode": [ 128, 255, 0 ],
+      "colorCode": [ 0, 255, 128 ],
       "items": [
         {
           "label": "Vim",
@@ -253,20 +275,12 @@
         {
           "label": "Atom",
           "value": 1
-        },
-        {
-          "label": "VSCode",
-          "value": 0
-        },
-        {
-          "label": "IntelliJ IDEA",
-          "value": 0
         }
       ]
     },
     {
       "groupName": "Middlewares",
-      "colorCode": [ 0, 255, 128 ],
+      "colorCode": [ 128, 255, 128 ],
       "items": [
         {
           "label": "Apache",
@@ -288,7 +302,7 @@
     },
     {
       "groupName": "Package Manage Systems",
-      "colorCode": [ 128, 255, 128 ],
+      "colorCode": [ 255, 255, 0 ],
       "items": [
         {
           "label": "apt",
@@ -302,7 +316,7 @@
     },
     {
       "groupName": "Other",
-      "colorCode": [ 255, 255, 0 ],
+      "colorCode": [ 255, 255, 128 ],
       "items": [
         {
           "label": "Wordpress",

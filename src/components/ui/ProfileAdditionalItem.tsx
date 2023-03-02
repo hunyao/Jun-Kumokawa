@@ -17,6 +17,7 @@ const ProfileAdditionalItem = styled(React.forwardRef<HTMLDivElement, GridProps<
     className={className + " profile-additional-item"}
     ref={ref}
     data-testid="profile-additional-item"
+    gap={0.5}
     {...rest}
   >
     <Grid

@@ -41,12 +41,15 @@ const About: React.FC<AboutProps> = (props) => {
           container
           alignItems="center"
           my={2}
-          spacing={0.5}
+          gap={0.5}
           data-testid="about-homepage"
         >
           <Grid
             item
             component={LinkIcon}
+            sx={{
+              transform: 'rotateZ(135deg)'
+            }}
           />
           <Grid item>
             <GithubLink

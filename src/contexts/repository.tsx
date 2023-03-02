@@ -43,6 +43,7 @@ export interface RepositoryContext {
   loading: boolean,
   limited: boolean,
   rateLimitResetTime: number,
+  checkRateLimit: (response: any) => void
 }
 
 const initialState = {
@@ -59,7 +60,8 @@ const initialContext = {
   allTrees: null,
   loading: true,
   limited: false,
-  rateLimitResetTime: 0
+  rateLimitResetTime: 0,
+  checkRateLimit: () => {}
 }
 export const repositoryContext = React.createContext<RepositoryContext>(initialContext);
 export const { Provider, Consumer } = repositoryContext;
@@ -244,7 +246,8 @@ export const RepositoryProvider: React.FC = function ({ children }) {
             allTrees,
             loading,
             limited,
-            rateLimitResetTime
+            rateLimitResetTime,
+            checkRateLimit
           }}
         >
           {children}

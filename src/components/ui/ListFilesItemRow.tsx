@@ -23,9 +23,7 @@ const ListFilesItemRow = styled(React.forwardRef<HTMLDivElement, GridProps<'div'
   line-height: 1.5;
 
   .file_icon {
-    display: inline-flex;
-    flexBasis: 16px;
-    font-size: 16px;
+    height: 21px;
     color: #8b949e;
   }
   .commit-message {
@@ -39,7 +37,6 @@ const ListFilesItemRow = styled(React.forwardRef<HTMLDivElement, GridProps<'div'
 }
 & > .MuiGrid-item {
   white-space: nowrap;
-  height: 100%;
 }
 & > .MuiGrid-item:not(:last-child) {
   margin-right: 16px;

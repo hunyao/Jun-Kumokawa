@@ -102,7 +102,9 @@
       "location": "Fukuoka, Japan",
       "title": "Full-stack Engineer",
       "summary": "Developed private website in Nodejs, Sequelize, Javascript and Vue.js for displaying information dashboard camera collected. Learned Sequelize on the job. Learned Vue.js, Sequelize on the job.",
-      "responsibilities": [],
+      "responsibilities": [
+        "Developed private website for displaying information dashboard camera collected."
+      ],
       "achievements": [
         "Learned Sequelize, Vue.js on the job"
       ],

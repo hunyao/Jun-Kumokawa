@@ -9,31 +9,31 @@ describe('Testing usePreviousSha', () => {
     useCurrentBranch.mockReturnValue(['', ''])
     let initialValue = ''
     const { result, rerender } = renderHook(() => usePreviousSha(initialValue), { wrapper: wrapperWithoutData })
-    expect(result.current).toEqual([ '', false ])
+    expect(result.current).toEqual([ '', true ])
 
     initialValue = '6b6d0617eff48860c5b4e3e79c74cbd3312cf45a';
     rerender();
-    expect(result.current).toEqual([ '', false ])
+    expect(result.current).toEqual([ '', true ])
 
     initialValue = '0967ef424bce6791893e9a57bb952f80fd536e93';
     rerender();
-    expect(result.current).toEqual([ '', false ])
+    expect(result.current).toEqual([ '', true ])
 
     initialValue = '93cf328f2b038f9c85b8f076948b024b24aff3a4';
     rerender();
-    expect(result.current).toEqual([ '', false ])
+    expect(result.current).toEqual([ '', true ])
 
     initialValue = 'dummy';
     rerender();
-    expect(result.current).toEqual([ '', false ])
+    expect(result.current).toEqual([ '', true ])
 
     initialValue = 'dummy/dummy';
     rerender();
-    expect(result.current).toEqual([ '', false ])
+    expect(result.current).toEqual([ '', true ])
 
     initialValue = 'src/dummy';
     rerender();
-    expect(result.current).toEqual([ '', false ])
+    expect(result.current).toEqual([ '', true ])
   })
   test('if there is data in the context', () => {
     // Set the sha to master

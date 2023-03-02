@@ -22,9 +22,12 @@ const Skill = () => {
 
   const selectedItems = React.useMemo(() => {
     if (selectedMenu === 'All Technologies') {
-      return skillAllInOne;
+      return skillAllInOne
+      .sort((a, b) => b.value - a.value);
     } else {
-      return skillAllInOne.filter(skill => skill.groupName === selectedMenu);
+      return skillAllInOne
+      .filter(skill => skill.groupName === selectedMenu)
+      .sort((a, b) => b.value - a.value);
     }
   }, [
     selectedMenu,

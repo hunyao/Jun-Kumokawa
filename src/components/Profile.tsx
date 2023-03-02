@@ -5,6 +5,7 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import GithubLink from './ui/GithubLink'
 import Chip from '@mui/material/Chip';
 import { ChipProps } from '@mui/material/Chip';
@@ -112,6 +113,18 @@ const Profile = () => {
                 data-testid="profile-additional-item-linkdin"
               >
                 @{profile.linkdin}
+              </GithubLink>
+            )
+          },
+          {
+            Icon: GitHubIcon,
+            content: (
+              <GithubLink
+                href={`https://github.com/${profile.github}`}
+                target="_blank"
+                data-testid="profile-additional-item-github"
+              >
+                @{profile.github}
               </GithubLink>
             )
           },

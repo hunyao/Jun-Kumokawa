@@ -17,7 +17,7 @@ const Footer = () => {
               borderTop: "1px solid #21262d"
             }}
           >
-            <Grid container spacing={1} flexDirection="column" mb={2}>
+            <Grid container gap={1} flexDirection="column" mb={2}>
               <Grid item>
                 This {process.env.REACT_APP_REPOSITORY_NAME} has Super Cow Powers.
               </Grid>
@@ -25,7 +25,7 @@ const Footer = () => {
                 <b>DO NOT OPEN <a href="#/moo">THE PAGE</a></b>
               </Grid>
             </Grid>
-            <Grid container alignItems="center" spacing={1}>
+            <Grid container alignItems="center" gap={1}>
               <Grid item>
                 <SvgIcon
                   component={CatIcon}

@@ -22,7 +22,7 @@ export default styled(GithubLink)`
 }
 & svg {
   vertical-align: text-bottom;
-  font-size: 16px;
+  font-size: 15px;
 }
 &.primary {
   color: #c9d1d9;

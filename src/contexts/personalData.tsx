@@ -19,6 +19,7 @@ export interface PersonalDataContextProfile {
   title: string,
   location: string,
   linkdin: string,
+  github: string,
   email: string,
   tel: Array<number>,
   employment: boolean

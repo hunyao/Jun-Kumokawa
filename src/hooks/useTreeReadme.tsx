@@ -3,6 +3,7 @@ import { OctokitInstance } from '../plugins/Octokit';
 import useShaToPath from './useShaToPath';
 import useCurrentBranch from './useCurrentBranch'
 import { GithubGetRepositoryReadmeResponseType } from '../contexts/repository'
+import { repositoryContext } from '../contexts/repository'
 
 type useTreeReadmeResponseType = [
   string,
@@ -32,6 +33,7 @@ const useTreeReadme: (sha: string) => useTreeReadmeResponseType = (sha: string =
   const [ path, err ] = getPathFromSha(sha);
   const [ currentBranchName ] = useCurrentBranch();
   const [ loading, setLoading ] = React.useState<boolean>(true);
+  const { checkRateLimit } = React.useContext(repositoryContext);
 
   React.useEffect(() => {
     if (sha === '') {
@@ -47,9 +49,10 @@ const useTreeReadme: (sha: string) => useTreeReadmeResponseType = (sha: string =
     .then(data => {
       setContent(atob(data))
     })
-    .catch(({code}) => {
+    .catch(({code, response}) => {
       setContent('')
       setError(code !== 404)
+      checkRateLimit(response)
     })
     .finally(() => {
       setLoading(false)
@@ -59,6 +62,7 @@ const useTreeReadme: (sha: string) => useTreeReadmeResponseType = (sha: string =
     path,
     err,
     currentBranchName,
+    checkRateLimit
   ])
 
   return [
