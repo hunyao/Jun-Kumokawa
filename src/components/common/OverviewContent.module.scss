@@ -1,0 +1,13 @@
+.overview {
+  @layer base {
+    * {
+      all: revert;
+    }
+  }
+
+  & {
+    padding: 2rem;
+    padding-top: 0;
+    font-size: 1rem;
+  }
+}

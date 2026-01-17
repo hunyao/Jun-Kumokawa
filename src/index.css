@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+:root {
+    --separater-color: oklch(0.38 0.02 254.79);
+    --github-item-icon-color: oklch(0.6769 0.0155 254.64);
+    --github-item-active-underline-color: oklch(0.7304 0.1502 34.05);
+    scroll-behavior: smooth;
+}
+.separater {
+    box-shadow: inset var(--separater-offset, 0 -1px) 0 0 var(--separater-color);
+}
+.separater-right {
+    --separater-offset: -1px 0;
+}
+.link-element {
+    @apply rounded  p-1 cursor-pointer;
+}
+.link-element:hover {
+    @apply bg-base-content/10;
+}
+.link-text:hover {
+    @apply link link-primary;
+}
+.input:focus-within {
+    border: none;
+    outline: 2px solid #1f6feb;
+    outline-offset: -1px;
+}
