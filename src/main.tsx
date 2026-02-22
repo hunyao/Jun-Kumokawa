@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import { Provider as RepositoryContextProvider } from '@contexts/ReposirotyContext';
+import { Provider as RepositoryContextProvider } from '@contexts/RepositoryContext';
 import { Provider as ToastContextProvider } from '@contexts/ToastContext';
 import { RouterProvider } from 'react-router';
 import router from './routes';

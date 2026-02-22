@@ -15,7 +15,7 @@ export const Toast: FC = () => {
   let fillColor: string;
 
   switch (data.type) {
-    case 'sccuess':
+    case 'success':
       backgroundColorClass = 'bg-success/10';
       borderColorClass = 'border-success/50';
       fillColor = 'fill-success hover:fill-success/50';

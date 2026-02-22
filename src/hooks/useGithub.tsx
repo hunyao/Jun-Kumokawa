@@ -24,7 +24,7 @@ export const useGithub = () => {
     window.localStorage.setItem('github-access-token', accessToken);
     setIsSignIn(true);
     setToast({
-      type: 'sccuess',
+      type: 'success',
       message: 'Signing successful!',
     });
   };
@@ -32,7 +32,7 @@ export const useGithub = () => {
     window.localStorage.removeItem('github-access-token');
     setIsSignIn(false);
     setToast({
-      type: 'sccuess',
+      type: 'success',
       message: "You've been successfully signed out!",
     });
   };

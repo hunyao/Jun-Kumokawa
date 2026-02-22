@@ -8,7 +8,7 @@ import {
 } from 'react';
 
 type Toast = {
-  type: 'sccuess' | 'error';
+  type: 'success' | 'error';
   message: string;
 };
 

@@ -8,7 +8,7 @@ import {
 } from 'react';
 
 type Repository = {
-  type: 'sccuess' | 'error';
+  type: 'success' | 'error';
   message: string;
 };
 
