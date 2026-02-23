@@ -4,6 +4,7 @@ export * from './CloneCode';
 export * from './CopyContentButton';
 export * from './DirectoryContent';
 export * from './DirectoryContentRow';
+export * from './ErrorPanel';
 export * from './Footer';
 export * from './Header';
 export * from './LanguageSidebarComponent';

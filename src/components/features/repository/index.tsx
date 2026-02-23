@@ -99,7 +99,7 @@ export const RepositoryPage: FC<RepositoryPageProps> = (props) => {
         <img
           src={repository.owner.avatar_url}
           className='h-6 w-6 rounded-lg'
-          alt='avatar'
+          alt={`${repository.owner.login} avatar`}
         />
         <NavLink
           to={Routes.REPOSITORY.replace(':owner', owner).replace(':id', repo)}
@@ -170,6 +170,8 @@ export const RepositoryPage: FC<RepositoryPageProps> = (props) => {
                 <LinkSvg className='-rotate-45 h-6 w-6 fill-current' />
                 <a
                   href={repository.homepage}
+                  target='_blank'
+                  rel='noreferrer'
                   className='link link-primary no-underline'
                 >
                   {repository.homepage.replace(/^https?:\/\//, '')}

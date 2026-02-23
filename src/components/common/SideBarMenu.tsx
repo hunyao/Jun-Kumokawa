@@ -1,4 +1,5 @@
 import { Routes } from '@constants/index';
+import { useGithub } from '@hooks/index';
 import {
   BriefcaseSvg,
   CatSvg,
@@ -9,7 +10,8 @@ import {
 } from '@icons/index';
 import { octokit } from '@lib/index';
 import type { Endpoints } from '@octokit/types';
-import { type FC, useEffect, useState, useTransition } from 'react';
+import { GithubButton } from '@ui/index';
+import { type FC, useEffect, useState } from 'react';
 import { NavLink } from 'react-router';
 
 export const SideBarMenuState = () => (
@@ -17,7 +19,8 @@ export const SideBarMenuState = () => (
   <input type='checkbox' id='sidebarmenu' className='peer hidden' />
 );
 export const SideBarMenu: FC = () => {
-  const [isPending, startTransition] = useTransition();
+  const { isSignedIn, redirectToSignIn } = useGithub();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [repos, setRepos] = useState<
     Endpoints['GET /user/repos']['response']['data']
@@ -30,16 +33,30 @@ export const SideBarMenu: FC = () => {
   };
 
   useEffect(() => {
-    startTransition(async () => {
-      const { data } = await octokit
-        .request<'GET /user/repos'>('GET /user/repos')
-        .catch((e) => {
-          if (e.status === 401) return { data: [] };
-          throw e;
-        });
-      setRepos(data);
-    });
-  }, []);
+    if (!isSignedIn) {
+      setRepos([]);
+      return;
+    }
+    let cancelled = false;
+    const load = async () => {
+      try {
+        setIsLoading(true);
+        const { data } = await octokit
+          .request<'GET /user/repos'>('GET /user/repos', { per_page: 100 })
+          .catch((e) => {
+            if (e.status === 401) return { data: [] };
+            throw e;
+          });
+        if (!cancelled) setRepos(data);
+      } finally {
+        if (!cancelled) setIsLoading(false);
+      }
+    };
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, [isSignedIn]);
 
   return (
     <>
@@ -85,7 +102,7 @@ export const SideBarMenu: FC = () => {
           <div className='py-2 font-bold text-base-content/50 text-sm'>
             Repositories
           </div>
-          {isPending && (
+          {isLoading && (
             <div>
               <div className='skeleton h-4 w-full'></div>
               <div className='skeleton h-4 w-full'></div>
@@ -112,7 +129,7 @@ export const SideBarMenu: FC = () => {
                   <img
                     src={repository.owner.avatar_url}
                     className='h-4 w-4 rounded-full'
-                    alt=''
+                    alt={`${repository.owner.login} avatar`}
                   />
                   <span>
                     {repository.owner.login} / {repository.name}
@@ -121,6 +138,19 @@ export const SideBarMenu: FC = () => {
               )}
             </NavLink>
           ))}
+          {!isLoading && isSignedIn && repos.length === 0 && (
+            <div className='mt-2 text-sm text-base-content/60'>
+              No repositories found.
+            </div>
+          )}
+          {!isLoading && !isSignedIn && (
+            <div className='mt-2 flex flex-col gap-2 text-sm text-base-content/60'>
+              <span>Sign in to view your repositories.</span>
+              <GithubButton $variant='border' onClick={redirectToSignIn}>
+                Sign in
+              </GithubButton>
+            </div>
+          )}
         </div>
       </div>
     </>

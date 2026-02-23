@@ -250,11 +250,13 @@ export const TreePage: FC<TreePageProps> = (props) => {
             <CopyContentButton content={path} data-tip='Copy path' />
           </div>
         </div>
-        <LatestCommit
-          commit={ref[0]}
-          totalCommitCount={totalCommitCount}
-          className='mb-4 rounded-lg ring ring-base-content/20'
-        />
+        {ref[0] && (
+          <LatestCommit
+            commit={ref[0]}
+            totalCommitCount={totalCommitCount}
+            className='mb-4 rounded-lg ring ring-base-content/20'
+          />
+        )}
         {mode === 'tree' && (
           <div>
             <DirectoryContentWrapper
@@ -264,7 +266,10 @@ export const TreePage: FC<TreePageProps> = (props) => {
               path={path}
               currentBranch={currentBranch}
               branch_ref={branch.commit.sha}
-              separetedHeader
+              separatedHeader
+              skipCommitData
+              initialRef={ref}
+              initialTotalCommitCount={totalCommitCount}
             />
             <div className='mt-4'>
               <OverviewContent

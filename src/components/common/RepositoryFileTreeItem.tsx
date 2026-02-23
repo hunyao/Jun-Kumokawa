@@ -4,9 +4,9 @@ import type { Endpoints } from '@octokit/types';
 import {
   type FC,
   type ToggleEvent,
+  useEffect,
   useRef,
   useState,
-  useTransition,
 } from 'react';
 import {
   NavLink,
@@ -32,29 +32,47 @@ export const RepositoryFileTreeItem: FC<RepositoryFileTreeItemProps> = (
   const { treeItem, path, owner, repo, branch } = props;
 
   const ref = useRef<HTMLDetailsElement>(null);
-  const tree = useRef<
-    Endpoints['GET /repos/{owner}/{repo}/git/trees/{tree_sha}']['response']['data']['tree']
-  >([]);
+  const isMountedRef = useRef(true);
+  const requestIdRef = useRef(0);
+  const [tree, setTree] =
+    useState<
+      Endpoints['GET /repos/{owner}/{repo}/git/trees/{tree_sha}']['response']['data']['tree']
+    >([]);
+  const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const { pathname } = location;
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [isPending, startTransition] = useTransition();
   const [prevPath, setPrevPath] = useState(searchParams.get('path'));
+
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
 
   const onToggleHandler = (e: ToggleEvent) => {
     if (e.newState === 'closed') return;
-    if (tree.current.length > 0) return;
+    if (tree.length > 0 || isLoading) return;
     if (e.target instanceof HTMLDetailsElement === false) return;
-    startTransition(async () => {
-      const { data } = await octokit.rest.git.getTree({
+    setIsLoading(true);
+    requestIdRef.current += 1;
+    const requestId = requestIdRef.current;
+    octokit.rest.git
+      .getTree({
         owner,
         repo,
         tree_sha: `${branch}:${path.replace(/^\//, '')}`,
+      })
+      .then(({ data }) => {
+        if (!isMountedRef.current || requestId !== requestIdRef.current) return;
+        data.tree.sort(sorting);
+        setTree(data.tree);
+      })
+      .finally(() => {
+        if (!isMountedRef.current || requestId !== requestIdRef.current) return;
+        setIsLoading(false);
       });
-      data.tree.sort(sorting);
-      tree.current = data.tree;
-    });
     if (
       e.target.dataset.noNavigate !== '1' &&
       searchParams.get('path') !== path
@@ -73,16 +91,18 @@ export const RepositoryFileTreeItem: FC<RepositoryFileTreeItemProps> = (
     }
   };
 
-  if (
-    searchParams.get('path') !== prevPath &&
-    searchParams.get('path')?.startsWith(`${path}/`)
-  ) {
-    if (ref.current) {
-      ref.current.dataset.noNavigate = '1';
-      ref.current.open = true;
+  useEffect(() => {
+    if (
+      searchParams.get('path') !== prevPath &&
+      searchParams.get('path')?.startsWith(`${path}/`)
+    ) {
+      if (ref.current) {
+        ref.current.dataset.noNavigate = '1';
+        ref.current.open = true;
+      }
+      setPrevPath(searchParams.get('path'));
     }
-    setPrevPath(searchParams.get('path'));
-  }
+  }, [path, prevPath, searchParams]);
 
   return (
     <li>
@@ -118,7 +138,7 @@ export const RepositoryFileTreeItem: FC<RepositoryFileTreeItemProps> = (
             <FolderSvg className='h-6 w-6 fill-current' />
             {treeItem.path}
           </summary>
-          {isPending && (
+          {isLoading && (
             <ul>
               <li className='menu-disabled'>
                 {/* biome-ignore lint/a11y/useValidAnchor: reason */}
@@ -129,9 +149,9 @@ export const RepositoryFileTreeItem: FC<RepositoryFileTreeItemProps> = (
               </li>
             </ul>
           )}
-          {!isPending && tree.current.length > 0 && (
+          {!isLoading && tree.length > 0 && (
             <ul>
-              {tree.current.map((_treeItem) => (
+              {tree.map((_treeItem) => (
                 <RepositoryFileTreeItem
                   key={`${path}${_treeItem.path}`}
                   owner={owner}

@@ -17,7 +17,6 @@ export * from './b64ToBuf';
 export * from './b64ToUtf8';
 export * from './extractPageInfo';
 export * from './filterByText';
-export * from './filterByText';
 export * from './genRange';
 export * from './getAllCommitCounts';
 export * from './getContentType';

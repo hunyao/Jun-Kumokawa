@@ -2,7 +2,6 @@ import { beforeEach, expect, test, vi } from 'vitest';
 import { getSha1Digest } from './getSha1Digest';
 
 type ContentType = {
-  blob: Blob;
   mimeType: string;
   isText: boolean;
   isImage: boolean;
@@ -25,7 +24,6 @@ export const getContentType = async (url: string): Promise<ContentType> => {
   const response = await fetch(url);
   const headers = Object.fromEntries(response.headers.entries());
   const res = {
-    blob: await response.blob(),
     mimeType: headers['content-type'],
     isText: headers['content-type'].startsWith('text'),
     isImage: headers['content-type'].startsWith('image'),
@@ -61,7 +59,6 @@ if (import.meta.vitest) {
       return response;
     });
     expect(await getContentType('https://hogehuga.com/text')).toEqual({
-      blob: new Blob(['text'], { type: 'text/plain' }),
       mimeType: 'text/plain',
       isText: true,
       isImage: false,
@@ -80,7 +77,6 @@ if (import.meta.vitest) {
       return response;
     });
     expect(await getContentType('https://hogehuga1.com/image')).toEqual({
-      blob: new Blob(['image'], { type: 'image/jpeg' }),
       mimeType: 'image/jpeg',
       isText: false,
       isImage: true,
@@ -99,7 +95,6 @@ if (import.meta.vitest) {
       return response;
     });
     expect(await getContentType('https://hogehuga1.com/zip')).toEqual({
-      blob: new Blob(['zip'], { type: 'application/zip' }),
       mimeType: 'application/zip',
       isText: false,
       isImage: false,

@@ -3,7 +3,8 @@ import { md, octokit } from '@lib/index';
 import type { Endpoints } from '@octokit/types';
 import { GithubTab, GithubTabItem } from '@ui/index';
 import { b64ToUtf8 } from '@utils/index';
-import { type FC, useEffect, useRef, useTransition } from 'react';
+import DOMPurify from 'dompurify';
+import { type FC, useEffect, useState } from 'react';
 import styles from './OverviewContent.module.scss';
 
 type OverviewContentProps = {
@@ -13,28 +14,38 @@ type OverviewContentProps = {
 };
 export const OverviewContent: FC<OverviewContentProps> = (props) => {
   const { owner, repo, path } = props;
-  const content =
-    useRef<
+  const [content, setContent] =
+    useState<
       Endpoints['GET /repos/{owner}/{repo}/contents/{path}']['response']['data']
     >(undefined);
-  const [isPending, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = useState(false);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: reason
   useEffect(() => {
-    startTransition(async () => {
+    let cancelled = false;
+    const load = async () => {
       try {
+        setIsLoading(true);
+        setContent(undefined);
         const { data } = await octokit.rest.repos.getContent({
           owner,
           repo,
           path: `${path}/README.md`,
         });
-        content.current = data;
-      } catch {}
-    });
-  }, []);
+        if (!cancelled) setContent(data);
+      } catch {
+        if (!cancelled) setContent(undefined);
+      } finally {
+        if (!cancelled) setIsLoading(false);
+      }
+    };
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, [owner, repo, path]);
 
-  if (Array.isArray(content.current)) return null;
-  if (content.current?.type !== 'file') return null;
+  if (Array.isArray(content)) return null;
+  if (content?.type !== 'file') return null;
 
   return (
     <div className='rounded-lg ring ring-base-content/20'>
@@ -46,7 +57,7 @@ export const OverviewContent: FC<OverviewContentProps> = (props) => {
           </GithubTabItem>
         </GithubTab>
       </div>
-      {isPending && (
+      {isLoading && (
         <div>
           <div className='skeleton h-4 w-full'></div>
           <div className='skeleton h-4 w-full'></div>
@@ -55,12 +66,14 @@ export const OverviewContent: FC<OverviewContentProps> = (props) => {
           <div className='skeleton h-4 w-full'></div>
         </div>
       )}
-      {!isPending && content.current !== undefined && (
+      {!isLoading && content !== undefined && (
         <div
           className={styles.overview}
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Because it is just html of markdown
           dangerouslySetInnerHTML={{
-            __html: md.render(b64ToUtf8(content.current.content)),
+            __html: DOMPurify.sanitize(
+              md.render(b64ToUtf8(content.content)),
+            ),
           }}
         />
       )}

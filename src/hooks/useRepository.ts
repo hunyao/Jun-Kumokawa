@@ -1,12 +1,10 @@
 import { octokit } from '@lib/octokit';
-import type { Endpoints } from '@octokit/types';
 import { requestRecursively } from '@utils/api';
-import { useRef } from 'react';
 
 export const useRepository = () => {
-  const repositoryRef = useRef<
-    Endpoints['GET /repos/{owner}/{repo}']['response'] | null
-  >(null);
+  // const repositoryRef = useRef<
+  //   Endpoints['GET /repos/{owner}/{repo}']['response'] | null
+  // >(null);
   const initialize = (owner: string, repo: string) => {
     const repository = octokit.rest.repos.get({
       owner,

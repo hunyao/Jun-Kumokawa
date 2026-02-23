@@ -43,7 +43,7 @@ export const CloneCode: FC<CloneCodeProps> = (props) => {
         return github_url;
     }
   };
-  const getDiscription = () => {
+  const getDescription = () => {
     switch (tab) {
       case 'https':
         return 'Clone using the web URL.';
@@ -77,7 +77,11 @@ export const CloneCode: FC<CloneCodeProps> = (props) => {
               className='tooltip ml-auto'
               data-tip='Which remote URL should I use?'
             >
-              <a href='https://docs.github.com/articles/which-remote-url-should-i-use'>
+              <a
+                href='https://docs.github.com/articles/which-remote-url-should-i-use'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <HelpSvg className='h-4 w-4 fill-current hover:fill-info' />
               </a>
             </div>
@@ -114,12 +118,14 @@ export const CloneCode: FC<CloneCodeProps> = (props) => {
                 <CopyContentButton content={getUrl()} />
               </label>
             </div>
-            <div className='text-sm'>{getDiscription()}</div>
+            <div className='text-sm'>{getDescription()}</div>
           </div>
         </div>
         <div className='p-2'>
           <a
             href={`https://github.com/${owner}/${repo}/archive/refs/heads/${branch}.zip`}
+            target='_blank'
+            rel='noreferrer'
           >
             <GithubButton $variant='ghost' className='text-sm'>
               <FolderZipSvg className='h-4 w-4 fill-current' />

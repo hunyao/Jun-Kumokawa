@@ -32,6 +32,7 @@ export const useResizePanel = (
     document.addEventListener('pointerup', pointerup);
 
     return () => {
+      document.removeEventListener('pointermove', pointermove);
       document.removeEventListener('pointerdown', pointerdown);
       document.removeEventListener('pointerup', pointerup);
     };

@@ -1,16 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, within } from 'storybook/test';
-import { Header } from '.';
+import { GithubChip } from './GithubChip';
 
 const meta = {
-  title: 'components/common/Header',
-  component: Header,
+  title: 'components/UI/GithubChip',
+  component: GithubChip,
   parameters: {
-    layout: 'fullscreen',
+    layout: 'centered',
   },
-  argTypes: {},
   tags: ['autodocs'],
-} satisfies Meta<typeof Header>;
+} satisfies Meta<typeof GithubChip>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -19,13 +18,15 @@ export const Primary: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Header',
+        story: 'GitHub-styled chip/tag component',
       },
     },
   },
-  play: async ({ canvasElement }) => {
+  args: {
+    children: 'TypeScript',
+  },
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText('hunyao')).toBeInTheDocument();
-    expect(canvas.getByText('Jun-Kumokawa')).toBeInTheDocument();
+    expect(canvas.getByText('TypeScript')).toBeInTheDocument();
   },
 };

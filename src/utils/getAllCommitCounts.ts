@@ -13,22 +13,38 @@ export async function getAllCommitCounts(
   options: RequestParameters &
     Endpoints['GET /repos/{owner}/{repo}/commits']['parameters'],
 ): Promise<number> {
-  const first = await octokit.rest.repos.listCommits({
-    ...options,
-    page: 1,
-    per_page: 100,
-  });
-  const linkInfo = extractPageInfo(first.headers.link);
-  if (linkInfo === undefined || linkInfo.last === undefined)
-    return first.data.length;
-  const last = await octokit.rest.repos.listCommits({
-    ...options,
-    page: Number(linkInfo.last),
-    per_page: 100,
-  });
-
-  return (Number(linkInfo.last) - 1) * 100 + last.data.length;
+  const cacheKey = JSON.stringify(options);
+  const cached = commitCountCache.get(cacheKey);
+  const now = Date.now();
+  if (cached && now - cached.cachedAt < COMMIT_COUNT_TTL_MS) {
+    return cached.value;
+  }
+  try {
+    const first = await octokit.rest.repos.listCommits({
+      ...options,
+      page: 1,
+      per_page: 1,
+    });
+    const linkInfo = extractPageInfo(first.headers.link);
+    if (linkInfo === undefined || linkInfo.last === undefined)
+      return cacheAndReturn(cacheKey, first.data.length);
+    return cacheAndReturn(cacheKey, Number(linkInfo.last));
+  } catch (e) {
+    const error = e as { status?: number };
+    if (error.status === 409) return cacheAndReturn(cacheKey, 0);
+    throw e;
+  }
 }
+
+const COMMIT_COUNT_TTL_MS = (() => {
+  const value = Number(import.meta.env.VITE_COMMIT_TTL_MS);
+  return Number.isFinite(value) && value > 0 ? value : 5 * 60 * 1000;
+})();
+const commitCountCache = new Map<string, { value: number; cachedAt: number }>();
+const cacheAndReturn = (key: string, value: number) => {
+  commitCountCache.set(key, { value, cachedAt: Date.now() });
+  return value;
+};
 
 // if (import.meta.vitest) {
 //   // const listCommitsMock = vi.spyOn(octokit.rest.repos, 'listCommits');

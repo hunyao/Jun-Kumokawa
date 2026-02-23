@@ -3,12 +3,12 @@ import type MarkdownIt from 'markdown-it';
 import type { Token } from 'markdown-it/index.js';
 import unidecode from 'unidecode';
 
-var ids: namedHeadingsIdType = {};
 type namedHeadingsIdType = {
   [key: string]: boolean;
 };
 export function plugin(md: MarkdownIt) {
   md.core.ruler.push('named_headings', (state) => {
+    const ids: namedHeadingsIdType = {};
     state.tokens.forEach((token, i) => {
       if (token.type === 'heading_open') {
         const text = md.renderer.render(

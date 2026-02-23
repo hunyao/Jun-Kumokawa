@@ -1,4 +1,6 @@
 import { SetToastContext } from '@contexts/ToastContext';
+import { clearOctokitCache } from '@lib/octokit';
+import { clearRequestCache } from '@utils/index';
 import { use, useState } from 'react';
 
 export const useGithub = () => {
@@ -22,14 +24,18 @@ export const useGithub = () => {
 
   const signIn = (accessToken: string) => {
     window.localStorage.setItem('github-access-token', accessToken);
+    clearOctokitCache();
+    clearRequestCache();
     setIsSignIn(true);
     setToast({
       type: 'success',
-      message: 'Signing successful!',
+      message: 'Signed in successfully.',
     });
   };
   const signOut = () => {
     window.localStorage.removeItem('github-access-token');
+    clearOctokitCache();
+    clearRequestCache();
     setIsSignIn(false);
     setToast({
       type: 'success',

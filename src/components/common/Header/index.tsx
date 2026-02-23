@@ -32,18 +32,24 @@ export const Header: FC = () => {
           </NavLink>
         </div>
         {!isSignedIn ? (
-          <div className='tooltip tooltip-bottom' data-tip='login to github'>
-            <LoginSvg
-              className='h-6 w-6 cursor-pointer fill-current'
+          <div className='tooltip tooltip-bottom' data-tip='Log in to GitHub'>
+            <button
+              type='button'
+              aria-label='Login to GitHub'
               onClick={redirectToSignIn}
-            />
+            >
+              <LoginSvg className='h-6 w-6 cursor-pointer fill-current' />
+            </button>
           </div>
         ) : (
-          <div className='tooltip tooltip-bottom' data-tip='logout from github'>
-            <LogoutSvg
-              className='h-6 w-6 cursor-pointer fill-current'
+          <div className='tooltip tooltip-bottom' data-tip='Log out of GitHub'>
+            <button
+              type='button'
+              aria-label='Logout from GitHub'
               onClick={signOut}
-            />
+            >
+              <LogoutSvg className='h-6 w-6 cursor-pointer fill-current' />
+            </button>
           </div>
         )}
         <LanguageSvg className='h-6 w-6 fill-current' />

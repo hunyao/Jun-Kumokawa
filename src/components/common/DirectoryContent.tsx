@@ -4,13 +4,7 @@ import type { components } from '@octokit/openapi-types';
 import type { Endpoints } from '@octokit/types';
 import { getAllCommitCounts } from '@utils/index';
 import type { FC } from 'react';
-import {
-  Await,
-  NavLink,
-  useLocation,
-  useNavigate,
-  useSearchParams,
-} from 'react-router';
+import { Await, NavLink, useLocation, useSearchParams } from 'react-router';
 import type { unpackArray } from 'src/types';
 import { DirectoryContentRowWrapper } from './DirectoryContentRow';
 import { LatestCommit } from './LatestCommit';
@@ -54,7 +48,10 @@ type DirectoryContentWrapperProps = {
   branch_ref: string;
   path: string;
   currentBranch: string;
-  separetedHeader?: boolean;
+  separatedHeader?: boolean;
+  skipCommitData?: boolean;
+  initialRef?: Array<components['schemas']['commit']>;
+  initialTotalCommitCount?: number;
 };
 export const DirectoryContentWrapper: FC<DirectoryContentWrapperProps> = ({
   owner,
@@ -62,38 +59,54 @@ export const DirectoryContentWrapper: FC<DirectoryContentWrapperProps> = ({
   branch_ref,
   path,
   currentBranch,
-  separetedHeader = false,
+  separatedHeader = false,
+  skipCommitData = false,
+  initialRef,
+  initialTotalCommitCount,
 }) => {
   const promise = Promise.all([
-    octokit.rest.repos.listCommits({
-      owner,
-      repo,
-      sha: branch_ref,
-      path,
-      per_page: 1,
-      page: 1,
-    }),
     octokit.rest.git.getTree({
       owner,
       repo,
       tree_sha: `${currentBranch}:${path.replace(/^\//, '')}`,
     }),
-    getAllCommitCounts({ owner, repo, sha: `heads/${currentBranch}` }),
+    skipCommitData || (initialRef && initialTotalCommitCount !== undefined)
+      ? Promise.resolve({
+          ref: initialRef ?? [],
+          totalCommitCount: initialTotalCommitCount ?? 0,
+        })
+      : Promise.all([
+          octokit.rest.repos.listCommits({
+            owner,
+            repo,
+            sha: branch_ref,
+            path,
+            per_page: 1,
+            page: 1,
+          }),
+          getAllCommitCounts({ owner, repo, sha: `heads/${currentBranch}` }),
+        ]).then(([refResponse, totalCommitCount]) => ({
+          ref: refResponse.data,
+          totalCommitCount,
+        })),
   ]);
   return (
     <SuspenseWithComponent>
       <Await resolve={promise}>
-        {([refResponse, treeResponse, totalCommitCount]) => (
+        {([treeResponse, commitData]) => {
+          treeResponse.data.tree.sort(sorting);
+          return (
           <DirectoryContent
-            ref={refResponse.data}
+            ref={commitData.ref}
             tree={treeResponse.data}
-            totalCommitCount={totalCommitCount}
+            totalCommitCount={commitData.totalCommitCount}
             owner={owner}
             repo={repo}
             branch_ref={branch_ref}
-            separetedHeader={separetedHeader}
+            separatedHeader={separatedHeader}
           />
-        )}
+        );
+        }}
       </Await>
     </SuspenseWithComponent>
   );
@@ -105,7 +118,7 @@ type DirectoryContentProps = {
   owner: string;
   repo: string;
   branch_ref: string;
-  separetedHeader?: boolean;
+  separatedHeader?: boolean;
 };
 export const DirectoryContent: FC<DirectoryContentProps> = (props) => {
   const {
@@ -115,12 +128,11 @@ export const DirectoryContent: FC<DirectoryContentProps> = (props) => {
     owner,
     repo,
     branch_ref,
-    separetedHeader = false,
+    separatedHeader = false,
   } = props;
-  tree.tree.sort(sorting);
+  const enableCommitFetch = tree.tree.length <= 200;
   const location = useLocation();
   const { pathname } = location;
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const path = searchParams.get('path') || '';
 
@@ -131,8 +143,9 @@ export const DirectoryContent: FC<DirectoryContentProps> = (props) => {
   };
   const _searchParams = new URLSearchParams(searchParams);
   _searchParams.set('path', getPreviousPath());
+  const hasCommitData = ref.length > 0;
 
-  if (separetedHeader) {
+  if (separatedHeader) {
     return (
       <div>
         <div className='rounded-lg ring ring-base-content/20'>
@@ -167,6 +180,7 @@ export const DirectoryContent: FC<DirectoryContentProps> = (props) => {
                 branch_ref={branch_ref}
                 type={_tree.type}
                 fileName={_tree.path}
+                enableCommitFetch={enableCommitFetch}
               />
             ))}
           </div>
@@ -176,29 +190,27 @@ export const DirectoryContent: FC<DirectoryContentProps> = (props) => {
   } else {
     return (
       <div className='rounded-lg ring ring-base-content/20'>
-        <LatestCommit
-          commit={ref[0]}
-          totalCommitCount={totalCommitCount}
-          className='border-base-content/20 border-b-[1px]'
-        />
+        {hasCommitData && (
+          <LatestCommit
+            commit={ref[0]}
+            totalCommitCount={totalCommitCount}
+            className='border-base-content/20 border-b-[1px]'
+          />
+        )}
         <div>
           {path.length > 0 && (
-            // biome-ignore lint/a11y/noStaticElementInteractions: reason
-            <div
-              className='flex cursor-pointer items-center gap-2 border-base-content/20 border-b-[1px] p-2 last:border-b-0 hover:bg-base-content/5'
-              onClick={() => {
-                navigate({
-                  pathname,
-                  search: `?${_searchParams.toString()}`,
-                });
+            <NavLink
+              to={{
+                pathname,
+                search: `?${_searchParams.toString()}`,
               }}
-              onKeyDown={() => {}}
+              className='flex items-center gap-2 border-base-content/20 border-b-[1px] p-2 last:border-b-0 hover:bg-base-content/5'
             >
               <FolderSvg className='h-6 w-6 fill-current' />
               <span className='link link-hover hover:link-primary flex-1'>
                 ..
               </span>
-            </div>
+            </NavLink>
           )}
           {tree.tree.slice(0, 100).map((_tree) => (
             <DirectoryContentRowWrapper
@@ -209,11 +221,12 @@ export const DirectoryContent: FC<DirectoryContentProps> = (props) => {
               branch_ref={branch_ref}
               type={_tree.type}
               fileName={_tree.path}
+              enableCommitFetch={enableCommitFetch}
             />
           ))}
           {tree.tree.length > 100 && (
             <div className='p-2 text-warning'>
-              All of {tree.tree.length} entries will not be shown. it is
+              All {tree.tree.length} entries are not shown. The list is
               truncated to 100 files.
             </div>
           )}

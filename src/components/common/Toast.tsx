@@ -27,6 +27,7 @@ export const Toast: FC = () => {
   }
   return (
     <div
+      data-testid='toast'
       className={[
         'flex items-center justify-between border-y-[1px] p-4',
         backgroundColorClass,
@@ -35,6 +36,7 @@ export const Toast: FC = () => {
     >
       {data.message}
       <XmarkSvg
+        data-testid='toast-close'
         className={['h-4 w-4 cursor-pointer', fillColor].join(' ')}
         onClick={setToast.bind(null, null)}
       />

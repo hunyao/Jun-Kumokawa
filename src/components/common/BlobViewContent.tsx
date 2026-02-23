@@ -1,4 +1,5 @@
-import { CopyContentSvg, DownloadSvg } from '@icons/index';
+import { Routes } from '@constants/index';
+import { CopyContentSvg, DownloadSvg, WarningSvg } from '@icons/index';
 import { octokit } from '@lib/index';
 import type { Endpoints } from '@octokit/types';
 import {
@@ -7,10 +8,12 @@ import {
   numberFormat,
   numberFormatWithUnit,
 } from '@utils/index';
+import DOMPurify from 'dompurify';
 import hljs from 'highlight.js';
 import { type CSSProperties, type FC, useRef } from 'react';
-import { Await, NavLink } from 'react-router';
+import { Await } from 'react-router';
 import type { unpackPromise } from 'src/types';
+import { ErrorPanel } from './ErrorPanel';
 import { SuspenseWithComponent } from './SuspenseWithComponent';
 
 type BlobViewContentWrapperProps = {
@@ -41,7 +44,18 @@ export const BlobViewContentWrapper: FC<BlobViewContentWrapperProps> = (
   };
   return (
     <SuspenseWithComponent>
-      <Await resolve={promise()} errorElement={<div></div>}>
+      <Await
+        resolve={promise()}
+        errorElement={
+          <ErrorPanel
+            title='Failed to load file'
+            subtitle='Please try again.'
+            actionLabel='Back to repository'
+            actionTo={`${Routes.TREE.replace(':owner', owner).replace(':id', repo)}?branch=${branch}`}
+            icon={<WarningSvg className='m-2 h-6 w-6 fill-current' />}
+          />
+        }
+      >
         {({ content, contentType }) => (
           <BlobViewContent
             path={path}
@@ -66,9 +80,20 @@ export const BlobViewContent: FC<BlobViewContentProps> = (props) => {
 
   const filename = content.name;
   const _base64Decoded = b64ToUtf8(content.content);
-  const lines = _base64Decoded.split('\n').length;
-  const loc = _base64Decoded.split('\n').filter((line) => line !== '').length;
-  const extension = filename.includes('.') ? filename.split('.')[1] : filename;
+  const allLines = _base64Decoded.split('\n');
+  const lines = allLines.length;
+  const loc = allLines.filter((line) => line !== '').length;
+  const extension = filename.includes('.') ? filename.split('.').pop() : '';
+  const language =
+    extension && hljs.getLanguage(extension) !== undefined
+      ? extension
+      : 'plaintext';
+  const showRawFallback =
+    contentType.isBinary ||
+    (content.content === '' && content.encoding === 'none');
+  const maxLines = 2000;
+  const isTruncated = lines > maxLines;
+  const visibleLines = isTruncated ? allLines.slice(0, maxLines) : allLines;
 
   const copyContent = async () => {
     await navigator.clipboard.write([
@@ -107,7 +132,11 @@ export const BlobViewContent: FC<BlobViewContentProps> = (props) => {
             style={{ '--radius-field': '0.5rem' } as CSSProperties}
             type='button'
           >
-            <a href={content.download_url || ''} target='_blank'>
+            <a
+              href={content.download_url || ''}
+              target='_blank'
+              rel='noreferrer'
+            >
               <span className='text-xs'>Raw</span>
             </a>
           </button>
@@ -136,23 +165,28 @@ export const BlobViewContent: FC<BlobViewContentProps> = (props) => {
         </div>
       </div>
       <div className='overflow-x-auto'>
-        {contentType.isBinary ||
-          (content.content === '' && content.encoding === 'none' && (
-            <div className='text-center'>
-              <NavLink
-                className='link link-primary'
-                to={content.download_url || ''}
-              >
-                viw raw
-              </NavLink>
-            </div>
-          ))}
+        {showRawFallback && (
+          <div className='text-center'>
+            <a
+              className='link link-primary'
+              href={content.download_url || ''}
+              target='_blank'
+              rel='noreferrer'
+            >
+              view raw
+            </a>
+          </div>
+        )}
         {contentType.isImage && (
-          <img src={content.download_url || ''} alt='' className='mx-auto' />
+          <img
+            src={content.download_url || ''}
+            alt={filename}
+            className='mx-auto'
+          />
         )}
         {contentType.isText &&
           content.encoding !== 'none' &&
-          _base64Decoded.split('\n').map((line, i) => (
+          visibleLines.map((line, i) => (
             <pre
               // biome-ignore lint/suspicious/noArrayIndexKey: reason
               key={i}
@@ -160,15 +194,20 @@ export const BlobViewContent: FC<BlobViewContentProps> = (props) => {
               data-num={i + 1}
               // biome-ignore lint/security/noDangerouslySetInnerHtml: has to be
               dangerouslySetInnerHTML={{
-                __html: hljs.highlight(line, {
-                  language:
-                    hljs.getLanguage(extension) === undefined
-                      ? 'plaintext'
-                      : extension,
-                }).value,
+                __html: DOMPurify.sanitize(
+                  hljs.highlight(line, {
+                    language,
+                  }).value,
+                ),
               }}
             ></pre>
           ))}
+        {isTruncated && (
+          <div className='p-2 text-center text-base-content/60 text-sm'>
+            Showing first {numberFormat(maxLines)} lines. View raw for full
+            file.
+          </div>
+        )}
       </div>
     </div>
   );

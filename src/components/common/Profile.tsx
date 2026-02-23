@@ -27,7 +27,7 @@ export const Profile: FC = () => {
             <img
               src='/images/avatar.jpg'
               className='h-full w-full rounded-lg'
-              alt=''
+              alt='Profile avatar'
             />
           </div>
           <div className='flex items-center gap-2'>
@@ -52,19 +52,51 @@ export const Profile: FC = () => {
               },
               {
                 Icon: LinkedinSvg,
-                content: `@${profile.linkdin}`,
+                content: (
+                  <a
+                    href={`https://www.linkedin.com/in/${profile.linkedin}`}
+                    target='_blank'
+                    rel='noreferrer'
+                    className='link link-hover'
+                  >
+                    @{profile.linkedin}
+                  </a>
+                ),
               },
               {
                 Icon: GithubSvg,
-                content: `@${profile.github}`,
+                content: (
+                  <a
+                    href={`https://github.com/${profile.github}`}
+                    target='_blank'
+                    rel='noreferrer'
+                    className='link link-hover'
+                  >
+                    @{profile.github}
+                  </a>
+                ),
               },
               {
                 Icon: EnvelopeSvg,
-                content: profile.email,
+                content: (
+                  <a
+                    href={`mailto:${profile.email}`}
+                    className='link link-hover'
+                  >
+                    {profile.email}
+                  </a>
+                ),
               },
               {
                 Icon: PhoneSvg,
-                content: `+(${profile.tel[0]}) ${profile.tel[1]} ${profile.tel[2]}`,
+                content: (
+                  <a
+                    href={`tel:+${profile.tel[0]}${profile.tel[1]}${profile.tel[2]}`}
+                    className='link link-hover'
+                  >
+                    +({profile.tel[0]}) {profile.tel[1]} {profile.tel[2]}
+                  </a>
+                ),
               },
             ].map(({ Icon, content }, i) => (
               <div className='flex items-center gap-1' key={i}>

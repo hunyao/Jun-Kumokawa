@@ -71,43 +71,45 @@ export const SwitchBranches: FC<SwitchBranchesProps> = (props) => {
           <ul className='overflow-y-auto'>
             {tab === 1 &&
               filterByText(branches, 'name', searchingText).map((branch) => (
-                <li
-                  key={branch.name}
-                  className='flex items-center gap-1 rounded-lg p-2 text-sm hover:cursor-pointer hover:bg-base-content/10'
-                  onClick={() => onChange(branch.name)}
-                  aria-hidden='true'
-                >
-                  <CheckSvg
-                    className={[
-                      'h-4 w-4',
-                      value === branch.name
-                        ? 'fill-current'
-                        : 'fill-transparent',
-                    ].join(' ')}
-                  />
-                  <span className='flex-1 truncate'>{branch.name}</span>
-                  {defaultBranch === branch.name && (
-                    <span className='rounded-full border-[1px] border-base-content/10 px-1 text-xs'>
-                      default
-                    </span>
-                  )}
+                <li key={branch.name} className='rounded-lg'>
+                  <button
+                    type='button'
+                    className='flex w-full items-center gap-1 rounded-lg p-2 text-left text-sm hover:bg-base-content/10'
+                    onClick={() => onChange(branch.name)}
+                  >
+                    <CheckSvg
+                      className={[
+                        'h-4 w-4',
+                        value === branch.name
+                          ? 'fill-current'
+                          : 'fill-transparent',
+                      ].join(' ')}
+                    />
+                    <span className='flex-1 truncate'>{branch.name}</span>
+                    {defaultBranch === branch.name && (
+                      <span className='rounded-full border-[1px] border-base-content/10 px-1 text-xs'>
+                        default
+                      </span>
+                    )}
+                  </button>
                 </li>
               ))}
             {tab === 2 &&
               filterByText(tags, 'name', searchingText).map((tag) => (
-                <li
-                  key={tag.name}
-                  className='flex items-center gap-1 rounded-lg p-2 text-sm hover:cursor-pointer hover:bg-base-content/10'
-                  onClick={() => onChange(tag.name)}
-                  aria-hidden='true'
-                >
-                  <CheckSvg
-                    className={[
-                      'h-4 w-4',
-                      value === tag.name ? 'fill-current' : 'fill-transparent',
-                    ].join(' ')}
-                  />
-                  <span className='flex-1 truncate'>{tag.name}</span>
+                <li key={tag.name} className='rounded-lg'>
+                  <button
+                    type='button'
+                    className='flex w-full items-center gap-1 rounded-lg p-2 text-left text-sm hover:bg-base-content/10'
+                    onClick={() => onChange(tag.name)}
+                  >
+                    <CheckSvg
+                      className={[
+                        'h-4 w-4',
+                        value === tag.name ? 'fill-current' : 'fill-transparent',
+                      ].join(' ')}
+                    />
+                    <span className='flex-1 truncate'>{tag.name}</span>
+                  </button>
                 </li>
               ))}
           </ul>

@@ -1,6 +1,7 @@
 import { octokit } from '@lib/index';
 import type { Endpoints } from '@octokit/types';
-import { type FC, useEffect, useRef, useTransition } from 'react';
+import { GithubButton } from '@ui/index';
+import { type FC, useEffect, useState } from 'react';
 import { sorting } from './DirectoryContent';
 import { RepositoryFileTreeItem } from './RepositoryFileTreeItem';
 
@@ -12,31 +13,39 @@ type RepositoryFileTreeProps = {
 };
 export const RepositoryFileTree: FC<RepositoryFileTreeProps> = (props) => {
   const { owner, repo, branch, path } = props;
-  const tree = useRef<
-    Endpoints['GET /repos/{owner}/{repo}/git/trees/{tree_sha}']['response']['data']['tree']
-  >([]);
-  const [isPending, startTransition] = useTransition();
-  const ref = useRef<HTMLUListElement>(null);
+  const [showAll, setShowAll] = useState(false);
+  const [tree, setTree] =
+    useState<
+      Endpoints['GET /repos/{owner}/{repo}/git/trees/{tree_sha}']['response']['data']['tree']
+    >([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const maxItems = 500;
 
-  const getTreeData = () => {
-    if (tree.current.length > 0) return;
-    startTransition(async () => {
-      const { data } = await octokit.rest.git.getTree({
-        owner,
-        repo,
-        tree_sha: `${branch}:`,
-      });
-      data.tree.sort(sorting);
-      tree.current = data.tree;
-    });
-  };
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: reason
   useEffect(() => {
-    getTreeData();
-  }, []);
+    let cancelled = false;
+    const load = async () => {
+      try {
+        setShowAll(false);
+        setIsLoading(true);
+        setTree([]);
+        const { data } = await octokit.rest.git.getTree({
+          owner,
+          repo,
+          tree_sha: `${branch}:`,
+        });
+        data.tree.sort(sorting);
+        if (!cancelled) setTree(data.tree);
+      } finally {
+        if (!cancelled) setIsLoading(false);
+      }
+    };
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, [owner, repo, branch]);
 
-  if (isPending) {
+  if (isLoading) {
     return (
       <ul className={[path.length === 0 ? 'menu' : ''].join(' ')}>
         <li className='menu-disabled'>
@@ -49,12 +58,11 @@ export const RepositoryFileTree: FC<RepositoryFileTreeProps> = (props) => {
       </ul>
     );
   }
+  const isTruncated = tree.length > maxItems;
+  const visibleTree = showAll ? tree : tree.slice(0, maxItems);
   return (
-    <ul
-      className={['m-0 w-full', 'menu flex-nowrap overflow-y-auto'].join(' ')}
-      ref={ref}
-    >
-      {tree.current.map((_treeItem) => (
+    <ul className={['m-0 w-full', 'menu flex-nowrap overflow-y-auto'].join(' ')}>
+      {visibleTree.map((_treeItem) => (
         <RepositoryFileTreeItem
           key={`${path}${_treeItem.path}`}
           owner={owner}
@@ -64,6 +72,13 @@ export const RepositoryFileTree: FC<RepositoryFileTreeProps> = (props) => {
           treeItem={_treeItem}
         />
       ))}
+      {isTruncated && !showAll && (
+        <li className='p-2 text-center'>
+          <GithubButton $variant='border' onClick={() => setShowAll(true)}>
+            Show all {tree.length} items
+          </GithubButton>
+        </li>
+      )}
     </ul>
   );
 };
