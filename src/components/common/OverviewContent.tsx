@@ -11,9 +11,10 @@ type OverviewContentProps = {
   owner: string;
   repo: string;
   path: string;
+  branch: string;
 };
 export const OverviewContent: FC<OverviewContentProps> = (props) => {
-  const { owner, repo, path } = props;
+  const { owner, repo, path, branch } = props;
   const [content, setContent] =
     useState<
       Endpoints['GET /repos/{owner}/{repo}/contents/{path}']['response']['data']
@@ -30,6 +31,7 @@ export const OverviewContent: FC<OverviewContentProps> = (props) => {
           owner,
           repo,
           path: `${path}/README.md`,
+          ref: branch,
         });
         if (!cancelled) setContent(data);
       } catch {
@@ -42,7 +44,7 @@ export const OverviewContent: FC<OverviewContentProps> = (props) => {
     return () => {
       cancelled = true;
     };
-  }, [owner, repo, path]);
+  }, [owner, repo, path, branch]);
 
   if (Array.isArray(content)) return null;
   if (content?.type !== 'file') return null;
@@ -71,9 +73,7 @@ export const OverviewContent: FC<OverviewContentProps> = (props) => {
           className={styles.overview}
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Because it is just html of markdown
           dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(
-              md.render(b64ToUtf8(content.content)),
-            ),
+            __html: DOMPurify.sanitize(md.render(b64ToUtf8(content.content))),
           }}
         />
       )}

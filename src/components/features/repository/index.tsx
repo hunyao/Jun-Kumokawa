@@ -156,6 +156,7 @@ export const RepositoryPage: FC<RepositoryPageProps> = (props) => {
               path={path}
               owner={owner}
               repo={repo}
+              branch={currentBranch}
             />
           </div>
         </div>

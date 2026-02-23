@@ -277,6 +277,7 @@ export const TreePage: FC<TreePageProps> = (props) => {
                 path={path}
                 owner={owner}
                 repo={repo}
+                branch={currentBranch}
               />
             </div>
           </div>
