@@ -1,9 +1,8 @@
 import { Routes } from '@constants/index';
 import { Container } from '@ui/index';
-import type { FC } from 'react';
 import { NavLink } from 'react-router';
 
-export const Footer: FC = () => {
+export const Footer = () => {
   return (
     <footer className='pt-4'>
       <Container>

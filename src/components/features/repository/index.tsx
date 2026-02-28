@@ -20,7 +20,6 @@ import { octokit } from '@lib/index';
 import type { Endpoints } from '@octokit/types';
 import { Container, DetailBoxTitle, GithubButton, GithubChip } from '@ui/index';
 import { numberFormat, requestRecursively } from '@utils/index';
-import type { FC } from 'react';
 import {
   Await,
   type LoaderFunction,
@@ -32,7 +31,7 @@ import {
   useSearchParams,
 } from 'react-router';
 
-export const RepositoryPageWrapper: FC = () => {
+export const RepositoryPageWrapper = () => {
   const { promise } = useLoaderData();
   const { owner = '', id = '' } = useParams();
   return (
@@ -74,7 +73,7 @@ export const getRepositoryPageLoader: LoaderFunction = ({ params }) => {
 type RepositoryPageProps = {
   resolvedData: RepositoryPageLoaderType;
 };
-export const RepositoryPage: FC<RepositoryPageProps> = (props) => {
+export const RepositoryPage = (props: RepositoryPageProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams] = useSearchParams();

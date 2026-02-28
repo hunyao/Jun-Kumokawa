@@ -1,13 +1,13 @@
 import { CheckSvg, CopyContentSvg } from '@icons/index';
-import { type FC, type HTMLAttributes, useState } from 'react';
+import { type HTMLAttributes, useState } from 'react';
 
 type CopyContentButtonProps = HTMLAttributes<HTMLDivElement> & {
   content: string;
 };
-export const CopyContentButton: FC<CopyContentButtonProps> = ({
+export const CopyContentButton = ({
   content,
   ...rest
-}) => {
+}: CopyContentButtonProps) => {
   const [isCopying, setIsCopying] = useState(false);
 
   const onClickHandler = async () => {

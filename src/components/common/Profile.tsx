@@ -12,11 +12,11 @@ import {
   ScrewdriverWrenchSvg,
 } from '@icons/index';
 import { Container, GithubTab, GithubTabItem } from '@ui/index';
-import { type FC, useState } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router';
 
 const { profile } = ProfileData;
-export const Profile: FC = () => {
+export const Profile = () => {
   const [kanji, setKanji] = useState(false);
 
   return (
@@ -47,10 +47,12 @@ export const Profile: FC = () => {
           <div className='flex gap-4'>
             {[
               {
+                key: 'location',
                 Icon: LocationSvg,
                 content: profile.location,
               },
               {
+                key: 'linkedin',
                 Icon: LinkedinSvg,
                 content: (
                   <a
@@ -64,6 +66,7 @@ export const Profile: FC = () => {
                 ),
               },
               {
+                key: 'github',
                 Icon: GithubSvg,
                 content: (
                   <a
@@ -77,6 +80,7 @@ export const Profile: FC = () => {
                 ),
               },
               {
+                key: 'email',
                 Icon: EnvelopeSvg,
                 content: (
                   <a
@@ -88,6 +92,7 @@ export const Profile: FC = () => {
                 ),
               },
               {
+                key: 'phone',
                 Icon: PhoneSvg,
                 content: (
                   <a
@@ -98,8 +103,8 @@ export const Profile: FC = () => {
                   </a>
                 ),
               },
-            ].map(({ Icon, content }, i) => (
-              <div className='flex items-center gap-1' key={i}>
+            ].map(({ key, Icon, content }) => (
+              <div className='flex items-center gap-1' key={key}>
                 <Icon className='h-5 w-5 fill-current' />
                 <span className='link-text'>{content}</span>
               </div>

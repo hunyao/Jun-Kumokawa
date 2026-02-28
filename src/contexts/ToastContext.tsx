@@ -1,7 +1,6 @@
 import {
   createContext,
   type Dispatch,
-  type FC,
   type PropsWithChildren,
   type SetStateAction,
   useState,
@@ -17,7 +16,7 @@ export const SetToastContext = createContext<
   Dispatch<SetStateAction<Toast | null>>
 >(() => {});
 
-export const Provider: FC<PropsWithChildren> = ({ children }) => {
+export const Provider = ({ children }: PropsWithChildren) => {
   const [toast, setToast] = useState<Toast | null>(null);
   return (
     <ToastContext.Provider value={toast}>

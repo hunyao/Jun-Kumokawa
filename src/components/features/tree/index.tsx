@@ -15,7 +15,7 @@ import { octokit } from '@lib/index';
 import type { Endpoints } from '@octokit/types';
 import { GithubButton } from '@ui/index';
 import { getAllCommitCounts, requestRecursively } from '@utils/index';
-import { type FC, useId, useRef } from 'react';
+import { useId, useRef } from 'react';
 import {
   Await,
   type LoaderFunction,
@@ -27,7 +27,7 @@ import {
   useSearchParams,
 } from 'react-router';
 
-export const TreePageWrapper: FC = () => {
+export const TreePageWrapper = () => {
   const { promise } = useLoaderData();
   const { owner = '', id = '' } = useParams();
   return (
@@ -89,7 +89,7 @@ export const getTreePageLoader: LoaderFunction = ({ params, request }) => {
 type TreePageProps = {
   resolvedData: TreePageLoaderType;
 };
-export const TreePage: FC<TreePageProps> = (props) => {
+export const TreePage = (props: TreePageProps) => {
   const { resolvedData } = props;
   const [
     { data: repository },

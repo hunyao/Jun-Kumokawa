@@ -1,13 +1,7 @@
 import { FileSvg, FolderSvg } from '@icons/index';
 import { octokit } from '@lib/index';
 import type { Endpoints } from '@octokit/types';
-import {
-  type FC,
-  type ToggleEvent,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { type ToggleEvent, useEffect, useRef, useState } from 'react';
 import {
   NavLink,
   useLocation,
@@ -26,30 +20,20 @@ type RepositoryFileTreeItemProps = {
     Endpoints['GET /repos/{owner}/{repo}/git/trees/{tree_sha}']['response']['data']['tree']
   >;
 };
-export const RepositoryFileTreeItem: FC<RepositoryFileTreeItemProps> = (
-  props,
-) => {
+export const RepositoryFileTreeItem = (props: RepositoryFileTreeItemProps) => {
   const { treeItem, path, owner, repo, branch } = props;
 
   const ref = useRef<HTMLDetailsElement>(null);
-  const isMountedRef = useRef(true);
   const requestIdRef = useRef(0);
-  const [tree, setTree] =
-    useState<
-      Endpoints['GET /repos/{owner}/{repo}/git/trees/{tree_sha}']['response']['data']['tree']
-    >([]);
+  const [tree, setTree] = useState<
+    Endpoints['GET /repos/{owner}/{repo}/git/trees/{tree_sha}']['response']['data']['tree']
+  >([]);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const { pathname } = location;
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [prevPath, setPrevPath] = useState(searchParams.get('path'));
-
-  useEffect(() => {
-    return () => {
-      isMountedRef.current = false;
-    };
-  }, []);
 
   const onToggleHandler = (e: ToggleEvent) => {
     if (e.newState === 'closed') return;
@@ -65,12 +49,11 @@ export const RepositoryFileTreeItem: FC<RepositoryFileTreeItemProps> = (
         tree_sha: `${branch}:${path.replace(/^\//, '')}`,
       })
       .then(({ data }) => {
-        if (!isMountedRef.current || requestId !== requestIdRef.current) return;
+        if (requestId !== requestIdRef.current) return;
         data.tree.sort(sorting);
         setTree(data.tree);
       })
       .finally(() => {
-        if (!isMountedRef.current || requestId !== requestIdRef.current) return;
         setIsLoading(false);
       });
     if (

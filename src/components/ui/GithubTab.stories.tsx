@@ -22,8 +22,11 @@ export const Border: Story = {
       },
     },
   },
-  render: () => (
-    <GithubTab $variant='border'>
+  args: {
+    $variant: 'border',
+  },
+  render: (props) => (
+    <GithubTab $variant={props.$variant}>
       <GithubTabItem $active>Code</GithubTabItem>
       <GithubTabItem>Issues</GithubTabItem>
       <GithubTabItem>Pull requests</GithubTabItem>
@@ -46,8 +49,11 @@ export const Lift: Story = {
       },
     },
   },
-  render: () => (
-    <GithubTab $variant='lift'>
+  args: {
+    $variant: 'lift',
+  },
+  render: (props) => (
+    <GithubTab $variant={props.$variant}>
       <GithubTabItem $active>Overview</GithubTabItem>
       <GithubTabItem>Repositories</GithubTabItem>
     </GithubTab>

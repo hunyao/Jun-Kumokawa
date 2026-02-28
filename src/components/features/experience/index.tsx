@@ -4,7 +4,7 @@ import { DateRangeSvg, HandshakeSvg } from '@icons/index';
 import { Container } from '@ui/index';
 import { genRange } from '@utils/index';
 import dayjs from 'dayjs';
-import { createElement, type FC } from 'react';
+import { createElement } from 'react';
 import { Link, useLocation } from 'react-router';
 
 const { experiences } = Experience;
@@ -13,7 +13,7 @@ type ListSrc = Array<string | ListSrc>;
 type ListProps = {
   src: ListSrc;
 };
-const List: FC<ListProps> = (props) => {
+const List = (props: ListProps) => {
   const { src } = props;
   return createElement(
     'ul',
@@ -32,7 +32,7 @@ const List: FC<ListProps> = (props) => {
     }),
   );
 };
-export const ExperiencePage: FC = () => {
+export const ExperiencePage = () => {
   const { employedAt: firstDatetime = '' } = experiences.slice().pop() || {};
   const { employedAt: lastDatetime = '' } = experiences.slice()[0] || {};
   const location = useLocation();

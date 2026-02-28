@@ -5,12 +5,7 @@ import {
   GithubTab,
   GithubTabItem,
 } from '@ui/index';
-import {
-  type CSSProperties,
-  type FC,
-  type HTMLAttributes,
-  useState,
-} from 'react';
+import { type CSSProperties, type HTMLAttributes, useState } from 'react';
 import { CopyContentButton } from './CopyContentButton';
 
 type CLONE_CODE_TAB_HTTPS = 'https';
@@ -28,7 +23,7 @@ type CloneCodeProps = HTMLAttributes<HTMLDivElement> & {
   owner: string;
   repo: string;
 };
-export const CloneCode: FC<CloneCodeProps> = (props) => {
+export const CloneCode = (props: CloneCodeProps) => {
   const { https_url, ssh_url, github_url, branch, owner, repo, ...rest } =
     props;
   const [tab, setTab] = useState<CLONE_CODE_TAB>('https');

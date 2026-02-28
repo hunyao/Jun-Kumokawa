@@ -3,13 +3,13 @@ import type { components } from '@octokit/openapi-types';
 import { GithubButton } from '@ui/index';
 import { numberFormat } from '@utils/index';
 import dayjs from 'dayjs';
-import type { FC, HTMLAttributes } from 'react';
+import type { HTMLAttributes } from 'react';
 
 type LatestCommitProps = HTMLAttributes<HTMLDivElement> & {
   commit: components['schemas']['commit'];
   totalCommitCount: number;
 };
-export const LatestCommit: FC<LatestCommitProps> = (props) => {
+export const LatestCommit = (props: LatestCommitProps) => {
   const { commit, totalCommitCount } = props;
   const authorName =
     commit.author?.login ||
@@ -17,8 +17,7 @@ export const LatestCommit: FC<LatestCommitProps> = (props) => {
     commit.commit.committer?.name ||
     'Unknown';
   const authorAvatar =
-    commit.author?.avatar_url ||
-    'https://github.com/github.png?size=48';
+    commit.author?.avatar_url || 'https://github.com/github.png?size=48';
   const commitDate = commit.commit.committer?.date;
   return (
     <div

@@ -1,9 +1,9 @@
-import type { FC, HTMLAttributes, PropsWithChildren } from 'react';
+import type { HTMLAttributes, PropsWithChildren } from 'react';
 
 type ActivityProps = HTMLAttributes<HTMLDivElement> & {
   title?: string;
 };
-export const Activity: FC<PropsWithChildren<ActivityProps>> = (props) => {
+export const Activity = (props: PropsWithChildren<ActivityProps>) => {
   const { title = 'December 2018', children, ...rest } = props;
   return (
     <div {...rest}>

@@ -11,14 +11,14 @@ import {
 import { octokit } from '@lib/index';
 import type { Endpoints } from '@octokit/types';
 import { GithubButton } from '@ui/index';
-import { type FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router';
 
 export const SideBarMenuState = () => (
   // biome-ignore lint/correctness/useUniqueElementIds: reason
   <input type='checkbox' id='sidebarmenu' className='peer hidden' />
 );
-export const SideBarMenu: FC = () => {
+export const SideBarMenu = () => {
   const { isSignedIn, redirectToSignIn } = useGithub();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -139,12 +139,12 @@ export const SideBarMenu: FC = () => {
             </NavLink>
           ))}
           {!isLoading && isSignedIn && repos.length === 0 && (
-            <div className='mt-2 text-sm text-base-content/60'>
+            <div className='mt-2 text-base-content/60 text-sm'>
               No repositories found.
             </div>
           )}
           {!isLoading && !isSignedIn && (
-            <div className='mt-2 flex flex-col gap-2 text-sm text-base-content/60'>
+            <div className='mt-2 flex flex-col gap-2 text-base-content/60 text-sm'>
               <span>Sign in to view your repositories.</span>
               <GithubButton $variant='border' onClick={redirectToSignIn}>
                 Sign in

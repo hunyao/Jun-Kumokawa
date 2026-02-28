@@ -1,5 +1,5 @@
 import { CaretDownSvg, CodeBranchSvg } from '@icons/index';
-import type { ComponentProps, CSSProperties, FC } from 'react';
+import type { ComponentProps, CSSProperties } from 'react';
 import styled from 'styled-components';
 
 export const GithubButton = styled.button.attrs<{
@@ -14,9 +14,10 @@ background: var(--github-button-bg, var(--color-base-100));
   background: color-mix(in oklch, var(--github-button-bg, var(--color-base-100)), var(--color-base-content) 10%)
 }
 `;
-export const GithubDropdownButton: FC<
-  Omit<ComponentProps<typeof GithubButton>, '$variant'>
-> = ({ children, ...rest }) => {
+export const GithubDropdownButton = ({
+  children,
+  ...rest
+}: Omit<ComponentProps<typeof GithubButton>, '$variant'>) => {
   return (
     <GithubButton $variant='border' {...rest}>
       {children}
@@ -24,9 +25,10 @@ export const GithubDropdownButton: FC<
     </GithubButton>
   );
 };
-export const GithubBranchDropdownButton: FC<
-  Omit<ComponentProps<typeof GithubButton>, '$variant'>
-> = ({ children, ...rest }) => {
+export const GithubBranchDropdownButton = ({
+  children,
+  ...rest
+}: Omit<ComponentProps<typeof GithubButton>, '$variant'>) => {
   const style = {
     '--github-button-bg':
       'color-mix(in oklch, var(--color-base-content) 10%, transparent)',

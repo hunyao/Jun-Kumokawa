@@ -10,7 +10,7 @@ import {
 } from '@utils/index';
 import DOMPurify from 'dompurify';
 import hljs from 'highlight.js';
-import { type CSSProperties, type FC, useRef } from 'react';
+import { type CSSProperties, useRef } from 'react';
 import { Await } from 'react-router';
 import type { unpackPromise } from 'src/types';
 import { ErrorPanel } from './ErrorPanel';
@@ -22,9 +22,7 @@ type BlobViewContentWrapperProps = {
   path: string;
   branch: string;
 };
-export const BlobViewContentWrapper: FC<BlobViewContentWrapperProps> = (
-  props,
-) => {
+export const BlobViewContentWrapper = (props: BlobViewContentWrapperProps) => {
   const { owner, repo, path, branch } = props;
 
   const promise = async () => {
@@ -37,8 +35,16 @@ export const BlobViewContentWrapper: FC<BlobViewContentWrapperProps> = (
         Accept: 'application/vnd.github.object+json',
       },
     });
+    const downloadUrl =
+      !Array.isArray(contentResponse.data) &&
+      contentResponse.data.type === 'file'
+        ? contentResponse.data.download_url
+        : null;
+    if (!downloadUrl) {
+      throw new Error('Failed to resolve download URL for the file');
+    }
     const contentTypeResponse = await getContentType(
-      (contentResponse.data as any).download_url as string,
+      downloadUrl,
     );
     return { content: contentResponse, contentType: contentTypeResponse };
   };
@@ -72,7 +78,7 @@ type BlobViewContentProps = {
   contentType: unpackPromise<ReturnType<typeof getContentType>>;
   path: string;
 };
-export const BlobViewContent: FC<BlobViewContentProps> = (props) => {
+export const BlobViewContent = (props: BlobViewContentProps) => {
   const { content, contentType } = props;
   const copyContentButtonRef = useRef<HTMLButtonElement>(null);
 

@@ -4,7 +4,7 @@ import type { Endpoints } from '@octokit/types';
 import { GithubTab, GithubTabItem } from '@ui/index';
 import { b64ToUtf8 } from '@utils/index';
 import DOMPurify from 'dompurify';
-import { type FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './OverviewContent.module.scss';
 
 type OverviewContentProps = {
@@ -13,19 +13,21 @@ type OverviewContentProps = {
   path: string;
   branch: string;
 };
-export const OverviewContent: FC<OverviewContentProps> = (props) => {
+export const OverviewContent = (props: OverviewContentProps) => {
   const { owner, repo, path, branch } = props;
   const [content, setContent] =
     useState<
       Endpoints['GET /repos/{owner}/{repo}/contents/{path}']['response']['data']
-    >(undefined);
+    >();
   const [isLoading, setIsLoading] = useState(false);
+  const [hasReadme, setHasReadme] = useState<boolean | null>(null);
 
   useEffect(() => {
     let cancelled = false;
     const load = async () => {
       try {
         setIsLoading(true);
+        setHasReadme(null);
         setContent(undefined);
         const { data } = await octokit.rest.repos.getContent({
           owner,
@@ -33,9 +35,16 @@ export const OverviewContent: FC<OverviewContentProps> = (props) => {
           path: `${path}/README.md`,
           ref: branch,
         });
-        if (!cancelled) setContent(data);
-      } catch {
-        if (!cancelled) setContent(undefined);
+        if (!cancelled) {
+          setContent(data);
+          setHasReadme(true);
+        }
+      } catch (e) {
+        const error = e as { status?: number };
+        if (!cancelled) {
+          setContent(undefined);
+          setHasReadme(error.status === 404 ? false : null);
+        }
       } finally {
         if (!cancelled) setIsLoading(false);
       }
@@ -46,6 +55,7 @@ export const OverviewContent: FC<OverviewContentProps> = (props) => {
     };
   }, [owner, repo, path, branch]);
 
+  if (hasReadme === false) return null;
   if (Array.isArray(content)) return null;
   if (content?.type !== 'file') return null;
 

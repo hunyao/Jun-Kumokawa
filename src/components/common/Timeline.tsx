@@ -1,10 +1,10 @@
 import { LoginSvg, UnfoldSvg } from '@icons/index';
-import type { FC, PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 
 type TimelineProps = {
   title?: string;
 };
-export const Timeline: FC<PropsWithChildren<TimelineProps>> = (props) => {
+export const Timeline = (props: PropsWithChildren<TimelineProps>) => {
   const { title, children } = props;
   return (
     <div className='relative ml-4 flex gap-2 py-2 before:absolute before:top-0 before:left-0 before:h-full before:w-[2px] before:bg-gray-300'>

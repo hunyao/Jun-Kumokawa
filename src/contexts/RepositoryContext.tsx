@@ -1,7 +1,6 @@
 import {
   createContext,
   type Dispatch,
-  type FC,
   type PropsWithChildren,
   type SetStateAction,
   useState,
@@ -17,7 +16,7 @@ export const SetRepositoryContext = createContext<
   Dispatch<SetStateAction<Repository | null>>
 >(() => {});
 
-export const Provider: FC<PropsWithChildren> = ({ children }) => {
+export const Provider = ({ children }: PropsWithChildren) => {
   const [repository, setRepository] = useState<Repository | null>(null);
   return (
     <RepositoryContext.Provider value={repository}>

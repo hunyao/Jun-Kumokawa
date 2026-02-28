@@ -1,9 +1,9 @@
 import { useSkill } from '@hooks/index';
 import { Container, GithubNavMenu, GithubNavMenuItem } from '@ui/index';
 import highcharts, { type Chart } from 'highcharts';
-import { type FC, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-export const SkillPage: FC = () => {
+export const SkillPage = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [menu, setMenu] = useState(0);
 

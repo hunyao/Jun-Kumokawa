@@ -9,10 +9,9 @@ import {
   LogoutSvg,
 } from '@icons/index';
 import { Container, GithubMenuButton } from '@ui/index';
-import type { FC } from 'react';
 import { NavLink } from 'react-router';
 
-export const Header: FC = () => {
+export const Header = () => {
   const { redirectToSignIn, isSignedIn, signOut } = useGithub();
 
   return (

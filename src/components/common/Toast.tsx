@@ -1,8 +1,8 @@
 import { SetToastContext, ToastContext } from '@contexts/ToastContext';
 import { XmarkSvg } from '@icons/index';
-import { type FC, use } from 'react';
+import { use } from 'react';
 
-export const Toast: FC = () => {
+export const Toast = () => {
   const data = use(ToastContext);
   const setToast = use(SetToastContext);
 

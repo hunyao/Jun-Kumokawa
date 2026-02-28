@@ -1,7 +1,7 @@
 import { octokit } from '@lib/index';
 import type { Endpoints } from '@octokit/types';
 import { GithubButton } from '@ui/index';
-import { type FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { sorting } from './DirectoryContent';
 import { RepositoryFileTreeItem } from './RepositoryFileTreeItem';
 
@@ -11,13 +11,12 @@ type RepositoryFileTreeProps = {
   branch: string;
   path: string;
 };
-export const RepositoryFileTree: FC<RepositoryFileTreeProps> = (props) => {
+export const RepositoryFileTree = (props: RepositoryFileTreeProps) => {
   const { owner, repo, branch, path } = props;
   const [showAll, setShowAll] = useState(false);
-  const [tree, setTree] =
-    useState<
-      Endpoints['GET /repos/{owner}/{repo}/git/trees/{tree_sha}']['response']['data']['tree']
-    >([]);
+  const [tree, setTree] = useState<
+    Endpoints['GET /repos/{owner}/{repo}/git/trees/{tree_sha}']['response']['data']['tree']
+  >([]);
   const [isLoading, setIsLoading] = useState(false);
   const maxItems = 500;
 
@@ -61,7 +60,9 @@ export const RepositoryFileTree: FC<RepositoryFileTreeProps> = (props) => {
   const isTruncated = tree.length > maxItems;
   const visibleTree = showAll ? tree : tree.slice(0, maxItems);
   return (
-    <ul className={['m-0 w-full', 'menu flex-nowrap overflow-y-auto'].join(' ')}>
+    <ul
+      className={['m-0 w-full', 'menu flex-nowrap overflow-y-auto'].join(' ')}
+    >
       {visibleTree.map((_treeItem) => (
         <RepositoryFileTreeItem
           key={`${path}${_treeItem.path}`}

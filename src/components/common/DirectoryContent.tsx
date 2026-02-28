@@ -3,7 +3,6 @@ import { octokit } from '@lib/index';
 import type { components } from '@octokit/openapi-types';
 import type { Endpoints } from '@octokit/types';
 import { getAllCommitCounts } from '@utils/index';
-import type { FC } from 'react';
 import { Await, NavLink, useLocation, useSearchParams } from 'react-router';
 import type { unpackArray } from 'src/types';
 import { DirectoryContentRowWrapper } from './DirectoryContentRow';
@@ -53,7 +52,7 @@ type DirectoryContentWrapperProps = {
   initialRef?: Array<components['schemas']['commit']>;
   initialTotalCommitCount?: number;
 };
-export const DirectoryContentWrapper: FC<DirectoryContentWrapperProps> = ({
+export const DirectoryContentWrapper = ({
   owner,
   repo,
   branch_ref,
@@ -63,7 +62,7 @@ export const DirectoryContentWrapper: FC<DirectoryContentWrapperProps> = ({
   skipCommitData = false,
   initialRef,
   initialTotalCommitCount,
-}) => {
+}: DirectoryContentWrapperProps) => {
   const promise = Promise.all([
     octokit.rest.git.getTree({
       owner,
@@ -96,16 +95,16 @@ export const DirectoryContentWrapper: FC<DirectoryContentWrapperProps> = ({
         {([treeResponse, commitData]) => {
           treeResponse.data.tree.sort(sorting);
           return (
-          <DirectoryContent
-            ref={commitData.ref}
-            tree={treeResponse.data}
-            totalCommitCount={commitData.totalCommitCount}
-            owner={owner}
-            repo={repo}
-            branch_ref={branch_ref}
-            separatedHeader={separatedHeader}
-          />
-        );
+            <DirectoryContent
+              ref={commitData.ref}
+              tree={treeResponse.data}
+              totalCommitCount={commitData.totalCommitCount}
+              owner={owner}
+              repo={repo}
+              branch_ref={branch_ref}
+              separatedHeader={separatedHeader}
+            />
+          );
         }}
       </Await>
     </SuspenseWithComponent>
@@ -120,7 +119,7 @@ type DirectoryContentProps = {
   branch_ref: string;
   separatedHeader?: boolean;
 };
-export const DirectoryContent: FC<DirectoryContentProps> = (props) => {
+export const DirectoryContent = (props: DirectoryContentProps) => {
   const {
     ref,
     tree,

@@ -6,9 +6,9 @@ import {
   SideBarMenuState,
   Toast,
 } from '@components/index';
-import type { FC, PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 
-export const MainLayout: FC<PropsWithChildren> = ({ children }) => {
+export const MainLayout = ({ children }: PropsWithChildren) => {
   return (
     <div className='relative'>
       <SideBarMenuState />

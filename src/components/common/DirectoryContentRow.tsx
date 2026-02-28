@@ -3,7 +3,7 @@ import { FileSvg, FolderSvg } from '@icons/index';
 import { octokit } from '@lib/index';
 import type { components } from '@octokit/openapi-types';
 import dayjs from 'dayjs';
-import { type FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink, useSearchParams } from 'react-router';
 
 const commitCache = new Map<string, Array<components['schemas']['commit']>>();
@@ -13,7 +13,7 @@ const COMMIT_CACHE_TTL_MS = (() => {
 })();
 const commitCacheTime = new Map<string, number>();
 
-const DirectoryContentRowSkelton: FC = () => (
+const DirectoryContentRowSkelton = () => (
   <div className='border-base-content/20 border-b-[1px] p-4 last:border-b-0'>
     <div className='skeleton h-4 w-full'></div>
   </div>
@@ -27,8 +27,8 @@ type DirectoryContentRowWrapperProps = {
   fileName: string;
   enableCommitFetch?: boolean;
 };
-export const DirectoryContentRowWrapper: FC<DirectoryContentRowWrapperProps> = (
-  props,
+export const DirectoryContentRowWrapper = (
+  props: DirectoryContentRowWrapperProps,
 ) => {
   const {
     owner,
@@ -41,7 +41,7 @@ export const DirectoryContentRowWrapper: FC<DirectoryContentRowWrapperProps> = (
   } = props;
 
   const [resolved, setResolved] =
-    useState<Array<components['schemas']['commit']>>(undefined);
+    useState<Array<components['schemas']['commit']>>();
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const cacheKey = `${owner}/${repo}/${branch_ref}/${path}/${fileName}`;
@@ -89,7 +89,7 @@ export const DirectoryContentRowWrapper: FC<DirectoryContentRowWrapperProps> = (
     return () => {
       cancelled = true;
     };
-  }, [owner, repo, path, branch_ref, fileName, cacheKey]);
+  }, [owner, repo, path, branch_ref, fileName, cacheKey, enableCommitFetch]);
 
   if (isLoading) {
     return <DirectoryContentRowSkelton />;
@@ -119,7 +119,7 @@ type DirectoryContentRowProps = {
   fileName: string;
   hasError: boolean;
 };
-export const DirectoryContentRow: FC<DirectoryContentRowProps> = (props) => {
+export const DirectoryContentRow = (props: DirectoryContentRowProps) => {
   const { ref, type, fileName, owner, repo, hasError } = props;
   const [searchParams] = useSearchParams();
   const path = searchParams.get('path') || '';

@@ -2,7 +2,7 @@ import { Skill } from '@data/index';
 import { CircleFillSvg } from '@icons/index';
 import { DetailBoxTitle } from '@ui/index';
 import Color from 'color';
-import type { CSSProperties, FC } from 'react';
+import type { CSSProperties } from 'react';
 
 const getColor = (code: Array<number>, level: number) => {
   const baseColor = Color.rgb(code);
@@ -25,7 +25,7 @@ const addedColorHexSkills = skills.map((skill) => {
     }),
   };
 });
-export const LanguageSidebarComponent: FC = () => {
+export const LanguageSidebarComponent = () => {
   return addedColorHexSkills.map((skill) => (
     <div key={skill.groupName}>
       <DetailBoxTitle>{skill.groupName}</DetailBoxTitle>
