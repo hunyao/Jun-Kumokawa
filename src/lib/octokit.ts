@@ -1,8 +1,8 @@
 import { getSha1Digest } from '@utils/index';
 import { Octokit } from 'octokit';
 
-// biome-ignore lint/suspicious/noExplicitAny: reason
-const cache = new Map<string, any>();
+const cache = new Map<string, Response>();
+export const OCTOKIT_UNAUTHORIZED_EVENT = 'octokit:unauthorized';
 export const clearOctokitCache = () => {
   cache.clear();
 };
@@ -20,11 +20,16 @@ export const octokit = new Octokit({
       if (resource.method === 'GET') {
         sha1 = await getSha1Digest(resource.url);
         if (cache.has(sha1)) {
-          return cache.get(sha1).clone();
+          return (cache.get(sha1) as Response).clone();
         }
       }
       const res = await fetch(resource, { ...options, headers });
-      if (resource.method === 'GET') {
+      if (res.status === 401 && token) {
+        window.localStorage.removeItem('github-access-token');
+        clearOctokitCache();
+        window.dispatchEvent(new CustomEvent(OCTOKIT_UNAUTHORIZED_EVENT));
+      }
+      if (resource.method === 'GET' && res.ok) {
         cache.set(sha1, res.clone());
       }
       return res;

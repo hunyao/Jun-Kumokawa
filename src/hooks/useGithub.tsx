@@ -1,13 +1,30 @@
 import { SetToastContext } from '@contexts/ToastContext';
-import { clearOctokitCache } from '@lib/octokit';
+import { clearOctokitCache, OCTOKIT_UNAUTHORIZED_EVENT } from '@lib/octokit';
 import { clearRequestCache } from '@utils/index';
-import { use, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 
 export const useGithub = () => {
   const [isSignedIn, setIsSignIn] = useState(
     window.localStorage.getItem('github-access-token') !== null,
   );
   const setToast = use(SetToastContext);
+
+  useEffect(() => {
+    const handleUnauthorized = () => {
+      clearOctokitCache();
+      clearRequestCache();
+      setIsSignIn(false);
+      setToast({
+        type: 'error',
+        message: 'Session expired. Signed out automatically.',
+      });
+    };
+
+    window.addEventListener(OCTOKIT_UNAUTHORIZED_EVENT, handleUnauthorized);
+    return () => {
+      window.removeEventListener(OCTOKIT_UNAUTHORIZED_EVENT, handleUnauthorized);
+    };
+  }, [setToast]);
 
   const redirectToSignIn = () => {
     const url = `https://github.com/login/oauth/authorize?${new URLSearchParams(
