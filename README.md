@@ -27,6 +27,8 @@ Jun-Kumokawa is a Human library for making web systems:
 
 ## Installation
 
+Note: The commands below are fictional and included only as part of the joke.
+
 npm:
 ```bash
 npm install jun-kumokawa --save
@@ -38,6 +40,8 @@ yarn add jun-kumokawa
 ```
 
 ## Quick Start
+
+Note: The following code is a joke example for fun. This repository is a portfolio website, not a real package.
 
 Here is how to hire me:
 ```typescript
@@ -77,6 +81,8 @@ console.log(contact);
 ```
 
 ## API Reference
+
+Note: The API below is fictional and provided only for fun.
 
 ### Constructor Options
 ```typescript
@@ -444,7 +450,7 @@ Self-taught Full-Stack Engineer made in Japan.
 - Full remote work
 
 **Contact:**
-- 📧 Email: jun@kumokawa.dev
+- 📧 Email: jun@kumoti.jp
 - 🌐 Portfolio: [https://portfolio.kumoti.jp](https://portfolio.kumoti.jp)
 - 💼 GitHub: [https://github.com/hunyao](https://github.com/hunyao)
 
