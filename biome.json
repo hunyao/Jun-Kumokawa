@@ -24,6 +24,32 @@
       "suspicious": {
         "noUnknownAtRules": "off"
       },
+      "style": {
+        "noRestrictedImports": {
+          "level": "error",
+          "options": {
+            "paths": {
+              "react": {
+                "importNames": [
+                  "FC",
+                  "FunctionComponent"
+                ],
+                "message": "React.FC は使わず、propsを明示した関数宣言にしてください。"
+              }
+            }
+          }
+        },
+        "noRestrictedTypes": {
+          "level": "error",
+          "options": {
+            "types": {
+              "FC": "React.FC は使わない",
+              "FunctionComponent": "React.FC は使わない",
+              "React.FC": "React.FC は使わない"
+            }
+          }
+        }
+      },
       "nursery": {
         "useSortedClasses": {
           "fix": "safe",
