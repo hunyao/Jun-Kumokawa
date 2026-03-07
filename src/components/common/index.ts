@@ -6,6 +6,7 @@ export * from './DirectoryContent';
 export * from './DirectoryContentRow';
 export * from './ErrorPanel';
 export * from './Footer';
+export * from './GoToFile';
 export * from './Header';
 export * from './LanguageSidebarComponent';
 export * from './LatestCommit';

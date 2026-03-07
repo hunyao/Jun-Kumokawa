@@ -2,6 +2,7 @@ import {
   BlobViewContentWrapper,
   CopyContentButton,
   DirectoryContentWrapper,
+  GoToFile,
   LatestCommit,
   OverviewContent,
   RepositoryFileTree,
@@ -125,7 +126,7 @@ export const TreePage = (props: TreePageProps) => {
       <input type='checkbox' className='hidden' id={collapseId} />
       <div className='flex w-auto min-w-[300px] border-base-content/20 border-r-[1px] group-has-[input:checked]:hidden'>
         <div
-          className='sticky top-0 grid max-h-screen flex-1 grid-rows-[min-content_min-content_min-content_minmax(0,1fr)] gap-2 p-4'
+          className='sticky top-0 grid max-h-screen flex-1 grid-rows-[min-content_min-content_min-content_min-content_minmax(0,1fr)] gap-2 p-4'
           ref={targetRef}
         >
           <div className='flex items-center gap-2 font-bold text-lg'>
@@ -152,6 +153,7 @@ export const TreePage = (props: TreePageProps) => {
             className='w-full'
             onChange={onChangeBranch}
           />
+          <GoToFile owner={owner} repo={repo} branch={branch.name} />
           <div className='divider m-0'></div>
           <RepositoryFileTree
             key={currentBranch}

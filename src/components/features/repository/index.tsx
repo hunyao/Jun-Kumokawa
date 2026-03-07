@@ -1,6 +1,7 @@
 import {
   CloneCode,
   DirectoryContentWrapper,
+  GoToFile,
   LanguageSidebarComponent,
   OverviewContent,
   SwitchBranches,
@@ -129,8 +130,13 @@ export const RepositoryPage = (props: RepositoryPageProps) => {
               <TagSvg className='h-4 w-4 fill-current' />
               {tags.length} Tags
             </GithubButton>
-            <CloneCode
+            <GoToFile
               className='ml-auto'
+              owner={owner}
+              repo={repo}
+              branch={branch.name}
+            />
+            <CloneCode
               https_url={repository.clone_url}
               ssh_url={repository.ssh_url}
               github_url={`gh repo clone ${repository.full_name}`}
