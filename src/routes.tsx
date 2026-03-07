@@ -5,6 +5,7 @@ import {
   ExperiencePage,
   getRepositoryPageLoader,
   getTreePageLoader,
+  MooPage,
   RepositoryErrorPage,
   RepositoryPageWrapper,
   SkillPage,
@@ -12,7 +13,7 @@ import {
 } from '@features/index';
 import { MainLayout } from '@layouts/index';
 import { OauthCallback } from '@middlewares/index';
-import { createBrowserRouter, Outlet } from 'react-router';
+import { createBrowserRouter, Navigate, Outlet } from 'react-router';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
     ),
     errorElement: <AppErrorPage />,
     children: [
+      {
+        index: true,
+        element: <Navigate to={Routes.HOME} replace />,
+      },
       {
         path: Routes.REPOSITORY,
         element: <RepositoryPageWrapper />,
@@ -47,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: Routes.SKILLS,
         Component: SkillPage,
+      },
+      {
+        path: Routes.MOO,
+        Component: MooPage,
       },
     ],
   },

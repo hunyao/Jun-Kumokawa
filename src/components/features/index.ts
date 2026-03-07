@@ -1,3 +1,4 @@
+export * from './cow';
 export * from './errors';
 export * from './experience';
 export * from './repository';
