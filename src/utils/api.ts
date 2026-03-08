@@ -5,7 +5,6 @@ import type {
   RequestParameters,
   ResponseHeaders,
 } from '@octokit/types';
-import { expect, test, vi } from 'vitest';
 import { getSha1Digest } from '.';
 
 // biome-ignore lint/suspicious/noExplicitAny: reason
@@ -61,6 +60,7 @@ export const requestRecursively = async <
 };
 
 if (import.meta.vitest) {
+  const { expect, test, vi } = import.meta.vitest;
   test('requestRecursively: returns empty array when first response has no data', async () => {
     const mockFunc = vi.fn().mockResolvedValue({ data: [] });
     // biome-ignore lint/suspicious/noExplicitAny: test purpose

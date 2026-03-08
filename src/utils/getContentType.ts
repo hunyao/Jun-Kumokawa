@@ -1,4 +1,3 @@
-import { beforeEach, expect, test, vi } from 'vitest';
 import { getSha1Digest } from './getSha1Digest';
 
 type ContentType = {
@@ -34,6 +33,7 @@ export const getContentType = async (url: string): Promise<ContentType> => {
 };
 
 if (import.meta.vitest) {
+  const { beforeEach, expect, test, vi } = import.meta.vitest;
   vi.mock('./getSha1Digest.ts', () => ({
     getSha1Digest: vi
       .fn()

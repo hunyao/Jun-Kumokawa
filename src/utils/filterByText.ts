@@ -1,5 +1,4 @@
 import type { StrictString } from 'src/types';
-import { expect, test } from 'vitest';
 
 /**
  * Returns array filtered `_arr[_key]` by the given `_text`
@@ -25,6 +24,7 @@ export function filterByText<T, K extends keyof T>(
 }
 
 if (import.meta.vitest) {
+  const { expect, test } = import.meta.vitest;
   const targetArray = [
     { id: 1, name: 'Taylor Floyd' },
     { id: 2, name: 'Susannah Livingston' },

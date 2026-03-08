@@ -1,5 +1,3 @@
-import { expect, test } from 'vitest';
-
 /**
  * Returns numbers between the given `start` and `end` value
  *
@@ -13,6 +11,7 @@ export const genRange = (start: number, end: number): number[] => {
 };
 
 if (import.meta.vitest) {
+  const { expect, test } = import.meta.vitest;
   test('for from 1 to 1', () => {
     expect(genRange(1, 1)).toEqual([1]);
   });

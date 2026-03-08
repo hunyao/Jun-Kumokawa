@@ -1,5 +1,3 @@
-import { expect, test } from 'vitest';
-
 /**
  * Returns an ArrayBuffer of decoded the given `b64`
  *
@@ -18,6 +16,7 @@ export const b64ToBuf = (b64: string): ArrayBuffer => {
 };
 
 if (import.meta.vitest) {
+  const { expect, test } = import.meta.vitest;
   test('english', async () => {
     const target = 'hello world';
     const arrayBuf = await new Blob([target]).arrayBuffer();

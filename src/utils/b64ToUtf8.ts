@@ -1,5 +1,3 @@
-import { expect, test } from 'vitest';
-
 /**
  * Returns decoded UTF-8 strings encoded by base64
  *
@@ -19,6 +17,7 @@ export const b64ToUtf8 = (b64: string): string => {
 };
 
 if (import.meta.vitest) {
+  const { expect, test } = import.meta.vitest;
   test('english', () => {
     expect(b64ToUtf8('aGVsbG8gd29ybGQ=')).toEqual('hello world');
   });

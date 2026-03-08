@@ -1,5 +1,3 @@
-import { expect, test } from 'vitest';
-
 /**
  * Returns string computed the given `data` to SHA1
  *
@@ -19,6 +17,7 @@ export const getSha1Digest = async (data: string): Promise<string> => {
 };
 
 if (import.meta.vitest) {
+  const { expect, test } = import.meta.vitest;
   test('hogehoge', async () => {
     expect(await getSha1Digest('hogehoge')).toEqual(
       '3b2c6c10d0e78072d14e02cc4c587814d0f10f3a',

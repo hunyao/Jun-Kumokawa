@@ -1,5 +1,3 @@
-import { expect, test } from 'vitest';
-
 /**
  * Returns object that includes each page number on the header `Link`
  *
@@ -29,6 +27,7 @@ export const extractPageInfo = (
 };
 
 if (import.meta.vitest) {
+  const { expect, test } = import.meta.vitest;
   test('extractPageInfo', () => {
     const headers =
       '<https://api.example.com/issues?page=2>; rel="prev", <https://api.example.com/issues?page=4>; rel="next", <https://api.example.com/issues?page=10>; rel="last", <https://api.example.com/issues?page=1>; rel="first"';
