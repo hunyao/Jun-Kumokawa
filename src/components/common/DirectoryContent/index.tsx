@@ -1,3 +1,6 @@
+import { DirectoryContentRowWrapper } from '@components/DirectoryContentRow';
+import { LatestCommit } from '@components/LatestCommit';
+import { SuspenseWithComponent } from '@components/SuspenseWithComponent';
 import { FolderSvg } from '@icons/index';
 import { octokit } from '@lib/index';
 import type { components } from '@octokit/openapi-types';
@@ -5,9 +8,6 @@ import type { Endpoints } from '@octokit/types';
 import { getAllCommitCounts } from '@utils/index';
 import { Await, NavLink, useLocation, useSearchParams } from 'react-router';
 import type { unpackArray } from 'src/types';
-import { DirectoryContentRowWrapper } from '@components/DirectoryContentRow';
-import { LatestCommit } from '@components/LatestCommit';
-import { SuspenseWithComponent } from '@components/SuspenseWithComponent';
 
 export const sorting = (
   a: unpackArray<
