@@ -6,7 +6,7 @@ import {
   GithubTabItem,
 } from '@ui/index';
 import { type CSSProperties, type HTMLAttributes, useState } from 'react';
-import { CopyContentButton } from './CopyContentButton';
+import { CopyContentButton } from '@components/CopyContentButton';
 
 type CLONE_CODE_TAB_HTTPS = 'https';
 type CLONE_CODE_TAB_SSH = 'ssh';

@@ -5,7 +5,7 @@ import { GithubTab, GithubTabItem } from '@ui/index';
 import { b64ToUtf8 } from '@utils/index';
 import DOMPurify from 'dompurify';
 import { useEffect, useState } from 'react';
-import styles from './OverviewContent.module.scss';
+import styles from './index.module.scss';
 
 type RepositoryContentResponse =
   Endpoints['GET /repos/{owner}/{repo}/contents/{path}']['response']['data'];

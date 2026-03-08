@@ -5,9 +5,9 @@ import type { Endpoints } from '@octokit/types';
 import { getAllCommitCounts } from '@utils/index';
 import { Await, NavLink, useLocation, useSearchParams } from 'react-router';
 import type { unpackArray } from 'src/types';
-import { DirectoryContentRowWrapper } from './DirectoryContentRow';
-import { LatestCommit } from './LatestCommit';
-import { SuspenseWithComponent } from './SuspenseWithComponent';
+import { DirectoryContentRowWrapper } from '@components/DirectoryContentRow';
+import { LatestCommit } from '@components/LatestCommit';
+import { SuspenseWithComponent } from '@components/SuspenseWithComponent';
 
 export const sorting = (
   a: unpackArray<

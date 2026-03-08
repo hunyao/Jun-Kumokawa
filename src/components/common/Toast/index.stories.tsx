@@ -1,7 +1,7 @@
 import { SetToastContext, ToastContext } from '@contexts/ToastContext';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
-import { Toast } from './Toast';
+import { Toast } from '.';
 
 const meta = {
   title: 'components/common/Toast',
