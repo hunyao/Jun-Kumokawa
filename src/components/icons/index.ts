@@ -14,6 +14,7 @@ import DateRangeSvg from './date-range.svg?react';
 import DownloadSvg from './download.svg?react';
 import EnvelopeSvg from './envelope.svg?react';
 import FileSvg from './file-regular-full.svg?react';
+import FileSubmoduleSvg from './file-submodule.svg?react';
 import FolderSvg from './folder-solid-full.svg?react';
 import FolderZipSvg from './folder-zip.svg?react';
 import GitForkSvg from './git-fork.svg?react';
@@ -35,6 +36,7 @@ import PhoneSvg from './phone.svg?react';
 import ScrewdriverWrenchSvg from './screwdriver-wrench.svg?react';
 import SearchSvg from './search.svg?react';
 import StarSvg from './star.svg?react';
+import SymlinkFileSvg from './symlink-file.svg?react';
 import TagSvg from './tag.svg?react';
 import TerminalSvg from './terminal.svg?react';
 import UnfoldSvg from './unfold.svg?react';
@@ -86,4 +88,6 @@ export {
   UnfoldSvg,
   DateRangeSvg,
   HandshakeSvg,
+  SymlinkFileSvg,
+  FileSubmoduleSvg,
 };

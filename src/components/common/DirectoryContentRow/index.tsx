@@ -1,6 +1,11 @@
 import { Routes } from '@constants/index';
 import { useDirectoryRowCommit } from '@hooks/index';
-import { FileSvg, FolderSvg } from '@icons/index';
+import {
+  FileSubmoduleSvg,
+  FileSvg,
+  FolderSvg,
+  SymlinkFileSvg,
+} from '@icons/index';
 import type { components } from '@octokit/openapi-types';
 import dayjs from 'dayjs';
 import { NavLink, useSearchParams } from 'react-router';
@@ -16,6 +21,7 @@ type DirectoryContentRowWrapperProps = {
   path: string;
   branch_ref: string;
   type: string;
+  mode?: string;
   fileName: string;
   enableCommitFetch?: boolean;
 };
@@ -28,6 +34,7 @@ export const DirectoryContentRowWrapper = (
     path,
     branch_ref,
     type,
+    mode,
     fileName,
     enableCommitFetch = true,
   } = props;
@@ -53,6 +60,7 @@ export const DirectoryContentRowWrapper = (
       repo={repo}
       commit={commit}
       type={type}
+      mode={mode}
       fileName={fileName}
       hasError={hasError}
     />
@@ -64,11 +72,30 @@ type DirectoryContentRowProps = {
   repo: string;
   commit: components['schemas']['commit'] | null;
   type: string;
+  mode?: string;
   fileName: string;
   hasError: boolean;
 };
 export const DirectoryContentRow = (props: DirectoryContentRowProps) => {
-  const { commit, type, fileName, owner, repo, hasError } = props;
+  const { commit, type, mode, fileName, owner, repo, hasError } = props;
+  const isFolder = mode === '040000';
+  const isSubmodule = mode === '160000';
+  const isSymlinkFile = mode === '120000';
+  const isFile = mode === '100644' || mode === '100755';
+
+  const getIcon = () => {
+    if (isFolder) return <FolderSvg className='h-6 w-6 fill-current' />;
+    if (isSubmodule)
+      return <FileSubmoduleSvg className='h-4 w-6 fill-current' />;
+    if (isSymlinkFile)
+      return <SymlinkFileSvg className='h-4 w-6 fill-current' />;
+    if (isFile) return <FileSvg className='h-6 w-6 fill-current' />;
+    return type === 'tree' ? (
+      <FolderSvg className='h-6 w-6 fill-current' />
+    ) : (
+      <FileSvg className='h-6 w-6 fill-current' />
+    );
+  };
   const [searchParams] = useSearchParams();
   const path = searchParams.get('path') || '';
 
@@ -80,19 +107,35 @@ export const DirectoryContentRow = (props: DirectoryContentRowProps) => {
   _searchParams.set('mode', type);
 
   return (
-    <div className='grid cursor-pointer grid-cols-[min-content_minmax(0,1fr)_minmax(0,1fr)_7rem] items-center gap-2 border-base-content/20 border-b-[1px] p-2 last:border-b-0 hover:bg-base-content/5'>
-      {type === 'tree' && <FolderSvg className='h-6 w-6 fill-current' />}
-      {type === 'blob' && <FileSvg className='h-6 w-6 fill-current' />}
+    <div
+      className={[
+        'grid grid-cols-[min-content_minmax(0,1fr)_minmax(0,1fr)_7rem] items-center gap-2 border-base-content/20 border-b-[1px] p-2 last:border-b-0',
+        isSubmodule
+          ? 'cursor-not-allowed opacity-50'
+          : 'cursor-pointer hover:bg-base-content/5',
+      ].join(' ')}
+    >
+      {getIcon()}
       <span>
-        <NavLink
-          to={{
-            pathname: Routes.TREE.replace(':owner', owner).replace(':id', repo),
-            search: `?${_searchParams.toString()}`,
-          }}
-          className='link link-hover hover:link-primary'
-        >
-          {fileName}
-        </NavLink>
+        {isSubmodule ? (
+          <span className='text-base-content/50'>{fileName}</span>
+        ) : (
+          <NavLink
+            to={{
+              pathname: Routes.TREE.replace(':owner', owner).replace(
+                ':id',
+                repo,
+              ),
+              search: `?${_searchParams.toString()}`,
+            }}
+            className={[
+              'link link-hover',
+              isSymlinkFile ? 'link-primary' : 'hover:link-primary',
+            ].join(' ')}
+          >
+            {fileName}
+          </NavLink>
+        )}
       </span>
       <span className='truncate'>
         {hasError

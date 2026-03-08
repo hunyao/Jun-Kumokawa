@@ -178,6 +178,7 @@ export const DirectoryContent = (props: DirectoryContentProps) => {
                 path={path}
                 branch_ref={branch_ref}
                 type={_tree.type}
+                mode={_tree.mode}
                 fileName={_tree.path}
                 enableCommitFetch={enableCommitFetch}
               />
@@ -219,6 +220,7 @@ export const DirectoryContent = (props: DirectoryContentProps) => {
               path={path}
               branch_ref={branch_ref}
               type={_tree.type}
+              mode={_tree.mode}
               fileName={_tree.path}
               enableCommitFetch={enableCommitFetch}
             />
