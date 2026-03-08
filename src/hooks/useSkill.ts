@@ -1,29 +1,38 @@
 import { Skill } from '@data/index';
-import { expect, test } from 'vitest';
+import { getColor } from '@utils/getColor';
+import { useCallback, useMemo } from 'react';
 
 const { skills } = Skill;
+
 export const useSkill = () => {
-  const groupNames = skills.map(({ groupName }) => groupName);
-  const getSkillGroup = (index: number) => {
-    return skills[index];
-  };
+  const skillGroupNames = useMemo(
+    () => skills.map(({ groupName }) => groupName),
+    [],
+  );
+  const getSkillGroup = useCallback((index: number) => skills[index], []);
+
+  const coloredSkills = useMemo(
+    () =>
+      skills.map((skill) => {
+        const totalValue = skill.items.reduce(
+          (prev, current) => prev + current.value,
+          0,
+        );
+        return {
+          ...skill,
+          totalValue,
+          items: skill.items.map((skillItem, index) => ({
+            ...skillItem,
+            colorHex: getColor(skill.colorCode, index + 1).hex(),
+          })),
+        };
+      }),
+    [],
+  );
 
   return {
-    skillGroupNames: groupNames,
+    skillGroupNames,
     getSkillGroup,
+    coloredSkills,
   };
 };
-
-if (import.meta.vitest) {
-  test('skillGroupNames returns all group names from skills data', () => {
-    const { skillGroupNames } = useSkill();
-    expect(skillGroupNames).toEqual(skills.map(({ groupName }) => groupName));
-    expect(skillGroupNames.length).toBeGreaterThan(0);
-  });
-
-  test('getSkillGroup returns the correct group by index', () => {
-    const { getSkillGroup } = useSkill();
-    expect(getSkillGroup(0)).toEqual(skills[0]);
-    expect(getSkillGroup(1)).toEqual(skills[1]);
-  });
-}

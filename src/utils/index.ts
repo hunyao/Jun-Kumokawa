@@ -20,4 +20,5 @@ export * from './filterByText';
 export * from './genRange';
 export * from './getAllCommitCounts';
 export * from './getContentType';
+export * from './getColor';
 export * from './getSha1Digest';

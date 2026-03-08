@@ -8,7 +8,7 @@ export * from './ErrorPanel';
 export * from './Footer';
 export * from './GoToFile';
 export * from './Header';
-export * from './LanguageSidebarComponent';
+export * from './SkillSidebarComponent';
 export * from './LatestCommit';
 export * from './OverviewContent';
 export * from './Profile';

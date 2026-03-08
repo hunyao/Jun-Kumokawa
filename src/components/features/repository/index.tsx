@@ -2,7 +2,7 @@ import {
   CloneCode,
   DirectoryContentWrapper,
   GoToFile,
-  LanguageSidebarComponent,
+  SkillSidebarComponent,
   OverviewContent,
   SwitchBranches,
 } from '@components/index';
@@ -226,7 +226,7 @@ export const RepositoryPage = (props: RepositoryPageProps) => {
           </div>
           <div className='divider' />
           {owner === 'hunyao' && repo === 'Jun-Kumokawa' && (
-            <LanguageSidebarComponent />
+            <SkillSidebarComponent />
           )}
         </div>
       </div>
