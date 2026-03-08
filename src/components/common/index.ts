@@ -8,6 +8,7 @@ export * from './ErrorPanel';
 export * from './Footer';
 export * from './GoToFile';
 export * from './Header';
+export * from './LanguageUsage';
 export * from './LatestCommit';
 export * from './OverviewContent';
 export * from './Profile';

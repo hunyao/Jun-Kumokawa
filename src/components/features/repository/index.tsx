@@ -2,8 +2,9 @@ import {
   CloneCode,
   DirectoryContentWrapper,
   GoToFile,
-  SkillSidebarComponent,
+  LanguageUsage,
   OverviewContent,
+  SkillSidebarComponent,
   SwitchBranches,
 } from '@components/index';
 import { Routes } from '@constants/index';
@@ -88,9 +89,9 @@ export const RepositoryPage = (props: RepositoryPageProps) => {
   if (branch === undefined) return null;
 
   const onChangeBranch = (_branch: string) => {
-    const _searchParams = searchParams;
+    const _searchParams = new URLSearchParams(searchParams);
     _searchParams.set('branch', _branch);
-    navigate(`${location.pathname}?${searchParams.toString()}`);
+    navigate(`${location.pathname}?${_searchParams.toString()}`);
   };
 
   return (
@@ -225,8 +226,12 @@ export const RepositoryPage = (props: RepositoryPageProps) => {
             </div>
           </div>
           <div className='divider' />
+          <LanguageUsage owner={owner} repo={repo} />
           {owner === 'hunyao' && repo === 'Jun-Kumokawa' && (
-            <SkillSidebarComponent />
+            <>
+              <div className='divider' />
+              <SkillSidebarComponent />
+            </>
           )}
         </div>
       </div>
