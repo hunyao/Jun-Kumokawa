@@ -1,5 +1,6 @@
+import { SetToastContext, ToastContext } from '@contexts/ToastContext';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { expect, within } from 'storybook/test';
+import { expect, fn, within } from 'storybook/test';
 import { Header } from '.';
 
 const meta = {
@@ -23,6 +24,15 @@ export const Primary: Story = {
       },
     },
   },
+  decorators: [
+    (Story) => (
+      <ToastContext.Provider value={null}>
+        <SetToastContext.Provider value={fn()}>
+          <Story />
+        </SetToastContext.Provider>
+      </ToastContext.Provider>
+    ),
+  ],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText('hunyao')).toBeInTheDocument();

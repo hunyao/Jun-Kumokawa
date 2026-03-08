@@ -1,6 +1,6 @@
+import { SetToastContext, ToastContext } from '@contexts/ToastContext';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
-import { SetToastContext, ToastContext } from '@contexts/ToastContext';
 import { Toast } from './Toast';
 
 const meta = {
@@ -27,7 +27,9 @@ export const Success: Story = {
   },
   decorators: [
     (Story) => (
-      <ToastContext.Provider value={{ type: 'success', message: 'Operation successful!' }}>
+      <ToastContext.Provider
+        value={{ type: 'success', message: 'Operation successful!' }}
+      >
         <SetToastContext.Provider value={mockSetToast}>
           <Story />
         </SetToastContext.Provider>
@@ -57,7 +59,9 @@ export const ErrorToast: Story = {
   },
   decorators: [
     (Story) => (
-      <ToastContext.Provider value={{ type: 'error', message: 'Something went wrong!' }}>
+      <ToastContext.Provider
+        value={{ type: 'error', message: 'Something went wrong!' }}
+      >
         <SetToastContext.Provider value={fn()}>
           <Story />
         </SetToastContext.Provider>

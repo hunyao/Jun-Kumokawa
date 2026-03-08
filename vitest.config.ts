@@ -47,5 +47,13 @@ export default defineConfig({
       },
     ],
   },
+  resolve: {
+    alias: [
+      {
+        find: /^.+\.svg\?react$/,
+        replacement: path.join(dirname, '__mocks__', 'svgMock.ts'),
+      },
+    ],
+  },
   plugins: [tsconfigPaths()],
 });

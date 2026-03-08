@@ -16,6 +16,9 @@ export const config: StorybookConfig = {
 
     return mergeConfig(config, {
       plugins: [tailwindcss()],
+      define: {
+        'import.meta.vitest': 'undefined',
+      },
     });
   },
 };
