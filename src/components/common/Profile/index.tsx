@@ -16,6 +16,64 @@ import { useState } from 'react';
 import { NavLink } from 'react-router';
 
 const { profile } = ProfileData;
+
+const socialLinks = [
+  {
+    key: 'location',
+    Icon: LocationSvg,
+    content: profile.location,
+  },
+  {
+    key: 'linkedin',
+    Icon: LinkedinSvg,
+    content: (
+      <a
+        href={`https://www.linkedin.com/in/${profile.linkedin}`}
+        target='_blank'
+        rel='noreferrer'
+        className='link link-hover'
+      >
+        @{profile.linkedin}
+      </a>
+    ),
+  },
+  {
+    key: 'github',
+    Icon: GithubSvg,
+    content: (
+      <a
+        href={`https://github.com/${profile.github}`}
+        target='_blank'
+        rel='noreferrer'
+        className='link link-hover'
+      >
+        @{profile.github}
+      </a>
+    ),
+  },
+  {
+    key: 'email',
+    Icon: EnvelopeSvg,
+    content: (
+      <a href={`mailto:${profile.email}`} className='link link-hover'>
+        {profile.email}
+      </a>
+    ),
+  },
+  {
+    key: 'phone',
+    Icon: PhoneSvg,
+    content: (
+      <a
+        href={`tel:+${profile.tel[0]}${profile.tel[1]}${profile.tel[2]}`}
+        className='link link-hover'
+      >
+        +({profile.tel[0]}) {profile.tel[1]} {profile.tel[2]}
+      </a>
+    ),
+  },
+];
+
 export const Profile = () => {
   const [kanji, setKanji] = useState(false);
 
@@ -31,7 +89,7 @@ export const Profile = () => {
             />
           </div>
           <div className='flex items-center gap-2'>
-            <label className='label !text-base-content'>
+            <label className='flex cursor-pointer items-center gap-2 text-base-content'>
               Kanji
               <input
                 type='checkbox'
@@ -45,65 +103,7 @@ export const Profile = () => {
           </div>
           <div>{profile.title.en}</div>
           <div className='flex gap-4'>
-            {[
-              {
-                key: 'location',
-                Icon: LocationSvg,
-                content: profile.location,
-              },
-              {
-                key: 'linkedin',
-                Icon: LinkedinSvg,
-                content: (
-                  <a
-                    href={`https://www.linkedin.com/in/${profile.linkedin}`}
-                    target='_blank'
-                    rel='noreferrer'
-                    className='link link-hover'
-                  >
-                    @{profile.linkedin}
-                  </a>
-                ),
-              },
-              {
-                key: 'github',
-                Icon: GithubSvg,
-                content: (
-                  <a
-                    href={`https://github.com/${profile.github}`}
-                    target='_blank'
-                    rel='noreferrer'
-                    className='link link-hover'
-                  >
-                    @{profile.github}
-                  </a>
-                ),
-              },
-              {
-                key: 'email',
-                Icon: EnvelopeSvg,
-                content: (
-                  <a
-                    href={`mailto:${profile.email}`}
-                    className='link link-hover'
-                  >
-                    {profile.email}
-                  </a>
-                ),
-              },
-              {
-                key: 'phone',
-                Icon: PhoneSvg,
-                content: (
-                  <a
-                    href={`tel:+${profile.tel[0]}${profile.tel[1]}${profile.tel[2]}`}
-                    className='link link-hover'
-                  >
-                    +({profile.tel[0]}) {profile.tel[1]} {profile.tel[2]}
-                  </a>
-                ),
-              },
-            ].map(({ key, Icon, content }) => (
+            {socialLinks.map(({ key, Icon, content }) => (
               <div className='flex items-center gap-1' key={key}>
                 <Icon className='h-5 w-5 fill-current' />
                 <span className='link-text'>{content}</span>

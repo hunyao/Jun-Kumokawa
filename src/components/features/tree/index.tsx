@@ -115,9 +115,9 @@ export const TreePage = (props: TreePageProps) => {
   const collapseId = useId();
 
   const onChangeBranch = (_branch: string) => {
-    const _searchParams = searchParams;
+    const _searchParams = new URLSearchParams(searchParams);
     _searchParams.set('branch', _branch);
-    navigate(`${location.pathname}?${searchParams.toString()}`);
+    navigate(`${location.pathname}?${_searchParams.toString()}`);
   };
   if (branch === undefined) return null;
 

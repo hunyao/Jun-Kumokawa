@@ -4,81 +4,86 @@ import highcharts, { type Chart } from 'highcharts';
 import { useEffect, useRef, useState } from 'react';
 
 export const SkillPage = () => {
-  const ref = useRef<HTMLDivElement>(null);
+  const mountRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [menu, setMenu] = useState(0);
 
-  const { skillGroupNames, getSkillGroup } = useSkill();
-
-  const skillGroup = getSkillGroup(menu);
+  const { skillGroupNames, coloredSkills } = useSkill();
+  const skillGroup = coloredSkills[menu];
 
   useEffect(() => {
-    const container = document.createElement('div');
-    let instance: Chart;
-    if (ref.current) {
-      instance = highcharts.chart(
-        container,
-        {
-          chart: {
-            type: 'pie',
-            zooming: { type: 'xy' },
-            height: '50%',
-            backgroundColor: 'transparent',
-          },
-          title: {
-            text: undefined,
-          },
-          tooltip: {
-            valueSuffix: 'y',
-          },
-          plotOptions: {
-            pie: {
-              allowPointSelect: true,
-              cursor: 'pointer',
-              dataLabels: [
-                {
-                  enabled: true,
-                  distance: 30,
-                },
-                {
-                  enabled: true,
-                  distance: -60,
-                  style: {
-                    fontSize: '1.2em',
-                    textOutline: 'none',
-                    opacity: 0.7,
-                  },
-                  filter: {
-                    operator: '>',
-                    property: 'percentage',
-                    value: 10,
-                  },
-                },
-              ],
-            },
-          },
-          series: [
-            {
-              type: 'pie',
-              name: 'Experience',
-              data: skillGroup.items.map((item) => ({
-                name: item.label,
-                y: item.value,
-              })),
-            },
-          ],
-        },
-        () => {},
-      );
-      ref.current.appendChild(container);
+    if (!mountRef.current) return;
+
+    if (!containerRef.current) {
+      containerRef.current = document.createElement('div');
+      mountRef.current.appendChild(containerRef.current);
     }
 
+    const container = containerRef.current;
+    const textColor = getComputedStyle(document.documentElement)
+      .getPropertyValue('--color-base-content')
+      .trim();
+
+    const instance: Chart = highcharts.chart(
+      container,
+      {
+        chart: {
+          type: 'pie',
+          zooming: { type: 'xy' },
+          height: '50%',
+          backgroundColor: 'transparent',
+          style: { color: textColor },
+        },
+        title: {
+          text: undefined,
+        },
+        tooltip: {
+          valueSuffix: 'y',
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: [
+              {
+                enabled: true,
+                distance: 30,
+                style: { color: textColor, textOutline: 'none' },
+              },
+              {
+                enabled: true,
+                distance: -60,
+                style: {
+                  fontSize: '1.2em',
+                  textOutline: 'none',
+                  opacity: 0.7,
+                  color: textColor,
+                },
+                filter: {
+                  operator: '>',
+                  property: 'percentage',
+                  value: 10,
+                },
+              },
+            ],
+          },
+        },
+        series: [
+          {
+            type: 'pie',
+            name: 'Experience',
+            data: skillGroup.items.map((item) => ({
+              name: item.label,
+              y: item.value,
+            })),
+          },
+        ],
+      },
+      () => {},
+    );
+
     return () => {
-      if (instance) {
-        instance.destroy();
-      }
-      if (ref.current) {
-        ref.current.removeChild(container);
-      }
+      instance.destroy();
     };
   }, [skillGroup]);
 
@@ -103,7 +108,7 @@ export const SkillPage = () => {
         {skillGroup.groupName}
       </div>
       <div className='divider col-span-3 m-0' />
-      <div ref={ref} className='col-span-3' />
+      <div ref={mountRef} className='col-span-3' />
     </Container>
   );
 };
