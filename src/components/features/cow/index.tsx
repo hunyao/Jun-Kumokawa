@@ -15,12 +15,9 @@ export const MooPage = () => {
   console.debug(msg);
   return (
     <div className='container mx-auto'>
-      <div
-        data-testid='page-moo'
-        className='overflow-hidden overflow-x-auto whitespace-pre p-3'
-      >
+      <pre className='overflow-hidden overflow-x-auto whitespace-pre p-3'>
         {msg}
-      </div>
+      </pre>
     </div>
   );
 };
