@@ -38,7 +38,7 @@ export const Toast = () => {
       <XmarkSvg
         data-testid='toast-close'
         className={['h-4 w-4 cursor-pointer', fillColor].join(' ')}
-        onClick={setToast.bind(null, null)}
+        onClick={() => setToast(null)}
       />
     </div>
   );
