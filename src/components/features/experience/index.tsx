@@ -4,8 +4,7 @@ import { DateRangeSvg, HandshakeSvg } from '@icons/index';
 import { Container } from '@ui/index';
 import { genRange } from '@utils/index';
 import dayjs from 'dayjs';
-import { createElement } from 'react';
-import { Link, useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 const { experiences } = Experience;
 
@@ -15,31 +14,31 @@ type ListProps = {
 };
 const List = (props: ListProps) => {
   const { src } = props;
-  return createElement(
-    'ul',
-    { className: 'ml-4' },
-    src.map((item, i) => {
-      if (Array.isArray(item)) {
-        // biome-ignore lint/suspicious/noArrayIndexKey: reason
-        return <List key={i} src={item} />;
-      } else {
-        return createElement(
-          'li',
-          { key: i, className: 'list-disc list-inside' },
-          item,
+  return (
+    <ul className='ml-4'>
+      {src.map((item, i) => {
+        if (Array.isArray(item)) {
+          // biome-ignore lint/suspicious/noArrayIndexKey: reason
+          return <List key={i} src={item} />;
+        }
+        return (
+          // biome-ignore lint/suspicious/noArrayIndexKey: reason
+          <li key={i} className='list-inside list-disc'>
+            {item}
+          </li>
         );
-      }
-    }),
+      })}
+    </ul>
   );
 };
 export const ExperiencePage = () => {
   const { employedAt: firstDatetime = '' } = experiences.slice().pop() || {};
   const { employedAt: lastDatetime = '' } = experiences.slice()[0] || {};
+  const navigate = useNavigate();
   const location = useLocation();
   const firstYear = new Date(firstDatetime).getFullYear();
   const lastYear = new Date(lastDatetime).getFullYear();
-  const years = genRange(firstYear, lastYear);
-  years.reverse();
+  const years = genRange(firstYear, lastYear).toReversed();
   return (
     <Container>
       <div className='grid grid-cols-[minmax(0,1fr)_max-content] gap-x-2'>
@@ -87,14 +86,19 @@ export const ExperiencePage = () => {
         <div>
           <div className='sticky top-0 grid w-32 gap-y-2 p-2'>
             {years.map((year) => (
-              <Link
+              <button
                 key={year}
-                className={`btn btn-ghost btn-primary rounded-lg px-4 py-2 ${location.hash.slice(1) === year.toString() ? 'bg-primary' : ''}`}
-                to={`#${year}`}
-                reloadDocument
+                type='button'
+                className={`btn rounded-lg px-4 py-2 ${location.hash.slice(1) === year.toString() ? 'btn-primary' : 'btn-ghost'}`}
+                onClick={() => {
+                  document
+                    .getElementById(year.toString())
+                    ?.scrollIntoView({ behavior: 'smooth' });
+                  navigate(`#${year}`, { replace: true });
+                }}
               >
                 {year}
-              </Link>
+              </button>
             ))}
           </div>
         </div>
