@@ -1,4 +1,4 @@
-import { SuspenseWithComponent } from '@components/SuspenseWithComponent';
+import { SuspenseWithComponent } from '@components/index';
 import { CircleFillSvg } from '@icons/index';
 import { octokit } from '@lib/index';
 import { DetailBoxTitle } from '@ui/index';

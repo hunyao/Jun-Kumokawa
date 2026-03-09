@@ -13,8 +13,7 @@ import hljs from 'highlight.js';
 import { type CSSProperties, useRef } from 'react';
 import { Await } from 'react-router';
 import type { unpackPromise } from 'src/types';
-import { ErrorPanel } from '@components/ErrorPanel';
-import { SuspenseWithComponent } from '@components/SuspenseWithComponent';
+import { ErrorPanel, SuspenseWithComponent } from '@components/index';
 
 type BlobViewContentWrapperProps = {
   owner: string;

@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import { Provider as ToastContextProvider } from '@contexts/ToastContext';
+import { Provider as ToastContextProvider } from '@contexts/index';
 import { RouterProvider } from 'react-router';
 import router from './routes';
 import '@lib/dayjs';

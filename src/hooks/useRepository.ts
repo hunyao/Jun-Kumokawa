@@ -1,5 +1,5 @@
-import { octokit } from '@lib/octokit';
-import { requestRecursively } from '@utils/api';
+import { octokit } from '@lib/index';
+import { requestRecursively } from '@utils/index';
 
 export const useRepository = () => {
   // const repositoryRef = useRef<

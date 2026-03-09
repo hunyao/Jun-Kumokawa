@@ -1,4 +1,4 @@
-import { useSkill } from '@hooks/useSkill';
+import { useSkill } from '@hooks/index';
 import { CircleFillSvg } from '@icons/index';
 import { DetailBoxTitle } from '@ui/index';
 

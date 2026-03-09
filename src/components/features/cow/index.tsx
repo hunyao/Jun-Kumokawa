@@ -1,4 +1,4 @@
-import useCow from '@hooks/useCow';
+import { useCow } from '@hooks/index';
 import { useSearchParams } from 'react-router';
 
 // Add more "v" on the param, it will be...

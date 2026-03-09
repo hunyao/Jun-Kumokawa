@@ -1,6 +1,8 @@
-import { DirectoryContentRowWrapper } from '@components/DirectoryContentRow';
-import { LatestCommit } from '@components/LatestCommit';
-import { SuspenseWithComponent } from '@components/SuspenseWithComponent';
+import {
+  DirectoryContentRowWrapper,
+  LatestCommit,
+  SuspenseWithComponent,
+} from '@components/index';
 import { FolderSvg } from '@icons/index';
 import { octokit } from '@lib/index';
 import type { components } from '@octokit/openapi-types';

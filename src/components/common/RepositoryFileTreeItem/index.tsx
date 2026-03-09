@@ -9,7 +9,7 @@ import {
   useSearchParams,
 } from 'react-router';
 import type { unpackArray } from 'src/types';
-import { sorting } from '@components/DirectoryContent';
+import { sorting } from '@components/index';
 
 type RepositoryFileTreeItemProps = {
   owner: string;

@@ -15,6 +15,7 @@ pnpm dev         # Vite 開発サーバー (http://localhost:3000)
 pnpm build       # TypeScript build + Vite build
 pnpm lint        # Biome lint (src/)
 pnpm test        # Vitest (Storybook + Playwright 連携あり)
+pnpm test:unit   # Vitest (単体テスト)
 pnpm storybook   # Storybook 開発サーバー (:6006)
 ```
 
@@ -144,6 +145,21 @@ React の設計思想に沿ったコーディングを行う:
 - `React.FC` / `FunctionComponent` は使用禁止
 - Tailwind クラス順は Biome ルールに従う
 
+### import 規則
+
+- 相対 import よりパスエイリアスを優先する
+- 各エイリアスは必ず `index` 経由でインポートする（直接サブパスを指定しない）
+
+```ts
+// ✅ 正しい
+import { MyComponent } from '@components/index';
+import { useSkill } from '@hooks/index';
+
+// ❌ 禁止
+import { MyComponent } from '@components/MyComponent';
+import { useSkill } from '@hooks/useSkill';
+```
+
 ## コンポーネント作成規約
 
 新規コンポーネントは上記ディレクトリ構造に従い、用途に合ったディレクトリ配下に必ずディレクトリ単位で作成する:
@@ -171,7 +187,6 @@ MyComponent/
 - Vitest + happy-dom
 - Storybook テストは `@storybook/addon-vitest` 経由で実行
 - Browser provider は Playwright (Chromium)
-- `src/utils/getAllCommitCounts.ts` はテスト対象から除外
 
 ## 環境変数
 

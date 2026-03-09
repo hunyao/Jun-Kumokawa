@@ -1,7 +1,7 @@
-import messages from '@data/cow.json';
+import { CowMessages as messages } from '@data/index';
 
 type useCowType = [string];
-const useCow = (level: string): useCowType => {
+export const useCow = (level: string): useCowType => {
   let i: number;
   if (level === '' || !/^v+$/.test(level)) {
     i = 0;
@@ -10,5 +10,3 @@ const useCow = (level: string): useCowType => {
   }
   return [messages[i]];
 };
-
-export default useCow;

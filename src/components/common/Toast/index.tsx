@@ -1,4 +1,4 @@
-import { SetToastContext, ToastContext } from '@contexts/ToastContext';
+import { SetToastContext, ToastContext } from '@contexts/index';
 import { XmarkSvg } from '@icons/index';
 import { use } from 'react';
 

@@ -1,4 +1,4 @@
-import { SetToastContext, ToastContext } from '@contexts/ToastContext';
+import { SetToastContext, ToastContext } from '@contexts/index';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, within } from 'storybook/test';
 import { Header } from '.';

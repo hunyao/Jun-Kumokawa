@@ -2,8 +2,7 @@ import { octokit } from '@lib/index';
 import type { Endpoints } from '@octokit/types';
 import { GithubButton } from '@ui/index';
 import { useEffect, useState } from 'react';
-import { sorting } from '@components/DirectoryContent';
-import { RepositoryFileTreeItem } from '@components/RepositoryFileTreeItem';
+import { RepositoryFileTreeItem, sorting } from '@components/index';
 
 type RepositoryFileTreeProps = {
   owner: string;
