@@ -9,12 +9,7 @@ import {
 import type { components } from '@octokit/openapi-types';
 import dayjs from 'dayjs';
 import { NavLink, useSearchParams } from 'react-router';
-
-const DirectoryContentRowSkelton = () => (
-  <div className='border-base-content/20 border-b-[1px] p-4 last:border-b-0'>
-    <div className='skeleton h-4 w-full'></div>
-  </div>
-);
+import { DirectoryContentRowSkelton } from '@components/index';
 type DirectoryContentRowWrapperProps = {
   owner: string;
   repo: string;
