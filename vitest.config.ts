@@ -15,12 +15,17 @@ export default defineConfig({
   test: {
     includeSource: ['src/**/*.{js,ts}'],
     environment: 'happy-dom',
-    exclude: [
-      '**/node_modules/**',
-      '**/.git/**',
-      './src/utils/getAllCommitCounts.ts',
-    ],
+    exclude: ['**/node_modules/**', '**/.git/**'],
     projects: [
+      {
+        extends: true,
+        test: {
+          name: 'unit',
+          include: ['src/**/*.test.{ts,tsx}'],
+          environment: 'happy-dom',
+          exclude: ['**/node_modules/**', '**/.git/**'],
+        },
+      },
       {
         extends: true,
         plugins: [
