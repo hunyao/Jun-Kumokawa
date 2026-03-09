@@ -1,14 +1,29 @@
 import { Skill } from '@data/index';
-import { getColor } from '@utils/getColor';
+import { getColor } from '@utils/index';
 import { useCallback, useMemo } from 'react';
 
 const { skills } = Skill;
 
+/**
+ * Provides processed skill data derived from the static `skills.json`.
+ *
+ * @returns An object containing:
+ * - `skillGroupNames` – ordered list of skill group names
+ * - `getSkillGroup` – returns the raw skill group at the given index
+ * - `coloredSkills` – skill groups enriched with `totalValue` (sum of item values)
+ *   and per-item `colorHex` derived from the group's `colorCode` via {@link getColor}
+ */
 export const useSkill = () => {
   const skillGroupNames = useMemo(
     () => skills.map(({ groupName }) => groupName),
     [],
   );
+
+  /**
+   * Returns the raw skill group at the given index.
+   *
+   * @param index - Index into the `skills` array
+   */
   const getSkillGroup = useCallback((index: number) => skills[index], []);
 
   const coloredSkills = useMemo(

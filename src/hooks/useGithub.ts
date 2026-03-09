@@ -1,8 +1,21 @@
-import { SetToastContext } from '@contexts/ToastContext';
-import { clearOctokitCache, OCTOKIT_UNAUTHORIZED_EVENT } from '@lib/octokit';
+import { SetToastContext } from '@contexts/index';
+import { clearOctokitCache, OCTOKIT_UNAUTHORIZED_EVENT } from '@lib/index';
 import { clearRequestCache } from '@utils/index';
 import { use, useEffect, useState } from 'react';
 
+/**
+ * Manages GitHub OAuth authentication state.
+ *
+ * Listens for the `octokit:unauthorized` event to detect expired sessions and
+ * automatically signs the user out. Clears both the Octokit and request caches
+ * on every sign-in or sign-out to prevent stale data from being served.
+ *
+ * @returns An object containing:
+ * - `isSignedIn` – whether a GitHub access token is currently stored
+ * - `redirectToSignIn` – redirects to the GitHub OAuth authorization page
+ * - `signIn` – stores the access token and marks the user as signed in
+ * - `signOut` – removes the access token and marks the user as signed out
+ */
 export const useGithub = () => {
   const [isSignedIn, setIsSignIn] = useState(
     window.localStorage.getItem('github-access-token') !== null,
@@ -10,6 +23,7 @@ export const useGithub = () => {
   const setToast = use(SetToastContext);
 
   useEffect(() => {
+    /** Clears caches, signs out, and shows an error toast on 401 responses. */
     const handleUnauthorized = () => {
       clearOctokitCache();
       clearRequestCache();
@@ -26,6 +40,10 @@ export const useGithub = () => {
     };
   }, [setToast]);
 
+  /**
+   * Redirects the browser to the GitHub OAuth authorization page.
+   * Query parameters are populated from environment variables.
+   */
   const redirectToSignIn = () => {
     const url = `https://github.com/login/oauth/authorize?${new URLSearchParams(
       {
@@ -39,6 +57,11 @@ export const useGithub = () => {
     window.location.assign(url);
   };
 
+  /**
+   * Stores the access token, clears caches, and marks the user as signed in.
+   *
+   * @param accessToken - GitHub OAuth access token
+   */
   const signIn = (accessToken: string) => {
     window.localStorage.setItem('github-access-token', accessToken);
     clearOctokitCache();
@@ -49,6 +72,7 @@ export const useGithub = () => {
       message: 'Signed in successfully.',
     });
   };
+  /** Removes the access token, clears caches, and marks the user as signed out. */
   const signOut = () => {
     window.localStorage.removeItem('github-access-token');
     clearOctokitCache();

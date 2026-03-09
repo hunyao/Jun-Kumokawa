@@ -1,9 +1,16 @@
 import { type RefObject, useEffect, useRef } from 'react';
 
+/**
+ * Enables drag-to-resize behavior for a panel element.
+ *
+ * Attaches `pointerdown` / `pointermove` / `pointerup` listeners to the document
+ * so that dragging the resize handle updates the width of `targetRef` to match
+ * the pointer's X position. The handle element is highlighted while dragging.
+ *
+ * @param targetRef - Ref to the element whose width will be updated on drag
+ * @returns `resizeHandlerElement` – a JSX element to render as the drag handle
+ */
 export const useResizePanel = (
-  /**
-   * a ref object of an element changed width
-   */
   targetRef: RefObject<HTMLElement | null>,
 ) => {
   const resizeRef = useRef<HTMLDivElement>(null);

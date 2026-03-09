@@ -16,9 +16,21 @@ type CachedResponse<T> = {
 };
 // biome-ignore lint/suspicious/noExplicitAny: reason
 const cache = new Map<string, CachedResponse<any>>();
+/** Clears all in-memory request cache entries. */
 export const clearRequestCache = () => {
   cache.clear();
 };
+
+/**
+ * Sends an Octokit request with SHA1-based in-memory caching.
+ *
+ * The cache key is derived from a SHA1 hash of the URL and serialized options,
+ * so identical calls are served from cache without hitting the API again.
+ *
+ * @param url - Octokit endpoint key (e.g. `"GET /repos/{owner}/{repo}"`)
+ * @param options - Request parameters passed to the endpoint
+ * @returns The cached or freshly fetched response
+ */
 export const request = async <T extends EndpointKeys>(
   url: T,
   // biome-ignore lint/suspicious/noExplicitAny: reason
@@ -37,6 +49,16 @@ export const request = async <T extends EndpointKeys>(
   return cachedRes;
 };
 
+/**
+ * Fetches all pages of a paginated Octokit endpoint.
+ *
+ * Repeatedly calls `func` with `per_page: 100` and an incrementing `page` number
+ * until an empty `data` array is returned, then returns all accumulated responses.
+ *
+ * @param func - Paginated Octokit list function (e.g. `octokit.rest.repos.listBranches`)
+ * @param options - Request parameters forwarded to `func` on every page call
+ * @returns Array of all page responses in order
+ */
 export const requestRecursively = async <
   T extends keyof Endpoints,
   U extends AnyFunction,

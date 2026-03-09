@@ -18,6 +18,25 @@ type UseDirectoryRowCommitProps = {
   enableCommitFetch?: boolean;
 };
 
+/**
+ * Fetches the latest commit for a specific file path in a repository.
+ *
+ * Results are cached in memory per `owner/repo/branch/path/fileName` key with a
+ * configurable TTL (defaults to 5 minutes, overridable via `VITE_COMMIT_TTL_MS`).
+ * A `cancelled` flag prevents state updates after the component unmounts mid-fetch.
+ *
+ * @param props.owner - Repository owner
+ * @param props.repo - Repository name
+ * @param props.path - Directory path containing the file
+ * @param props.branchRef - Branch or SHA ref to fetch commits from
+ * @param props.fileName - Name of the file to look up
+ * @param props.enableCommitFetch - When `false`, skips the API call (default: `true`)
+ * @returns An object containing:
+ * - `commit` – the latest commit, or `null` if not found
+ * - `isLoading` – whether the request is in flight
+ * - `hasError` – whether the request failed
+ * - `isResolved` – whether the request has settled
+ */
 export const useDirectoryRowCommit = (props: UseDirectoryRowCommitProps) => {
   const {
     owner,
