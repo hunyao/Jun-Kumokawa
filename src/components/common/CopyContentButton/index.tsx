@@ -1,5 +1,5 @@
-import { CheckSvg, CopyContentSvg } from '@icons/index';
 import { type HTMLAttributes, useState } from 'react';
+import { CheckSvg, CopyContentSvg } from '#icons/index';
 
 type CopyContentButtonProps = HTMLAttributes<HTMLDivElement> & {
   content: string;

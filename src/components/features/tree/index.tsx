@@ -1,21 +1,4 @@
-import {
-  BlobViewContentWrapper,
-  CopyContentButton,
-  DirectoryContentWrapper,
-  GoToFile,
-  LatestCommit,
-  OverviewContent,
-  RepositoryFileTree,
-  SuspenseWithComponent,
-  SwitchBranches,
-} from '@components/index';
-import { Routes } from '@constants/index';
-import { useResizePanel } from '@hooks/index';
-import { BottomPanelCloseSvg } from '@icons/index';
-import { octokit } from '@lib/index';
 import type { Endpoints } from '@octokit/types';
-import { GithubButton } from '@ui/index';
-import { getAllCommitCounts, requestRecursively } from '@utils/index';
 import { useId, useRef } from 'react';
 import {
   Await,
@@ -27,6 +10,23 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router';
+import {
+  BlobViewContentWrapper,
+  CopyContentButton,
+  DirectoryContentWrapper,
+  GoToFile,
+  LatestCommit,
+  OverviewContent,
+  RepositoryFileTree,
+  SuspenseWithComponent,
+  SwitchBranches,
+} from '#components/index';
+import { Routes } from '#constants/index';
+import { useResizePanel } from '#hooks/index';
+import { BottomPanelCloseSvg } from '#icons/index';
+import { octokit } from '#lib/index';
+import { GithubButton } from '#ui/index';
+import { getAllCommitCounts, requestRecursively } from '#utils/index';
 
 export const TreePageWrapper = () => {
   const { promise } = useLoaderData();

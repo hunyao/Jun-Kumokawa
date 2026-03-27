@@ -1,12 +1,12 @@
-import { CodeSvg, FolderZipSvg, HelpSvg, TerminalSvg } from '@icons/index';
+import { type CSSProperties, type HTMLAttributes, useState } from 'react';
+import { CopyContentButton } from '#components/index';
+import { CodeSvg, FolderZipSvg, HelpSvg, TerminalSvg } from '#icons/index';
 import {
   GithubButton,
   GithubDropdownButton,
   GithubTab,
   GithubTabItem,
-} from '@ui/index';
-import { type CSSProperties, type HTMLAttributes, useState } from 'react';
-import { CopyContentButton } from '@components/index';
+} from '#ui/index';
 
 type CLONE_CODE_TAB_HTTPS = 'https';
 type CLONE_CODE_TAB_SSH = 'ssh';
@@ -53,7 +53,7 @@ export const CloneCode = (props: CloneCodeProps) => {
     <div className={['dropdown dropdown-end', rest.className].join(' ')}>
       <GithubDropdownButton
         style={{ '--github-button-bg': '#238636' } as CSSProperties}
-        className='ml-auto'
+        className='ml-auto text-white'
         tabIndex={0}
       >
         <CodeSvg className='h-4 w-4 fill-current' />

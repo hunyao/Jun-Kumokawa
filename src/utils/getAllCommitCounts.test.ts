@@ -4,7 +4,7 @@ import { getAllCommitCounts } from './getAllCommitCounts';
 const mockListCommits = vi.hoisted(() => vi.fn());
 const mockExtractPageInfo = vi.hoisted(() => vi.fn());
 
-vi.mock('@lib/index', () => ({
+vi.mock('#lib/index', () => ({
   octokit: {
     rest: {
       repos: {
@@ -38,7 +38,10 @@ describe('getAllCommitCounts', () => {
       });
       mockExtractPageInfo.mockReturnValue({ last: '42' });
 
-      const count = await getAllCommitCounts({ ...baseOptions, sha: 'case-last' });
+      const count = await getAllCommitCounts({
+        ...baseOptions,
+        sha: 'case-last',
+      });
 
       expect(count).toBe(42);
     });
@@ -47,7 +50,10 @@ describe('getAllCommitCounts', () => {
       mockListCommits.mockResolvedValue({ data: [{}], headers: {} });
       mockExtractPageInfo.mockReturnValue(undefined);
 
-      const count = await getAllCommitCounts({ ...baseOptions, sha: 'case-no-link' });
+      const count = await getAllCommitCounts({
+        ...baseOptions,
+        sha: 'case-no-link',
+      });
 
       expect(count).toBe(1);
     });
@@ -59,7 +65,10 @@ describe('getAllCommitCounts', () => {
       });
       mockExtractPageInfo.mockReturnValue({ last: null });
 
-      const count = await getAllCommitCounts({ ...baseOptions, sha: 'case-null-last' });
+      const count = await getAllCommitCounts({
+        ...baseOptions,
+        sha: 'case-null-last',
+      });
 
       expect(count).toBe(2);
     });
@@ -69,7 +78,10 @@ describe('getAllCommitCounts', () => {
     it('409 エラーのとき 0 を返す', async () => {
       mockListCommits.mockRejectedValue({ status: 409 });
 
-      const count = await getAllCommitCounts({ ...baseOptions, sha: 'case-409' });
+      const count = await getAllCommitCounts({
+        ...baseOptions,
+        sha: 'case-409',
+      });
 
       expect(count).toBe(0);
     });

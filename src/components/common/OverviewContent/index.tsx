@@ -1,10 +1,10 @@
-import { BookSvg } from '@icons/index';
-import { md, octokit } from '@lib/index';
 import type { Endpoints } from '@octokit/types';
-import { GithubTab, GithubTabItem } from '@ui/index';
-import { b64ToUtf8 } from '@utils/index';
 import DOMPurify from 'dompurify';
 import { useEffect, useState } from 'react';
+import { BookSvg } from '#icons/index';
+import { md, octokit } from '#lib/index';
+import { GithubTab, GithubTabItem } from '#ui/index';
+import { b64ToUtf8 } from '#utils/index';
 import styles from './index.module.scss';
 
 type RepositoryContentResponse =

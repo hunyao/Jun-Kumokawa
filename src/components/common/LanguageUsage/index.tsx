@@ -1,9 +1,9 @@
-import { SuspenseWithComponent } from '@components/index';
-import { CircleFillSvg } from '@icons/index';
-import { octokit } from '@lib/index';
-import { DetailBoxTitle } from '@ui/index';
 import { useMemo } from 'react';
 import { Await } from 'react-router';
+import { SuspenseWithComponent } from '#components/index';
+import { CircleFillSvg } from '#icons/index';
+import { octokit } from '#lib/index';
+import { DetailBoxTitle } from '#ui/index';
 
 const LANGUAGE_COLORS: Record<string, string> = {
   TypeScript: '#3178c6',

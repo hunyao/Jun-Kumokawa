@@ -1,5 +1,5 @@
-import { BarsSvg } from '@icons/index';
 import styled from 'styled-components';
+import { BarsSvg } from '#icons/index';
 
 export const GithubMenuButton = styled.div.attrs({
   className:

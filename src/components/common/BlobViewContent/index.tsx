@@ -1,19 +1,19 @@
-import { Routes } from '@constants/index';
-import { CopyContentSvg, DownloadSvg, WarningSvg } from '@icons/index';
-import { octokit } from '@lib/index';
 import type { Endpoints } from '@octokit/types';
+import DOMPurify from 'dompurify';
+import hljs from 'highlight.js';
+import { type CSSProperties, useRef } from 'react';
+import { Await } from 'react-router';
+import { ErrorPanel, SuspenseWithComponent } from '#components/index';
+import { Routes } from '#constants/index';
+import { CopyContentSvg, DownloadSvg, WarningSvg } from '#icons/index';
+import { octokit } from '#lib/index';
+import type { unpackPromise } from '#types/utils';
 import {
   b64ToUtf8,
   getContentType,
   numberFormat,
   numberFormatWithUnit,
-} from '@utils/index';
-import DOMPurify from 'dompurify';
-import hljs from 'highlight.js';
-import { type CSSProperties, useRef } from 'react';
-import { Await } from 'react-router';
-import type { unpackPromise } from 'src/types';
-import { ErrorPanel, SuspenseWithComponent } from '@components/index';
+} from '#utils/index';
 
 type BlobViewContentWrapperProps = {
   owner: string;
@@ -42,9 +42,7 @@ export const BlobViewContentWrapper = (props: BlobViewContentWrapperProps) => {
     if (!downloadUrl) {
       throw new Error('Failed to resolve download URL for the file');
     }
-    const contentTypeResponse = await getContentType(
-      downloadUrl,
-    );
+    const contentTypeResponse = await getContentType(downloadUrl);
     return { content: contentResponse, contentType: contentTypeResponse };
   };
   return (

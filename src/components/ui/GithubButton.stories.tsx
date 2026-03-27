@@ -52,7 +52,9 @@ export const Ghost: Story = {
   },
   play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByRole('button', { name: 'Ghost button' })).toBeInTheDocument();
+    expect(
+      canvas.getByRole('button', { name: 'Ghost button' }),
+    ).toBeInTheDocument();
   },
 };
 

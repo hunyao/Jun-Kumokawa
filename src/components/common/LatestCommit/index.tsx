@@ -1,9 +1,9 @@
-import { HistorySvg } from '@icons/index';
 import type { components } from '@octokit/openapi-types';
-import { GithubButton } from '@ui/index';
-import { numberFormat } from '@utils/index';
 import dayjs from 'dayjs';
 import type { HTMLAttributes } from 'react';
+import { HistorySvg } from '#icons/index';
+import { GithubButton } from '#ui/index';
+import { numberFormat } from '#utils/index';
 
 type LatestCommitProps = HTMLAttributes<HTMLDivElement> & {
   commit: components['schemas']['commit'];

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, within } from 'storybook/test';
-import { Skill } from '@data/index';
+import { Skill } from '#data/index';
 import { SkillSidebarComponent } from '.';
 
 const { skills } = Skill;

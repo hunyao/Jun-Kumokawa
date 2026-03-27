@@ -1,6 +1,6 @@
-import { Routes } from '@constants/index';
-import { Container } from '@ui/index';
 import { NavLink } from 'react-router';
+import { Routes } from '#constants/index';
+import { Container } from '#ui/index';
 
 export const Footer = () => {
   return (

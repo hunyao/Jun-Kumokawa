@@ -1,8 +1,8 @@
-import { octokit } from '@lib/index';
 import type { Endpoints } from '@octokit/types';
-import { GithubButton } from '@ui/index';
 import { useEffect, useState } from 'react';
-import { RepositoryFileTreeItem, sorting } from '@components/index';
+import { RepositoryFileTreeItem, sorting } from '#components/index';
+import { octokit } from '#lib/index';
+import { GithubButton } from '#ui/index';
 
 type RepositoryFileTreeProps = {
   owner: string;

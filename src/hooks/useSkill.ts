@@ -1,6 +1,6 @@
-import { Skill } from '@data/index';
-import { getColor } from '@utils/index';
 import { useCallback, useMemo } from 'react';
+import { Skill } from '#data/index';
+import { getColor } from '#utils/index';
 
 const { skills } = Skill;
 

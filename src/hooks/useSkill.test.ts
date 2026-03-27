@@ -1,7 +1,7 @@
-import { Skill } from '@data/index';
 import { renderHook } from '@testing-library/react';
-import { getColor } from '@utils/getColor';
 import { describe, expect, it } from 'vitest';
+import { Skill } from '#data/index';
+import { getColor } from '#utils/getColor';
 import { useSkill } from './useSkill';
 
 const { skills } = Skill;

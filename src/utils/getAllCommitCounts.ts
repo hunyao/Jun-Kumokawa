@@ -1,5 +1,5 @@
-import { octokit } from '@lib/index';
 import type { Endpoints, RequestParameters } from '@octokit/types';
+import { octokit } from '#lib/index';
 import { extractPageInfo } from './extractPageInfo';
 
 const COMMIT_COUNT_TTL_MS = (() => {

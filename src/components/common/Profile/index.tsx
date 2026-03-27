@@ -1,5 +1,7 @@
-import { Routes } from '@constants/index';
-import { Profile as ProfileData } from '@data/index';
+import { useState } from 'react';
+import { NavLink } from 'react-router';
+import { Routes } from '#constants/index';
+import { Profile as ProfileData } from '#data/index';
 import {
   BriefcaseSvg,
   CodeSvg,
@@ -10,10 +12,8 @@ import {
   LocationSvg,
   PhoneSvg,
   ScrewdriverWrenchSvg,
-} from '@icons/index';
-import { Container, GithubTab, GithubTabItem } from '@ui/index';
-import { useState } from 'react';
-import { NavLink } from 'react-router';
+} from '#icons/index';
+import { Container, GithubTab, GithubTabItem } from '#ui/index';
 
 const { profile } = ProfileData;
 

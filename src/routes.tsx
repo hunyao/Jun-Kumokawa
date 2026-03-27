@@ -1,5 +1,6 @@
-import { SuspenseWithComponent } from '@components/index';
-import { Routes } from '@constants/index';
+import { createBrowserRouter, Navigate, Outlet } from 'react-router';
+import { SuspenseWithComponent } from '#components/index';
+import { Routes } from '#constants/index';
 import {
   AppErrorPage,
   ExperiencePage,
@@ -10,10 +11,9 @@ import {
   RepositoryPageWrapper,
   SkillPage,
   TreePageWrapper,
-} from '@features/index';
-import { MainLayout } from '@layouts/index';
-import { OauthCallback } from '@middlewares/index';
-import { createBrowserRouter, Navigate, Outlet } from 'react-router';
+} from '#features/index';
+import { MainLayout } from '#layouts/index';
+import { OauthCallback } from '#middlewares/index';
 
 const router = createBrowserRouter([
   {

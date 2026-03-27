@@ -1,5 +1,5 @@
-import { getSha1Digest } from '@utils/index';
 import { Octokit } from 'octokit';
+import { getSha1Digest } from '#utils/index';
 
 const cache = new Map<string, Response>();
 export const OCTOKIT_UNAUTHORIZED_EVENT = 'octokit:unauthorized';

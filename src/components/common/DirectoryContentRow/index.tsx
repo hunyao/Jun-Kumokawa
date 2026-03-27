@@ -1,15 +1,16 @@
-import { Routes } from '@constants/index';
-import { useDirectoryRowCommit } from '@hooks/index';
+import type { components } from '@octokit/openapi-types';
+import dayjs from 'dayjs';
+import { NavLink, useSearchParams } from 'react-router';
+import { DirectoryContentRowSkelton } from '#components/index';
+import { Routes } from '#constants/index';
+import { useDirectoryRowCommit } from '#hooks/index';
 import {
   FileSubmoduleSvg,
   FileSvg,
   FolderSvg,
   SymlinkFileSvg,
-} from '@icons/index';
-import type { components } from '@octokit/openapi-types';
-import dayjs from 'dayjs';
-import { NavLink, useSearchParams } from 'react-router';
-import { DirectoryContentRowSkelton } from '@components/index';
+} from '#icons/index';
+
 type DirectoryContentRowWrapperProps = {
   owner: string;
   repo: string;

@@ -1,10 +1,10 @@
-import { octokit } from '@lib/index';
 import type {
   EndpointKeys,
   Endpoints,
   RequestParameters,
   ResponseHeaders,
 } from '@octokit/types';
+import { octokit } from '#lib/index';
 import { getSha1Digest } from '.';
 
 // biome-ignore lint/suspicious/noExplicitAny: reason

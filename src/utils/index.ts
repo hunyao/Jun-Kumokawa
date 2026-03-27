@@ -19,6 +19,6 @@ export * from './extractPageInfo';
 export * from './filterByText';
 export * from './genRange';
 export * from './getAllCommitCounts';
-export * from './getContentType';
 export * from './getColor';
+export * from './getContentType';
 export * from './getSha1Digest';

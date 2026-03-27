@@ -1,15 +1,15 @@
+import type { components } from '@octokit/openapi-types';
+import type { Endpoints } from '@octokit/types';
+import { Await, NavLink, useLocation, useSearchParams } from 'react-router';
 import {
   DirectoryContentRowWrapper,
   LatestCommit,
   SuspenseWithComponent,
-} from '@components/index';
-import { FolderSvg } from '@icons/index';
-import { octokit } from '@lib/index';
-import type { components } from '@octokit/openapi-types';
-import type { Endpoints } from '@octokit/types';
-import { getAllCommitCounts } from '@utils/index';
-import { Await, NavLink, useLocation, useSearchParams } from 'react-router';
-import type { unpackArray } from 'src/types';
+} from '#components/index';
+import { FolderSvg } from '#icons/index';
+import { octokit } from '#lib/index';
+import type { unpackArray } from '#types/utils';
+import { getAllCommitCounts } from '#utils/index';
 
 export const sorting = (
   a: unpackArray<

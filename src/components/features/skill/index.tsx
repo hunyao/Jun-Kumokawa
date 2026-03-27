@@ -1,7 +1,7 @@
-import { useSkill } from '@hooks/index';
-import { Container, GithubNavMenu, GithubNavMenuItem } from '@ui/index';
 import highcharts, { type Chart } from 'highcharts';
 import { useEffect, useRef, useState } from 'react';
+import { useSkill } from '#hooks/index';
+import { Container, GithubNavMenu, GithubNavMenuItem } from '#ui/index';
 
 export const SkillPage = () => {
   const mountRef = useRef<HTMLDivElement>(null);

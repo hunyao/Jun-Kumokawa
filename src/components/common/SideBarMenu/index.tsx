@@ -1,5 +1,8 @@
-import { Routes } from '@constants/index';
-import { useGithub } from '@hooks/index';
+import type { Endpoints } from '@octokit/types';
+import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router';
+import { Routes } from '#constants/index';
+import { useGithub } from '#hooks/index';
 import {
   BriefcaseSvg,
   CatSvg,
@@ -7,12 +10,9 @@ import {
   HomeSvg,
   ScrewdriverWrenchSvg,
   XmarkSvg,
-} from '@icons/index';
-import { octokit } from '@lib/index';
-import type { Endpoints } from '@octokit/types';
-import { GithubButton } from '@ui/index';
-import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router';
+} from '#icons/index';
+import { octokit } from '#lib/index';
+import { GithubButton } from '#ui/index';
 
 export const SideBarMenuState = () => (
   // biome-ignore lint/correctness/useUniqueElementIds: reason

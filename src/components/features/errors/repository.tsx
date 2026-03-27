@@ -1,7 +1,7 @@
-import { ErrorPanel } from '@components/index';
-import { Routes } from '@constants/index';
-import { WarningSvg } from '@icons/index';
 import { useParams, useRouteError } from 'react-router';
+import { ErrorPanel } from '#components/index';
+import { Routes } from '#constants/index';
+import { WarningSvg } from '#icons/index';
 
 export const RepositoryErrorPage = () => {
   const error = useRouteError() as { status?: number; statusText?: string };
@@ -21,7 +21,9 @@ export const RepositoryErrorPage = () => {
     <ErrorPanel
       title={title}
       subtitle={subtitle}
-      actionLabel={isRepoRoute ? 'Return to the repository overview' : 'Go home'}
+      actionLabel={
+        isRepoRoute ? 'Return to the repository overview' : 'Go home'
+      }
       actionTo={target}
       icon={<WarningSvg className='m-2 h-6 w-6 fill-current' />}
     />

@@ -1,5 +1,6 @@
-import { Routes } from '@constants/index';
-import { useGithub } from '@hooks/index';
+import { NavLink } from 'react-router';
+import { Routes } from '#constants/index';
+import { useGithub } from '#hooks/index';
 import {
   CatSvg,
   LanguageSvg,
@@ -7,9 +8,8 @@ import {
   LightOnSvg,
   LoginSvg,
   LogoutSvg,
-} from '@icons/index';
-import { Container, GithubMenuButton } from '@ui/index';
-import { NavLink } from 'react-router';
+} from '#icons/index';
+import { Container, GithubMenuButton } from '#ui/index';
 
 export const Header = () => {
   const { redirectToSignIn, isSignedIn, signOut } = useGithub();

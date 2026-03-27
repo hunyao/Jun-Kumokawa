@@ -1,4 +1,4 @@
-import type { StrictString } from 'src/types';
+import type { StrictString } from '#types/utils';
 
 /**
  * Returns array filtered `_arr[_key]` by the given `_text`

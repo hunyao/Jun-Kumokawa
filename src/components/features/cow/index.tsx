@@ -1,5 +1,5 @@
-import { useCow } from '@hooks/index';
 import { useSearchParams } from 'react-router';
+import { useCow } from '#hooks/index';
 
 // Add more "v" on the param, it will be...
 export const MooPage = () => {

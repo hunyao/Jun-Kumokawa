@@ -18,30 +18,26 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "baseUrl": "./",
     "paths": {
-      "@features/*": ["./src/components/features/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@constants/*": ["./src/constants/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@lib/*": ["./src/lib/*"],
-      "@data/*": ["./src/data/*"],
-      "@components/*": ["./src/components/common/*"],
-      "@ui/*": ["./src/components/ui/*"],
-      "@layouts/*": ["./src/components/layouts/*"],
-      "@middlewares/*": ["./src/components/middlewares/*"],
-      "@contexts/*": ["./src/contexts/*"],
-      "@icons/*": ["./src/components/icons/*"]
+      "#features/*": ["./src/components/features/*"],
+      "#utils/*": ["./src/utils/*"],
+      "#constants/*": ["./src/constants/*"],
+      "#hooks/*": ["./src/hooks/*"],
+      "#lib/*": ["./src/lib/*"],
+      "#data/*": ["./src/data/*"],
+      "#components/*": ["./src/components/common/*"],
+      "#ui/*": ["./src/components/ui/*"],
+      "#layouts/*": ["./src/components/layouts/*"],
+      "#middlewares/*": ["./src/components/middlewares/*"],
+      "#contexts/*": ["./src/contexts/*"],
+      "#icons/*": ["./src/components/icons/*"],
+      "#types/*": ["./src/types/*"]
     },
     "types": [
-      "vitest/importMeta",
+      "vitest/importMeta"
       // "./node_modules/@storybook/addon-vitest",
     ]
   },
-  "include": [
-    "src",
-    ".storybook/**/*.ts",
-    ".storybook/**/*.tsx"
-  ],
+  "include": ["src/**/*", ".storybook/**/*.ts", ".storybook/**/*.tsx"],
   "exclude": ["node_modules"]
 }

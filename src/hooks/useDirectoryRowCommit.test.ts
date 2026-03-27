@@ -4,7 +4,7 @@ import { useDirectoryRowCommit } from './useDirectoryRowCommit';
 
 const mockListCommits = vi.hoisted(() => vi.fn());
 
-vi.mock('@lib/index', () => ({
+vi.mock('#lib/index', () => ({
   octokit: {
     rest: {
       repos: {

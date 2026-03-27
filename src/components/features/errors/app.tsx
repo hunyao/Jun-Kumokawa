@@ -1,7 +1,7 @@
-import { ErrorPanel } from '@components/index';
-import { Routes } from '@constants/index';
-import { WarningSvg } from '@icons/index';
 import { useRouteError } from 'react-router';
+import { ErrorPanel } from '#components/index';
+import { Routes } from '#constants/index';
+import { WarningSvg } from '#icons/index';
 
 export const AppErrorPage = () => {
   const error = useRouteError() as { status?: number; statusText?: string };

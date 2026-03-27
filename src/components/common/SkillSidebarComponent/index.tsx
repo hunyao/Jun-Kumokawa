@@ -1,6 +1,6 @@
-import { useSkill } from '@hooks/index';
-import { CircleFillSvg } from '@icons/index';
-import { DetailBoxTitle } from '@ui/index';
+import { useSkill } from '#hooks/index';
+import { CircleFillSvg } from '#icons/index';
+import { DetailBoxTitle } from '#ui/index';
 
 export const SkillSidebarComponent = () => {
   const { coloredSkills } = useSkill();

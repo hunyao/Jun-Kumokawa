@@ -1,10 +1,10 @@
-import { Activity, Timeline } from '@components/index';
-import { Experience } from '@data/index';
-import { DateRangeSvg, HandshakeSvg } from '@icons/index';
-import { Container } from '@ui/index';
-import { genRange } from '@utils/index';
 import dayjs from 'dayjs';
 import { useLocation, useNavigate } from 'react-router';
+import { Activity, Timeline } from '#components/index';
+import { Experience } from '#data/index';
+import { DateRangeSvg, HandshakeSvg } from '#icons/index';
+import { Container } from '#ui/index';
+import { genRange } from '#utils/index';
 
 const { experiences } = Experience;
 

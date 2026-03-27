@@ -30,10 +30,7 @@
           "options": {
             "paths": {
               "react": {
-                "importNames": [
-                  "FC",
-                  "FunctionComponent"
-                ],
+                "importNames": ["FC", "FunctionComponent"],
                 "message": "React.FC は使わず、propsを明示した関数宣言にしてください。"
               }
             }

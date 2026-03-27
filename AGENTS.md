@@ -112,18 +112,19 @@ src/
 
 | エイリアス | 解決先 |
 |---|---|
-| `@features/*` | `src/components/features/*` |
-| `@components/*` | `src/components/common/*` |
-| `@ui/*` | `src/components/ui/*` |
-| `@layouts/*` | `src/components/layouts/*` |
-| `@middlewares/*` | `src/components/middlewares/*` |
-| `@icons/*` | `src/components/icons/*` |
-| `@hooks/*` | `src/hooks/*` |
-| `@contexts/*` | `src/contexts/*` |
-| `@utils/*` | `src/utils/*` |
-| `@lib/*` | `src/lib/*` |
-| `@constants/*` | `src/constants/*` |
-| `@data/*` | `src/data/*` |
+| `#features/*` | `src/components/features/*` |
+| `#components/*` | `src/components/common/*` |
+| `#ui/*` | `src/components/ui/*` |
+| `#layouts/*` | `src/components/layouts/*` |
+| `#middlewares/*` | `src/components/middlewares/*` |
+| `#icons/*` | `src/components/icons/*` |
+| `#hooks/*` | `src/hooks/*` |
+| `#contexts/*` | `src/contexts/*` |
+| `#utils/*` | `src/utils/*` |
+| `#lib/*` | `src/lib/*` |
+| `#constants/*` | `src/constants/*` |
+| `#data/*` | `src/data/*` |
+| `#types/*` | `src/types/*` |
 
 ## React 設計方針
 
@@ -152,12 +153,12 @@ React の設計思想に沿ったコーディングを行う:
 
 ```ts
 // ✅ 正しい
-import { MyComponent } from '@components/index';
-import { useSkill } from '@hooks/index';
+import { MyComponent } from '#components/index';
+import { useSkill } from '#hooks/index';
 
 // ❌ 禁止
-import { MyComponent } from '@components/MyComponent';
-import { useSkill } from '@hooks/useSkill';
+import { MyComponent } from '#components/MyComponent';
+import { useSkill } from '#hooks/useSkill';
 ```
 
 ## コンポーネント作成規約

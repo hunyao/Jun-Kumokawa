@@ -1,11 +1,4 @@
-import { CheckSvg, SearchSvg, XmarkSvg } from '@icons/index';
 import type { Endpoints } from '@octokit/types';
-import {
-  GithubBranchDropdownButton,
-  GithubTab,
-  GithubTabItem,
-} from '@ui/index';
-import { filterByText } from '@utils/index';
 import {
   type HTMLAttributes,
   useEffect,
@@ -14,6 +7,13 @@ import {
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
+import { CheckSvg, SearchSvg, XmarkSvg } from '#icons/index';
+import {
+  GithubBranchDropdownButton,
+  GithubTab,
+  GithubTabItem,
+} from '#ui/index';
+import { filterByText } from '#utils/index';
 
 type SwitchBranchesProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> & {
   defaultBranch: string;

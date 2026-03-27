@@ -1,5 +1,3 @@
-import { FileSvg, FolderSvg } from '@icons/index';
-import { octokit } from '@lib/index';
 import type { Endpoints } from '@octokit/types';
 import { type ToggleEvent, useEffect, useRef, useState } from 'react';
 import {
@@ -8,8 +6,10 @@ import {
   useNavigate,
   useSearchParams,
 } from 'react-router';
-import type { unpackArray } from 'src/types';
-import { sorting } from '@components/index';
+import { sorting } from '#components/index';
+import { FileSvg, FolderSvg } from '#icons/index';
+import { octokit } from '#lib/index';
+import type { unpackArray } from '#types/utils';
 
 type RepositoryFileTreeItemProps = {
   owner: string;

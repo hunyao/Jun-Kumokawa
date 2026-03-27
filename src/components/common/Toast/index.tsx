@@ -1,6 +1,6 @@
-import { SetToastContext, ToastContext } from '@contexts/index';
-import { XmarkSvg } from '@icons/index';
 import { use } from 'react';
+import { SetToastContext, ToastContext } from '#contexts/index';
+import { XmarkSvg } from '#icons/index';
 
 export const Toast = () => {
   const data = use(ToastContext);

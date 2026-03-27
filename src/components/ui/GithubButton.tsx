@@ -1,6 +1,6 @@
-import { CaretDownSvg, CodeBranchSvg } from '@icons/index';
 import type { ComponentProps, CSSProperties } from 'react';
 import styled from 'styled-components';
+import { CaretDownSvg, CodeBranchSvg } from '#icons/index';
 
 export const GithubButton = styled.button.attrs<{
   $variant: 'border' | 'ghost';

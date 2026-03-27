@@ -1,10 +1,10 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import { Provider as ToastContextProvider } from '@contexts/index';
 import { RouterProvider } from 'react-router';
+import { Provider as ToastContextProvider } from '#contexts/index';
 import router from './routes';
-import '@lib/dayjs';
+import '#lib/dayjs';
 
 // biome-ignore lint/style/noNonNullAssertion: reason
 createRoot(document.getElementById('root')!).render(

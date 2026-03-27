@@ -1,6 +1,6 @@
-import { octokit } from '@lib/index';
 import type { components } from '@octokit/openapi-types';
 import { useEffect, useState } from 'react';
+import { octokit } from '#lib/index';
 
 const commitCache = new Map<string, Array<components['schemas']['commit']>>();
 const commitCacheTime = new Map<string, number>();
@@ -46,7 +46,9 @@ export const useDirectoryRowCommit = (props: UseDirectoryRowCommitProps) => {
     fileName,
     enableCommitFetch = true,
   } = props;
-  const [commit, setCommit] = useState<components['schemas']['commit'] | null>(null);
+  const [commit, setCommit] = useState<components['schemas']['commit'] | null>(
+    null,
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [isResolved, setIsResolved] = useState(false);

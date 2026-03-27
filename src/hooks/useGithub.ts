@@ -1,7 +1,7 @@
-import { SetToastContext } from '@contexts/index';
-import { clearOctokitCache, OCTOKIT_UNAUTHORIZED_EVENT } from '@lib/index';
-import { clearRequestCache } from '@utils/index';
 import { use, useEffect, useState } from 'react';
+import { SetToastContext } from '#contexts/index';
+import { clearOctokitCache, OCTOKIT_UNAUTHORIZED_EVENT } from '#lib/index';
+import { clearRequestCache } from '#utils/index';
 
 /**
  * Manages GitHub OAuth authentication state.
@@ -36,7 +36,10 @@ export const useGithub = () => {
 
     window.addEventListener(OCTOKIT_UNAUTHORIZED_EVENT, handleUnauthorized);
     return () => {
-      window.removeEventListener(OCTOKIT_UNAUTHORIZED_EVENT, handleUnauthorized);
+      window.removeEventListener(
+        OCTOKIT_UNAUTHORIZED_EVENT,
+        handleUnauthorized,
+      );
     };
   }, [setToast]);
 

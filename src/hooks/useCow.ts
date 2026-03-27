@@ -1,4 +1,4 @@
-import { CowMessages as messages } from '@data/index';
+import { CowMessages as messages } from '#data/index';
 
 type useCowType = [string];
 export const useCow = (level: string): useCowType => {

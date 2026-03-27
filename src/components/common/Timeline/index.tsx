@@ -1,5 +1,5 @@
-import { LoginSvg, UnfoldSvg } from '@icons/index';
 import type { PropsWithChildren } from 'react';
+import { LoginSvg, UnfoldSvg } from '#icons/index';
 
 type TimelineProps = {
   title?: string;

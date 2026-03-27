@@ -1,6 +1,3 @@
-import { Routes } from '@constants/index';
-import { FileSvg, SearchSvg } from '@icons/index';
-import { octokit } from '@lib/index';
 import {
   type CSSProperties,
   type HTMLAttributes,
@@ -12,6 +9,9 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router';
+import { Routes } from '#constants/index';
+import { FileSvg, SearchSvg } from '#icons/index';
+import { octokit } from '#lib/index';
 
 type TreeItem = {
   path: string;

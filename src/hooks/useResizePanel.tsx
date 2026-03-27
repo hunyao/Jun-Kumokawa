@@ -10,9 +10,7 @@ import { type RefObject, useEffect, useRef } from 'react';
  * @param targetRef - Ref to the element whose width will be updated on drag
  * @returns `resizeHandlerElement` – a JSX element to render as the drag handle
  */
-export const useResizePanel = (
-  targetRef: RefObject<HTMLElement | null>,
-) => {
+export const useResizePanel = (targetRef: RefObject<HTMLElement | null>) => {
   const resizeRef = useRef<HTMLDivElement>(null);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: reason

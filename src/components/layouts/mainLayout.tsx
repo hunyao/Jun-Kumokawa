@@ -1,3 +1,4 @@
+import type { PropsWithChildren } from 'react';
 import {
   Footer,
   Header,
@@ -5,8 +6,7 @@ import {
   SideBarMenu,
   SideBarMenuState,
   Toast,
-} from '@components/index';
-import type { PropsWithChildren } from 'react';
+} from '#components/index';
 
 export const MainLayout = ({ children }: PropsWithChildren) => {
   return (

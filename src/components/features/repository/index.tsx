@@ -1,27 +1,4 @@
-import {
-  CloneCode,
-  DirectoryContentWrapper,
-  GoToFile,
-  LanguageUsage,
-  OverviewContent,
-  SkillSidebarComponent,
-  SwitchBranches,
-} from '@components/index';
-import { Routes } from '@constants/index';
-import {
-  CodeBranchSvg,
-  CopyrightSvg,
-  GitForkSvg,
-  LinkSvg,
-  MenuBookSvg,
-  StarSvg,
-  TagSvg,
-  VisibilitySvg,
-} from '@icons/index';
-import { octokit } from '@lib/index';
 import type { Endpoints } from '@octokit/types';
-import { Container, DetailBoxTitle, GithubButton, GithubChip } from '@ui/index';
-import { numberFormat, requestRecursively } from '@utils/index';
 import {
   Await,
   type LoaderFunction,
@@ -32,6 +9,29 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router';
+import {
+  CloneCode,
+  DirectoryContentWrapper,
+  GoToFile,
+  LanguageUsage,
+  OverviewContent,
+  SkillSidebarComponent,
+  SwitchBranches,
+} from '#components/index';
+import { Routes } from '#constants/index';
+import {
+  CodeBranchSvg,
+  CopyrightSvg,
+  GitForkSvg,
+  LinkSvg,
+  MenuBookSvg,
+  StarSvg,
+  TagSvg,
+  VisibilitySvg,
+} from '#icons/index';
+import { octokit } from '#lib/index';
+import { Container, DetailBoxTitle, GithubButton, GithubChip } from '#ui/index';
+import { numberFormat, requestRecursively } from '#utils/index';
 
 export const RepositoryPageWrapper = () => {
   const { promise } = useLoaderData();

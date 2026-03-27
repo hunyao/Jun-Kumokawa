@@ -1,6 +1,6 @@
-import { useGithub } from '@hooks/index';
 import { type PropsWithChildren, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
+import { useGithub } from '#hooks/index';
 
 export const OauthCallback = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
