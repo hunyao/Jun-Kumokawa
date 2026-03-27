@@ -17,18 +17,20 @@
         "Built infrastructure on AWS with Amplify, Serverless Framework",
         "Designed and developed website from scratch with 2  members for Administrative scriveners. (Part of the website is private to the customers.)",
         [
-        "The private pages for managing what customers inputted what they are going to apply to get a garage certification for customers",
-        "Communication by REST API with Kintone to collect and manage data they inputted",
-        "Reproduce forms that are made by customers on Kintone on the website and send the data that customers inputted on the website to Kintone"
+          "The private pages for managing what customers inputted what they are going to apply to get a garage certification for customers",
+          "Communication by REST API with Kintone to collect and manage data they inputted",
+          "Reproduce forms that are made by customers on Kintone on the website and send the data that customers inputted on the website to Kintone"
         ],
         "Designed and developed private website from scratch with 2 members for membership of a gas company",
         [
-        "Collecting from core system by REST API and displaying information of cost of electricity and gas that customers used",
-        "Displaying graphs information of cost of electricity and gas that customers month by month",
-        "Linking user account on core system to the website"
+          "Collecting from core system by REST API and displaying information of cost of electricity and gas that customers used",
+          "Displaying graphs information of cost of electricity and gas that customers month by month",
+          "Linking user account on core system to the website"
         ],
         "Designed and developed private website from scratch for efficient forklift battery charging",
-        ["Displaying predicted schedule of beginning of time to charge battery by predicting system with schedule of planned to use forklift on a day and the past batteries data used"]
+        [
+          "Displaying predicted schedule of beginning of time to charge battery by predicting system with schedule of planned to use forklift on a day and the past batteries data used"
+        ]
       ],
       "achievements": [
         "Trained and assisted junior engineers for a year and they learned how to code, compile, deploy, use libraries, Git, and more. Maintained a good working environment for engineers",
@@ -67,9 +69,7 @@
       "achievements": [
         "Learned Outsystems which is no-code software on the job"
       ],
-      "usedSkills": [
-        "Outsystems"
-      ]
+      "usedSkills": ["Outsystems"]
     },
     {
       "companyName": "Doreming",
@@ -109,15 +109,8 @@
       "responsibilities": [
         "Developed private website for displaying information dashboard camera collected."
       ],
-      "achievements": [
-        "Learned Sequelize, Vue.js on the job"
-      ],
-      "usedSkills": [
-        "Node.js",
-        "Sequelize",
-        "Vue.js",
-        "SQLServer"
-      ]
+      "achievements": ["Learned Sequelize, Vue.js on the job"],
+      "usedSkills": ["Node.js", "Sequelize", "Vue.js", "SQLServer"]
     },
     {
       "companyName": "PHC",
@@ -136,12 +129,7 @@
         "Saved time by learning editor called VIM so that I can code more easily and faster. Even if I worked on my computer which moves slowly",
         "Learned AngularJs on the job"
       ],
-      "usedSkills": [
-        "AngularJs",
-        "Vue.js",
-        "Javascript",
-        "CakePHP"
-      ]
+      "usedSkills": ["AngularJs", "Vue.js", "Javascript", "CakePHP"]
     },
     {
       "companyName": "CLINKS",
@@ -158,23 +146,40 @@
         "Fixing bugs",
         "Worked as a support team for members of my department:",
         [
-        "Managing servers for ourselves and customers",
-        "Renewing SSL Certificates every year",
-        "Managing user accounts on servers",
-        "Managing mailing lists for ourselves and customers"
+          "Managing servers for ourselves and customers",
+          "Renewing SSL Certificates every year",
+          "Managing user accounts on servers",
+          "Managing mailing lists for ourselves and customers"
         ]
       ],
       "achievements": [
         "Saved time by making script so that I can connect to server by one-password through SSH and switch easily"
       ],
       "usedSkills": [
-        "Git", "Subversion",
-        "HTML", "CSS", "Javascript", "Canvas", "jQuery",
-        "PHP", "CakePHP", "FuelPHP", "ZendFramework",
-        "Memcached", "Redis",
-        "CentOS", "Ubuntu", "Bash",
-        "Apache", "Nginx", "Nagios", "Redmine", "Mailman",
-        "Wordpress", "MySQL", "AWS"
+        "Git",
+        "Subversion",
+        "HTML",
+        "CSS",
+        "Javascript",
+        "Canvas",
+        "jQuery",
+        "PHP",
+        "CakePHP",
+        "FuelPHP",
+        "ZendFramework",
+        "Memcached",
+        "Redis",
+        "CentOS",
+        "Ubuntu",
+        "Bash",
+        "Apache",
+        "Nginx",
+        "Nagios",
+        "Redmine",
+        "Mailman",
+        "Wordpress",
+        "MySQL",
+        "AWS"
       ]
     }
   ]

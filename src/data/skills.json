@@ -2,7 +2,7 @@
   "skills": [
     {
       "groupName": "Coding Languages",
-      "colorCode": [ 0, 0, 255 ],
+      "colorCode": [0, 0, 255],
       "items": [
         {
           "label": "JavaScript",
@@ -32,7 +32,7 @@
     },
     {
       "groupName": "Shell Languages",
-      "colorCode": [ 0, 128, 255 ],
+      "colorCode": [0, 128, 255],
       "items": [
         {
           "label": "Bash",
@@ -46,7 +46,7 @@
     },
     {
       "groupName": "Operating systems",
-      "colorCode": [ 128, 0, 255 ],
+      "colorCode": [128, 0, 255],
       "items": [
         {
           "label": "Windows",
@@ -68,7 +68,7 @@
     },
     {
       "groupName": "Cloud platforms",
-      "colorCode": [ 128, 128, 255 ],
+      "colorCode": [128, 128, 255],
       "items": [
         {
           "label": "AWS",
@@ -82,7 +82,7 @@
     },
     {
       "groupName": "Frameworks",
-      "colorCode": [ 255, 0, 0 ],
+      "colorCode": [255, 0, 0],
       "items": [
         {
           "label": "React.js",
@@ -120,7 +120,7 @@
     },
     {
       "groupName": "UI libraries",
-      "colorCode": [ 255, 128, 0 ],
+      "colorCode": [255, 128, 0],
       "items": [
         {
           "label": "MUI",
@@ -138,7 +138,7 @@
     },
     {
       "groupName": "Libraries",
-      "colorCode": [ 255, 0, 128 ],
+      "colorCode": [255, 0, 128],
       "items": [
         {
           "label": "ReactRouter",
@@ -184,7 +184,7 @@
     },
     {
       "groupName": "Databases",
-      "colorCode": [ 255, 128, 128 ],
+      "colorCode": [255, 128, 128],
       "items": [
         {
           "label": "MySQL",
@@ -210,7 +210,7 @@
     },
     {
       "groupName": "Version Control Systems",
-      "colorCode": [ 0, 255, 0 ],
+      "colorCode": [0, 255, 0],
       "items": [
         {
           "label": "Git",
@@ -224,7 +224,7 @@
     },
     {
       "groupName": "Tools",
-      "colorCode": [ 128, 255, 0 ],
+      "colorCode": [128, 255, 0],
       "items": [
         {
           "label": "npm",
@@ -258,7 +258,7 @@
     },
     {
       "groupName": "Editors",
-      "colorCode": [ 0, 255, 128 ],
+      "colorCode": [0, 255, 128],
       "items": [
         {
           "label": "Vim",
@@ -280,7 +280,7 @@
     },
     {
       "groupName": "Middlewares",
-      "colorCode": [ 128, 255, 128 ],
+      "colorCode": [128, 255, 128],
       "items": [
         {
           "label": "Apache",
@@ -302,7 +302,7 @@
     },
     {
       "groupName": "Package Manage Systems",
-      "colorCode": [ 255, 255, 0 ],
+      "colorCode": [255, 255, 0],
       "items": [
         {
           "label": "apt",
@@ -316,7 +316,7 @@
     },
     {
       "groupName": "Other",
-      "colorCode": [ 255, 255, 128 ],
+      "colorCode": [255, 255, 128],
       "items": [
         {
           "label": "Wordpress",
