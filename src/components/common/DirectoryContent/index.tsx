@@ -1,11 +1,13 @@
 import type { components } from '@octokit/openapi-types';
 import type { Endpoints } from '@octokit/types';
+import { useMemo } from 'react';
 import { Await, NavLink, useLocation, useSearchParams } from 'react-router';
 import {
   DirectoryContentRowWrapper,
   LatestCommit,
   SuspenseWithComponent,
 } from '#components/index';
+import { ChildrenError } from '#features/errors';
 import { FolderSvg } from '#icons/index';
 import { octokit } from '#lib/index';
 import type { unpackArray } from '#types/utils';
@@ -65,35 +67,46 @@ export const DirectoryContentWrapper = ({
   initialRef,
   initialTotalCommitCount,
 }: DirectoryContentWrapperProps) => {
-  const promise = Promise.all([
-    octokit.rest.git.getTree({
-      owner,
-      repo,
-      tree_sha: `${currentBranch}:${path.replace(/^\//, '')}`,
-    }),
-    skipCommitData || (initialRef && initialTotalCommitCount !== undefined)
-      ? Promise.resolve({
-          ref: initialRef ?? [],
-          totalCommitCount: initialTotalCommitCount ?? 0,
-        })
-      : Promise.all([
-          octokit.rest.repos.listCommits({
-            owner,
-            repo,
-            sha: branch_ref,
-            path,
-            per_page: 1,
-            page: 1,
-          }),
-          getAllCommitCounts({ owner, repo, sha: `heads/${currentBranch}` }),
-        ]).then(([refResponse, totalCommitCount]) => ({
-          ref: refResponse.data,
-          totalCommitCount,
-        })),
+  const promise = useMemo(async () => {
+    return Promise.all([
+      octokit.rest.git.getTree({
+        owner,
+        repo,
+        tree_sha: `${currentBranch}:${path.replace(/^\//, '')}`,
+      }),
+      skipCommitData || (initialRef && initialTotalCommitCount !== undefined)
+        ? Promise.resolve({
+            ref: initialRef ?? [],
+            totalCommitCount: initialTotalCommitCount ?? 0,
+          })
+        : Promise.all([
+            octokit.rest.repos.listCommits({
+              owner,
+              repo,
+              sha: branch_ref,
+              path,
+              per_page: 1,
+              page: 1,
+            }),
+            getAllCommitCounts({ owner, repo, sha: `heads/${currentBranch}` }),
+          ]).then(([refResponse, totalCommitCount]) => ({
+            ref: refResponse.data,
+            totalCommitCount,
+          })),
+    ]);
+  }, [
+    owner,
+    repo,
+    branch_ref,
+    path,
+    currentBranch,
+    skipCommitData,
+    initialRef,
+    initialTotalCommitCount,
   ]);
   return (
     <SuspenseWithComponent>
-      <Await resolve={promise}>
+      <Await resolve={promise} errorElement={<ChildrenError />}>
         {([treeResponse, commitData]) => {
           treeResponse.data.tree.sort(sorting);
           return (

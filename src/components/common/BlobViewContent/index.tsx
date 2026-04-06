@@ -1,11 +1,11 @@
 import type { Endpoints } from '@octokit/types';
 import DOMPurify from 'dompurify';
 import hljs from 'highlight.js';
-import { type CSSProperties, useRef } from 'react';
+import { type CSSProperties, useMemo, useRef } from 'react';
 import { Await } from 'react-router';
-import { ErrorPanel, SuspenseWithComponent } from '#components/index';
-import { Routes } from '#constants/index';
-import { CopyContentSvg, DownloadSvg, WarningSvg } from '#icons/index';
+import { SuspenseWithComponent } from '#components/index';
+import { ChildrenError } from '#features/errors';
+import { CopyContentSvg, DownloadSvg } from '#icons/index';
 import { octokit } from '#lib/index';
 import type { unpackPromise } from '#types/utils';
 import {
@@ -24,7 +24,7 @@ type BlobViewContentWrapperProps = {
 export const BlobViewContentWrapper = (props: BlobViewContentWrapperProps) => {
   const { owner, repo, path, branch } = props;
 
-  const promise = async () => {
+  const promise = useMemo(async () => {
     const contentResponse = await octokit.rest.repos.getContent({
       owner,
       repo,
@@ -44,21 +44,10 @@ export const BlobViewContentWrapper = (props: BlobViewContentWrapperProps) => {
     }
     const contentTypeResponse = await getContentType(downloadUrl);
     return { content: contentResponse, contentType: contentTypeResponse };
-  };
+  }, [repo, path, owner, branch]);
   return (
     <SuspenseWithComponent>
-      <Await
-        resolve={promise()}
-        errorElement={
-          <ErrorPanel
-            title='Failed to load file'
-            subtitle='Please try again.'
-            actionLabel='Back to repository'
-            actionTo={`${Routes.TREE.replace(':owner', owner).replace(':id', repo)}?branch=${branch}`}
-            icon={<WarningSvg className='m-2 h-6 w-6 fill-current' />}
-          />
-        }
-      >
+      <Await resolve={promise} errorElement={<ChildrenError />}>
         {({ content, contentType }) => (
           <BlobViewContent
             path={path}

@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Await } from 'react-router';
 import { SuspenseWithComponent } from '#components/index';
+import { ChildrenError } from '#features/errors';
 import { CircleFillSvg } from '#icons/index';
 import { octokit } from '#lib/index';
 import { DetailBoxTitle } from '#ui/index';
@@ -107,7 +108,7 @@ export const LanguageUsage = ({ owner, repo }: LanguageUsageProps) => {
 
   return (
     <SuspenseWithComponent>
-      <Await resolve={promise}>
+      <Await resolve={promise} errorElement={<ChildrenError />}>
         {(languages: LanguageItem[]) => (
           <LanguageUsageContent languages={languages} />
         )}
