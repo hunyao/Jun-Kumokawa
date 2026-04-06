@@ -15,7 +15,6 @@ import { octokit } from '#lib/index';
 import { GithubButton } from '#ui/index';
 
 export const SideBarMenuState = () => (
-  // biome-ignore lint/correctness/useUniqueElementIds: reason
   <input type='checkbox' id='sidebarmenu' className='peer hidden' />
 );
 export const SideBarMenu = () => {
@@ -66,7 +65,7 @@ export const SideBarMenu = () => {
         className='fixed top-0 left-0 hidden h-full w-full bg-black/20 peer-checked:block'
         onClick={close}
       />
-      <div className='separater separater-right -translate-x-full fixed top-0 left-0 grid h-full w-96 grid-rows-[min-content_minmax(0,1fr)] gap-y-4 rounded-r-xl bg-base-300 p-4 transition-transform duration-200 peer-checked:translate-x-0'>
+      <div className='separater separater-right fixed top-0 left-0 grid h-full w-96 -translate-x-full grid-rows-[min-content_minmax(0,1fr)] gap-y-4 rounded-r-xl bg-base-300 p-4 transition-transform duration-200 peer-checked:translate-x-0'>
         <div className='flex items-center justify-between'>
           <CatSvg className='h-10 w-10 rounded-full fill-current' />
           <label htmlFor='sidebarmenu'>

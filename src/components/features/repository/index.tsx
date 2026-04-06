@@ -69,7 +69,9 @@ export const getRepositoryPageLoader: LoaderFunction = ({ params }) => {
   })
     .then((items) => items.map((item) => item.data))
     .then((items) => items.flat());
-  return { promise: Promise.all([repository, branches, tags]) };
+  return {
+    promise: Promise.all([repository, branches, tags]),
+  };
 };
 
 type RepositoryPageProps = {
@@ -174,7 +176,7 @@ export const RepositoryPage = (props: RepositoryPageProps) => {
             </p>
             {repository.homepage && (
               <p className='my-3 flex items-center gap-2'>
-                <LinkSvg className='-rotate-45 h-6 w-6 fill-current' />
+                <LinkSvg className='h-6 w-6 -rotate-45 fill-current' />
                 <a
                   href={repository.homepage}
                   target='_blank'
