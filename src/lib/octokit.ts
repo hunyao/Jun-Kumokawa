@@ -1,6 +1,9 @@
 import { Octokit } from 'octokit';
+import { GithubApiRateLimitError } from '#errors/index';
 import { getSha1Digest } from '#utils/index';
 
+const controller = new AbortController();
+const signal = controller.signal;
 const cache = new Map<string, Response>();
 export const OCTOKIT_UNAUTHORIZED_EVENT = 'octokit:unauthorized';
 export const clearOctokitCache = () => {
@@ -23,14 +26,29 @@ export const octokit = new Octokit({
           return (cache.get(sha1) as Response).clone();
         }
       }
-      const res = await fetch(resource, { ...options, headers });
-      if (res.status === 401 && token) {
-        window.localStorage.removeItem('github-access-token');
-        clearOctokitCache();
-        window.dispatchEvent(new CustomEvent(OCTOKIT_UNAUTHORIZED_EVENT));
-      }
-      if (resource.method === 'GET' && res.ok) {
-        cache.set(sha1, res.clone());
+      const res = await fetch(resource, { ...options, headers, signal });
+
+      if (res.ok) {
+        if (resource.method === 'GET') {
+          cache.set(sha1, res.clone());
+        }
+      } else {
+        if (res.status === 401 && token) {
+          window.localStorage.removeItem('github-access-token');
+          clearOctokitCache();
+          window.dispatchEvent(new CustomEvent(OCTOKIT_UNAUTHORIZED_EVENT));
+        } else {
+          if (res.status === 403 || res.status === 429) {
+            if (res.headers.get('x-ratelimit-remaining') === '0') {
+              controller.abort(
+                new GithubApiRateLimitError(
+                  res.status,
+                  Number(res.headers.get('x-ratelimit-reset')),
+                ),
+              );
+            }
+          }
+        }
       }
       return res;
     },

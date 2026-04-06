@@ -31,7 +31,8 @@
       "#middlewares/*": ["./src/components/middlewares/*"],
       "#contexts/*": ["./src/contexts/*"],
       "#icons/*": ["./src/components/icons/*"],
-      "#types/*": ["./src/types/*"]
+      "#types/*": ["./src/types/*"],
+      "#errors/*": ["./src/errors/index.ts"]
     },
     "types": [
       "vitest/importMeta"

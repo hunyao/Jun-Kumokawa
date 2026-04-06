@@ -1,13 +1,22 @@
 import { useParams, useRouteError } from 'react-router';
 import { ErrorPanel } from '#components/index';
 import { Routes } from '#constants/index';
+import { GithubApiRateLimitError } from '#errors/index';
 import { WarningSvg } from '#icons/index';
 
 export const RepositoryErrorPage = () => {
-  const error = useRouteError() as { status?: number; statusText?: string };
+  const error = useRouteError() as {
+    status?: number;
+    statusText?: string;
+    cause?: unknown;
+  };
   const { owner = '', id = '' } = useParams();
-  const status = error?.status;
-  const statusText = error?.statusText;
+
+  const rateLimitError =
+    error?.cause instanceof GithubApiRateLimitError ? error.cause : null;
+
+  const status = rateLimitError?.status ?? error?.status;
+  const statusText = rateLimitError?.statusText ?? error?.statusText;
   const title =
     status === 404 ? '404 - page not found' : 'Something went wrong';
   const subtitle =
