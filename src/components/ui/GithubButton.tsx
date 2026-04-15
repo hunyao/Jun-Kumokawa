@@ -4,10 +4,12 @@ import { CaretDownSvg, CodeBranchSvg } from '#icons/index';
 
 export const GithubButton = styled.button.attrs<{
   $variant: 'border' | 'ghost';
+  $fullWidth?: boolean;
 }>({
   className:
-    'github-button rounded-lg flex items-center gap-2 w-max py-1 px-3 cursor-pointer',
+    'github-button rounded-lg flex items-center gap-2 py-1 px-3 cursor-pointer',
 })`
+width: ${(props) => (props.$fullWidth === true ? '' : 'max-content')};
 border: ${(props) => (props.$variant === 'border' ? 'solid 1px color-mix(in oklch, var(--color-base-content) 20%, transparent)' : '')};
 background: var(--github-button-bg, var(--color-base-100));
 &:hover {
