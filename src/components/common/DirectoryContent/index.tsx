@@ -1,3 +1,4 @@
+import { Trans } from '@lingui/react/macro';
 import type { components } from '@octokit/openapi-types';
 import type { Endpoints } from '@octokit/types';
 import { useMemo } from 'react';
@@ -21,14 +22,6 @@ export const sorting = (
     Endpoints['GET /repos/{owner}/{repo}/git/trees/{tree_sha}']['response']['data']['tree']
   >,
 ) => {
-  if (
-    a.type === undefined ||
-    a.path === undefined ||
-    b.type === undefined ||
-    b.path === undefined
-  ) {
-    return 0;
-  }
   if (a.type !== b.type) {
     return a.type === 'tree' ? -1 : 1;
   }
@@ -50,7 +43,6 @@ type DirectoryContentWrapperProps = {
   repo: string;
   branch_ref: string;
   path: string;
-  currentBranch: string;
   separatedHeader?: boolean;
   skipCommitData?: boolean;
   initialRef?: Array<components['schemas']['commit']>;
@@ -61,59 +53,40 @@ export const DirectoryContentWrapper = ({
   repo,
   branch_ref,
   path,
-  currentBranch,
   separatedHeader = false,
-  skipCommitData = false,
-  initialRef,
-  initialTotalCommitCount,
 }: DirectoryContentWrapperProps) => {
   const promise = useMemo(async () => {
     return Promise.all([
-      octokit.rest.git.getTree({
-        owner,
-        repo,
-        tree_sha: `${currentBranch}:${path.replace(/^\//, '')}`,
-      }),
-      skipCommitData || (initialRef && initialTotalCommitCount !== undefined)
-        ? Promise.resolve({
-            ref: initialRef ?? [],
-            totalCommitCount: initialTotalCommitCount ?? 0,
-          })
-        : Promise.all([
-            octokit.rest.repos.listCommits({
-              owner,
-              repo,
-              sha: branch_ref,
-              path,
-              per_page: 1,
-              page: 1,
-            }),
-            getAllCommitCounts({ owner, repo, sha: `heads/${currentBranch}` }),
-          ]).then(([refResponse, totalCommitCount]) => ({
-            ref: refResponse.data,
-            totalCommitCount,
-          })),
+      octokit.rest.git
+        .getTree({
+          owner,
+          repo,
+          tree_sha: `${branch_ref}:${path.replace(/^\//, '')}`,
+        })
+        .then(({ data }) => data),
+      octokit.rest.repos
+        .listCommits({
+          owner,
+          repo,
+          sha: branch_ref,
+          path,
+          per_page: 1,
+          page: 1,
+        })
+        .then(({ data }) => data),
+      getAllCommitCounts({ owner, repo, sha: branch_ref }),
     ]);
-  }, [
-    owner,
-    repo,
-    branch_ref,
-    path,
-    currentBranch,
-    skipCommitData,
-    initialRef,
-    initialTotalCommitCount,
-  ]);
+  }, [owner, repo, branch_ref, path]);
   return (
     <SuspenseWithComponent>
       <Await resolve={promise} errorElement={<ChildrenError />}>
-        {([treeResponse, commitData]) => {
-          treeResponse.data.tree.sort(sorting);
+        {([treeResponse, commitData, totalCommitCount]) => {
+          treeResponse.tree.sort(sorting);
           return (
             <DirectoryContent
-              ref={commitData.ref}
-              tree={treeResponse.data}
-              totalCommitCount={commitData.totalCommitCount}
+              ref={commitData}
+              tree={treeResponse}
+              totalCommitCount={totalCommitCount}
               owner={owner}
               repo={repo}
               branch_ref={branch_ref}
@@ -162,11 +135,22 @@ export const DirectoryContent = (props: DirectoryContentProps) => {
   if (separatedHeader) {
     return (
       <div>
+        <LatestCommit
+          commit={ref[0]}
+          totalCommitCount={totalCommitCount}
+          className='mb-4 rounded-lg ring ring-base-content/20'
+        />
         <div className='rounded-lg ring ring-base-content/20'>
-          <div className='grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_5.5rem] gap-2 border-base-content/20 border-b-[1px] bg-base-content/5 p-2 text-sm'>
-            <div>Name</div>
-            <div>Last commit message</div>
-            <div className='truncate'>Last commit date</div>
+          <div className='grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_min-content] gap-2 border-base-content/20 border-b-[1px] bg-base-content/5 p-2 text-sm'>
+            <div>
+              <Trans>Name</Trans>
+            </div>
+            <div>
+              <Trans>Last commit message</Trans>
+            </div>
+            <div className='truncate'>
+              <Trans>Last commit date</Trans>
+            </div>
           </div>
           <div className='text-sm'>
             {path.length > 0 && (
@@ -242,8 +226,10 @@ export const DirectoryContent = (props: DirectoryContentProps) => {
           ))}
           {tree.tree.length > 100 && (
             <div className='p-2 text-warning'>
-              All {tree.tree.length} entries are not shown. The list is
-              truncated to 100 files.
+              <Trans>
+                All {tree.tree.length} entries are not shown. The list is
+                truncated to 100 files.
+              </Trans>
             </div>
           )}
         </div>

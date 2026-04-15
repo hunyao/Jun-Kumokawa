@@ -1,15 +1,41 @@
+import { useLingui } from '@lingui/react/macro';
 import highcharts, { type Chart } from 'highcharts';
 import { useEffect, useRef, useState } from 'react';
 import { useSkill } from '#hooks/index';
+import { useThemeController } from '#hooks/useThemeController';
 import { Container, GithubNavMenu, GithubNavMenuItem } from '#ui/index';
 
 export const SkillPage = () => {
   const mountRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [menu, setMenu] = useState(0);
+  const [textColor, setTextColor] = useState(
+    getComputedStyle(document.documentElement)
+      .getPropertyValue('--color-base-content')
+      .trim(),
+  );
+
+  const { t } = useLingui();
 
   const { skillGroupNames, coloredSkills } = useSkill();
   const skillGroup = coloredSkills[menu];
+
+  const { addEventListener, removeEventListener } = useThemeController();
+
+  useEffect(() => {
+    const func = () => {
+      setTextColor(
+        getComputedStyle(document.documentElement)
+          .getPropertyValue('--color-base-content')
+          .trim(),
+      );
+    };
+    addEventListener(func);
+
+    return () => {
+      removeEventListener(func);
+    };
+  }, [addEventListener, removeEventListener]);
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -20,9 +46,6 @@ export const SkillPage = () => {
     }
 
     const container = containerRef.current;
-    const textColor = getComputedStyle(document.documentElement)
-      .getPropertyValue('--color-base-content')
-      .trim();
 
     const instance: Chart = highcharts.chart(
       container,
@@ -38,7 +61,7 @@ export const SkillPage = () => {
           text: undefined,
         },
         tooltip: {
-          valueSuffix: 'y',
+          valueSuffix: t`y`,
         },
         plotOptions: {
           pie: {
@@ -71,7 +94,7 @@ export const SkillPage = () => {
         series: [
           {
             type: 'pie',
-            name: 'Experience',
+            name: t`Experience`,
             data: skillGroup.items.map((item) => ({
               name: item.label,
               y: item.value,
@@ -85,7 +108,7 @@ export const SkillPage = () => {
     return () => {
       instance.destroy();
     };
-  }, [skillGroup]);
+  }, [skillGroup, t, textColor]);
 
   return (
     <Container className='grid grid-cols-4 gap-4 py-4'>
@@ -104,10 +127,10 @@ export const SkillPage = () => {
           </ul>
         </GithubNavMenu>
       </div>
-      <div className='col-span-3 font-bold text-2xl'>
-        {skillGroup.groupName}
+      <div className='col-span-3'>
+        <div className='my-2 font-bold text-2xl'>{skillGroup.groupName}</div>
+        <div className='divider m-0' />
       </div>
-      <div className='divider col-span-3 m-0' />
       <div ref={mountRef} className='col-span-3' />
     </Container>
   );

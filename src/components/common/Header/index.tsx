@@ -1,9 +1,11 @@
+import { useLingui } from '@lingui/react/macro';
 import { NavLink } from 'react-router';
+import { TranslateMenu } from '#components/index';
 import { Routes } from '#constants/index';
 import { useGithub } from '#hooks/index';
+import { useThemeController } from '#hooks/useThemeController';
 import {
   CatSvg,
-  LanguageSvg,
   LightOffSvg,
   LightOnSvg,
   LoginSvg,
@@ -13,9 +15,11 @@ import { Container, GithubMenuButton } from '#ui/index';
 
 export const Header = () => {
   const { redirectToSignIn, isSignedIn, signOut } = useGithub();
+  const { t } = useLingui();
+  const { value, themeControlRef } = useThemeController();
 
   return (
-    <div className='separater bg-base-300 py-2'>
+    <header className='separater bg-base-300 py-2'>
       <Container className='flex items-center gap-4'>
         <label htmlFor='sidebarmenu'>
           <GithubMenuButton />
@@ -31,33 +35,44 @@ export const Header = () => {
           </NavLink>
         </div>
         {!isSignedIn ? (
-          <div className='tooltip tooltip-bottom' data-tip='Log in to GitHub'>
+          <div
+            className='tooltip tooltip-bottom flex'
+            data-tip={t`Sign in to GitHub`}
+          >
             <button
               type='button'
-              aria-label='Login to GitHub'
+              aria-label={t`Sign in to GitHub`}
               onClick={redirectToSignIn}
             >
               <LoginSvg className='h-6 w-6 cursor-pointer fill-current' />
             </button>
           </div>
         ) : (
-          <div className='tooltip tooltip-bottom' data-tip='Log out of GitHub'>
+          <div
+            className='tooltip tooltip-bottom flex'
+            data-tip={t`Sign out from GitHub`}
+          >
             <button
               type='button'
-              aria-label='Logout from GitHub'
+              aria-label={t`Sign out from GitHub`}
               onClick={signOut}
             >
               <LogoutSvg className='h-6 w-6 cursor-pointer fill-current' />
             </button>
           </div>
         )}
-        <LanguageSvg className='h-6 w-6 fill-current' />
+        <TranslateMenu />
         <label className='swap swap-rotate'>
-          <input type='checkbox' className='theme-controller' value='light' />
+          <input
+            type='checkbox'
+            className='theme-controller'
+            value={value}
+            ref={themeControlRef}
+          />
           <LightOnSvg className='swap-off h-6 w-6 fill-current' />
           <LightOffSvg className='swap-on h-6 w-6 fill-current' />
         </label>
       </Container>
-    </div>
+    </header>
   );
 };

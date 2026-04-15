@@ -1,136 +1,142 @@
-import type { Endpoints } from '@octokit/types';
 import DOMPurify from 'dompurify';
-import { useEffect, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
+import { Await } from 'react-router';
+import { SuspenseWithComponent } from '#components/SuspenseWithComponent';
+import { TranslateContext } from '#contexts/TranslateContext';
+import { ChildrenError } from '#features/errors';
 import { BookSvg } from '#icons/index';
 import { md, octokit } from '#lib/index';
 import { GithubTab, GithubTabItem } from '#ui/index';
 import { b64ToUtf8 } from '#utils/index';
 import styles from './index.module.scss';
 
-type RepositoryContentResponse =
-  Endpoints['GET /repos/{owner}/{repo}/contents/{path}']['response']['data'];
 type MarkdownFile = {
   name: string;
   path: string;
+  content: string;
 };
 
 const isMarkdownFile = (name: string) => name.toLowerCase().endsWith('.md');
 const directoryPathFromSearchPath = (path: string) => path.replace(/^\//, '');
-const sortMarkdownFiles = (a: MarkdownFile, b: MarkdownFile) => {
+const sortMarkdownFiles = (a: GroupFileByLocale, b: GroupFileByLocale) => {
   const getScore = (name: string) => {
     const lower = name.toLowerCase();
-    if (lower === 'readme.md') return 0;
-    if (lower.startsWith('readme')) return 1;
-    return 2;
+    if (lower === 'readme') return 0;
+    return 1;
   };
   return getScore(a.name) - getScore(b.name);
 };
+type GroupFileByLocale = {
+  name: string;
+  files: Record<string, MarkdownFile>;
+};
+type GroupFilesByLocale = Array<GroupFileByLocale>;
+const groupFilesByLocale = (files: MarkdownFile[]): GroupFilesByLocale => {
+  return files
+    .filter((file) => !file.name.includes('_'))
+    .map((file) => {
+      const fileNameWithoutExtension = file.name.replace(/.md$/, '');
+      const relativeFiles = files
+        .filter((_file) => _file.name.startsWith(fileNameWithoutExtension))
+        .map((_file) => {
+          const locale = _file.name.replace(/.md$/, '').split('_')[1] || 'en';
+          return [locale, _file];
+        });
+      return {
+        name: fileNameWithoutExtension,
+        files: Object.fromEntries(relativeFiles),
+      };
+    });
+};
 
-type OverviewContentProps = {
+type OverviewContentWrapperProps = {
   owner: string;
   repo: string;
   path: string;
   branch: string;
 };
-export const OverviewContent = (props: OverviewContentProps) => {
+export const OverviewContentWrapper = (props: OverviewContentWrapperProps) => {
   const { owner, repo, path, branch } = props;
-  const [contents, setContents] = useState<
-    Record<string, RepositoryContentResponse>
-  >({});
-  const [markdownFiles, setMarkdownFiles] = useState<Array<MarkdownFile>>([]);
-  const [activeMarkdownPath, setActiveMarkdownPath] = useState<string>('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasMarkdown, setHasMarkdown] = useState<boolean | null>(null);
+  const promise = useMemo(async (): Promise<GroupFilesByLocale> => {
+    const { data: listData } = await octokit.rest.repos.getContent({
+      owner,
+      repo,
+      path: directoryPathFromSearchPath(path),
+      ref: branch,
+    });
+    if (!Array.isArray(listData)) return [];
 
-  useEffect(() => {
-    let cancelled = false;
-    const load = async () => {
-      try {
-        setIsLoading(true);
-        setHasMarkdown(null);
-        setContents({});
-        setMarkdownFiles([]);
-        setActiveMarkdownPath('');
-
-        const { data } = await octokit.rest.repos.getContent({
-          owner,
-          repo,
-          path: directoryPathFromSearchPath(path),
-          ref: branch,
-        });
-
-        if (!Array.isArray(data)) {
-          if (!cancelled) {
-            setHasMarkdown(false);
-          }
-          return;
-        }
-
-        const files = data
-          .filter((item) => item.type === 'file' && isMarkdownFile(item.name))
-          .map((item) => ({ name: item.name, path: item.path }))
-          .sort(sortMarkdownFiles);
-
-        if (files.length === 0) {
-          if (!cancelled) {
-            setHasMarkdown(false);
-          }
-          return;
-        }
-
-        const entries = await Promise.all(
-          files.map(async (file) => {
-            const response = await octokit.rest.repos.getContent({
+    return groupFilesByLocale(
+      await Promise.all(
+        listData
+          .filter(
+            (content) =>
+              content.type === 'file' && isMarkdownFile(content.name),
+          )
+          .map(async ({ name, path }) => {
+            const { data: fileData } = await octokit.rest.repos.getContent({
               owner,
               repo,
-              path: file.path,
+              path,
               ref: branch,
             });
-            return [file.path, response.data] as const;
-          }),
-        );
 
-        if (!cancelled) {
-          setHasMarkdown(true);
-          setMarkdownFiles(files);
-          setActiveMarkdownPath(files[0].path);
-          setContents(Object.fromEntries(entries));
-        }
-      } catch {
-        if (!cancelled) {
-          setHasMarkdown(false);
-        }
-      } finally {
-        if (!cancelled) setIsLoading(false);
-      }
-    };
-    load();
-    return () => {
-      cancelled = true;
-    };
+            return {
+              name,
+              path,
+              content:
+                !Array.isArray(fileData) && fileData.type === 'file'
+                  ? fileData.content
+                  : '',
+            };
+          }),
+      ),
+    ).sort(sortMarkdownFiles);
   }, [owner, repo, path, branch]);
 
-  if (hasMarkdown === false) return null;
-  const activeContent = contents[activeMarkdownPath];
-  const activeFileContent =
-    activeContent &&
-    !Array.isArray(activeContent) &&
-    activeContent.type === 'file'
-      ? activeContent
-      : undefined;
-  if (!isLoading && !activeFileContent) {
-    return null;
+  return (
+    <SuspenseWithComponent>
+      <Await resolve={promise} errorElement={<ChildrenError />}>
+        {(contents) => {
+          return <OverviewContent contents={contents} />;
+        }}
+      </Await>
+    </SuspenseWithComponent>
+  );
+};
+type OverviewContentProps = {
+  contents: GroupFilesByLocale;
+};
+export const OverviewContent = (props: OverviewContentProps) => {
+  const { contents } = props;
+  const { lang } = useContext(TranslateContext);
+  const [activeMarkdownPath, setActiveMarkdownPath] = useState<string>(
+    contents.length === 0 ? '' : contents[0].name,
+  );
+
+  if (contents.length === 0) return null;
+
+  const content = contents.find(
+    (content) => content.name === activeMarkdownPath,
+  );
+  if (content === undefined) return null;
+
+  let markdownContent: string;
+  if (content.files[lang] === undefined) {
+    markdownContent = content.files.en.content;
+  } else {
+    markdownContent = content.files[lang].content;
   }
 
   return (
     <div className='rounded-lg ring ring-base-content/20'>
       <div className='sticky top-0 rounded-lg border-base-content/20 border-b-[1px] bg-base-100 p-2 pb-0'>
         <GithubTab $variant='border'>
-          {markdownFiles.map((file) => (
+          {contents.map((file) => (
             <GithubTabItem
-              key={file.path}
-              $active={activeMarkdownPath === file.path}
-              onClick={() => setActiveMarkdownPath(file.path)}
+              key={file.name}
+              $active={activeMarkdownPath === file.name}
+              onClick={() => setActiveMarkdownPath(file.name)}
             >
               <BookSvg className='h-6 w-6 fill-current' />
               {file.name}
@@ -138,23 +144,12 @@ export const OverviewContent = (props: OverviewContentProps) => {
           ))}
         </GithubTab>
       </div>
-      {isLoading && (
-        <div>
-          <div className='skeleton h-4 w-full'></div>
-          <div className='skeleton h-4 w-full'></div>
-          <div className='skeleton h-4 w-full'></div>
-          <div className='skeleton h-4 w-full'></div>
-          <div className='skeleton h-4 w-full'></div>
-        </div>
-      )}
-      {!isLoading && activeFileContent !== undefined && (
+      {markdownContent !== '' && (
         <div
           className={styles.overview}
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Because it is just html of markdown
           dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(
-              md.render(b64ToUtf8(activeFileContent.content)),
-            ),
+            __html: DOMPurify.sanitize(md.render(b64ToUtf8(markdownContent))),
           }}
         />
       )}

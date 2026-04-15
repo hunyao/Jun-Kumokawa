@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { Trans } from '@lingui/react/macro';
+import { useMemo } from 'react';
 import { NavLink } from 'react-router';
 import { Routes } from '#constants/index';
-import { Profile as ProfileData } from '#data/index';
+import { useProfile } from '#hooks/useProfile';
 import {
   BriefcaseSvg,
   CodeSvg,
@@ -15,67 +16,68 @@ import {
 } from '#icons/index';
 import { Container, GithubTab, GithubTabItem } from '#ui/index';
 
-const { profile } = ProfileData;
-
-const socialLinks = [
-  {
-    key: 'location',
-    Icon: LocationSvg,
-    content: profile.location,
-  },
-  {
-    key: 'linkedin',
-    Icon: LinkedinSvg,
-    content: (
-      <a
-        href={`https://www.linkedin.com/in/${profile.linkedin}`}
-        target='_blank'
-        rel='noreferrer'
-        className='link link-hover'
-      >
-        @{profile.linkedin}
-      </a>
-    ),
-  },
-  {
-    key: 'github',
-    Icon: GithubSvg,
-    content: (
-      <a
-        href={`https://github.com/${profile.github}`}
-        target='_blank'
-        rel='noreferrer'
-        className='link link-hover'
-      >
-        @{profile.github}
-      </a>
-    ),
-  },
-  {
-    key: 'email',
-    Icon: EnvelopeSvg,
-    content: (
-      <a href={`mailto:${profile.email}`} className='link link-hover'>
-        {profile.email}
-      </a>
-    ),
-  },
-  {
-    key: 'phone',
-    Icon: PhoneSvg,
-    content: (
-      <a
-        href={`tel:+${profile.tel[0]}${profile.tel[1]}${profile.tel[2]}`}
-        className='link link-hover'
-      >
-        +({profile.tel[0]}) {profile.tel[1]} {profile.tel[2]}
-      </a>
-    ),
-  },
-];
-
 export const Profile = () => {
-  const [kanji, setKanji] = useState(false);
+  const profile = useProfile();
+
+  const socialLinks = useMemo(
+    () => [
+      {
+        key: 'location',
+        Icon: LocationSvg,
+        content: profile.location,
+      },
+      {
+        key: 'linkedin',
+        Icon: LinkedinSvg,
+        content: (
+          <a
+            href={`https://www.linkedin.com/in/${profile.linkedin}`}
+            target='_blank'
+            rel='noreferrer'
+            className='link link-hover'
+          >
+            @{profile.linkedin}
+          </a>
+        ),
+      },
+      {
+        key: 'github',
+        Icon: GithubSvg,
+        content: (
+          <a
+            href={`https://github.com/${profile.github}`}
+            target='_blank'
+            rel='noreferrer'
+            className='link link-hover'
+          >
+            @{profile.github}
+          </a>
+        ),
+      },
+      {
+        key: 'email',
+        Icon: EnvelopeSvg,
+        content: (
+          <a href={`mailto:${profile.email}`} className='link link-hover'>
+            {profile.email}
+          </a>
+        ),
+      },
+      {
+        key: 'phone',
+        Icon: PhoneSvg,
+        content: (
+          <a
+            href={`tel:+${profile.tel[0]}${profile.tel[1]}${profile.tel[2]}`}
+            className='link link-hover'
+          >
+            +({profile.tel[0]}) {profile.tel[1]} {profile.tel[2]}
+          </a>
+        ),
+      },
+    ],
+    [profile],
+  );
 
   return (
     <div className='separater w-full bg-[linear-gradient(var(--tw-gradient-stops)),url(/images/forest-background.jpg)] bg-cover bg-linear-to-b from-base-300/70 to-100% to-base-300'>
@@ -89,19 +91,9 @@ export const Profile = () => {
             />
           </div>
           <div className='flex items-center gap-2'>
-            <label className='flex cursor-pointer items-center gap-2 text-base-content'>
-              Kanji
-              <input
-                type='checkbox'
-                className='toggle'
-                onChange={(e) => setKanji(e.target.checked)}
-              />
-            </label>
-            <div className='font-bold text-2xl'>
-              {kanji ? profile.name.ja.fullName : profile.name.en.fullName}
-            </div>
+            <div className='font-bold text-2xl'>{profile.displayName}</div>
           </div>
-          <div>{profile.title.en}</div>
+          <div>{profile.title}</div>
           <div className='flex gap-4'>
             {socialLinks.map(({ key, Icon, content }) => (
               <div className='flex items-center gap-1' key={key}>
@@ -117,7 +109,7 @@ export const Profile = () => {
               <GithubTabItem $active={isActive} $pending={isPending}>
                 <span className='loading loading-spinner loading-xs' />
                 <HomeSvg className='h-4 w-4' />
-                Overview
+                <Trans>Overview</Trans>
               </GithubTabItem>
             )}
           </NavLink>
@@ -126,7 +118,7 @@ export const Profile = () => {
               <GithubTabItem $active={isActive} $pending={isPending}>
                 <span className='loading loading-spinner loading-xs' />
                 <CodeSvg className='h-6 w-6' />
-                Code
+                <Trans context='profile'>Code</Trans>
               </GithubTabItem>
             )}
           </NavLink>
@@ -134,7 +126,7 @@ export const Profile = () => {
             {({ isActive }) => (
               <GithubTabItem $active={isActive}>
                 <BriefcaseSvg className='h-4 w-4' />
-                Experiences
+                <Trans>Experiences</Trans>
               </GithubTabItem>
             )}
           </NavLink>
@@ -142,7 +134,7 @@ export const Profile = () => {
             {({ isActive }) => (
               <GithubTabItem $active={isActive}>
                 <ScrewdriverWrenchSvg className='h-4 w-4' />
-                Skills
+                <Trans>Skills</Trans>
               </GithubTabItem>
             )}
           </NavLink>

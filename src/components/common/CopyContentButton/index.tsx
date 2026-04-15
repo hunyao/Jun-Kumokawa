@@ -1,3 +1,4 @@
+import { useLingui } from '@lingui/react/macro';
 import { type HTMLAttributes, useState } from 'react';
 import { CheckSvg, CopyContentSvg } from '#icons/index';
 
@@ -9,6 +10,7 @@ export const CopyContentButton = ({
   ...rest
 }: CopyContentButtonProps) => {
   const [isCopying, setIsCopying] = useState(false);
+  const { t } = useLingui();
 
   const onClickHandler = async () => {
     if (isCopying) return;
@@ -21,7 +23,7 @@ export const CopyContentButton = ({
     }
   };
   return (
-    <div className='tooltip' data-tip='Copy url to clipboard' {...rest}>
+    <div className='tooltip' data-tip={t`Copy url to clipboard`} {...rest}>
       <button
         type='button'
         className='btn btn-sm btn-ghost btn-square'

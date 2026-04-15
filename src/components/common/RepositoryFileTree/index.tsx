@@ -1,3 +1,4 @@
+import { Trans } from '@lingui/react/macro';
 import type { Endpoints } from '@octokit/types';
 import { useEffect, useState } from 'react';
 import { RepositoryFileTreeItem, sorting } from '#components/index';
@@ -50,7 +51,9 @@ export const RepositoryFileTree = (props: RepositoryFileTreeProps) => {
           {/* biome-ignore lint/a11y/useValidAnchor: reason */}
           <a>
             <span className='loading loading-spinner loading-sm'></span>
-            <span>Loading...</span>
+            <span>
+              <Trans id='common.loading'>Loading...</Trans>
+            </span>
           </a>
         </li>
       </ul>
@@ -75,7 +78,7 @@ export const RepositoryFileTree = (props: RepositoryFileTreeProps) => {
       {isTruncated && !showAll && (
         <li className='p-2 text-center'>
           <GithubButton $variant='border' onClick={() => setShowAll(true)}>
-            Show all {tree.length} items
+            <Trans>Show all {tree.length} items</Trans>
           </GithubButton>
         </li>
       )}

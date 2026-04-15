@@ -1,3 +1,4 @@
+import { Trans, useLingui } from '@lingui/react/macro';
 import {
   type CSSProperties,
   type HTMLAttributes,
@@ -41,6 +42,7 @@ export const GoToFile = (props: GoToFileProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
+  const { t } = useLingui();
 
   useLayoutEffect(() => {
     if (!isOpen || !anchorRef.current) return;
@@ -61,7 +63,7 @@ export const GoToFile = (props: GoToFileProps) => {
         const { data } = await octokit.rest.git.getTree({
           owner,
           repo,
-          tree_sha: `${branch}:`,
+          tree_sha: branch,
           recursive: '1',
         });
         if (!cancelled) {
@@ -188,7 +190,7 @@ export const GoToFile = (props: GoToFileProps) => {
           ref={inputRef}
           type='search'
           className='grow'
-          placeholder='Go to file'
+          placeholder={t`Go to file`}
           value={searchingText}
           onChange={(e) => {
             setSearchingText(e.target.value);
@@ -251,12 +253,12 @@ export const GoToFile = (props: GoToFileProps) => {
             <ul className='p-2'>
               {isLoading && (
                 <li className='p-2 text-base-content/60 text-sm'>
-                  Loading files...
+                  <Trans>Loading files...</Trans>
                 </li>
               )}
               {hasError && !isLoading && (
                 <li className='p-2 text-error text-sm'>
-                  Failed to load files.
+                  <Trans>Failed to load files.</Trans>
                 </li>
               )}
               {!isLoading &&
@@ -286,7 +288,7 @@ export const GoToFile = (props: GoToFileProps) => {
                 ))}
               {!isLoading && !hasError && filteredFiles.length === 0 && (
                 <li className='p-2 text-base-content/60 text-sm'>
-                  No files found.
+                  <Trans>No files found.</Trans>
                 </li>
               )}
             </ul>

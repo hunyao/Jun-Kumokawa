@@ -1,3 +1,4 @@
+import { Trans } from '@lingui/react/macro';
 import type { Endpoints } from '@octokit/types';
 import { useId, useRef } from 'react';
 import {
@@ -5,8 +6,6 @@ import {
   type LoaderFunction,
   NavLink,
   useLoaderData,
-  useLocation,
-  useNavigate,
   useParams,
   useSearchParams,
 } from 'react-router';
@@ -15,18 +14,16 @@ import {
   CopyContentButton,
   DirectoryContentWrapper,
   GoToFile,
-  LatestCommit,
-  OverviewContent,
+  OverviewContentWrapper,
   RepositoryFileTree,
   SuspenseWithComponent,
   SwitchBranches,
 } from '#components/index';
 import { Routes } from '#constants/index';
-import { useResizePanel } from '#hooks/index';
+import { useBranchAndTag, useResizePanel } from '#hooks/index';
 import { BottomPanelCloseSvg } from '#icons/index';
 import { octokit } from '#lib/index';
 import { GithubButton } from '#ui/index';
-import { getAllCommitCounts, requestRecursively } from '#utils/index';
 
 export const TreePageWrapper = () => {
   const { promise } = useLoaderData();
@@ -41,49 +38,19 @@ export const TreePageWrapper = () => {
 };
 
 export type TreePageLoaderType = [
-  Endpoints['GET /repos/{owner}/{repo}']['response'],
-  Endpoints['GET /repos/{owner}/{repo}/branches']['response']['data'],
-  Endpoints['GET /repos/{owner}/{repo}/tags']['response']['data'],
-  Endpoints['GET /repos/{owner}/{repo}/commits']['response'],
-  number,
+  Endpoints['GET /repos/{owner}/{repo}']['response']['data'],
 ];
-export const getTreePageLoader: LoaderFunction = ({ params, request }) => {
+export const getTreePageLoader: LoaderFunction = ({ params }) => {
   const { owner = '', id: repo = '' } = params;
-  const searchParams = new URL(request.url).searchParams;
-  const currentBranch = searchParams.get('branch') || undefined;
-  const path = searchParams.get('path') || '';
 
-  const repository = octokit.rest.repos.get({
-    owner,
-    repo,
-  });
-  const branches = requestRecursively(octokit.rest.repos.listBranches, {
-    owner,
-    repo,
-  })
-    .then((items) => items.map((item) => item.data))
-    .then((items) => items.flat());
-  const tags = requestRecursively(octokit.rest.repos.listTags, {
-    owner,
-    repo,
-  })
-    .then((items) => items.map((item) => item.data))
-    .then((items) => items.flat());
-  const ref = octokit.rest.repos.listCommits({
-    owner,
-    repo,
-    sha: currentBranch === undefined ? undefined : `heads/${currentBranch}`,
-    path,
-    per_page: 1,
-    page: 1,
-  });
-  const totalCommitCount = getAllCommitCounts({
-    owner,
-    repo,
-    sha: currentBranch === undefined ? undefined : `heads/${currentBranch}`,
-  });
+  const repository = octokit.rest.repos
+    .get({
+      owner,
+      repo,
+    })
+    .then(({ data }) => data);
   return {
-    promise: Promise.all([repository, branches, tags, ref, totalCommitCount]),
+    promise: Promise.all([repository]),
   };
 };
 
@@ -92,34 +59,43 @@ type TreePageProps = {
 };
 export const TreePage = (props: TreePageProps) => {
   const { resolvedData } = props;
-  const [
-    { data: repository },
-    branches,
-    tags,
-    { data: ref },
-    totalCommitCount,
-  ] = resolvedData;
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [repository] = resolvedData;
   const [searchParams] = useSearchParams();
-  const currentBranch = searchParams.get('branch') || repository.default_branch;
   const path = searchParams.get('path') || '';
   const mode = searchParams.get('mode') || 'tree';
 
   const owner = repository.owner.login;
   const repo = repository.name;
-  const branch = [...branches, ...tags].find((_b) => _b.name === currentBranch);
   const targetRef = useRef<HTMLDivElement>(null);
   const { resizeHandlerElement } = useResizePanel(targetRef);
 
+  const {
+    branches,
+    tags,
+    currentRef = '',
+    loading: branchAndTagLoading,
+  } = useBranchAndTag({
+    owner,
+    repo,
+    defaultBranch: repository.default_branch,
+  });
+
   const collapseId = useId();
 
-  const onChangeBranch = (_branch: string) => {
-    const _searchParams = new URLSearchParams(searchParams);
-    _searchParams.set('branch', _branch);
-    navigate(`${location.pathname}?${_searchParams.toString()}`);
-  };
-  if (branch === undefined) return null;
+  if (branchAndTagLoading) {
+    return (
+      <div className='flex h-96 gap-4 py-4'>
+        <div className='skeleton h-full w-1/4' />
+        <div className='flex w-3/4 flex-col gap-4'>
+          <div className='skeleton h-4 w-24' />
+          <div className='skeleton h-12 w-full' />
+          <div className='skeleton h-4 w-full' />
+          <div className='skeleton h-4 w-full' />
+          <div className='skeleton h-4 w-full' />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='group flex'>
@@ -143,23 +119,22 @@ export const TreePage = (props: TreePageProps) => {
                 <BottomPanelCloseSvg className='h-6 w-6 rotate-90 fill-current' />
               </GithubButton>
             </div>
-            Files
+            <Trans>Files</Trans>
           </div>
           <SwitchBranches
             defaultBranch={repository.default_branch}
-            value={currentBranch}
+            value={currentRef}
             branches={branches}
             tags={tags}
             className='w-full'
-            onChange={onChangeBranch}
           />
-          <GoToFile owner={owner} repo={repo} branch={branch.name} />
+          <GoToFile owner={owner} repo={repo} branch={currentRef} />
           <div className='divider m-0'></div>
           <RepositoryFileTree
-            key={currentBranch}
+            key={currentRef}
             owner={owner}
             repo={repo}
-            branch={branch.name}
+            branch={currentRef}
             path=''
           />
         </div>
@@ -183,10 +158,9 @@ export const TreePage = (props: TreePageProps) => {
           <SwitchBranches
             className='hidden group-has-[input:checked]:inline-block'
             defaultBranch={repository.default_branch}
-            value={currentBranch}
+            value={currentRef}
             branches={branches}
             tags={tags}
-            onChange={onChangeBranch}
           />
           <nav>
             <ol className='inline-block'>
@@ -252,45 +226,34 @@ export const TreePage = (props: TreePageProps) => {
             <CopyContentButton content={path} data-tip='Copy path' />
           </div>
         </div>
-        {ref[0] && (
-          <LatestCommit
-            commit={ref[0]}
-            totalCommitCount={totalCommitCount}
-            className='mb-4 rounded-lg ring ring-base-content/20'
-          />
-        )}
         {mode === 'tree' && (
           <div>
             <DirectoryContentWrapper
-              key={currentBranch + path}
+              key={currentRef + path}
               owner={owner}
               repo={repo}
               path={path}
-              currentBranch={currentBranch}
-              branch_ref={branch.commit.sha}
+              branch_ref={currentRef}
               separatedHeader
-              skipCommitData
-              initialRef={ref}
-              initialTotalCommitCount={totalCommitCount}
             />
             <div className='mt-4'>
-              <OverviewContent
-                key={currentBranch + path}
+              <OverviewContentWrapper
+                key={currentRef + path}
                 path={path}
                 owner={owner}
                 repo={repo}
-                branch={currentBranch}
+                branch={currentRef}
               />
             </div>
           </div>
         )}
         {mode === 'blob' && (
           <BlobViewContentWrapper
-            key={currentBranch + path}
+            key={currentRef + path}
             owner={owner}
             repo={repo}
             path={path}
-            branch={currentBranch}
+            branch={currentRef}
           />
         )}
       </div>

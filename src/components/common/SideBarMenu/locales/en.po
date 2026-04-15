@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-04-06 14:57+0900\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/components/common/SideBarMenu/index.tsx:96
+msgctxt "sidebar"
+msgid "Code"
+msgstr "Code"
+
+#: src/components/common/SideBarMenu/index.tsx:107
+msgid "Experiences"
+msgstr "Experiences"
+
+#: src/components/common/SideBarMenu/index.tsx:85
+msgid "Overview"
+msgstr "Overview"
+
+#: src/components/common/SideBarMenu/index.tsx:123
+msgid "Repositories"
+msgstr "Repositories"
+
+#: src/components/common/SideBarMenu/index.tsx:118
+msgid "Skills"
+msgstr "Skills"

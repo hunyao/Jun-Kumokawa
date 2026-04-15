@@ -1,3 +1,4 @@
+import { Trans, useLingui } from '@lingui/react/macro';
 import type { Endpoints } from '@octokit/types';
 import DOMPurify from 'dompurify';
 import hljs from 'highlight.js';
@@ -67,6 +68,7 @@ type BlobViewContentProps = {
 export const BlobViewContent = (props: BlobViewContentProps) => {
   const { content, contentType } = props;
   const copyContentButtonRef = useRef<HTMLButtonElement>(null);
+  const { t } = useLingui();
 
   if (Array.isArray(content) || content.type !== 'file') return null;
 
@@ -96,13 +98,13 @@ export const BlobViewContent = (props: BlobViewContentProps) => {
       }),
     ]);
     if (copyContentButtonRef.current) {
-      copyContentButtonRef.current.dataset.tip = 'Copied!';
+      copyContentButtonRef.current.dataset.tip = t`Copied!`;
     }
 
     await new Promise((resolve) =>
       setTimeout(() => {
         if (copyContentButtonRef.current) {
-          copyContentButtonRef.current.dataset.tip = 'Copy raw file';
+          copyContentButtonRef.current.dataset.tip = t`Copy raw file`;
         }
         resolve(0);
       }, 1000),
@@ -134,7 +136,7 @@ export const BlobViewContent = (props: BlobViewContentProps) => {
           </button>
           <button
             className='btn join-item tooltip bg-base-content/20'
-            data-tip='Copy raw file'
+            data-tip={t`Copy raw file`}
             type='button'
             onClick={copyContent}
             ref={copyContentButtonRef}
@@ -143,7 +145,7 @@ export const BlobViewContent = (props: BlobViewContentProps) => {
           </button>
           <button
             className='btn join-item tooltip tooltip-left bg-base-content/20'
-            data-tip='Download raw file'
+            data-tip={t`Download raw file`}
             style={{ '--radius-field': '0.5rem' } as CSSProperties}
             type='button'
           >
@@ -165,7 +167,7 @@ export const BlobViewContent = (props: BlobViewContentProps) => {
               target='_blank'
               rel='noreferrer'
             >
-              view raw
+              <Trans>view raw</Trans>
             </a>
           </div>
         )}
@@ -196,8 +198,10 @@ export const BlobViewContent = (props: BlobViewContentProps) => {
           ))}
         {isTruncated && (
           <div className='p-2 text-center text-base-content/60 text-sm'>
-            Showing first {numberFormat(maxLines)} lines. View raw for full
-            file.
+            <Trans>
+              Showing first {numberFormat(maxLines)} lines. View raw for full
+              file.
+            </Trans>
           </div>
         )}
       </div>

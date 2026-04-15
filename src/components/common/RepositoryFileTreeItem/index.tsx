@@ -1,3 +1,4 @@
+import { Trans } from '@lingui/react/macro';
 import type { Endpoints } from '@octokit/types';
 import { type ToggleEvent, useEffect, useRef, useState } from 'react';
 import {
@@ -127,7 +128,9 @@ export const RepositoryFileTreeItem = (props: RepositoryFileTreeItemProps) => {
                 {/* biome-ignore lint/a11y/useValidAnchor: reason */}
                 <a>
                   <span className='loading loading-spinner loading-sm'></span>
-                  <span>Loading...</span>
+                  <span>
+                    <Trans id='common.loading'>Loading...</Trans>
+                  </span>
                 </a>
               </li>
             </ul>

@@ -1,3 +1,4 @@
+import { Trans } from '@lingui/react/macro';
 import type { Endpoints } from '@octokit/types';
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router';
@@ -62,10 +63,10 @@ export const SideBarMenu = () => {
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: reason */}
       {/* biome-ignore lint/a11y/noStaticElementInteractions: reason */}
       <div
-        className='fixed top-0 left-0 hidden h-full w-full bg-black/20 peer-checked:block'
+        className='fixed top-0 left-0 z-20 hidden h-full w-full bg-black/20 peer-checked:block'
         onClick={close}
       />
-      <div className='separater separater-right fixed top-0 left-0 grid h-full w-96 -translate-x-full grid-rows-[min-content_minmax(0,1fr)] gap-y-4 rounded-r-xl bg-base-300 p-4 transition-transform duration-200 peer-checked:translate-x-0'>
+      <div className='separater separater-right fixed top-0 left-0 z-20 grid h-full w-96 -translate-x-full grid-rows-[min-content_minmax(0,1fr)] gap-y-4 rounded-r-xl bg-base-300 p-4 transition-transform duration-200 peer-checked:translate-x-0'>
         <div className='flex items-center justify-between'>
           <CatSvg className='h-10 w-10 rounded-full fill-current' />
           <label htmlFor='sidebarmenu'>
@@ -74,32 +75,52 @@ export const SideBarMenu = () => {
         </div>
         <div className='overflow-y-auto'>
           <NavLink to={Routes.HOME}>
-            <div className='link-element flex items-center gap-2'>
+            {/* biome-ignore lint/a11y/useKeyWithClickEvents: reason */}
+            {/* biome-ignore lint/a11y/noStaticElementInteractions: reason */}
+            <div
+              className='link-element flex items-center gap-2'
+              onClick={close}
+            >
               <HomeSvg className='h-4 w-4 fill-current' />
-              Overview
+              <Trans>Overview</Trans>
             </div>
           </NavLink>
           <NavLink to={Routes.MYTREE}>
-            <div className='link-element flex items-center gap-2'>
+            {/* biome-ignore lint/a11y/useKeyWithClickEvents: reason */}
+            {/* biome-ignore lint/a11y/noStaticElementInteractions: reason */}
+            <div
+              className='link-element flex items-center gap-2'
+              onClick={close}
+            >
               <CodeSvg className='h-4 w-4 fill-current' />
-              Code
+              <Trans context='sidebar'>Code</Trans>
             </div>
           </NavLink>
           <NavLink to={Routes.EXPERIENCES}>
-            <div className='link-element flex items-center gap-2'>
+            {/* biome-ignore lint/a11y/useKeyWithClickEvents: reason */}
+            {/* biome-ignore lint/a11y/noStaticElementInteractions: reason */}
+            <div
+              className='link-element flex items-center gap-2'
+              onClick={close}
+            >
               <BriefcaseSvg className='h-4 w-4 fill-current' />
-              Experiences
+              <Trans>Experiences</Trans>
             </div>
           </NavLink>
           <NavLink to={Routes.SKILLS}>
-            <div className='link-element flex items-center gap-2'>
+            {/* biome-ignore lint/a11y/useKeyWithClickEvents: reason */}
+            {/* biome-ignore lint/a11y/noStaticElementInteractions: reason */}
+            <div
+              className='link-element flex items-center gap-2'
+              onClick={close}
+            >
               <ScrewdriverWrenchSvg className='h-4 w-4 fill-current' />
-              Skills
+              <Trans>Skills</Trans>
             </div>
           </NavLink>
           <div className='divider'></div>
           <div className='py-2 font-bold text-base-content/50 text-sm'>
-            Repositories
+            <Trans>Repositories</Trans>
           </div>
           {isLoading && (
             <div>
@@ -120,7 +141,12 @@ export const SideBarMenu = () => {
               key={repository.node_id}
             >
               {({ isPending }) => (
-                <div className='link-element flex cursor-pointer items-center gap-2'>
+                // biome-ignore lint/a11y/useKeyWithClickEvents: reason
+                // biome-ignore lint/a11y/noStaticElementInteractions: reason
+                <div
+                  className='link-element flex cursor-pointer items-center gap-2'
+                  onClick={close}
+                >
                   <span
                     className='loading loading-spinner loading-xs'
                     hidden={!isPending}

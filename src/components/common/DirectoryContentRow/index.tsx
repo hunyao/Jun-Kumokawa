@@ -1,8 +1,10 @@
 import type { components } from '@octokit/openapi-types';
 import dayjs from 'dayjs';
+import { useContext } from 'react';
 import { NavLink, useSearchParams } from 'react-router';
 import { DirectoryContentRowSkelton } from '#components/index';
 import { Routes } from '#constants/index';
+import { TranslateContext } from '#contexts/TranslateContext';
 import { useDirectoryRowCommit } from '#hooks/index';
 import {
   FileSubmoduleSvg,
@@ -78,6 +80,7 @@ export const DirectoryContentRow = (props: DirectoryContentRowProps) => {
   const isSubmodule = mode === '160000';
   const isSymlinkFile = mode === '120000';
   const isFile = mode === '100644' || mode === '100755';
+  const { lang } = useContext(TranslateContext);
 
   const getIcon = () => {
     if (isFolder) return <FolderSvg className='h-6 w-6 fill-current' />;
@@ -143,7 +146,7 @@ export const DirectoryContentRow = (props: DirectoryContentRowProps) => {
       <span
         title={
           commit && !hasError
-            ? dayjs(commit.commit.committer?.date).format('llll')
+            ? dayjs(commit.commit.committer?.date).locale(lang).format('llll')
             : ''
         }
         className='justify-self-end'
@@ -151,7 +154,7 @@ export const DirectoryContentRow = (props: DirectoryContentRowProps) => {
         {hasError
           ? '-'
           : commit
-            ? dayjs(commit.commit.committer?.date).fromNow()
+            ? dayjs(commit.commit.committer?.date).locale(lang).fromNow()
             : '-'}
       </span>
     </div>

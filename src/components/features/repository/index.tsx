@@ -1,11 +1,10 @@
+import { Trans } from '@lingui/react/macro';
 import type { Endpoints } from '@octokit/types';
 import {
   Await,
   type LoaderFunction,
   NavLink,
   useLoaderData,
-  useLocation,
-  useNavigate,
   useParams,
   useSearchParams,
 } from 'react-router';
@@ -14,11 +13,12 @@ import {
   DirectoryContentWrapper,
   GoToFile,
   LanguageUsage,
-  OverviewContent,
+  OverviewContentWrapper,
   SkillSidebarComponent,
   SwitchBranches,
 } from '#components/index';
 import { Routes } from '#constants/index';
+import { useBranchAndTag } from '#hooks/useBranchAndTag';
 import {
   CodeBranchSvg,
   CopyrightSvg,
@@ -31,7 +31,7 @@ import {
 } from '#icons/index';
 import { octokit } from '#lib/index';
 import { Container, DetailBoxTitle, GithubButton, GithubChip } from '#ui/index';
-import { numberFormat, requestRecursively } from '#utils/index';
+import { numberFormat } from '#utils/index';
 
 export const RepositoryPageWrapper = () => {
   const { promise } = useLoaderData();
@@ -46,31 +46,19 @@ export const RepositoryPageWrapper = () => {
 };
 
 export type RepositoryPageLoaderType = [
-  Endpoints['GET /repos/{owner}/{repo}']['response'],
-  Endpoints['GET /repos/{owner}/{repo}/branches']['response']['data'],
-  Endpoints['GET /repos/{owner}/{repo}/tags']['response']['data'],
+  Endpoints['GET /repos/{owner}/{repo}']['response']['data'],
 ];
 export const getRepositoryPageLoader: LoaderFunction = ({ params }) => {
   const { owner = '', id: repo = '' } = params;
 
-  const repository = octokit.rest.repos.get({
-    owner,
-    repo,
-  });
-  const branches = requestRecursively(octokit.rest.repos.listBranches, {
-    owner,
-    repo,
-  })
-    .then((items) => items.map((item) => item.data))
-    .then((items) => items.flat());
-  const tags = requestRecursively(octokit.rest.repos.listTags, {
-    owner,
-    repo,
-  })
-    .then((items) => items.map((item) => item.data))
-    .then((items) => items.flat());
+  const repository = octokit.rest.repos
+    .get({
+      owner,
+      repo,
+    })
+    .then(({ data }) => data);
   return {
-    promise: Promise.all([repository, branches, tags]),
+    promise: Promise.all([repository]),
   };
 };
 
@@ -78,23 +66,36 @@ type RepositoryPageProps = {
   resolvedData: RepositoryPageLoaderType;
 };
 export const RepositoryPage = (props: RepositoryPageProps) => {
-  const navigate = useNavigate();
-  const location = useLocation();
   const [searchParams] = useSearchParams();
   const path = searchParams.get('path') || '';
   const { resolvedData } = props;
-  const [{ data: repository }, branches, tags] = resolvedData;
-  const currentBranch = searchParams.get('branch') || repository.default_branch;
+  const [repository] = resolvedData;
   const owner = repository.owner.login;
   const repo = repository.name;
-  const branch = branches.find((_b) => _b.name === currentBranch);
-  if (branch === undefined) return null;
+  const isMyRepository = owner === 'hunyao' && repo === 'Jun-Kumokawa';
 
-  const onChangeBranch = (_branch: string) => {
-    const _searchParams = new URLSearchParams(searchParams);
-    _searchParams.set('branch', _branch);
-    navigate(`${location.pathname}?${_searchParams.toString()}`);
-  };
+  const {
+    branches,
+    tags,
+    currentRef = '',
+    loading: branchAndTagLoading,
+  } = useBranchAndTag({
+    owner,
+    repo,
+    defaultBranch: repository.default_branch,
+  });
+
+  if (branchAndTagLoading) {
+    return (
+      <Container className='py-4'>
+        <div className='skeleton my-4 h-4 w-24' />
+        <div className='flex gap-4'>
+          <div className='skeleton my-4 h-6 w-3/4' />
+          <div className='skeleton my-4 h-6 w-1/4' />
+        </div>
+      </Container>
+    );
+  }
 
   return (
     <Container className='py-4'>
@@ -120,24 +121,23 @@ export const RepositoryPage = (props: RepositoryPageProps) => {
           <div className='flex items-center gap-2'>
             <SwitchBranches
               defaultBranch={repository.default_branch}
-              value={currentBranch}
+              value={currentRef}
               branches={branches}
               tags={tags}
-              onChange={onChangeBranch}
             />
             <GithubButton $variant='ghost'>
               <CodeBranchSvg className='h-4 w-4 fill-current' />
-              {branches.length} Branches
+              <Trans>{branches.length} Branches</Trans>
             </GithubButton>
             <GithubButton $variant='ghost'>
               <TagSvg className='h-4 w-4 fill-current' />
-              {tags.length} Tags
+              <Trans>{tags.length} Tags</Trans>
             </GithubButton>
             <GoToFile
               className='ml-auto'
               owner={owner}
               repo={repo}
-              branch={branch.name}
+              branch={currentRef}
             />
             <CloneCode
               https_url={repository.clone_url}
@@ -145,32 +145,33 @@ export const RepositoryPage = (props: RepositoryPageProps) => {
               github_url={`gh repo clone ${repository.full_name}`}
               owner={owner}
               repo={repo}
-              branch={branch.name}
+              branch={currentRef}
             />
           </div>
           <div className='mt-4'>
             <DirectoryContentWrapper
-              key={currentBranch + path}
+              key={currentRef + path}
               owner={owner}
               repo={repo}
               path={path}
-              currentBranch={currentBranch}
-              branch_ref={branch.commit.sha}
+              branch_ref={currentRef}
             />
           </div>
           <div className='mt-4'>
-            <OverviewContent
-              key={currentBranch + path}
+            <OverviewContentWrapper
+              key={currentRef + path}
               path={path}
               owner={owner}
               repo={repo}
-              branch={currentBranch}
+              branch={currentRef}
             />
           </div>
         </div>
         <div>
           <div>
-            <DetailBoxTitle>About</DetailBoxTitle>
+            <DetailBoxTitle>
+              <Trans>About</Trans>
+            </DetailBoxTitle>
             <p className='my-3'>
               {repository.description || '(There is no description)'}
             </p>
@@ -188,48 +189,48 @@ export const RepositoryPage = (props: RepositoryPageProps) => {
               </p>
             )}
             <div className='my-3 flex flex-wrap items-center gap-2'>
-              {repository.topics?.map((topic) => (
+              {(repository.topics || []).map((topic) => (
                 <GithubChip key={topic} title={topic}>
                   {topic}
                 </GithubChip>
               ))}
             </div>
             <div className='my-3 grid grid-flow-row'>
-              <div>
-                <span className='inline-flex cursor-default items-center gap-2 text-gray-500 text-sm hover:text-[#4493f8]'>
-                  <MenuBookSvg className='h-4 w-4 fill-current' />
-                  Readme
-                </span>
-              </div>
-              <div>
-                <span className='inline-flex cursor-default items-center gap-2 text-gray-500 text-sm hover:text-[#4493f8]'>
-                  <CopyrightSvg className='h-4 w-4 fill-current' />
-                  MIT License
-                </span>
-              </div>
-              <div>
-                <span className='inline-flex cursor-default items-center gap-2 text-gray-500 text-sm hover:text-[#4493f8]'>
-                  <StarSvg className='h-4 w-4 fill-current' />
-                  {numberFormat(repository.watchers_count, true)} stars
-                </span>
-              </div>
-              <div>
-                <span className='inline-flex cursor-default items-center gap-2 text-gray-500 text-sm hover:text-[#4493f8]'>
-                  <VisibilitySvg className='h-4 w-4 fill-current' />
-                  {numberFormat(repository.subscribers_count, true)} watchers
-                </span>
-              </div>
-              <div>
-                <span className='inline-flex cursor-default items-center gap-2 text-gray-500 text-sm hover:text-[#4493f8]'>
-                  <GitForkSvg className='h-4 w-4 fill-current' />
-                  {numberFormat(repository.forks_count, true)} forks
-                </span>
-              </div>
+              {[
+                {
+                  Icon: MenuBookSvg,
+                  text: 'Readme',
+                },
+                {
+                  Icon: CopyrightSvg,
+                  text: 'MIT License',
+                },
+                {
+                  Icon: StarSvg,
+                  text: `${numberFormat(repository.watchers_count, true)} stars`,
+                },
+                {
+                  Icon: VisibilitySvg,
+                  text: `${numberFormat(repository.subscribers_count, true)} watchers`,
+                },
+                {
+                  Icon: GitForkSvg,
+                  text: `${numberFormat(repository.forks_count, true)} forks`,
+                },
+              ].map(({ Icon, text }, i) => (
+                // biome-ignore lint/suspicious/noArrayIndexKey: reason
+                <div key={i}>
+                  <span className='inline-flex cursor-default items-center gap-2 text-gray-500 text-sm hover:text-[#4493f8]'>
+                    <Icon className='h-4 w-4 fill-current' />
+                    {text}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
           <div className='divider' />
           <LanguageUsage owner={owner} repo={repo} />
-          {owner === 'hunyao' && repo === 'Jun-Kumokawa' && (
+          {isMyRepository && (
             <>
               <div className='divider' />
               <SkillSidebarComponent />

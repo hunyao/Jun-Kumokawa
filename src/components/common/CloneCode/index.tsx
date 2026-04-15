@@ -1,3 +1,4 @@
+import { Trans, useLingui } from '@lingui/react/macro';
 import { type CSSProperties, type HTMLAttributes, useState } from 'react';
 import { CopyContentButton } from '#components/index';
 import { CodeSvg, FolderZipSvg, HelpSvg, TerminalSvg } from '#icons/index';
@@ -28,6 +29,8 @@ export const CloneCode = (props: CloneCodeProps) => {
     props;
   const [tab, setTab] = useState<CLONE_CODE_TAB>('https');
 
+  const { t } = useLingui();
+
   const getUrl = () => {
     switch (tab) {
       case 'https':
@@ -41,11 +44,11 @@ export const CloneCode = (props: CloneCodeProps) => {
   const getDescription = () => {
     switch (tab) {
       case 'https':
-        return 'Clone using the web URL.';
+        return t`Clone using the web URL.`;
       case 'ssh':
-        return 'Use a password-protected SSH key.';
+        return t`Use a password-protected SSH key.`;
       case 'github':
-        return 'Work fast with our official CLI.';
+        return t`Work fast with our official CLI.`;
     }
   };
 
@@ -57,7 +60,7 @@ export const CloneCode = (props: CloneCodeProps) => {
         tabIndex={0}
       >
         <CodeSvg className='h-4 w-4 fill-current' />
-        Code
+        <Trans context='clonecode'>Code</Trans>
       </GithubDropdownButton>
       <div
         // biome-ignore lint/a11y/noNoninteractiveTabindex: reason
@@ -67,10 +70,10 @@ export const CloneCode = (props: CloneCodeProps) => {
         <div className='border-base-content/20 border-b-[1px] p-2'>
           <div className='flex items-center gap-2'>
             <TerminalSvg className='h-4 w-4 fill-current' />
-            Clone
+            <Trans>Clone</Trans>
             <div
               className='tooltip ml-auto'
-              data-tip='Which remote URL should I use?'
+              data-tip={t`Which remote URL should I use?`}
             >
               <a
                 href='https://docs.github.com/articles/which-remote-url-should-i-use'
@@ -124,7 +127,7 @@ export const CloneCode = (props: CloneCodeProps) => {
           >
             <GithubButton $variant='ghost' className='text-sm'>
               <FolderZipSvg className='h-4 w-4 fill-current' />
-              Download ZIP
+              <Trans>Download ZIP</Trans>
             </GithubButton>
           </a>
         </div>
