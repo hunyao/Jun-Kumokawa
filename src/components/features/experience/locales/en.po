@@ -1,0 +1,69 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-04-06 14:57+0900\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/components/features/experience/index.tsx:137
+msgid "Achievements"
+msgstr "Achievements"
+
+#. placeholder {0}: i18n.date(project.assignedAt)
+#: src/components/features/experience/index.tsx:51
+msgid "assigned on {0}"
+msgstr "assigned on {0}"
+
+#: src/components/features/experience/index.tsx:66
+msgid "location"
+msgstr "location"
+
+#: src/components/features/experience/index.tsx:131
+msgid "Responsibilities"
+msgstr "Responsibilities"
+
+#: src/components/features/experience/index.tsx:63
+msgid "role"
+msgstr "role"
+
+#: src/components/features/experience/index.tsx:149
+msgid "Scopes"
+msgstr "Scopes"
+
+#: src/components/features/experience/index.tsx:96
+msgid "Show details"
+msgstr "Show details"
+
+#: src/components/features/experience/index.tsx:73
+msgid "size of project overall"
+msgstr "size of project overall"
+
+#: src/components/features/experience/index.tsx:80
+msgid "size of team"
+msgstr "size of team"
+
+#. js-lingui-explicit-id
+#: src/components/features/experience/index.tsx:177
+msgid "experience.no-achievement"
+msgstr "Sorry...I couldn't remember any achievement I did during working or Perhaps you erased my memories and you would ask to hire me to let me have achievements you and I will make in the future at your project."
+
+#. js-lingui-explicit-id
+#: src/components/features/experience/index.tsx:159
+msgid "experience.no-responsibility"
+msgstr "Sorry...I couldn't remember any responsibility I had during working or Perhaps you erased my memories since it was long time ago."
+
+#: src/components/features/experience/index.tsx:143
+msgid "Technologies"
+msgstr "Technologies"
+
+#: src/components/features/experience/index.tsx:232
+msgid "Working activity"
+msgstr "Working activity"

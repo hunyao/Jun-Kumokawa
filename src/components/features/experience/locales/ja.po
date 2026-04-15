@@ -1,0 +1,69 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-04-06 14:57+0900\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: ja\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/components/features/experience/index.tsx:137
+msgid "Achievements"
+msgstr "実績や取り組み"
+
+#. placeholder {0}: i18n.date(project.assignedAt)
+#: src/components/features/experience/index.tsx:51
+msgid "assigned on {0}"
+msgstr "{0}に参画"
+
+#: src/components/features/experience/index.tsx:66
+msgid "location"
+msgstr "場所"
+
+#: src/components/features/experience/index.tsx:131
+msgid "Responsibilities"
+msgstr "担当業務"
+
+#: src/components/features/experience/index.tsx:63
+msgid "role"
+msgstr "担当役割"
+
+#: src/components/features/experience/index.tsx:149
+msgid "Scopes"
+msgstr "担当領域"
+
+#: src/components/features/experience/index.tsx:96
+msgid "Show details"
+msgstr "詳細を開く"
+
+#: src/components/features/experience/index.tsx:73
+msgid "size of project overall"
+msgstr "プロジェクト全体規模"
+
+#: src/components/features/experience/index.tsx:80
+msgid "size of team"
+msgstr "チーム規模"
+
+#. js-lingui-explicit-id
+#: src/components/features/experience/index.tsx:177
+msgid "experience.no-achievement"
+msgstr "ごめんなさい。参画中に取り組んだことを何一つ思い出せませんでした。あるいはひょっとすると、私の記憶が消され、あなたのプロジェクトで今後一緒に何かを取り組ませるために私を採用しようとしているのかもしれませんね。"
+
+#. js-lingui-explicit-id
+#: src/components/features/experience/index.tsx:159
+msgid "experience.no-responsibility"
+msgstr "ごめんなさい。参画中の担当領域を何一つ思い出せませんでした。あるいはひょっとすると、あなたによって私の記憶が消されたかもしれませんね。なんせ昔のことなので。"
+
+#: src/components/features/experience/index.tsx:143
+msgid "Technologies"
+msgstr "技術スタック"
+
+#: src/components/features/experience/index.tsx:232
+msgid "Working activity"
+msgstr "経歴"
