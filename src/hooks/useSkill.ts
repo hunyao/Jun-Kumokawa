@@ -1,4 +1,5 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useContext, useMemo } from 'react';
+import { TranslateContext } from '#contexts/TranslateContext';
 import { Skill } from '#data/index';
 import { getColor } from '#utils/index';
 
@@ -14,9 +15,11 @@ const { skills } = Skill;
  *   and per-item `colorHex` derived from the group's `colorCode` via {@link getColor}
  */
 export const useSkill = () => {
+  const { lang } = useContext(TranslateContext);
+
   const skillGroupNames = useMemo(
-    () => skills.map(({ groupName }) => groupName),
-    [],
+    () => skills.map(({ groupName }) => groupName[lang]),
+    [lang],
   );
 
   /**
@@ -35,6 +38,7 @@ export const useSkill = () => {
         );
         return {
           ...skill,
+          groupName: skill.groupName[lang],
           totalValue,
           items: skill.items.map((skillItem, index) => ({
             ...skillItem,
@@ -42,7 +46,7 @@ export const useSkill = () => {
           })),
         };
       }),
-    [],
+    [lang],
   );
 
   return {

@@ -30,7 +30,7 @@ export const Primary: Story = {
 
     // 全グループ名が表示されている
     for (const skill of skills) {
-      expect(canvas.getByText(skill.groupName)).toBeInTheDocument();
+      expect(canvas.getByText(skill.groupName.en)).toBeInTheDocument();
     }
 
     // 最初のグループの各アイテムのラベルと年数が表示されている

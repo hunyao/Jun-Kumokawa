@@ -16,6 +16,7 @@ export const SkillSidebarComponent = () => {
             data-tip={`${item.label} ${item.value}y`}
             style={{
               width: `${skill.totalValue > 0 ? (item.value / skill.totalValue) * 100 : 0}%`,
+              minWidth: 4,
               background: item.colorHex,
             }}
           />
