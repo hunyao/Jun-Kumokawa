@@ -3,6 +3,18 @@ import { SetToastContext } from '#contexts/index';
 import { clearOctokitCache, OCTOKIT_UNAUTHORIZED_EVENT } from '#lib/index';
 import { clearRequestCache } from '#utils/index';
 
+const githubAuthorizeURL = (code_challenge: string, state: string) =>
+  `https://github.com/login/oauth/authorize?${new URLSearchParams({
+    response_type: 'code',
+    client_id: import.meta.env.VITE_GITHUB_API_CLIENT_ID,
+    redirect_uri: import.meta.env.VITE_GITHUB_API_REDIRECT_URI,
+    scope: import.meta.env.VITE_GITHUB_API_SCOPE,
+    prompt: 'select_account',
+    code_challenge_method: 'S256',
+    code_challenge,
+    state,
+  })}`;
+
 /**
  * Manages GitHub OAuth authentication state.
  *
@@ -47,17 +59,11 @@ export const useGithub = () => {
    * Redirects the browser to the GitHub OAuth authorization page.
    * Query parameters are populated from environment variables.
    */
-  const redirectToSignIn = () => {
-    const url = `https://github.com/login/oauth/authorize?${new URLSearchParams(
-      {
-        response_type: 'code',
-        client_id: import.meta.env.VITE_GITHUB_API_CLIENT_ID,
-        redirect_uri: import.meta.env.VITE_GITHUB_API_REDIRECT_URI,
-        scope: import.meta.env.VITE_GITHUB_API_SCOPE,
-      },
-    )}`;
-
-    window.location.assign(url);
+  const redirectToSignIn = async () => {
+    const { code_challenge, state } = await fetch(
+      `${import.meta.env.VITE_GITHUB_API_REDIRECT_URI}/code-challenge`,
+    ).then((r) => r.json());
+    window.location.assign(githubAuthorizeURL(code_challenge, state));
   };
 
   /**
