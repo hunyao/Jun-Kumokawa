@@ -11,9 +11,14 @@
     "test": "vitest",
     "test:unit": "vitest --project unit",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "extract": "lingui extract",
+    "compile": "lingui compile --typescript"
   },
   "dependencies": {
+    "@lingui/core": "^5.9.4",
+    "@lingui/detect-locale": "^5.9.5",
+    "@lingui/react": "^5.9.4",
     "@octokit/types": "^16.0.0",
     "@tailwindcss/postcss": "^4.2.0",
     "@tailwindcss/vite": "^4.2.2",
@@ -38,10 +43,12 @@
   "devDependencies": {
     "@biomejs/biome": "2.4.9",
     "@chromatic-com/storybook": "^5.0.1",
+    "@lingui/babel-plugin-lingui-macro": "^5.9.5",
+    "@lingui/cli": "^5.9.4",
+    "@lingui/vite-plugin": "^5.9.4",
     "@octokit/openapi-types": "^27.0.0",
     "@storybook/addon-a11y": "^10.2.17",
     "@storybook/addon-docs": "^10.2.17",
-    "@storybook/addon-onboarding": "^10.2.17",
     "@storybook/addon-vitest": "^10.2.17",
     "@storybook/react-vite": "^10.3.3",
     "@testing-library/react": "^16.3.2",
@@ -54,6 +61,7 @@
     "@vitejs/plugin-react": "^5.2.0",
     "@vitest/browser-playwright": "^4.1.2",
     "@vitest/coverage-v8": "^4.1.2",
+    "babel-plugin-macros": "^3.1.0",
     "baseline-browser-mapping": "^2.10.0",
     "daisyui": "^5.5.19",
     "globals": "^16.5.0",
@@ -65,7 +73,7 @@
     "typescript": "~6.0.2",
     "vite": "^7.3.1",
     "vite-plugin-svgr": "^4.5.0",
-    "vitest": "^4.1.2",
-    "vite-tsconfig-paths": "^6.1.1"
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^4.1.2"
   }
 }
