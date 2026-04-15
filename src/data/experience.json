@@ -1,185 +1,1483 @@
 {
   "experiences": [
     {
-      "companyName": "Aakel Technologies",
-      "employmentType": "Contract",
-      "employedAt": "2020-10-01T00:00:00+0900",
-      "leftAt": "2022-03-02T00:00:00+0900",
-      "homepage": "https://aakel.co.jp/en",
-      "industry": "Information Technology",
+      "companyName": {
+        "en": "FROM EIGHT SOLUTION Inc.",
+        "ja": "株式会社フロムエイトソリューション"
+      },
+      "employmentType": "QAContract",
+      "employedAt": "2025-09-01T00:00:00+0900",
+      "leftAt": "2026-03-31T00:00:00+0900",
+      "homepage": "https://f-eight.co.jp",
+      "industry": "Medical",
       "location": "Fukuoka, Japan",
-      "title": "Full-stack Engineer",
-      "summary": "Experienced 3 projects, designed, developed, tested websites from scratch with a few member, trained and assisted junior engineers",
-      "responsibilities": [
-        "Designed and created databases and tables",
-        "Designed and developed APIs to provide information that front needs",
-        "Created web pages using HTML and CSS based on design that are made by Adobe XD",
-        "Built infrastructure on AWS with Amplify, Serverless Framework",
-        "Designed and developed website from scratch with 2  members for Administrative scriveners. (Part of the website is private to the customers.)",
-        [
-          "The private pages for managing what customers inputted what they are going to apply to get a garage certification for customers",
-          "Communication by REST API with Kintone to collect and manage data they inputted",
-          "Reproduce forms that are made by customers on Kintone on the website and send the data that customers inputted on the website to Kintone"
-        ],
-        "Designed and developed private website from scratch with 2 members for membership of a gas company",
-        [
-          "Collecting from core system by REST API and displaying information of cost of electricity and gas that customers used",
-          "Displaying graphs information of cost of electricity and gas that customers month by month",
-          "Linking user account on core system to the website"
-        ],
-        "Designed and developed private website from scratch for efficient forklift battery charging",
-        [
-          "Displaying predicted schedule of beginning of time to charge battery by predicting system with schedule of planned to use forklift on a day and the past batteries data used"
-        ]
-      ],
-      "achievements": [
-        "Trained and assisted junior engineers for a year and they learned how to code, compile, deploy, use libraries, Git, and more. Maintained a good working environment for engineers",
-        "Saved time for the company by making scripts to do a job efficiently",
-        "Learned Typescript, React.js and Serverless Framework on the job"
-      ],
-      "usedSkills": [
-        "React.js",
-        "Vue.js",
-        "Typescript",
-        "MUI",
-        "AWS",
-        "Node.js",
-        "PostgreSQL",
-        "Serverless Framework",
-        "Kintone",
-        "AWS",
-        "Azure",
-        "Axios",
-        "Express"
+      "role": {
+        "en": "Front-end Engineer",
+        "ja": "フロントエンドエンジニア"
+      },
+      "summary": {
+        "en": "Worked on medical device software for pharmacists, handling bug fixes and screen implementation using Electron, React, and TypeScript.",
+        "ja": "薬剤師向け医療機器開発に携わり、Electron・React・TypeScriptを用いた不具合修正や画面実装を担当。"
+      },
+      "projects": [
+        {
+          "name": {
+            "en": "Medical Device Development for Pharmacists",
+            "ja": "薬剤師向け　医療機器開発"
+          },
+          "size": {
+            "overall": 100,
+            "team": 6
+          },
+          "industry": {
+            "en": "Medical",
+            "ja": "医療"
+          },
+          "assignedAt": "2025-09-01T00:00:00+0900",
+          "leftAt": "2026-03-31T00:00:00+0900",
+          "scopes": ["dev", "qa"],
+          "responsibilities": {
+            "en": ["Bug investigation and fixes", "Screen implementation"],
+            "ja": ["不具合の調査及び改修", "画面実装"]
+          },
+          "achievements": {
+            "en": [
+              "Learned the Electron framework on the job",
+              "Learned how to use Enterprise Architect tool",
+              "Identified component design flaws, proposed improvements, and implemented them",
+              "Identified components not following React principles and proposed improvements"
+            ],
+            "ja": [
+              "Electronのフレームワークの技術習得",
+              "Enterprise Architectというツールの使い方習得",
+              "コンポネント設計の誤りの指摘＆改善提案＆実装",
+              "React原則に沿っていないコンポネントの指摘＆改善提案"
+            ]
+          },
+          "techs": {
+            "languages": ["TypeScript"],
+            "frameworks": ["Electron", "Vite", "React", "MUI"],
+            "libraries": [],
+            "databases": ["SQLServer"],
+            "infrastructures": [],
+            "os": ["Windows"],
+            "others": ["Git", "Slack", "Enterprise Architect", "Redmine", "SVN"]
+          },
+          "role": {
+            "en": "Front-end Engineer",
+            "ja": "フロントエンドエンジニア"
+          },
+          "summary": {
+            "en": "Handled bug investigation and screen implementation for medical device software targeting pharmacists using Electron, React, and TypeScript.",
+            "ja": "薬剤師向け医療機器ソフトウェアにおいて、ElectronとReact・TypeScriptを用いた不具合調査及び画面実装を担当。"
+          },
+          "industryType": {
+            "en": "Medical Device Software Developer",
+            "ja": "医療機器ソフトウェア開発企業"
+          }
+        }
       ]
     },
     {
-      "companyName": "Saibu Gas Information Systems",
-      "employmentType": "Contract",
+      "companyName": {
+        "en": "26 Co., Ltd.",
+        "ja": "株式会社26"
+      },
+      "employmentType": "QAContract",
+      "employedAt": "2024-08-01T00:00:00+0900",
+      "leftAt": "2025-06-30T00:00:00+0900",
+      "homepage": "",
+      "industry": "Real Estate",
+      "location": "Fukuoka, Japan",
+      "role": {
+        "en": "Full-stack Engineer",
+        "ja": "フルスタックエンジニア"
+      },
+      "summary": {
+        "en": "Developed a CRM system for sales teams, covering both frontend and backend. Led quality improvement initiatives including refactoring, coding standards, and test code introduction.",
+        "ja": "営業向けCRMシステムのフロントエンド・バックエンド双方を担当。リファクタリング、コーディングルール策定、テストコード導入などの品質改善活動を主導。"
+      },
+      "projects": [
+        {
+          "name": {
+            "en": "CRM System Development for Sales",
+            "ja": "営業向け　CRMシステムの開発"
+          },
+          "size": {
+            "overall": 6,
+            "team": 3
+          },
+          "industry": {
+            "en": "Real Estate",
+            "ja": "不動産"
+          },
+          "assignedAt": "2024-08-01T00:00:00+0900",
+          "leftAt": "2025-06-30T00:00:00+0900",
+          "scopes": ["HLD", "LLD", "dev", "qa", "ops"],
+          "responsibilities": {
+            "en": [
+              "Developed customer management screen",
+              "Developed project management screen",
+              "Developed progress management screen",
+              "Developed master data table screen (a screen where users can create arbitrary tables)",
+              "Developed Todo feature",
+              "Developed chat feature",
+              "Developed conditional formatting feature",
+              "Quality improvements",
+              "Refactored existing code",
+              "Conducted code reviews for junior members"
+            ],
+            "ja": [
+              "顧客管理画面開発",
+              "案件管理画面開発",
+              "進捗管理画面開発",
+              "マスターデーターテーブル画面開発（ユーザーが任意のテーブルを作成できる画面）",
+              "Todo機能開発",
+              "チャット機能開発",
+              "条件付き書式設定機能開発",
+              "品質改善",
+              "既存コードのリファクタリング",
+              "若手メンバーのコードレビュー"
+            ]
+          },
+          "achievements": {
+            "en": [
+              "Identified issues such as excessive re-rendering caused by overuse of useEffect, reported them to the client, and proposed and carried out refactoring",
+              "Established coding rules on the Wiki, improving the overall code quality from a chaotic state",
+              "Documented screen specifications on the Wiki so that both existing and future members could understand them",
+              "Refactored heavy screens and cleaned up unnecessary code and files, leading to improved display speed, quality, and maintainability",
+              "Introduced Storybook to visualize UI components, eliminating resource duplication",
+              "Introduced and implemented test code for both backend and frontend to suppress recurring regressions",
+              "Swiftly resolved around 10 bugs in a single day, while other members would have taken several days",
+              "Conducted code reviews for inexperienced members as assigned by the client",
+              "Created a dummy data generation script to streamline development after DB resets"
+            ],
+            "ja": [
+              "useEffect多用による過剰なリレンダリングなど現状の課題を洗い出し、客先に報告しリファクタリングの提案及び実施",
+              "コーディングルールをWiki上に策定し、無秩序だったコードを秩序あるものに改善",
+              "自身が担当した画面の仕様をWikiに書き出し、既存・新規メンバーが参照できるよう整備",
+              "重たい画面のリファクタリングとリソース整理を実施し、表示速度・品質・メンテナンス性を向上",
+              "Storybookを導入して画面部品を可視化し、リソースの重複をなくした",
+              "バックエンド・フロントエンド双方にテストコードを導入し、デグレの発生を抑制",
+              "10件前後の不具合を他メンバーが数日かかるところをその日中に一人で全て対応",
+              "経験の浅いメンバーがいたため、客先からコードレビューを任され対応",
+              "DB初期化直後のダミーデータ生成スクリプトを作成し、作業効率化を図った"
+            ]
+          },
+          "techs": {
+            "languages": ["TypeScript"],
+            "frameworks": ["NestJS", "TypeORM", "React", "CoreUI"],
+            "libraries": [],
+            "databases": ["MySQL"],
+            "infrastructures": [],
+            "os": ["Linux"],
+            "others": ["Git", "Slack"]
+          },
+          "role": {
+            "en": "Full-stack Engineer",
+            "ja": "フルスタックエンジニア"
+          },
+          "summary": {
+            "en": "Developed a CRM system for sales teams handling both frontend and backend, while also leading quality improvements through refactoring, coding standards, and test code introduction.",
+            "ja": "営業向けCRMシステムのフロントエンド・バックエンド双方を担当し、リファクタリング・コーディングルール策定・テストコード導入による品質改善を主導。"
+          },
+          "industryType": {
+            "en": "Real Estate Tech Startup",
+            "ja": "不動産テックスタートアップ"
+          }
+        }
+      ]
+    },
+    {
+      "companyName": {
+        "en": "（An individual customer）",
+        "ja": "（個人のお客様）"
+      },
+      "employmentType": "QAContract",
+      "employedAt": "2024-08-01T00:00:00+0900",
+      "leftAt": "2025-02-28T00:00:00+0900",
+      "homepage": "",
+      "industry": "Export/Trade",
+      "location": "Fukuoka, Japan",
+      "role": {
+        "en": "Full-stack Engineer",
+        "ja": "フルスタックエンジニア"
+      },
+      "summary": {
+        "en": "Solely responsible for the entire process from requirements gathering through operation and maintenance of an auto parts sales site targeting overseas customers.",
+        "ja": "海外顧客向け自動車部品販売サイトの要件定義から保守・運用まで全工程を一人で担当。"
+      },
+      "projects": [
+        {
+          "name": {
+            "en": "Auto Parts Sales Website & System for Overseas Market",
+            "ja": "海外向け　自動車部品販売サイト・システム構築"
+          },
+          "size": {
+            "overall": 1,
+            "team": 1
+          },
+          "industry": {
+            "en": "Export/Trade",
+            "ja": "輸出"
+          },
+          "assignedAt": "2024-08-01T00:00:00+0900",
+          "leftAt": "2025-02-28T00:00:00+0900",
+          "scopes": ["specs", "HLD", "LLD", "dev", "qa", "ops"],
+          "responsibilities": {
+            "en": [
+              "Developed product search feature using Rakuten API",
+              "Developed product detail page displaying Rakuten product info via API",
+              "Developed product card feature",
+              "Developed My Page feature (order history, account settings, etc.)",
+              "Developed recommended products feature based on pre-registered keyword combinations",
+              "Developed Yahoo Auctions and Mercari product search feature with category-based navigation",
+              "Implemented multilingual support (Japanese, English, Mongolian) using Google Cloud Translation API",
+              "Built admin system for managing product data, recommended products, and shipping costs",
+              "Set up infrastructure on AWS and deployed the system",
+              "Set up automated deployment using GitHub Actions"
+            ],
+            "ja": [
+              "楽天APIを使った商品検索機能開発",
+              "商品詳細画面開発（楽天API経由で楽天の商品情報取得表示）",
+              "商品カード機能開発",
+              "マイページ機能開発（注文一覧、アカウント設定等）",
+              "事前に特定の検索ワードの組み合わせを登録し、それをお勧めとして表示するお勧め商品機能開発",
+              "カテゴリを選び検索ワードを入れるとヤフオク及びメルカリの検索結果ページに遷移する商品検索機能開発",
+              "GoogleのCloud Translation APIを使った日本語・英語・モンゴル語の多言語化対応",
+              "商品データ・お勧め商品データ・輸送費用データ等を管理する管理者向けシステムの構築",
+              "AWS上にインフラ構築＆システムデプロイ",
+              "GitHub Actionを利用した自動デプロイ構築"
+            ]
+          },
+          "achievements": {
+            "en": [
+              "Created an interface allowing foreigners to easily search Rakuten products without typing Japanese keywords",
+              "Built a Yahoo Auctions and Mercari search interface using category and size select boxes as search keywords",
+              "Created a scraping script to fetch all Rakuten, Yahoo Auctions, and Mercari categories on the spot",
+              "Successfully completed the full development process from requirements to deployment entirely on my own for the first time",
+              "Focused on understanding the client's fundamental goals when gathering requirements",
+              "Proposed migrating from Sakura VPS to AWS for better scalability",
+              "Guided the client on DNS record configuration",
+              "Built a separate admin system to replace the inefficient SQL-based data management workflow",
+              "Guided the client on creating invoices on Stripe"
+            ],
+            "ja": [
+              "ターゲット層が外国人のため、「新品」「中古」などのワードを簡単に入力できるインターフェイスを作成",
+              "ヤフオク・メルカリ検索をセレクトボックスから検索キーワードを組み立てられるインターフェイスを作成",
+              "楽天・ヤフオク・メルカリのカテゴリ情報をスクレイピングで取得するスクリプトを作成",
+              "初めて一人で要件ヒアリングから設計・実装・デプロイまで全工程をやりきった",
+              "お客様のヒアリング時に本質的に何を実現したいかを中心に要件をまとめるよう心がけた",
+              "当初さくらVPS上にあったシステムを、今後の拡張性を考えAWSへの移行を提案",
+              "お客様にDNSレコードの設定の仕方を指導",
+              "SQL経由での差し替え作業を効率化するため、別途管理者向けシステムを構築",
+              "Stripe上での請求書作成方法をお客様に指導"
+            ]
+          },
+          "techs": {
+            "languages": ["JavaScript"],
+            "frameworks": ["Express.js", "React", "DaisyUI", "Tailwind"],
+            "libraries": [],
+            "databases": ["PostgreSQL"],
+            "infrastructures": ["AWS"],
+            "os": ["Linux"],
+            "others": ["Git", "Slack", "GitHub Actions"]
+          },
+          "role": {
+            "en": "Full-stack Engineer",
+            "ja": "フルスタックエンジニア"
+          },
+          "summary": {
+            "en": "Solely handled the entire process from requirements gathering through operation of an auto parts e-commerce site targeting overseas customers, including multilingual support and AWS infrastructure setup.",
+            "ja": "海外顧客向け自動車部品販売サイトの要件定義から保守・運用まで全工程を一人で担当。多言語対応とAWSインフラ構築も実施。"
+          },
+          "industryType": {
+            "en": "Individual Auto Parts Exporter",
+            "ja": "個人事業主（自動車部品輸出業）"
+          }
+        }
+      ]
+    },
+    {
+      "companyName": {
+        "en": "Cloudii Inc.",
+        "ja": "株式会社Cloudii"
+      },
+      "employmentType": "QAContract",
+      "employedAt": "2023-12-01T00:00:00+0900",
+      "leftAt": "2024-06-30T00:00:00+0900",
+      "homepage": "https://cloudii.jp",
+      "industry": "Government",
+      "location": "Fukuoka, Japan",
+      "role": {
+        "en": "Front-end Engineer",
+        "ja": "フロントエンドエンジニア"
+      },
+      "summary": {
+        "en": "Worked on a cloud service replacement for an agricultural data platform, handling frontend UI, SSO implementation, and stored procedure development.",
+        "ja": "農業データ基盤クラウドサービスのリプレース案件にてフロントエンドUI実装、シングルサインオン実装、ストアドプロシージャ開発を担当。"
+      },
+      "projects": [
+        {
+          "name": {
+            "en": "Agricultural Data Platform Cloud Service Replacement",
+            "ja": "農業データ基盤　クラウドサービスリプレース作業"
+          },
+          "size": {
+            "overall": 14,
+            "team": 12
+          },
+          "industry": {
+            "en": "Government",
+            "ja": "官公庁"
+          },
+          "assignedAt": "2023-12-01T00:00:00+0900",
+          "leftAt": "2024-06-30T00:00:00+0900",
+          "scopes": ["LLD", "dev", "qa", "ops"],
+          "responsibilities": {
+            "en": [
+              "Proof of concept and implementation for Single Sign-On (authentication/authorization token generation, token verification)",
+              "Frontend UI design using Vue + Quasar",
+              "Implemented stored procedure to bulk-import large amounts of field polygon data into tables"
+            ],
+            "ja": [
+              "シングルサインオン実装に向けた概念実証および実装作業（認証・認可トークン生成、トークン検証処理）",
+              "Vue+QuasarによるフロントエンドUIデザイン",
+              "大量の筆ポリゴンデータを一括でテーブルに取り込むストアドプロシージャの実装"
+            ]
+          },
+          "achievements": {
+            "en": [
+              "Used Quasar for the first time but quickly became familiar with it, just like other UI libraries",
+              "Learned how to create Oracle stored procedures"
+            ],
+            "ja": [
+              "初めてQuasarを使用したが、他のUIライブラリと同様すぐに習得できた",
+              "Oracleのストアドプロシージャの作り方を覚えた"
+            ]
+          },
+          "techs": {
+            "languages": ["Python", "JavaScript"],
+            "frameworks": ["Django", "Vue3", "Quasar"],
+            "libraries": [],
+            "databases": ["Oracle"],
+            "infrastructures": ["OCI"],
+            "os": ["Linux"],
+            "others": ["WSGI", "Gunicorn", "Git", "Backlog", "Slack"]
+          },
+          "role": {
+            "en": "Front-end Engineer",
+            "ja": "フロントエンドエンジニア"
+          },
+          "summary": {
+            "en": "Worked on cloud service replacement for an agricultural data platform, responsible for frontend UI implementation with Vue/Quasar, SSO implementation, and Oracle stored procedure development.",
+            "ja": "農業データ基盤クラウドサービスのリプレース案件にて、Vue/QuasarによるフロントエンドUI実装、シングルサインオン実装、Oracleストアドプロシージャ開発を担当。"
+          },
+          "industryType": {
+            "en": "Systems Integrator (Agriculture / Government)",
+            "ja": "SIer（農業・官公庁向け）"
+          }
+        }
+      ]
+    },
+    {
+      "companyName": {
+        "en": "（An individual customer）",
+        "ja": "（個人のお客様）"
+      },
+      "employmentType": "QAContract",
+      "employedAt": "2023-11-01T00:00:00+0900",
+      "leftAt": "2024-07-31T00:00:00+0900",
+      "homepage": "",
+      "industry": "Export/Trade",
+      "location": "Japan",
+      "role": {
+        "en": "Full-stack Engineer",
+        "ja": "フルスタックエンジニア"
+      },
+      "summary": {
+        "en": "Solely responsible for building an order management and inventory control system from requirements through operation.",
+        "ja": "受発注及び在庫管理システムの要件定義から保守・運用まで全工程を一人で担当。"
+      },
+      "projects": [
+        {
+          "name": {
+            "en": "Order Management and Inventory Control System",
+            "ja": "受発注及び在庫管理システム構築"
+          },
+          "size": {
+            "overall": 1,
+            "team": 1
+          },
+          "industry": {
+            "en": "Export/Trade",
+            "ja": "輸出"
+          },
+          "assignedAt": "2023-11-01T00:00:00+0900",
+          "leftAt": "2024-07-31T00:00:00+0900",
+          "scopes": ["specs", "HLD", "LLD", "dev", "qa"],
+          "responsibilities": {
+            "en": [
+              "Implemented add/edit feature for product categories and their detail fields",
+              "Implemented product add/edit feature",
+              "Implemented product variation add/edit feature"
+            ],
+            "ja": [
+              "商材及び商材の詳細項目追加編集機能の実装",
+              "商品追加編集機能の実装",
+              "商品バリエーション追加編集機能の実装"
+            ]
+          },
+          "achievements": {
+            "en": [
+              "Had difficulty with the table design to dynamically create product information fields, but successfully solved it through calm abstraction"
+            ],
+            "ja": [
+              "商材作成時、商品情報の項目を動的に作成させるのに、テーブル設計に苦労をしたが、冷静に抽象化をしていくことで無事設計ができた"
+            ]
+          },
+          "techs": {
+            "languages": ["JavaScript"],
+            "frameworks": ["Express.js", "React", "DaisyUI", "Tailwind"],
+            "libraries": [],
+            "databases": ["PostgreSQL"],
+            "infrastructures": [],
+            "os": ["Linux"],
+            "others": ["Git", "Slack"]
+          },
+          "role": {
+            "en": "Full-stack Engineer",
+            "ja": "フルスタックエンジニア"
+          },
+          "summary": {
+            "en": "Solely handled the entire process from requirements through operation of an order and inventory management system, designing a flexible table structure for dynamically configurable product fields.",
+            "ja": "受発注及び在庫管理システムの要件定義から保守・運用まで全工程を一人で担当。動的な商品項目設定に対応するテーブル設計も実施。"
+          },
+          "industryType": {
+            "en": "Individual Auto Parts Exporter",
+            "ja": "個人事業主（自動車部品輸出業）"
+          }
+        }
+      ]
+    },
+    {
+      "companyName": {
+        "en": "BIZ.REFINE INC.",
+        "ja": "ビズ・リファイン株式会社"
+      },
+      "employmentType": "QAContract",
+      "employedAt": "2023-08-01T00:00:00+0900",
+      "leftAt": "2023-10-31T00:00:00+0900",
+      "homepage": "https://bizrefine.co.jp",
+      "industry": "Insurance",
+      "location": "Fukuoka, Japan",
+      "role": {
+        "en": "Front-end Engineer",
+        "ja": "フロントエンドエンジニア"
+      },
+      "summary": {
+        "en": "Worked on replacing a contract and agency management system for an insurance company, handling frontend development.",
+        "ja": "保険会社向け契約及び代理店管理システムのリプレース案件にてフロントエンド開発を担当。"
+      },
+      "projects": [
+        {
+          "name": {
+            "en": "Contract and Agency Management System Replacement for Insurance Company",
+            "ja": "保険会社向け　契約及び代理店管理システムのリプレース"
+          },
+          "size": {
+            "overall": 3,
+            "team": 3
+          },
+          "industry": {
+            "en": "Insurance",
+            "ja": "保険"
+          },
+          "assignedAt": "2023-08-01T00:00:00+0900",
+          "leftAt": "2023-10-31T00:00:00+0900",
+          "scopes": ["dev", "qa"],
+          "responsibilities": {
+            "en": [
+              "Frontend development",
+              "Implemented insurance information management and insurance agency management features"
+            ],
+            "ja": ["フロントエンドの開発", "保険情報管理、保険代理店管理の実装"]
+          },
+          "achievements": {
+            "en": [
+              "Used Tailwind CSS for the first time and quickly learned it",
+              "Set up a C#.NET environment on Ubuntu for the first time and quickly completed the setup"
+            ],
+            "ja": [
+              "はじめてTailwindを触り、すぐに習得ができた",
+              "はじめてUbuntu上でC#.NETの環境構築をしたが、すぐに構築をすることができた"
+            ]
+          },
+          "techs": {
+            "languages": ["C#.NET"],
+            "frameworks": ["React", "RabbitMQ"],
+            "libraries": [],
+            "databases": ["SQLServer"],
+            "infrastructures": [],
+            "os": ["Windows", "Linux"],
+            "others": ["Git", "Slack"]
+          },
+          "role": {
+            "en": "Front-end Engineer",
+            "ja": "フロントエンドエンジニア"
+          },
+          "summary": {
+            "en": "Developed frontend features for replacing a contract and agency management system for an insurance company, using C#.NET and React.",
+            "ja": "保険会社向け契約及び代理店管理システムのリプレース案件にて、C#.NETとReactを用いたフロントエンド開発を担当。"
+          },
+          "industryType": {
+            "en": "Insurance Industry System Developer",
+            "ja": "保険業向けシステム開発企業"
+          }
+        }
+      ]
+    },
+    {
+      "companyName": {
+        "en": "Aakel Inc.",
+        "ja": "アークエル株式会社"
+      },
+      "employmentType": "QAContract",
+      "employedAt": "2020-10-01T00:00:00+0900",
+      "leftAt": "2022-03-02T00:00:00+0900",
+      "homepage": "https://aakel.co.jp/",
+      "industry": "Information Technology",
+      "location": "Fukuoka, Japan",
+      "role": {
+        "en": "Full-stack Engineer",
+        "ja": "フルスタックエンジニア"
+      },
+      "summary": {
+        "en": "Experienced 4 projects spanning an electric power portal, forklift battery scheduling, a gas subscriber portal, and a corporate site with application forms. Handled design, development, testing, and mentoring junior engineers.",
+        "ja": "電力ポータルサイト、フォークリフト充電予測、ガス契約者向けポータル、行政書士向けコーポレートサイトの4プロジェクトを経験。設計・実装・テストに加え後輩育成も担当。"
+      },
+      "projects": [
+        {
+          "name": {
+            "en": "Corporate Website and Application System Development for Administrative Scrivener",
+            "ja": "コーポレートサイト及び各種申請システム開発"
+          },
+          "size": {
+            "overall": 3,
+            "team": 2
+          },
+          "industry": {
+            "en": "Administrative Scrivener",
+            "ja": "行政書士"
+          },
+          "assignedAt": "2022-01-01T00:00:00+0900",
+          "leftAt": "2022-03-30T00:00:00+0900",
+          "scopes": ["HLD", "LLD", "dev", "qa", "ops"],
+          "responsibilities": {
+            "en": [
+              "Built a corporate website from scratch based on designs provided by the client",
+              "Reproduced Kintone application forms (e.g., garage certification) on the website, allowing users to input, register, and sync data directly to Kintone",
+              "Supported and code-reviewed a junior developer"
+            ],
+            "ja": [
+              "先方からくるデザイン案を元にコーポレートサイトを0から製作",
+              "車庫証明などのKintone上で作られた申請フォームをサイト上にそのまま再現し、入力＆登録＆Kintoneにデータ反映",
+              "新人サポート＆コードレビュー"
+            ]
+          },
+          "achievements": {
+            "en": [
+              "Implemented a system where configuration data for conditional field visibility was stored in a single file and used to control screen rendering, instead of simply reproducing Kintone forms as-is",
+              "Used React.memo to address excessive re-rendering caused by a large number of form fields",
+              "Patiently mentored a junior developer with almost no web development experience, growing them to a level of independent web development"
+            ],
+            "ja": [
+              "Kintoneフォームをそのまま再現するのではなく、入力内容による項目の出し分けや非表示設定を1ファイルの設定情報として格納し、それをもとに画面表示を制御する実装を行った",
+              "フォーム項目が多く全項目がリレンダリングされる問題に対し、React.memoを活用してパフォーマンス向上",
+              "WEB開発経験のほぼない新人を丁寧にサポートし、最終的にある程度自立して開発できるまでに育成"
+            ]
+          },
+          "techs": {
+            "languages": ["JavaScript"],
+            "frameworks": ["React", "MUI", "AWS Amplify"],
+            "libraries": [],
+            "databases": [],
+            "infrastructures": ["AWS"],
+            "os": ["Linux"],
+            "others": ["Git", "CodeCommit", "Kintone"]
+          },
+          "role": {
+            "en": "Full-stack Engineer",
+            "ja": "フルスタックエンジニア"
+          },
+          "summary": {
+            "en": "Built a corporate website and application form system from scratch for an administrative scrivener office, integrating Kintone for data management and mentoring a junior engineer.",
+            "ja": "行政書士事務所向けコーポレートサイト及び申請フォームシステムをスクラッチ開発。Kintoneとのデータ連携を実装し、新人育成も担当。"
+          },
+          "industryType": {
+            "en": "Administrative Scrivener Office",
+            "ja": "行政書士事務所"
+          }
+        },
+        {
+          "name": {
+            "en": "Customer Portal Site Renewal for Gas Subscribers",
+            "ja": "ガス契約者向け　契約者用ポータルサイトのリニューアル"
+          },
+          "size": {
+            "overall": 10,
+            "team": 3
+          },
+          "industry": {
+            "en": "Gas/Energy",
+            "ja": "ガス"
+          },
+          "assignedAt": "2021-01-01T00:00:00+0900",
+          "leftAt": "2021-12-31T00:00:00+0900",
+          "scopes": ["HLD", "LLD", "dev", "qa", "ops"],
+          "responsibilities": {
+            "en": [
+              "Built an authentication screen using OAuth via AWS Cognito",
+              "Built a monthly usage fee graph display screen"
+            ],
+            "ja": [
+              "AWSのCognitoを使ったOAuthを利用した認証画面作成",
+              "月別の利用料金グラフ表示画面作成"
+            ]
+          },
+          "achievements": {
+            "en": [
+              "Learned how to use AWS Cognito on the job",
+              "Deepened understanding of the OAuth flow"
+            ],
+            "ja": [
+              "Cognitoの使い方を学習した",
+              "OAuthのフローの理解があやふやだったが、より理解が深まった"
+            ]
+          },
+          "techs": {
+            "languages": ["TypeScript"],
+            "frameworks": ["React", "MUI", "AWS Amplify"],
+            "libraries": [],
+            "databases": ["PostgreSQL"],
+            "infrastructures": ["AWS"],
+            "os": ["Linux"],
+            "others": ["Git", "CodeCommit", "Cognito"]
+          },
+          "role": {
+            "en": "Full-stack Engineer",
+            "ja": "フルスタックエンジニア"
+          },
+          "summary": {
+            "en": "Developed a customer portal site renewal for gas subscribers, implementing OAuth authentication via AWS Cognito and a monthly usage fee graph display.",
+            "ja": "ガス契約者向けポータルサイトのリニューアルにて、AWS CognitoによるOAuth認証画面と月別利用料金グラフ画面を開発。"
+          },
+          "industryType": {
+            "en": "Gas Company",
+            "ja": "ガス会社"
+          }
+        },
+        {
+          "name": {
+            "en": "Battery Charge Prediction and Scheduling System for Forklifts",
+            "ja": "フォークリフト向け　バッテリー充電予測スケジュールシステム"
+          },
+          "size": {
+            "overall": 4,
+            "team": 2
+          },
+          "industry": {
+            "en": "Automotive",
+            "ja": "自動車"
+          },
+          "assignedAt": "2020-12-01T00:00:00+0900",
+          "leftAt": "2020-12-31T00:00:00+0900",
+          "scopes": ["HLD", "LLD", "dev", "qa", "ops"],
+          "responsibilities": {
+            "en": [
+              "Implemented a prediction system for efficient forklift battery charging completion time",
+              "Fetched battery charge prediction data from an external system via API and displayed it on screen"
+            ],
+            "ja": [
+              "フォークリフトに搭載するバッテリーを効率よく充電するための充電完了予測システムの実装",
+              "バッテリー充電予測のデータを別システムからAPIで取得し、その情報を画面に表示する実装"
+            ]
+          },
+          "achievements": {
+            "en": [],
+            "ja": []
+          },
+          "techs": {
+            "languages": ["Node.js"],
+            "frameworks": ["Express.js", "Vue.js"],
+            "libraries": [],
+            "databases": ["PostgreSQL"],
+            "infrastructures": ["AWS"],
+            "os": ["Linux"],
+            "others": ["Git", "Slack"]
+          },
+          "role": {
+            "en": "Full-stack Engineer",
+            "ja": "フルスタックエンジニア"
+          },
+          "summary": {
+            "en": "Built a web system to display battery charge completion time predictions for forklifts, fetching prediction data from an external system via API.",
+            "ja": "フォークリフト向けバッテリー充電完了予測をAPIで外部システムから取得して表示するWEBシステムを開発。"
+          },
+          "industryType": {
+            "en": "Logistics / Warehousing Company",
+            "ja": "物流・倉庫業"
+          }
+        },
+        {
+          "name": {
+            "en": "Customer Portal Development for Electric Power Subscribers",
+            "ja": "電力契約者向け　ポータルサイト開発"
+          },
+          "size": {
+            "overall": 3,
+            "team": 2
+          },
+          "industry": {
+            "en": "Electric Power",
+            "ja": "電力"
+          },
+          "assignedAt": "2020-10-01T00:00:00+0900",
+          "leftAt": "2020-11-30T00:00:00+0900",
+          "scopes": ["dev", "qa"],
+          "responsibilities": {
+            "en": ["Bug fixes"],
+            "ja": ["バグ改修"]
+          },
+          "achievements": {
+            "en": [],
+            "ja": []
+          },
+          "techs": {
+            "languages": ["JavaScript"],
+            "frameworks": ["Vue.js"],
+            "libraries": [],
+            "databases": ["PostgreSQL"],
+            "infrastructures": [],
+            "os": ["Linux"],
+            "others": ["Git"]
+          },
+          "role": {
+            "en": "Front-end Engineer",
+            "ja": "フロントエンドエンジニア"
+          },
+          "summary": {
+            "en": "Joined an electric power subscriber portal site project to handle bug fixes.",
+            "ja": "電力契約者向けポータルサイト開発案件に参画し、バグ改修を担当。"
+          },
+          "industryType": {
+            "en": "Electric Power Company",
+            "ja": "電力会社"
+          }
+        }
+      ]
+    },
+    {
+      "companyName": {
+        "en": "Saibu Gas Information Systems",
+        "ja": "西部ガス情報システム"
+      },
+      "employmentType": "QAContract",
       "employedAt": "2020-01-01T00:00:00+0900",
       "leftAt": "2020-09-02T00:00:00+0900",
       "homepage": "https://www.sgis.co.jp/",
       "industry": "Information Technology",
       "location": "Fukuoka, Japan",
-      "title": "Full-stack Engineer",
-      "summary": "Developed website to receive, save and manage gas orders from customers using Outsystems no-code software",
-      "responsibilities": [
-        "Developed website to receive, save and manage gas orders from customers using Outsystems no-code software"
-      ],
-      "achievements": [
-        "Learned Outsystems which is no-code software on the job"
-      ],
-      "usedSkills": ["Outsystems"]
+      "role": {
+        "en": "Full-stack Engineer",
+        "ja": "フルスタックエンジニア"
+      },
+      "summary": {
+        "en": "Developed an internal order management system for a gas company using the OutSystems low-code platform.",
+        "ja": "OutSystemsノーコードプラットフォームを使用して、ガス会社向けの社内受発注管理システムを開発。"
+      },
+      "projects": [
+        {
+          "name": {
+            "en": "Internal Order Management System",
+            "ja": "社内向け　受発注管理システム"
+          },
+          "size": {
+            "overall": 50,
+            "team": 3
+          },
+          "industry": {
+            "en": "Electric Power",
+            "ja": "電力"
+          },
+          "assignedAt": "2020-02-01T00:00:00+0900",
+          "leftAt": "2020-09-30T00:00:00+0900",
+          "scopes": ["LLD", "dev", "qa"],
+          "responsibilities": {
+            "en": ["Implementation and testing"],
+            "ja": ["実装、テスト"]
+          },
+          "achievements": {
+            "en": ["Learned how to use OutSystems no-code platform on the job"],
+            "ja": ["OutSystemsの使い方を覚えた"]
+          },
+          "techs": {
+            "languages": [],
+            "frameworks": [],
+            "libraries": [],
+            "databases": ["SQLServer"],
+            "infrastructures": [],
+            "os": ["Windows"],
+            "others": ["OutSystems"]
+          },
+          "role": {
+            "en": "Full-stack Engineer",
+            "ja": "フルスタックエンジニア"
+          },
+          "summary": {
+            "en": "Developed an internal order management system for a gas company using the OutSystems low-code platform.",
+            "ja": "OutSystemsノーコードプラットフォームを使用して、ガス会社向け社内受発注管理システムを開発。"
+          },
+          "industryType": {
+            "en": "Gas Company IT Subsidiary",
+            "ja": "ガス会社系情報システム企業"
+          }
+        }
+      ]
     },
     {
-      "companyName": "Doreming",
-      "employmentType": "Contract",
+      "companyName": {
+        "en": "Doreming Co.,Ltd.",
+        "ja": "ドレミングジャパン株式会社"
+      },
+      "employmentType": "QAContract",
       "employedAt": "2019-08-02T00:00:00+0900",
       "leftAt": "2019-12-02T00:00:00+0900",
       "homepage": "https://www.doreming.com/",
       "industry": "Information Technology",
       "location": "Fukuoka, Japan",
-      "title": "Full-stack Engineer",
-      "summary": "Developed Real Time Payroll Software for Employee Wellbeing in PHP, Symfony, Javascript on MacOS",
-      "responsibilities": [
-        "Developed Real Time Payroll Software for Employee Wellbeing on MacOS"
-      ],
-      "achievements": [
-        "Saved time for the company by making a script so that I can create a pull request, push to the branch and send a notify to Slack by one Enter key"
-      ],
-      "usedSkills": [
-        "PHP",
-        "Symfony",
-        "Javascript",
-        "Docker",
-        "PostgreSQL",
-        "Git"
+      "role": {
+        "en": "Full-stack Engineer",
+        "ja": "フルスタックエンジニア"
+      },
+      "summary": {
+        "en": "Developed a real-time payroll management system for employees without bank accounts using PHP and Symfony.",
+        "ja": "PHP、Symfonyを使用して、銀行口座非所有者向けリアルタイム給与管理システムを開発。"
+      },
+      "projects": [
+        {
+          "name": {
+            "en": "Attendance and Payroll Management System for Unbanked Employees",
+            "ja": "銀行口座非所有者向け　勤怠給与管理システム"
+          },
+          "size": {
+            "overall": 20,
+            "team": 4
+          },
+          "industry": {
+            "en": "Service",
+            "ja": "サービス"
+          },
+          "assignedAt": "2019-08-01T00:00:00+0900",
+          "leftAt": "2019-12-31T00:00:00+0900",
+          "scopes": ["specs", "HLD", "LLD", "dev", "qa"],
+          "responsibilities": {
+            "en": [
+              "Handled everything from basic design through operation and maintenance"
+            ],
+            "ja": ["基本設計〜保守・運用まで一貫して担当"]
+          },
+          "achievements": {
+            "en": [
+              "Saved time for the company by creating a script to create a pull request, push to the branch, and send a Slack notification all with a single key press"
+            ],
+            "ja": [
+              "プルリクエスト作成、ブランチへのプッシュ、Slack通知をEnter1回で行えるスクリプトを作成し作業効率化"
+            ]
+          },
+          "techs": {
+            "languages": ["PHP", "JavaScript"],
+            "frameworks": ["Symfony"],
+            "libraries": [],
+            "databases": ["PostgreSQL"],
+            "infrastructures": [],
+            "os": ["Linux"],
+            "others": ["Git", "Docker"]
+          },
+          "role": {
+            "en": "Full-stack Engineer",
+            "ja": "フルスタックエンジニア"
+          },
+          "summary": {
+            "en": "Handled the full development lifecycle of a real-time payroll management system for employees without bank accounts, using PHP and Symfony.",
+            "ja": "PHP・Symfonyを使用して、銀行口座非所有者向けリアルタイム給与管理システムの基本設計から保守・運用まで一貫して担当。"
+          },
+          "industryType": {
+            "en": "Salary Advance / FinTech Startup",
+            "ja": "給与前払いサービス企業（フィンテック）"
+          }
+        }
       ]
     },
     {
-      "companyName": "Kyushu Ten Limited",
-      "employmentType": "Contract",
+      "companyName": {
+        "en": "KYUSHU TEN LIMITED",
+        "ja": "株式会社 九州テン"
+      },
+      "employmentType": "QAContract",
       "employedAt": "2018-07-02T00:00:00+0900",
       "leftAt": "2019-07-02T00:00:00+0900",
-      "homepage": "https://www.qten.co.jp/english",
+      "homepage": "https://www.qten.co.jp",
       "industry": "Information Technology",
       "location": "Fukuoka, Japan",
-      "title": "Full-stack Engineer",
-      "summary": "Developed private website in Nodejs, Sequelize, Javascript and Vue.js for displaying information dashboard camera collected. Learned Sequelize on the job. Learned Vue.js, Sequelize on the job.",
-      "responsibilities": [
-        "Developed private website for displaying information dashboard camera collected."
-      ],
-      "achievements": ["Learned Sequelize, Vue.js on the job"],
-      "usedSkills": ["Node.js", "Sequelize", "Vue.js", "SQLServer"]
+      "role": {
+        "en": "Full-stack Engineer",
+        "ja": "フルスタックエンジニア"
+      },
+      "summary": {
+        "en": "Experienced 3 projects including dashcam management console Web API development, accounting system maintenance, and core system reconstruction.",
+        "ja": "ドライブレコーダー管理コンソールWebAPI開発、経理システム保守、基幹システム再構築の3プロジェクトを経験。"
+      },
+      "projects": [
+        {
+          "name": {
+            "en": "Dashcam Management Console Web API and Event Notification Development",
+            "ja": "ドライブレコーダー管理コンソール　WebAPI機能、イベント通知機能作成"
+          },
+          "size": {
+            "overall": 8,
+            "team": 6
+          },
+          "industry": {
+            "en": "Manufacturing",
+            "ja": "製造業"
+          },
+          "assignedAt": "2019-01-01T00:00:00+0900",
+          "leftAt": "2019-07-01T00:00:00+0900",
+          "scopes": ["specs", "HLD", "LLD", "dev", "qa"],
+          "responsibilities": {
+            "en": [
+              "Designed and implemented APIs and DB schema for acquiring dashcam event data (driving trajectory, impact, sudden braking, sudden acceleration, etc.)",
+              "Designed and implemented APIs and DB schema for acquiring dashcam recording data (event videos, normal driving videos)",
+              "Implemented event notifications using RabbitMQ upon completion of event data processing (primarily recording data storage)"
+            ],
+            "ja": [
+              "ドライブレコーダの各種イベントデータ（走行軌跡データ、衝撃、急ブレーキ、急加速等）取得用のAPI設計、実装、DB設計",
+              "ドライブレコーダの録画データ（イベント動画、通常走行時動画）取得用のAPI設計、実装、DB設計",
+              "イベントデータ処理完了時（主に録画データの格納完了）にRabbitMQを用いてイベント通知"
+            ]
+          },
+          "achievements": {
+            "en": [],
+            "ja": []
+          },
+          "techs": {
+            "languages": ["Node.js"],
+            "frameworks": ["RabbitMQ"],
+            "libraries": [],
+            "databases": ["SQLServer"],
+            "infrastructures": [],
+            "os": ["Windows", "Linux"],
+            "others": ["Git", "Backlog"]
+          },
+          "role": {
+            "en": "Back-end Engineer",
+            "ja": "バックエンドエンジニア"
+          },
+          "summary": {
+            "en": "Designed and implemented Web APIs and DB schemas for acquiring dashcam event and recording data, and implemented event notification using RabbitMQ.",
+            "ja": "ドライブレコーダのイベントデータ・録画データ取得用WebAPIとDB設計・実装、およびRabbitMQを用いたイベント通知機能の実装を担当。"
+          },
+          "industryType": {
+            "en": "Automotive Device Manufacturer",
+            "ja": "車載機器メーカー"
+          }
+        },
+        {
+          "name": {
+            "en": "Accounting System Operation and Maintenance",
+            "ja": "経理システム運用保守"
+          },
+          "size": {
+            "overall": 2,
+            "team": 2
+          },
+          "industry": {
+            "en": "Service",
+            "ja": "サービス"
+          },
+          "assignedAt": "2018-10-01T00:00:00+0900",
+          "leftAt": "2018-12-31T00:00:00+0900",
+          "scopes": ["specs", "HLD", "LLD", "dev", "qa"],
+          "responsibilities": {
+            "en": [],
+            "ja": []
+          },
+          "achievements": {
+            "en": [],
+            "ja": []
+          },
+          "techs": {
+            "languages": ["Java", "JavaScript"],
+            "frameworks": ["Spring Framework", "Angular"],
+            "libraries": [],
+            "databases": ["SQLServer"],
+            "infrastructures": [],
+            "os": ["Windows"],
+            "others": ["Git", "Slack"]
+          },
+          "role": {
+            "en": "Full-stack Engineer",
+            "ja": "フルスタックエンジニア"
+          },
+          "summary": {
+            "en": "Performed operation and maintenance of an accounting system built with Java, Spring Framework, and Angular.",
+            "ja": "Java・Spring Framework・Angularで構築された経理システムの運用保守を担当。"
+          },
+          "industryType": {
+            "en": "Contract IT Development Company",
+            "ja": "受託ITシステム開発企業"
+          }
+        },
+        {
+          "name": {
+            "en": "Core System Reconstruction",
+            "ja": "基幹システム再構築"
+          },
+          "size": {
+            "overall": 2,
+            "team": 2
+          },
+          "industry": {
+            "en": "Advertising",
+            "ja": "広告代理"
+          },
+          "assignedAt": "2018-08-01T00:00:00+0900",
+          "leftAt": "2018-09-30T00:00:00+0900",
+          "scopes": ["specs", "HLD", "LLD", "dev", "qa"],
+          "responsibilities": {
+            "en": [],
+            "ja": []
+          },
+          "achievements": {
+            "en": [],
+            "ja": []
+          },
+          "techs": {
+            "languages": ["Java", "JavaScript"],
+            "frameworks": ["Spring Framework", "Angular"],
+            "libraries": [],
+            "databases": ["PostgreSQL"],
+            "infrastructures": [],
+            "os": ["Windows"],
+            "others": ["Git", "Slack"]
+          },
+          "role": {
+            "en": "Full-stack Engineer",
+            "ja": "フルスタックエンジニア"
+          },
+          "summary": {
+            "en": "Worked on reconstructing a core business system using Java, Spring Framework, and Angular.",
+            "ja": "Java・Spring Framework・Angularを使用した基幹システムの再構築を担当。"
+          },
+          "industryType": {
+            "en": "Advertising Agency",
+            "ja": "広告代理店"
+          }
+        }
+      ]
     },
     {
-      "companyName": "PHC",
-      "employmentType": "Contract",
+      "companyName": {
+        "en": "Wemex Corporation",
+        "ja": "ウィーメックス株式会社"
+      },
+      "employmentType": "QAContract",
       "employedAt": "2016-10-02T00:00:00+0900",
       "leftAt": "2018-06-02T00:00:00+0900",
       "homepage": "https://xirapha.jp/",
       "industry": "Information Technology",
       "location": "Fukuoka, Japan",
-      "title": "Full-stack Engineer",
-      "summary": "Developed on existing customized web systems in Javascript, Vue.js and CakePHP for cloud-based electronic medical records for clinics. Learned AngularJs on the job.",
-      "responsibilities": [
-        "Developed on existing customized web systems for cloud-based electronic medical records for clinics"
-      ],
-      "achievements": [
-        "Saved time by learning editor called VIM so that I can code more easily and faster. Even if I worked on my computer which moves slowly",
-        "Learned AngularJs on the job"
-      ],
-      "usedSkills": ["AngularJs", "Vue.js", "Javascript", "CakePHP"]
+      "role": {
+        "en": "Full-stack Engineer",
+        "ja": "フルスタックエンジニア"
+      },
+      "summary": {
+        "en": "Developed features and fixed bugs for a cloud-based electronic medical records service for clinics using CakePHP and AngularJS. Learned VIM to improve coding speed.",
+        "ja": "クリニック向けクラウド型電子カルテサービスの機能追加・不具合修正を担当。VIMを習得し開発効率を向上。"
+      },
+      "projects": [
+        {
+          "name": {
+            "en": "Cloud-based Electronic Medical Records Service Feature Updates",
+            "ja": "クラウド型電子カルテサービス　機能追加・変更対応（検査オーダー入力等）"
+          },
+          "size": {
+            "overall": 6,
+            "team": 4
+          },
+          "industry": {
+            "en": "Medical",
+            "ja": "医療"
+          },
+          "assignedAt": "2016-10-01T00:00:00+0900",
+          "leftAt": "2018-06-30T00:00:00+0900",
+          "scopes": ["HLD", "LLD", "dev", "qa"],
+          "responsibilities": {
+            "en": ["Fixed screen bugs", "Handled feature additions"],
+            "ja": ["画面不具合修正", "機能追加対応"]
+          },
+          "achievements": {
+            "en": [
+              "Learned VIM editor to code more easily and faster, even on a slow machine",
+              "Learned AngularJS on the job"
+            ],
+            "ja": [
+              "VIMを習得し、動作の遅いPCでも快適かつ高速にコーディングできるようになった",
+              "AngularJSを業務の中で習得した"
+            ]
+          },
+          "techs": {
+            "languages": ["JavaScript"],
+            "frameworks": ["CakePHP", "AngularJS"],
+            "libraries": [],
+            "databases": ["MySQL"],
+            "infrastructures": ["AWS"],
+            "os": ["Linux"],
+            "others": ["Git", "Backlog"]
+          },
+          "role": {
+            "en": "Full-stack Engineer",
+            "ja": "フルスタックエンジニア"
+          },
+          "summary": {
+            "en": "Added features and fixed bugs for a cloud-based electronic medical records service for clinics, using CakePHP and AngularJS.",
+            "ja": "クリニック向けクラウド型電子カルテサービスにおいて、CakePHP・AngularJSを用いた機能追加と不具合修正を担当。"
+          },
+          "industryType": {
+            "en": "Medical System Developer",
+            "ja": "医療システム開発企業"
+          }
+        }
+      ]
     },
     {
-      "companyName": "CLINKS",
+      "companyName": {
+        "en": "CLINKS Co., Ltd.",
+        "ja": "CLINKS株式会社"
+      },
       "employmentType": "Permanent",
       "employedAt": "2012-04-02T00:00:00+0900",
       "leftAt": "2015-04-02T00:00:00+0900",
       "homepage": "https://www.clinks.jp",
       "industry": "Information Technology",
       "location": "Tokyo, Japan",
-      "title": "Full-stack Engineer",
-      "summary": "Experienced 6 projects and was responsible for designing, developing, training junior engineer, and managing servers the company has including SSL Certificates.",
-      "responsibilities": [
-        "Designing and developing databases, UI screens and apis",
-        "Fixing bugs",
-        "Worked as a support team for members of my department:",
-        [
-          "Managing servers for ourselves and customers",
-          "Renewing SSL Certificates every year",
-          "Managing user accounts on servers",
-          "Managing mailing lists for ourselves and customers"
-        ]
-      ],
-      "achievements": [
-        "Saved time by making script so that I can connect to server by one-password through SSH and switch easily"
-      ],
-      "usedSkills": [
-        "Git",
-        "Subversion",
-        "HTML",
-        "CSS",
-        "Javascript",
-        "Canvas",
-        "jQuery",
-        "PHP",
-        "CakePHP",
-        "FuelPHP",
-        "ZendFramework",
-        "Memcached",
-        "Redis",
-        "CentOS",
-        "Ubuntu",
-        "Bash",
-        "Apache",
-        "Nginx",
-        "Nagios",
-        "Redmine",
-        "Mailman",
-        "Wordpress",
-        "MySQL",
-        "AWS"
+      "role": {
+        "en": "Full-stack Engineer",
+        "ja": "フルスタックエンジニア"
+      },
+      "summary": {
+        "en": "Experienced 6 projects including social game apps, STB widget development, and OA equipment order management. Also responsible for server management, SSL certificate renewal, user account management, and mailing list management.",
+        "ja": "ソーシャルゲームアプリ、STB Widgetアプリ、OA機器受注管理など6プロジェクトを経験。サーバー管理・SSL証明書更新・ユーザーアカウント管理・メーリングリスト管理も担当。"
+      },
+      "projects": [
+        {
+          "name": {
+            "en": "Social Game App Operation and Maintenance",
+            "ja": "ソーシャルゲームアプリ運用保守案件"
+          },
+          "size": {
+            "overall": 3,
+            "team": 2
+          },
+          "industry": {
+            "en": "Game",
+            "ja": "ゲーム"
+          },
+          "assignedAt": "2013-12-01T00:00:00+0900",
+          "leftAt": "2015-04-30T00:00:00+0900",
+          "scopes": ["HLD", "LLD", "dev", "qa"],
+          "responsibilities": {
+            "en": [
+              "Updated master data",
+              "Fixed API bugs",
+              "Added API features"
+            ],
+            "ja": ["マスターデータ入れ替え", "API不具合修正", "API機能追加"]
+          },
+          "achievements": {
+            "en": [
+              "Saved time by creating a script to connect to servers with a single password via SSH and switch between them easily"
+            ],
+            "ja": [
+              "SSHで一発接続＆サーバー切り替えができるスクリプトを作成し作業効率化"
+            ]
+          },
+          "techs": {
+            "languages": ["JavaScript"],
+            "frameworks": ["ZendFramework"],
+            "libraries": [],
+            "databases": ["MySQL", "Memcached"],
+            "infrastructures": ["AWS"],
+            "os": ["Linux"],
+            "others": ["Git"]
+          },
+          "role": {
+            "en": "Full-stack Engineer",
+            "ja": "フルスタックエンジニア"
+          },
+          "summary": {
+            "en": "Performed operation and maintenance of a social game app, handling master data updates, API bug fixes, and feature additions.",
+            "ja": "ソーシャルゲームアプリの運用保守として、マスターデータ入れ替え・API不具合修正・機能追加を担当。"
+          },
+          "industryType": {
+            "en": "Social Game Developer",
+            "ja": "ソーシャルゲーム開発企業"
+          }
+        },
+        {
+          "name": {
+            "en": "Widget App Development for Next-Generation STB",
+            "ja": "次世代STBにおける Widgetアプリ開発案件"
+          },
+          "size": {
+            "overall": 4,
+            "team": 3
+          },
+          "industry": {
+            "en": "Broadcasting",
+            "ja": "民間放送"
+          },
+          "assignedAt": "2013-10-01T00:00:00+0900",
+          "leftAt": "2013-11-30T00:00:00+0900",
+          "scopes": ["LLD", "dev", "qa"],
+          "responsibilities": {
+            "en": [
+              "Implemented real-time viewing rankings",
+              "Implemented kitchen timer"
+            ],
+            "ja": ["リアルタイム視聴ランキングの実装", "キッチンタイマーの実装"]
+          },
+          "achievements": {
+            "en": [],
+            "ja": []
+          },
+          "techs": {
+            "languages": ["JavaScript"],
+            "frameworks": [],
+            "libraries": [],
+            "databases": [],
+            "infrastructures": [],
+            "os": [],
+            "others": ["STB"]
+          },
+          "role": {
+            "en": "Front-end Engineer",
+            "ja": "フロントエンドエンジニア"
+          },
+          "summary": {
+            "en": "Developed Widget apps for a next-generation STB, implementing real-time viewing rankings and a kitchen timer.",
+            "ja": "次世代STB向けWidgetアプリ開発として、リアルタイム視聴ランキングとキッチンタイマーの実装を担当。"
+          },
+          "industryType": {
+            "en": "Major cable TV provider",
+            "ja": "大手ケーブルテレビ会社"
+          }
+        },
+        {
+          "name": {
+            "en": "OA Equipment Order Management System Operation and Maintenance",
+            "ja": "OA機器等受注管理システム 運用保守案件"
+          },
+          "size": {
+            "overall": 2,
+            "team": 1
+          },
+          "industry": {
+            "en": "Retail",
+            "ja": "小売"
+          },
+          "assignedAt": "2013-04-01T00:00:00+0900",
+          "leftAt": "2015-04-30T00:00:00+0900",
+          "scopes": ["HLD", "LLD", "dev", "qa"],
+          "responsibilities": {
+            "en": [
+              "Updated product data",
+              "Fixed bugs",
+              "Added features",
+              "Implemented PDF report export"
+            ],
+            "ja": [
+              "商品データの差し替え",
+              "不具合修正",
+              "機能追加",
+              "帳票PDF対応"
+            ]
+          },
+          "achievements": {
+            "en": [],
+            "ja": []
+          },
+          "techs": {
+            "languages": ["JavaScript"],
+            "frameworks": ["ZendFramework"],
+            "libraries": [],
+            "databases": ["MySQL"],
+            "infrastructures": [],
+            "os": ["Linux"],
+            "others": ["Git"]
+          },
+          "role": {
+            "en": "Full-stack Engineer",
+            "ja": "フルスタックエンジニア"
+          },
+          "summary": {
+            "en": "Performed operation and maintenance of an OA equipment order management system, handling data updates, bug fixes, feature additions, and PDF report implementation.",
+            "ja": "OA機器等受注管理システムの運用保守として、データ差し替え・不具合修正・機能追加・帳票PDF対応を担当。"
+          },
+          "industryType": {
+            "en": "Office Equipment Retailer",
+            "ja": "OA機器販売業"
+          }
+        },
+        {
+          "name": {
+            "en": "Social Game App Server-side Development",
+            "ja": "ソーシャルゲームアプリ サーバー側開発案件"
+          },
+          "size": {
+            "overall": 4,
+            "team": 3
+          },
+          "industry": {
+            "en": "Game",
+            "ja": "ゲーム"
+          },
+          "assignedAt": "2013-02-01T00:00:00+0900",
+          "leftAt": "2013-06-30T00:00:00+0900",
+          "scopes": ["dev", "qa"],
+          "responsibilities": {
+            "en": ["Implementation and testing"],
+            "ja": ["実装、テスト"]
+          },
+          "achievements": {
+            "en": [],
+            "ja": []
+          },
+          "techs": {
+            "languages": ["JavaScript"],
+            "frameworks": ["FuelPHP"],
+            "libraries": [],
+            "databases": ["MySQL"],
+            "infrastructures": [],
+            "os": ["Linux"],
+            "others": ["Git"]
+          },
+          "role": {
+            "en": "Back-end Engineer",
+            "ja": "バックエンドエンジニア"
+          },
+          "summary": {
+            "en": "Developed server-side features for a social game app using FuelPHP.",
+            "ja": "FuelPHPを使用したソーシャルゲームアプリのサーバー側開発を担当。"
+          },
+          "industryType": {
+            "en": "Social Game Developer",
+            "ja": "ソーシャルゲーム開発企業"
+          }
+        },
+        {
+          "name": {
+            "en": "Internal App Distribution System Development",
+            "ja": "社内アプリ配布システム開発案件"
+          },
+          "size": {
+            "overall": 3,
+            "team": 2
+          },
+          "industry": {
+            "en": "Retail",
+            "ja": "小売"
+          },
+          "assignedAt": "2012-12-01T00:00:00+0900",
+          "leftAt": "2013-12-31T00:00:00+0900",
+          "scopes": ["dev", "qa"],
+          "responsibilities": {
+            "en": ["Screen development"],
+            "ja": ["画面作成"]
+          },
+          "achievements": {
+            "en": [],
+            "ja": []
+          },
+          "techs": {
+            "languages": ["JavaScript"],
+            "frameworks": ["CakePHP"],
+            "libraries": [],
+            "databases": ["MySQL"],
+            "infrastructures": [],
+            "os": ["Linux"],
+            "others": ["Git"]
+          },
+          "role": {
+            "en": "Front-end Engineer",
+            "ja": "フロントエンドエンジニア"
+          },
+          "summary": {
+            "en": "Developed screens for an internal app distribution system using CakePHP and JavaScript.",
+            "ja": "CakePHP・JavaScriptを使用した社内アプリ配布システムの画面作成を担当。"
+          },
+          "industryType": {
+            "en": "Retail Company",
+            "ja": "小売業"
+          }
+        },
+        {
+          "name": {
+            "en": "Social Game App Web Admin Dashboard Development",
+            "ja": "ソーシャルゲームアプリ　WEB管理画面開発案件"
+          },
+          "size": {
+            "overall": 4,
+            "team": 3
+          },
+          "industry": {
+            "en": "Game",
+            "ja": "ゲーム"
+          },
+          "assignedAt": "2012-12-01T00:00:00+0900",
+          "leftAt": "2013-01-31T00:00:00+0900",
+          "scopes": ["dev", "qa"],
+          "responsibilities": {
+            "en": ["Screen development"],
+            "ja": ["画面作成"]
+          },
+          "achievements": {
+            "en": [],
+            "ja": []
+          },
+          "techs": {
+            "languages": ["JavaScript"],
+            "frameworks": ["CakePHP"],
+            "libraries": [],
+            "databases": ["MySQL"],
+            "infrastructures": [],
+            "os": ["Linux"],
+            "others": ["Git"]
+          },
+          "role": {
+            "en": "Front-end Engineer",
+            "ja": "フロントエンドエンジニア"
+          },
+          "summary": {
+            "en": "Developed web admin dashboard screens for a social game app using CakePHP and JavaScript.",
+            "ja": "CakePHP・JavaScriptを使用したソーシャルゲームアプリのWEB管理画面開発を担当。"
+          },
+          "industryType": {
+            "en": "Social Game Developer",
+            "ja": "ソーシャルゲーム開発企業"
+          }
+        }
       ]
     }
   ]
