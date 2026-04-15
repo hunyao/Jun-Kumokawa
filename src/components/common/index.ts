@@ -21,3 +21,4 @@ export * from './SuspenseWithComponent';
 export * from './SwitchBranches';
 export * from './Timeline';
 export * from './Toast';
+export * from './TranslateMenu';
