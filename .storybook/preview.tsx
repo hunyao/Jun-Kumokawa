@@ -1,6 +1,12 @@
 import type { Preview } from '@storybook/react-vite';
 import '../src/index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router';
+import {
+  ThemeControlProvider,
+  ToastProvider,
+  TranslateProvider,
+} from '#contexts/index';
+import { I18nProvider, i18n } from '#lib/lingui';
 
 const preview: Preview = {
   parameters: {
@@ -64,14 +70,23 @@ const preview: Preview = {
           </svg>
         </label>
         {/* 👇 Decorators in Storybook also accept a function. Replace <Story/> with Story() to enable it  */}
-        <RouterProvider
-          router={createBrowserRouter([
-            {
-              path: '*',
-              element: <Story />,
-            },
-          ])}
-        />
+
+        <I18nProvider i18n={i18n}>
+          <ToastProvider>
+            <TranslateProvider>
+              <ThemeControlProvider>
+                <RouterProvider
+                  router={createBrowserRouter([
+                    {
+                      path: '*',
+                      element: <Story />,
+                    },
+                  ])}
+                />
+              </ThemeControlProvider>
+            </TranslateProvider>
+          </ToastProvider>
+        </I18nProvider>
       </div>
     ),
   ],
