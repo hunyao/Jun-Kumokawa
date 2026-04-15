@@ -1,14 +1,30 @@
-[
-  "I told you. you shouldn't be here.",
-  "There are no Easter Eggs in this page.",
-  "What? It is familiar? I think you already have been mooed.",
-  "There really are no Easter Eggs in this page.",
-  "I TOLD you before. NOOOO Easter Eggs in this page. Why can't you just believe me. Now go away please...",
-  "Didn't I already tell you that there are no Easter Eggs in this page?",
-  "Stop it!",
-  "Don't do that!",
-  "Don't kill me...please...",
-  "Okay, okay, if I give you an Easter Egg, will you let me go?",
-  "          All right you win.\n\n                            /----\\\n                    -------/      \\\n                   /               \\\n                  /                |\n-----------------/                  --------\\\n----------------------------------------------",
-  "What is it? It's the GitHub being eaten by me.\nWhich means I AM THE GITHUB, of course."
-]
+{
+  "en": [
+    "I told you. you shouldn't be here.",
+    "There are no Easter Eggs in this page.",
+    "What? It is familiar? I think you already have been mooed.",
+    "There really are no Easter Eggs in this page.",
+    "I TOLD you before. NOOOO Easter Eggs in this page. Why can't you just believe me. Now go away please...",
+    "Didn't I already tell you that there are no Easter Eggs in this page?",
+    "Stop it!",
+    "Don't do that!",
+    "Don't kill me...please...",
+    "Okay, okay, if I give you an Easter Egg, will you let me go?",
+    "          All right you win.\n\n                            /----\\\n                    -------/      \\\n                   /               \\\n                  /                |\n-----------------/                  --------\\\n----------------------------------------------",
+    "What is it? It's the GitHub being eaten by me.\nWhich means I AM THE GITHUB, of course."
+  ],
+  "ja": [
+    "絶対に開かないでってお伝えしたはずですよ！",
+    "このページに隠し機能なんてありませんよ",
+    "なに？なんか見に覚えがあるよって？きっとあなたはすでにそれを殺したことがあるんだと思う",
+    "本当に隠し機能なんてないんだって！",
+    "何度も言ったように、まっっっっったく隠し機能はこのページにはないんだって！どうして信じてくれないの？頼むからどっかに行ってくれ",
+    "このページには隠し機能なんてものはないって言わなかった？",
+    "やめてくれ！",
+    "頼む！お願いだから！",
+    "殺さないでくれ...頼む...",
+    "分かった分かった。もしも隠し機能も出したら、どこかに行ってくれるかい？",
+    "          君の勝ちだ.\n\n                            /----\\\n                    -------/      \\\n                   /               \\\n                  /                |\n-----------------/                  --------\\\n----------------------------------------------",
+    "ん？これはなにかって？Githubを吸収した私だよ。\nつまり、私がGithubだってこと。もちろんね。"
+  ]
+}

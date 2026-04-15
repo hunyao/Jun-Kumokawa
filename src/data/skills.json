@@ -1,7 +1,10 @@
 {
   "skills": [
     {
-      "groupName": "Coding Languages",
+      "groupName": {
+        "en": "Coding Languages",
+        "ja": "プログラミング言語"
+      },
       "colorCode": [0, 0, 255],
       "items": [
         {
@@ -31,7 +34,10 @@
       ]
     },
     {
-      "groupName": "Shell Languages",
+      "groupName": {
+        "en": "Shell Languages",
+        "ja": "シェル言語"
+      },
       "colorCode": [0, 128, 255],
       "items": [
         {
@@ -45,7 +51,10 @@
       ]
     },
     {
-      "groupName": "Operating systems",
+      "groupName": {
+        "en": "Operating systems",
+        "ja": "オペレーティングシステム"
+      },
       "colorCode": [128, 0, 255],
       "items": [
         {
@@ -67,7 +76,10 @@
       ]
     },
     {
-      "groupName": "Cloud platforms",
+      "groupName": {
+        "en": "Cloud platforms",
+        "ja": "クラウドプラットフォーム"
+      },
       "colorCode": [128, 128, 255],
       "items": [
         {
@@ -81,7 +93,7 @@
       ]
     },
     {
-      "groupName": "Frameworks",
+      "groupName": { "en": "Frameworks", "ja": "フレームワーク" },
       "colorCode": [255, 0, 0],
       "items": [
         {
@@ -119,7 +131,7 @@
       ]
     },
     {
-      "groupName": "UI libraries",
+      "groupName": { "en": "UI libraries", "ja": "UIライブラリ" },
       "colorCode": [255, 128, 0],
       "items": [
         {
@@ -137,7 +149,7 @@
       ]
     },
     {
-      "groupName": "Libraries",
+      "groupName": { "en": "Libraries", "ja": "ライブラリ" },
       "colorCode": [255, 0, 128],
       "items": [
         {
@@ -183,7 +195,7 @@
       ]
     },
     {
-      "groupName": "Databases",
+      "groupName": { "en": "Databases", "ja": "データベース" },
       "colorCode": [255, 128, 128],
       "items": [
         {
@@ -209,7 +221,10 @@
       ]
     },
     {
-      "groupName": "Version Control Systems",
+      "groupName": {
+        "en": "Version Control Systems",
+        "ja": "バージョン管理システム"
+      },
       "colorCode": [0, 255, 0],
       "items": [
         {
@@ -223,7 +238,7 @@
       ]
     },
     {
-      "groupName": "Tools",
+      "groupName": { "en": "Tools", "ja": "ツール" },
       "colorCode": [128, 255, 0],
       "items": [
         {
@@ -257,7 +272,7 @@
       ]
     },
     {
-      "groupName": "Editors",
+      "groupName": { "en": "Editors", "ja": "エディター" },
       "colorCode": [0, 255, 128],
       "items": [
         {
@@ -279,7 +294,7 @@
       ]
     },
     {
-      "groupName": "Middlewares",
+      "groupName": { "en": "Middlewares", "ja": "ミドルウェア" },
       "colorCode": [128, 255, 128],
       "items": [
         {
@@ -301,7 +316,10 @@
       ]
     },
     {
-      "groupName": "Package Manage Systems",
+      "groupName": {
+        "en": "Package Manage Systems",
+        "ja": "パッケージ管理システム"
+      },
       "colorCode": [255, 255, 0],
       "items": [
         {
@@ -315,7 +333,7 @@
       ]
     },
     {
-      "groupName": "Other",
+      "groupName": { "en": "Other", "ja": "その他" },
       "colorCode": [255, 255, 128],
       "items": [
         {
