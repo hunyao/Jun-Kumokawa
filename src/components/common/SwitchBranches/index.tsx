@@ -1,3 +1,4 @@
+import { Trans, useLingui } from '@lingui/react/macro';
 import type { Endpoints } from '@octokit/types';
 import {
   type HTMLAttributes,
@@ -7,6 +8,8 @@ import {
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router';
+import { useSortBranch } from '#hooks/useSortBranch';
 import { CheckSvg, SearchSvg, XmarkSvg } from '#icons/index';
 import {
   GithubBranchDropdownButton,
@@ -15,24 +18,23 @@ import {
 } from '#ui/index';
 import { filterByText } from '#utils/index';
 
-type SwitchBranchesProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> & {
+const TAB_BRANCH = 1;
+const TAB_TAG = 2;
+type SwitchBranchesProps = HTMLAttributes<HTMLDivElement> & {
   defaultBranch: string;
   branches: Endpoints['GET /repos/{owner}/{repo}/branches']['response']['data'];
   tags: Endpoints['GET /repos/{owner}/{repo}/tags']['response']['data'];
   value: string;
-  onChange?: (_newBranch: string) => void;
 };
 export const SwitchBranches = (props: SwitchBranchesProps) => {
-  const {
-    defaultBranch,
-    branches,
-    tags,
-    value,
-    onChange = () => {},
-    className,
-    ...rest
-  } = props;
-  const [tab, setTab] = useState(1);
+  const { defaultBranch, branches, tags, value, className, ...rest } = props;
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [tab, setTab] = useState(TAB_BRANCH);
+  const sortedBranches = useSortBranch(branches, defaultBranch);
+
+  const { t } = useLingui();
 
   const [searchingText, setSearchingText] = useState('');
   const [isOpen, setIsOpen] = useState(false);
@@ -42,6 +44,24 @@ export const SwitchBranches = (props: SwitchBranchesProps) => {
     top: number;
     left: number;
   } | null>(null);
+
+  const getRefName = () => {
+    const ref = [...branches, ...tags].find(
+      (item) => item.commit.sha === value,
+    );
+    return ref === undefined ? '' : ref.name;
+  };
+
+  const onChangeBranch = (
+    type: 'branch' | 'tag',
+    _branch: string,
+    _sha: string,
+  ) => {
+    const _searchParams = new URLSearchParams(searchParams);
+    _searchParams.set('ref', `${type[0]}/${_branch}`);
+    _searchParams.set('sha', _sha);
+    navigate(`${location.pathname}?${_searchParams.toString()}`);
+  };
 
   useLayoutEffect(() => {
     if (!isOpen || !anchorRef.current) return;
@@ -94,7 +114,7 @@ export const SwitchBranches = (props: SwitchBranchesProps) => {
         className='!w-full'
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        {value}
+        {getRefName()}
       </GithubBranchDropdownButton>
       {isOpen &&
         menuStyle &&
@@ -109,7 +129,9 @@ export const SwitchBranches = (props: SwitchBranchesProps) => {
             }}
           >
             <div className='flex items-center justify-between p-2'>
-              <span className='font-bold text-sm'>Switch branches/tags</span>
+              <span className='font-bold text-sm'>
+                <Trans>Switch branches/tags</Trans>
+              </span>
               <button
                 type='button'
                 className='p-1'
@@ -125,7 +147,7 @@ export const SwitchBranches = (props: SwitchBranchesProps) => {
                 <input
                   type='search'
                   className='grow'
-                  placeholder='Find a branch...'
+                  placeholder={t`Find a branch...`}
                   value={searchingText}
                   onChange={(e) => setSearchingText(e.target.value)}
                 />
@@ -134,35 +156,39 @@ export const SwitchBranches = (props: SwitchBranchesProps) => {
             <div className='grid grid-cols-1 grid-rows-[min-content_minmax(0,1fr)] pt-2'>
               <GithubTab $variant='lift'>
                 <GithubTabItem
-                  $active={tab === 1}
-                  onClick={setTab.bind(null, 1)}
+                  $active={tab === TAB_BRANCH}
+                  onClick={setTab.bind(null, TAB_BRANCH)}
                 >
-                  Branches
+                  <Trans>Branches</Trans>
                 </GithubTabItem>
                 <GithubTabItem
-                  $active={tab === 2}
-                  onClick={setTab.bind(null, 2)}
+                  $active={tab === TAB_TAG}
+                  onClick={setTab.bind(null, TAB_TAG)}
                 >
-                  Tags
+                  <Trans>Tags</Trans>
                 </GithubTabItem>
               </GithubTab>
-              <ul className='overflow-y-auto'>
-                {tab === 1 &&
-                  filterByText(branches, 'name', searchingText).map(
+              <ul className='overflow-y-auto px-2'>
+                {tab === TAB_BRANCH &&
+                  filterByText(sortedBranches, 'name', searchingText).map(
                     (branch) => (
-                      <li key={branch.name} className='rounded-lg'>
+                      <li key={branch.name} className='my-2 rounded-lg'>
                         <button
                           type='button'
                           className='flex w-full items-center gap-1 rounded-lg p-2 text-left text-sm hover:bg-base-content/10'
                           onClick={() => {
-                            onChange(branch.name);
+                            onChangeBranch(
+                              'branch',
+                              branch.name,
+                              branch.commit.sha,
+                            );
                             setIsOpen(false);
                           }}
                         >
                           <CheckSvg
                             className={[
                               'h-4 w-4',
-                              value === branch.name
+                              value === branch.commit.sha
                                 ? 'fill-current'
                                 : 'fill-transparent',
                             ].join(' ')}
@@ -170,28 +196,28 @@ export const SwitchBranches = (props: SwitchBranchesProps) => {
                           <span className='flex-1 truncate'>{branch.name}</span>
                           {defaultBranch === branch.name && (
                             <span className='rounded-full border-[1px] border-base-content/10 px-1 text-xs'>
-                              default
+                              <Trans>default</Trans>
                             </span>
                           )}
                         </button>
                       </li>
                     ),
                   )}
-                {tab === 2 &&
+                {tab === TAB_TAG &&
                   filterByText(tags, 'name', searchingText).map((tag) => (
-                    <li key={tag.name} className='rounded-lg'>
+                    <li key={tag.name} className='my-2 rounded-lg'>
                       <button
                         type='button'
                         className='flex w-full items-center gap-1 rounded-lg p-2 text-left text-sm hover:bg-base-content/10'
                         onClick={() => {
-                          onChange(tag.name);
+                          onChangeBranch('tag', tag.name, tag.commit.sha);
                           setIsOpen(false);
                         }}
                       >
                         <CheckSvg
                           className={[
                             'h-4 w-4',
-                            value === tag.name
+                            value === tag.commit.sha
                               ? 'fill-current'
                               : 'fill-transparent',
                           ].join(' ')}
