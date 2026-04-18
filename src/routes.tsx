@@ -3,13 +3,16 @@ import { SuspenseWithComponent } from '#components/index';
 import { Routes } from '#constants/index';
 import {
   AppErrorPage,
-  ExperiencePage,
+  ExperiencePageWrapper,
+  getExperienceLoader,
+  getMooPageLoader,
   getRepositoryPageLoader,
+  getSKillPageLoader,
   getTreePageLoader,
-  MooPage,
+  MooPageWrapper,
   RepositoryErrorPage,
   RepositoryPageWrapper,
-  SkillPage,
+  SkillPageWrapper,
   TreePageWrapper,
 } from '#features/index';
 import { MainLayout } from '#layouts/index';
@@ -19,13 +22,11 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <OauthCallback>
-        <SuspenseWithComponent>
-          <MainLayout>
-            <Outlet />
-          </MainLayout>
-        </SuspenseWithComponent>
-      </OauthCallback>
+      <SuspenseWithComponent>
+        <MainLayout>
+          <Outlet />
+        </MainLayout>
+      </SuspenseWithComponent>
     ),
     errorElement: <AppErrorPage />,
     children: [
@@ -47,15 +48,26 @@ const router = createBrowserRouter([
       },
       {
         path: Routes.EXPERIENCES,
-        Component: ExperiencePage,
+        element: <ExperiencePageWrapper />,
+        loader: getExperienceLoader,
+        errorElement: <RepositoryErrorPage />,
       },
       {
         path: Routes.SKILLS,
-        Component: SkillPage,
+        element: <SkillPageWrapper />,
+        loader: getSKillPageLoader,
+        errorElement: <RepositoryErrorPage />,
       },
       {
         path: Routes.MOO,
-        Component: MooPage,
+        element: <MooPageWrapper />,
+        loader: getMooPageLoader,
+        errorElement: <RepositoryErrorPage />,
+      },
+      {
+        path: Routes.OAUTH_CALLBACK,
+        element: <OauthCallback />,
+        errorElement: <RepositoryErrorPage />,
       },
     ],
   },

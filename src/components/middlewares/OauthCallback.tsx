@@ -1,18 +1,21 @@
-import { type PropsWithChildren, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import { Routes } from '#constants/common';
 import { useGithub } from '#hooks/index';
 
-export const OauthCallback = ({ children }: PropsWithChildren) => {
-  const navigate = useNavigate();
+export const OauthCallback = () => {
   const [searchParams] = useSearchParams();
-  const { signIn, isSignedIn } = useGithub();
+  const navigate = useNavigate();
+  const { signIn } = useGithub();
   const accessToken = searchParams.get('access_token');
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: reason
   useEffect(() => {
-    if (accessToken !== null && !isSignedIn) {
+    if (accessToken !== null) {
       signIn(accessToken);
       navigate(Routes.HOME, { replace: true });
     }
-  }, [accessToken, isSignedIn, navigate, signIn]);
-  return children;
+  }, []);
+
+  return null;
 };
