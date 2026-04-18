@@ -4,13 +4,13 @@ import { useId, useRef } from 'react';
 import {
   Await,
   type LoaderFunction,
-  NavLink,
   useLoaderData,
   useParams,
   useSearchParams,
 } from 'react-router';
 import {
   BlobViewContentWrapper,
+  Breadcrumbs,
   CopyContentButton,
   DirectoryContentWrapper,
   GoToFile,
@@ -19,17 +19,67 @@ import {
   SuspenseWithComponent,
   SwitchBranches,
 } from '#components/index';
-import { Routes } from '#constants/index';
 import { useBranchAndTag, useResizePanel } from '#hooks/index';
 import { BottomPanelCloseSvg } from '#icons/index';
 import { octokit } from '#lib/index';
 import { GithubButton } from '#ui/index';
+import { requestRecursively } from '#utils/api';
+
+const TreePageSkeleton = () => (
+  <div className='flex'>
+    <div className='flex w-auto min-w-[300px] border-base-content/20 border-r-[1px]'>
+      <div className='sticky top-0 grid max-h-screen flex-1 grid-rows-[min-content_min-content_min-content_min-content_minmax(0,1fr)] gap-2 p-4'>
+        <div className='flex items-center gap-2'>
+          <div className='skeleton h-8 w-8' />
+          <div className='skeleton h-5 w-12' />
+        </div>
+        <div className='skeleton h-8 w-full' />
+        <div className='skeleton h-8 w-full' />
+        <div className='divider m-0' />
+        <div className='space-y-1 overflow-hidden'>
+          <div className='skeleton h-6 w-3/4' />
+          <div className='skeleton h-6 w-1/2' />
+          <div className='skeleton h-6 w-2/3' />
+          <div className='skeleton h-6 w-1/2' />
+          <div className='skeleton h-6 w-3/4' />
+          <div className='skeleton h-6 w-1/3' />
+          <div className='skeleton h-6 w-2/3' />
+          <div className='skeleton h-6 w-1/2' />
+        </div>
+      </div>
+    </div>
+    <div className='min-w-0 flex-1 p-4'>
+      <div className='mb-4 flex items-center gap-2'>
+        <div className='skeleton h-6 w-28' />
+        <div className='skeleton h-4 w-4' />
+        <div className='skeleton h-6 w-20' />
+        <div className='skeleton h-6 w-6 rounded' />
+      </div>
+      <div>
+        <div className='skeleton h-10 w-full' />
+        <div className='skeleton mt-px h-9 w-full' />
+        <div className='skeleton mt-px h-9 w-full' />
+        <div className='skeleton mt-px h-9 w-full' />
+        <div className='skeleton mt-px h-9 w-full' />
+        <div className='skeleton mt-px h-9 w-full' />
+      </div>
+      <div className='mt-4'>
+        <div className='skeleton h-10 w-full' />
+        <div className='skeleton mt-3 h-4 w-full' />
+        <div className='skeleton mt-2 h-4 w-5/6' />
+        <div className='skeleton mt-2 h-4 w-3/4' />
+        <div className='skeleton mt-2 h-4 w-2/3' />
+        <div className='skeleton mt-2 h-4 w-4/5' />
+      </div>
+    </div>
+  </div>
+);
 
 export const TreePageWrapper = () => {
   const { promise } = useLoaderData();
   const { owner = '', id = '' } = useParams();
   return (
-    <SuspenseWithComponent>
+    <SuspenseWithComponent fallback={<TreePageSkeleton />}>
       <Await resolve={promise}>
         {(resolved) => <TreePage key={owner + id} resolvedData={resolved} />}
       </Await>
@@ -37,8 +87,10 @@ export const TreePageWrapper = () => {
   );
 };
 
-export type TreePageLoaderType = [
+export type TreePageLoaderResponse = [
   Endpoints['GET /repos/{owner}/{repo}']['response']['data'],
+  Endpoints['GET /repos/{owner}/{repo}/branches']['response']['data'],
+  Endpoints['GET /repos/{owner}/{repo}/tags']['response']['data'],
 ];
 export const getTreePageLoader: LoaderFunction = ({ params }) => {
   const { owner = '', id: repo = '' } = params;
@@ -49,17 +101,29 @@ export const getTreePageLoader: LoaderFunction = ({ params }) => {
       repo,
     })
     .then(({ data }) => data);
+  const branches = requestRecursively(octokit.rest.repos.listBranches, {
+    owner,
+    repo,
+  })
+    .then((items) => items.map((item) => item.data))
+    .then((items) => items.flat());
+  const tags = requestRecursively(octokit.rest.repos.listTags, {
+    owner,
+    repo,
+  })
+    .then((items) => items.map((item) => item.data))
+    .then((items) => items.flat());
   return {
-    promise: Promise.all([repository]),
+    promise: Promise.all([repository, branches, tags]),
   };
 };
 
 type TreePageProps = {
-  resolvedData: TreePageLoaderType;
+  resolvedData: TreePageLoaderResponse;
 };
 export const TreePage = (props: TreePageProps) => {
   const { resolvedData } = props;
-  const [repository] = resolvedData;
+  const [repository, branches, tags] = resolvedData;
   const [searchParams] = useSearchParams();
   const path = searchParams.get('path') || '';
   const mode = searchParams.get('mode') || 'tree';
@@ -69,33 +133,13 @@ export const TreePage = (props: TreePageProps) => {
   const targetRef = useRef<HTMLDivElement>(null);
   const { resizeHandlerElement } = useResizePanel(targetRef);
 
-  const {
+  const { currentRef = '' } = useBranchAndTag({
     branches,
     tags,
-    currentRef = '',
-    loading: branchAndTagLoading,
-  } = useBranchAndTag({
-    owner,
-    repo,
     defaultBranch: repository.default_branch,
   });
 
   const collapseId = useId();
-
-  if (branchAndTagLoading) {
-    return (
-      <div className='flex h-96 gap-4 py-4'>
-        <div className='skeleton h-full w-1/4' />
-        <div className='flex w-3/4 flex-col gap-4'>
-          <div className='skeleton h-4 w-24' />
-          <div className='skeleton h-12 w-full' />
-          <div className='skeleton h-4 w-full' />
-          <div className='skeleton h-4 w-full' />
-          <div className='skeleton h-4 w-full' />
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className='group flex'>
@@ -162,66 +206,12 @@ export const TreePage = (props: TreePageProps) => {
             branches={branches}
             tags={tags}
           />
-          <nav>
-            <ol className='inline-block'>
-              <li className='inline-block'>
-                <NavLink
-                  to={{
-                    pathname: Routes.TREE.replace(
-                      ':owner',
-                      repository.owner.login,
-                    ).replace(':id', repository.name),
-                    search: new URLSearchParams({
-                      ...Object.fromEntries(searchParams.entries()),
-                      path: '',
-                      mode: 'tree',
-                    }).toString(),
-                  }}
-                  className='link link-primary link-hover'
-                >
-                  {repository.name}
-                </NavLink>
-              </li>
-              {path.length === 0 && <span className='px-2'>/</span>}
-              {path.length > 0 &&
-                path
-                  .replace(/^\//, '')
-                  .split('/')
-                  .map((_p, _i, _self) => (
-                    <li className='inline-block' key={_p}>
-                      <span className='px-2'>/</span>
-                      {_self.length - 1 === _i && (
-                        <>
-                          <span className='font-bold'>{_p}</span>
-                          {mode === 'tree' && <span className='px-2'>/</span>}
-                        </>
-                      )}
-                      {_self.length - 1 !== _i && (
-                        <NavLink
-                          to={{
-                            pathname: Routes.TREE.replace(
-                              ':owner',
-                              repository.owner.login,
-                            ).replace(':id', repository.name),
-                            search: new URLSearchParams({
-                              ...Object.fromEntries(searchParams.entries()),
-                              path: path
-                                .replace(/^\//, '')
-                                .split('/')
-                                .slice(0, _i + 1)
-                                .join('/'),
-                              mode: 'tree',
-                            }).toString(),
-                          }}
-                          className='link link-primary link-hover'
-                        >
-                          {_p}
-                        </NavLink>
-                      )}
-                    </li>
-                  ))}
-            </ol>
-          </nav>
+          <Breadcrumbs
+            path={path}
+            owner={owner}
+            repo={repo}
+            endWithSlash={mode === 'tree'}
+          />
           <div>
             <CopyContentButton content={path} data-tip='Copy path' />
           </div>
