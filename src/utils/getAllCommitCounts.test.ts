@@ -97,7 +97,7 @@ describe('getAllCommitCounts', () => {
   });
 
   describe('キャッシュ', () => {
-    it('TTL 内に同じ options で呼ばれた場合 API は1回だけ呼ばれる', async () => {
+    it('同じ options で呼ばれた場合 API は1回だけ呼ばれる', async () => {
       mockListCommits.mockResolvedValue({ data: [{}], headers: {} });
       mockExtractPageInfo.mockReturnValue(undefined);
 
@@ -106,21 +106,6 @@ describe('getAllCommitCounts', () => {
       await getAllCommitCounts(options);
 
       expect(mockListCommits).toHaveBeenCalledOnce();
-    });
-
-    it('TTL 切れ後は API を再度呼ぶ', async () => {
-      vi.useFakeTimers();
-      mockListCommits.mockResolvedValue({ data: [{}], headers: {} });
-      mockExtractPageInfo.mockReturnValue(undefined);
-
-      const options = { ...baseOptions, sha: 'case-cache-expired' };
-      await getAllCommitCounts(options);
-
-      vi.advanceTimersByTime(6 * 60 * 1000); // デフォルト TTL (5分) を超過
-
-      await getAllCommitCounts(options);
-
-      expect(mockListCommits).toHaveBeenCalledTimes(2);
     });
   });
 });

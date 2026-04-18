@@ -2,13 +2,9 @@ import type { Endpoints, RequestParameters } from '@octokit/types';
 import { octokit } from '#lib/index';
 import { extractPageInfo } from './extractPageInfo';
 
-const COMMIT_COUNT_TTL_MS = (() => {
-  const value = Number(import.meta.env.VITE_COMMIT_TTL_MS);
-  return Number.isFinite(value) && value > 0 ? value : 5 * 60 * 1000;
-})();
-const commitCountCache = new Map<string, { value: number; cachedAt: number }>();
+const commitCountCache = new Map<string, number>();
 const cacheAndReturn = (key: string, value: number) => {
-  commitCountCache.set(key, { value, cachedAt: Date.now() });
+  commitCountCache.set(key, value);
   return value;
 };
 
@@ -25,9 +21,8 @@ export async function getAllCommitCounts(
 ): Promise<number> {
   const cacheKey = JSON.stringify(options);
   const cached = commitCountCache.get(cacheKey);
-  const now = Date.now();
-  if (cached && now - cached.cachedAt < COMMIT_COUNT_TTL_MS) {
-    return cached.value;
+  if (cached) {
+    return cached;
   }
   try {
     const first = await octokit.rest.repos.listCommits({
