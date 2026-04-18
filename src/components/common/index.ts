@@ -1,5 +1,6 @@
 export * from './Activity';
 export * from './BlobViewContent';
+export * from './Breadcrumbs';
 export * from './CloneCode';
 export * from './CopyContentButton';
 export * from './DirectoryContent';
