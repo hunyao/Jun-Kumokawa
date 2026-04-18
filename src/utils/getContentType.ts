@@ -1,6 +1,6 @@
 import { getSha1Digest } from './getSha1Digest';
 
-type ContentType = {
+export type ContentType = {
   mimeType: string;
   isText: boolean;
   isImage: boolean;
