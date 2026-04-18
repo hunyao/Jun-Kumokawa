@@ -1,7 +1,7 @@
 import { use, useEffect, useState } from 'react';
+import { ApiEndpoints } from '#constants/index';
 import { SetToastContext } from '#contexts/index';
 import { clearOctokitCache, OCTOKIT_UNAUTHORIZED_EVENT } from '#lib/index';
-import { clearRequestCache } from '#utils/index';
 
 const githubAuthorizeURL = (code_challenge: string, state: string) =>
   `https://github.com/login/oauth/authorize?${new URLSearchParams({
@@ -14,6 +14,10 @@ const githubAuthorizeURL = (code_challenge: string, state: string) =>
     code_challenge,
     state,
   })}`;
+
+export const checkIfSignedIn = () => {
+  return window.localStorage.getItem('github-access-token') !== null;
+};
 
 /**
  * Manages GitHub OAuth authentication state.
@@ -38,7 +42,6 @@ export const useGithub = () => {
     /** Clears caches, signs out, and shows an error toast on 401 responses. */
     const handleUnauthorized = () => {
       clearOctokitCache();
-      clearRequestCache();
       setIsSignIn(false);
       setToast({
         type: 'error',
@@ -61,7 +64,7 @@ export const useGithub = () => {
    */
   const redirectToSignIn = async () => {
     const { code_challenge, state } = await fetch(
-      `${import.meta.env.VITE_GITHUB_API_REDIRECT_URI}/code-challenge`,
+      ApiEndpoints.CODE_CHALLENGE,
     ).then((r) => r.json());
     window.location.assign(githubAuthorizeURL(code_challenge, state));
   };
@@ -74,7 +77,6 @@ export const useGithub = () => {
   const signIn = (accessToken: string) => {
     window.localStorage.setItem('github-access-token', accessToken);
     clearOctokitCache();
-    clearRequestCache();
     setIsSignIn(true);
     setToast({
       type: 'success',
@@ -85,7 +87,6 @@ export const useGithub = () => {
   const signOut = () => {
     window.localStorage.removeItem('github-access-token');
     clearOctokitCache();
-    clearRequestCache();
     setIsSignIn(false);
     setToast({
       type: 'success',
