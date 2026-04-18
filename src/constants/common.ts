@@ -9,6 +9,7 @@ export const Routes = {
   EXPERIENCES: '/experiences',
   SKILLS: '/skills',
   MOO: '/moo',
+  OAUTH_CALLBACK: '/oauth_callback',
 } as const;
 export type Route = keyof typeof Routes;
 
