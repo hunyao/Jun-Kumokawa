@@ -1,16 +1,42 @@
 import { useEffect } from 'react';
-import { useSearchParams } from 'react-router';
-import { useCow } from '#hooks/index';
+import {
+  Await,
+  type LoaderFunction,
+  useLoaderData,
+  useSearchParams,
+} from 'react-router';
+import { fetchCowData, useCow } from '#hooks/index';
+import type { Cow } from '#types/cow';
 
-// Add more "v" on the param, it will be...
-export const MooPage = () => {
+export const MooPageWrapper = () => {
+  const { promise } = useLoaderData();
+  return (
+    <Await resolve={promise}>
+      {(resolved) => <MooPage resolvedData={resolved} />}
+    </Await>
+  );
+};
+
+const cowDataPromise = fetchCowData();
+export type MooPageLoaderResponse = [Cow];
+export const getMooPageLoader: LoaderFunction = () => {
+  return {
+    promise: Promise.all([cowDataPromise]),
+  };
+};
+type MooPageProps = {
+  resolvedData: MooPageLoaderResponse;
+};
+export const MooPage = (props: MooPageProps) => {
+  const { resolvedData } = props;
+  const [cowData] = resolvedData;
   const [searchParams] = useSearchParams();
 
   const [level = ''] = Array.from(searchParams.entries())
     .filter(([key]) => /^v+$/.test(key))
     .map(([key]) => key);
 
-  const [msg] = useCow(level);
+  const { getMessage } = useCow(cowData);
 
   useEffect(() => {
     console.log(
@@ -35,10 +61,11 @@ $$ |  $$\\ $$ |  $$ |$$ |  $$ |   $$ |     $$ |  $$ |  $$ |$$ |\\$$$ |
       'color: orange; font-weight: bold; font-size: 1.5rem',
     );
   }, []);
+
   return (
     <div className='container mx-auto'>
       <pre className='overflow-hidden overflow-x-auto whitespace-pre p-3'>
-        {msg}
+        {getMessage(level)}
       </pre>
     </div>
   );

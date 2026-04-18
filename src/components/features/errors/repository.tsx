@@ -3,6 +3,7 @@ import { ErrorPanel } from '#components/index';
 import { Routes } from '#constants/index';
 import { GithubApiRateLimitError } from '#errors/index';
 import { WarningSvg } from '#icons/index';
+import { genRepositoryPath } from '#utils/index';
 
 export const RepositoryErrorPage = () => {
   const error = useRouteError() as {
@@ -22,10 +23,7 @@ export const RepositoryErrorPage = () => {
   const subtitle =
     statusText || (status ? `Status: ${status}` : 'Unexpected error');
   const isRepoRoute = Boolean(owner && id);
-  const target =
-    owner && id
-      ? Routes.REPOSITORY.replace(':owner', owner).replace(':id', id)
-      : Routes.HOME;
+  const target = owner && id ? genRepositoryPath(owner, id) : Routes.HOME;
   return (
     <ErrorPanel
       title={title}
