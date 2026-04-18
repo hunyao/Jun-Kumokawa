@@ -1,17 +1,20 @@
 import type { components } from '@octokit/openapi-types';
 import dayjs from 'dayjs';
-import { useContext } from 'react';
-import { NavLink, useSearchParams } from 'react-router';
-import { DirectoryContentRowSkelton } from '#components/index';
-import { Routes } from '#constants/index';
-import { TranslateContext } from '#contexts/TranslateContext';
-import { useDirectoryRowCommit } from '#hooks/index';
+import { useContext, useMemo } from 'react';
+import { Await, NavLink, useSearchParams } from 'react-router';
+import {
+  DirectoryContentRowSkelton,
+  SuspenseWithComponent,
+} from '#components/index';
+import { TranslateContext } from '#contexts/index';
 import {
   FileSubmoduleSvg,
   FileSvg,
   FolderSvg,
   SymlinkFileSvg,
 } from '#icons/index';
+import { octokit } from '#lib/index';
+import { genTreePath, overrideSearchParams } from '#utils/index';
 
 type DirectoryContentRowWrapperProps = {
   owner: string;
@@ -37,31 +40,35 @@ export const DirectoryContentRowWrapper = (
     enableCommitFetch = true,
   } = props;
 
-  const { commit, isLoading, hasError, isResolved } = useDirectoryRowCommit({
-    owner,
-    repo,
-    path,
-    branchRef: branch_ref,
-    fileName,
-    enableCommitFetch,
-  });
-
-  if (isLoading) {
-    return <DirectoryContentRowSkelton />;
-  }
-
-  if (!isResolved) return null;
+  const promise = useMemo(() => {
+    if (!enableCommitFetch) return null;
+    return octokit.rest.repos
+      .listCommits({
+        owner,
+        repo,
+        sha: branch_ref,
+        path: path === '' ? fileName : `${path}/${fileName}`,
+        per_page: 1,
+        page: 1,
+      })
+      .then(({ data }) => data[0]);
+  }, [owner, repo, path, fileName, branch_ref, enableCommitFetch]);
 
   return (
-    <DirectoryContentRow
-      owner={owner}
-      repo={repo}
-      commit={commit}
-      type={type}
-      mode={mode}
-      fileName={fileName}
-      hasError={hasError}
-    />
+    <SuspenseWithComponent fallback={<DirectoryContentRowSkelton />}>
+      <Await resolve={promise}>
+        {(commit) => (
+          <DirectoryContentRow
+            owner={owner}
+            repo={repo}
+            commit={commit}
+            type={type}
+            mode={mode}
+            fileName={fileName}
+          />
+        )}
+      </Await>
+    </SuspenseWithComponent>
   );
 };
 
@@ -72,10 +79,9 @@ type DirectoryContentRowProps = {
   type: string;
   mode?: string;
   fileName: string;
-  hasError: boolean;
 };
 export const DirectoryContentRow = (props: DirectoryContentRowProps) => {
-  const { commit, type, mode, fileName, owner, repo, hasError } = props;
+  const { commit, type, mode, fileName, owner, repo } = props;
   const isFolder = mode === '040000';
   const isSubmodule = mode === '160000';
   const isSymlinkFile = mode === '120000';
@@ -101,9 +107,6 @@ export const DirectoryContentRow = (props: DirectoryContentRowProps) => {
   const getNextPath = (_path: string) => {
     return path === '' ? _path : `${path}/${_path}`;
   };
-  const _searchParams = new URLSearchParams(searchParams);
-  _searchParams.set('path', getNextPath(fileName));
-  _searchParams.set('mode', type);
 
   return (
     <div
@@ -121,11 +124,11 @@ export const DirectoryContentRow = (props: DirectoryContentRowProps) => {
         ) : (
           <NavLink
             to={{
-              pathname: Routes.TREE.replace(':owner', owner).replace(
-                ':id',
-                repo,
-              ),
-              search: `?${_searchParams.toString()}`,
+              pathname: genTreePath(owner, repo),
+              search: overrideSearchParams(searchParams, {
+                path: getNextPath(fileName),
+                mode: type,
+              }).toString(),
             }}
             className={[
               'link link-hover',
@@ -137,25 +140,19 @@ export const DirectoryContentRow = (props: DirectoryContentRowProps) => {
         )}
       </span>
       <span className='truncate'>
-        {hasError
-          ? 'Failed to load commit'
-          : commit
-            ? commit.commit.message.split('\n')[0]
-            : '-'}
+        {commit ? commit.commit.message.split('\n')[0] : '-'}
       </span>
       <span
         title={
-          commit && !hasError
+          commit
             ? dayjs(commit.commit.committer?.date).locale(lang).format('llll')
             : ''
         }
         className='justify-self-end'
       >
-        {hasError
-          ? '-'
-          : commit
-            ? dayjs(commit.commit.committer?.date).locale(lang).fromNow()
-            : '-'}
+        {commit
+          ? dayjs(commit.commit.committer?.date).locale(lang).fromNow()
+          : '-'}
       </span>
     </div>
   );

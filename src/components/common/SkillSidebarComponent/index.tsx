@@ -1,13 +1,34 @@
-import { useSkill } from '#hooks/index';
+import { useMemo } from 'react';
+import { Await } from 'react-router';
+import { SuspenseWithComponent } from '#components/index';
+import { ChildrenError } from '#features/errors';
+import { fetchSkillData, useSkill } from '#hooks/index';
 import { CircleFillSvg } from '#icons/index';
+import type { Skill } from '#types/skill';
 import { DetailBoxTitle } from '#ui/index';
 
-export const SkillSidebarComponent = () => {
-  const { coloredSkills } = useSkill();
+export const SkillSidebarWrapper = () => {
+  const promise = useMemo(() => fetchSkillData(), []);
+  return (
+    <SuspenseWithComponent>
+      <Await resolve={promise} errorElement={<ChildrenError />}>
+        {(skills) => {
+          return <SkillSidebarComponent skills={skills} />;
+        }}
+      </Await>
+    </SuspenseWithComponent>
+  );
+};
+type SkillSidebarComponentProps = {
+  skills: Skill[];
+};
+export const SkillSidebarComponent = (props: SkillSidebarComponentProps) => {
+  const { skills } = props;
+  const { coloredSkills, skillGroupNames } = useSkill(skills);
 
-  return coloredSkills.map((skill) => (
-    <div key={skill.groupName}>
-      <DetailBoxTitle>{skill.groupName}</DetailBoxTitle>
+  return coloredSkills.map((skill, i) => (
+    <div key={skillGroupNames[i]}>
+      <DetailBoxTitle>{skillGroupNames[i]}</DetailBoxTitle>
       <div className='mb-2 flex h-2 gap-0.5'>
         {skill.items.map((item) => (
           <span

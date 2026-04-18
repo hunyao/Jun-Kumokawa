@@ -12,6 +12,9 @@ const meta = {
     layout: 'fullscreen',
   },
   tags: ['autodocs'],
+  args: {
+    skills,
+  },
 } satisfies Meta<typeof SkillSidebarComponent>;
 
 export default meta;
