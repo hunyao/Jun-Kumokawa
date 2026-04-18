@@ -1,8 +1,10 @@
 import { Trans } from '@lingui/react/macro';
 import { useMemo } from 'react';
-import { NavLink } from 'react-router';
+import { Await, NavLink } from 'react-router';
+import { SuspenseWithComponent } from '#components/index';
 import { Routes } from '#constants/index';
-import { useProfile } from '#hooks/useProfile';
+import { ChildrenError } from '#features/errors';
+import { fetchProfileData, useProfile } from '#hooks/index';
 import {
   BriefcaseSvg,
   CodeSvg,
@@ -14,17 +16,35 @@ import {
   PhoneSvg,
   ScrewdriverWrenchSvg,
 } from '#icons/index';
+import type { Profile } from '#types/profile';
 import { Container, GithubTab, GithubTabItem } from '#ui/index';
 
-export const Profile = () => {
-  const profile = useProfile();
+const profileDataPromise = fetchProfileData();
+
+export const ProfileWrapper = () => {
+  return (
+    <SuspenseWithComponent>
+      <Await resolve={profileDataPromise} errorElement={<ChildrenError />}>
+        {(profileData) => {
+          return <ProfileComponent profileData={profileData} />;
+        }}
+      </Await>
+    </SuspenseWithComponent>
+  );
+};
+type ProfileComponentProps = {
+  profileData: Profile;
+};
+export const ProfileComponent = (props: ProfileComponentProps) => {
+  const { profileData } = props;
+  const { profile } = useProfile(profileData);
 
   const socialLinks = useMemo(
     () => [
       {
         key: 'location',
         Icon: LocationSvg,
-        content: profile.location,
+        content: <>{profile.location}</>,
       },
       {
         key: 'linkedin',

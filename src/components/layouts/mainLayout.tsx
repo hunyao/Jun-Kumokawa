@@ -2,7 +2,7 @@ import type { PropsWithChildren } from 'react';
 import {
   Footer,
   Header,
-  Profile,
+  ProfileWrapper,
   SideBarMenu,
   SideBarMenuState,
   Toast,
@@ -14,7 +14,7 @@ export const MainLayout = ({ children }: PropsWithChildren) => {
       <SideBarMenuState />
       <Header />
       <Toast />
-      <Profile />
+      <ProfileWrapper />
       <div className='separater'>{children}</div>
       <Footer />
       <SideBarMenu />
