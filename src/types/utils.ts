@@ -6,3 +6,7 @@ export type StrictString<T, K extends keyof T> = {
 export type Localized<T> = {
   [K in keyof T]: T[K] extends { en: unknown; ja: unknown } ? T[K]['en'] : T[K];
 };
+export type IncludeLocale<T> = {
+  readonly en: T;
+  readonly ja: T;
+};
