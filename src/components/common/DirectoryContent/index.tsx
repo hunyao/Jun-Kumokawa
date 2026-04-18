@@ -12,7 +12,7 @@ import { ChildrenError } from '#features/errors';
 import { FolderSvg } from '#icons/index';
 import { octokit } from '#lib/index';
 import type { unpackArray } from '#types/utils';
-import { getAllCommitCounts } from '#utils/index';
+import { getAllCommitCounts, overrideSearchParams } from '#utils/index';
 
 export const sorting = (
   a: unpackArray<
@@ -128,8 +128,9 @@ export const DirectoryContent = (props: DirectoryContentProps) => {
     _path.pop();
     return _path.join('/');
   };
-  const _searchParams = new URLSearchParams(searchParams);
-  _searchParams.set('path', getPreviousPath());
+  const _searchParams = overrideSearchParams(searchParams, {
+    path: getPreviousPath(),
+  });
   const hasCommitData = ref.length > 0;
 
   if (separatedHeader) {
@@ -201,7 +202,7 @@ export const DirectoryContent = (props: DirectoryContentProps) => {
             <NavLink
               to={{
                 pathname,
-                search: `?${_searchParams.toString()}`,
+                search: _searchParams.toString(),
               }}
               className='flex items-center gap-2 border-base-content/20 border-b-[1px] p-2 last:border-b-0 hover:bg-base-content/5'
             >

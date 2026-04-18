@@ -10,9 +10,9 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router';
-import { Routes } from '#constants/index';
 import { FileSvg, SearchSvg } from '#icons/index';
 import { octokit } from '#lib/index';
+import { genTreePath } from '#utils/index';
 
 type TreeItem = {
   path: string;
@@ -167,7 +167,7 @@ export const GoToFile = (props: GoToFileProps) => {
 
   const moveToFile = (path: string) => {
     navigate({
-      pathname: Routes.TREE.replace(':owner', owner).replace(':id', repo),
+      pathname: genTreePath(owner, repo),
       search: new URLSearchParams({
         branch,
         path,

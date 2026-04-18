@@ -11,6 +11,7 @@ import { sorting } from '#components/index';
 import { FileSvg, FolderSvg } from '#icons/index';
 import { octokit } from '#lib/index';
 import type { unpackArray } from '#types/utils';
+import { overrideSearchParams } from '#utils/index';
 
 type RepositoryFileTreeItemProps = {
   owner: string;
@@ -63,8 +64,7 @@ export const RepositoryFileTreeItem = (props: RepositoryFileTreeItemProps) => {
     ) {
       navigate({
         pathname: pathname,
-        search: new URLSearchParams({
-          ...Object.fromEntries(searchParams.entries()),
+        search: overrideSearchParams(searchParams, {
           path: path,
           mode: treeItem.type,
         }).toString(),
@@ -94,8 +94,7 @@ export const RepositoryFileTreeItem = (props: RepositoryFileTreeItemProps) => {
         <NavLink
           to={{
             pathname,
-            search: new URLSearchParams({
-              ...Object.fromEntries(searchParams.entries()),
+            search: overrideSearchParams(searchParams, {
               path,
               mode: 'blob',
             }).toString(),

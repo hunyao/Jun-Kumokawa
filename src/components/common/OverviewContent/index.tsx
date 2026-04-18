@@ -1,8 +1,8 @@
 import DOMPurify from 'dompurify';
 import { useContext, useMemo, useState } from 'react';
 import { Await } from 'react-router';
-import { SuspenseWithComponent } from '#components/SuspenseWithComponent';
-import { TranslateContext } from '#contexts/TranslateContext';
+import { SuspenseWithComponent } from '#components/index';
+import { TranslateContext } from '#contexts/index';
 import { ChildrenError } from '#features/errors';
 import { BookSvg } from '#icons/index';
 import { md, octokit } from '#lib/index';

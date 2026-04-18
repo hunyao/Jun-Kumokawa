@@ -8,9 +8,9 @@ import { SuspenseWithComponent } from '#components/index';
 import { ChildrenError } from '#features/errors';
 import { CopyContentSvg, DownloadSvg } from '#icons/index';
 import { octokit } from '#lib/index';
-import type { unpackPromise } from '#types/utils';
 import {
   b64ToUtf8,
+  type ContentType,
   getContentType,
   numberFormat,
   numberFormatWithUnit,
@@ -62,7 +62,7 @@ export const BlobViewContentWrapper = (props: BlobViewContentWrapperProps) => {
 };
 type BlobViewContentProps = {
   content: Endpoints['GET /repos/{owner}/{repo}/contents/{path}']['response']['data'];
-  contentType: unpackPromise<ReturnType<typeof getContentType>>;
+  contentType: ContentType;
   path: string;
 };
 export const BlobViewContent = (props: BlobViewContentProps) => {

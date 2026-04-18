@@ -9,14 +9,14 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { useLocation, useNavigate, useSearchParams } from 'react-router';
-import { useSortBranch } from '#hooks/useSortBranch';
+import { useSortBranch } from '#hooks/index';
 import { CheckSvg, SearchSvg, XmarkSvg } from '#icons/index';
 import {
   GithubBranchDropdownButton,
   GithubTab,
   GithubTabItem,
 } from '#ui/index';
-import { filterByText } from '#utils/index';
+import { filterByText, overrideSearchParams } from '#utils/index';
 
 const TAB_BRANCH = 1;
 const TAB_TAG = 2;
@@ -57,10 +57,12 @@ export const SwitchBranches = (props: SwitchBranchesProps) => {
     _branch: string,
     _sha: string,
   ) => {
-    const _searchParams = new URLSearchParams(searchParams);
-    _searchParams.set('ref', `${type[0]}/${_branch}`);
-    _searchParams.set('sha', _sha);
-    navigate(`${location.pathname}?${_searchParams.toString()}`);
+    navigate(
+      `${location.pathname}?${overrideSearchParams(searchParams, {
+        ref: `${type[0]}/${_branch}`,
+        sha: _sha,
+      }).toString()}`,
+    );
   };
 
   useLayoutEffect(() => {

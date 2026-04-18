@@ -2,8 +2,7 @@ import { useLingui } from '@lingui/react/macro';
 import { NavLink } from 'react-router';
 import { TranslateMenu } from '#components/index';
 import { Routes } from '#constants/index';
-import { useGithub } from '#hooks/index';
-import { useThemeController } from '#hooks/useThemeController';
+import { useGithub, useThemeController } from '#hooks/index';
 import {
   CatSvg,
   LightOffSvg,

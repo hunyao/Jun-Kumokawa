@@ -1,19 +1,13 @@
 import type { PropsWithChildren, ReactNode } from 'react';
 import { Suspense } from 'react';
 
-type LoadingComponentProps = {
-  debug?: string;
-};
-const LoadingComponent = (props: LoadingComponentProps) => {
-  const { debug } = props;
-
+const LoadingComponent = () => {
   return (
     <output
       aria-live='polite'
       className='fixed top-0 left-0 flex h-full w-full items-center justify-center bg-black/10'
     >
-      <span className='loading loading-dots loading-xl'></span>
-      {debug && <div>{debug}</div>}
+      <span className='loading loading-dots loading-xl' />
     </output>
   );
 };
