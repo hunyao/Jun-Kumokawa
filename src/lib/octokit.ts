@@ -12,7 +12,7 @@ export const clearOctokitCache = () => {
 export const octokit = new Octokit({
   auth: window.localStorage.getItem('github-access-token') || undefined,
   request: {
-    fetch: async (resource: Request, options: RequestInit) => {
+    fetch: async (resource: string, options: RequestInit) => {
       const token = window.localStorage.getItem('github-access-token');
       const headers = new Headers(options.headers);
       if (token && !headers.has('authorization')) {
@@ -20,8 +20,8 @@ export const octokit = new Octokit({
       }
 
       let sha1: string = '';
-      if (resource.method === 'GET') {
-        sha1 = await getSha1Digest(resource.url);
+      if (options.method === 'GET') {
+        sha1 = await getSha1Digest(resource);
         if (cache.has(sha1)) {
           return (cache.get(sha1) as Response).clone();
         }
@@ -29,7 +29,7 @@ export const octokit = new Octokit({
       const res = await fetch(resource, { ...options, headers, signal });
 
       if (res.ok) {
-        if (resource.method === 'GET') {
+        if (options.method === 'GET') {
           cache.set(sha1, res.clone());
         }
       } else {
