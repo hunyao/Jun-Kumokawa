@@ -14,11 +14,11 @@ import {
   GoToFile,
   LanguageUsage,
   OverviewContentWrapper,
-  SkillSidebarComponent,
+  SkillSidebarWrapper,
+  SuspenseWithComponent,
   SwitchBranches,
 } from '#components/index';
-import { Routes } from '#constants/index';
-import { useBranchAndTag } from '#hooks/useBranchAndTag';
+import { useBranchAndTag } from '#hooks/index';
 import {
   CodeBranchSvg,
   CopyrightSvg,
@@ -31,22 +31,89 @@ import {
 } from '#icons/index';
 import { octokit } from '#lib/index';
 import { Container, DetailBoxTitle, GithubButton, GithubChip } from '#ui/index';
-import { numberFormat } from '#utils/index';
+import {
+  genRepositoryPath,
+  numberFormat,
+  requestRecursively,
+} from '#utils/index';
+
+const RepositoryPageSkeleton = () => (
+  <Container className='py-4'>
+    <div className='flex items-center gap-2'>
+      <div className='skeleton h-6 w-6 rounded-lg' />
+      <div className='skeleton h-7 w-40' />
+      <div className='skeleton h-5 w-16 rounded-full' />
+    </div>
+    <div className='divider' />
+    <div className='grid grid-cols-4 gap-6'>
+      <div className='col-span-3 space-y-4'>
+        <div className='flex items-center gap-2'>
+          <div className='skeleton h-8 w-32' />
+          <div className='skeleton h-8 w-24' />
+          <div className='skeleton h-8 w-20' />
+          <div className='skeleton ml-auto h-8 w-24' />
+          <div className='skeleton h-8 w-28' />
+        </div>
+        <div>
+          <div className='skeleton h-10 w-full' />
+          <div className='skeleton mt-px h-9 w-full' />
+          <div className='skeleton mt-px h-9 w-full' />
+          <div className='skeleton mt-px h-9 w-full' />
+          <div className='skeleton mt-px h-9 w-full' />
+          <div className='skeleton mt-px h-9 w-full' />
+        </div>
+        <div>
+          <div className='skeleton h-10 w-full' />
+          <div className='skeleton mt-3 h-4 w-full' />
+          <div className='skeleton mt-2 h-4 w-5/6' />
+          <div className='skeleton mt-2 h-4 w-3/4' />
+          <div className='skeleton mt-2 h-4 w-2/3' />
+          <div className='skeleton mt-2 h-4 w-4/5' />
+        </div>
+      </div>
+      <div>
+        <div className='skeleton h-5 w-14' />
+        <div className='skeleton mt-3 h-4 w-full' />
+        <div className='skeleton mt-2 h-4 w-3/4' />
+        <div className='mt-3 flex flex-wrap gap-2'>
+          <div className='skeleton h-5 w-16 rounded-full' />
+          <div className='skeleton h-5 w-20 rounded-full' />
+          <div className='skeleton h-5 w-14 rounded-full' />
+        </div>
+        <div className='mt-3 space-y-2'>
+          <div className='skeleton h-4 w-24' />
+          <div className='skeleton h-4 w-28' />
+          <div className='skeleton h-4 w-20' />
+          <div className='skeleton h-4 w-24' />
+          <div className='skeleton h-4 w-20' />
+        </div>
+        <div className='divider' />
+        <div className='skeleton h-4 w-20' />
+        <div className='skeleton mt-2 h-2 w-full rounded-full' />
+        <div className='skeleton mt-1 h-2 w-3/4 rounded-full' />
+      </div>
+    </div>
+  </Container>
+);
 
 export const RepositoryPageWrapper = () => {
   const { promise } = useLoaderData();
   const { owner = '', id = '' } = useParams();
   return (
-    <Await resolve={promise}>
-      {(resolved) => (
-        <RepositoryPage key={owner + id} resolvedData={resolved} />
-      )}
-    </Await>
+    <SuspenseWithComponent fallback={<RepositoryPageSkeleton />}>
+      <Await resolve={promise}>
+        {(resolved) => (
+          <RepositoryPage key={owner + id} resolvedData={resolved} />
+        )}
+      </Await>
+    </SuspenseWithComponent>
   );
 };
 
-export type RepositoryPageLoaderType = [
+export type RepositoryPageLoaderResponse = [
   Endpoints['GET /repos/{owner}/{repo}']['response']['data'],
+  Endpoints['GET /repos/{owner}/{repo}/branches']['response']['data'],
+  Endpoints['GET /repos/{owner}/{repo}/tags']['response']['data'],
 ];
 export const getRepositoryPageLoader: LoaderFunction = ({ params }) => {
   const { owner = '', id: repo = '' } = params;
@@ -57,45 +124,40 @@ export const getRepositoryPageLoader: LoaderFunction = ({ params }) => {
       repo,
     })
     .then(({ data }) => data);
+  const branches = requestRecursively(octokit.rest.repos.listBranches, {
+    owner,
+    repo,
+  })
+    .then((items) => items.map((item) => item.data))
+    .then((items) => items.flat());
+  const tags = requestRecursively(octokit.rest.repos.listTags, {
+    owner,
+    repo,
+  })
+    .then((items) => items.map((item) => item.data))
+    .then((items) => items.flat());
   return {
-    promise: Promise.all([repository]),
+    promise: Promise.all([repository, branches, tags]),
   };
 };
 
 type RepositoryPageProps = {
-  resolvedData: RepositoryPageLoaderType;
+  resolvedData: RepositoryPageLoaderResponse;
 };
 export const RepositoryPage = (props: RepositoryPageProps) => {
   const [searchParams] = useSearchParams();
   const path = searchParams.get('path') || '';
   const { resolvedData } = props;
-  const [repository] = resolvedData;
+  const [repository, branches, tags] = resolvedData;
   const owner = repository.owner.login;
   const repo = repository.name;
   const isMyRepository = owner === 'hunyao' && repo === 'Jun-Kumokawa';
 
-  const {
+  const { currentRef = '' } = useBranchAndTag({
     branches,
     tags,
-    currentRef = '',
-    loading: branchAndTagLoading,
-  } = useBranchAndTag({
-    owner,
-    repo,
     defaultBranch: repository.default_branch,
   });
-
-  if (branchAndTagLoading) {
-    return (
-      <Container className='py-4'>
-        <div className='skeleton my-4 h-4 w-24' />
-        <div className='flex gap-4'>
-          <div className='skeleton my-4 h-6 w-3/4' />
-          <div className='skeleton my-4 h-6 w-1/4' />
-        </div>
-      </Container>
-    );
-  }
 
   return (
     <Container className='py-4'>
@@ -106,7 +168,7 @@ export const RepositoryPage = (props: RepositoryPageProps) => {
           alt={`${repository.owner.login} avatar`}
         />
         <NavLink
-          to={Routes.REPOSITORY.replace(':owner', owner).replace(':id', repo)}
+          to={genRepositoryPath(owner, repo)}
           className='link link-hover'
         >
           <span className='font-bold text-xl'>{repository.name}</span>
@@ -233,7 +295,7 @@ export const RepositoryPage = (props: RepositoryPageProps) => {
           {isMyRepository && (
             <>
               <div className='divider' />
-              <SkillSidebarComponent />
+              <SkillSidebarWrapper />
             </>
           )}
         </div>
