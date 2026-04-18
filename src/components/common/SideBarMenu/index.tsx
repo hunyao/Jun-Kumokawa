@@ -14,6 +14,7 @@ import {
 } from '#icons/index';
 import { octokit } from '#lib/index';
 import { GithubButton } from '#ui/index';
+import { genRepositoryPath } from '#utils/index';
 
 export const SideBarMenuState = () => (
   <input type='checkbox' id='sidebarmenu' className='peer hidden' />
@@ -41,8 +42,8 @@ export const SideBarMenu = () => {
     const load = async () => {
       try {
         setIsLoading(true);
-        const { data } = await octokit
-          .request<'GET /user/repos'>('GET /user/repos', { per_page: 100 })
+        const { data } = await octokit.rest.repos
+          .listForAuthenticatedUser({ per_page: 100 })
           .catch((e) => {
             if (e.status === 401) return { data: [] };
             throw e;
@@ -134,10 +135,7 @@ export const SideBarMenu = () => {
           )}
           {repos.map((repository) => (
             <NavLink
-              to={Routes.REPOSITORY.replace(
-                ':owner',
-                repository.owner.login,
-              ).replace(':id', repository.name)}
+              to={genRepositoryPath(repository.owner.login, repository.name)}
               key={repository.node_id}
             >
               {({ isPending }) => (
