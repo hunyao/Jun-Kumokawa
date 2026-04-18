@@ -1,20 +1,17 @@
 import { useContext } from 'react';
-import { TranslateContext } from '#contexts/TranslateContext';
-import { Profile as ProfileData } from '#data/index';
-import type { Localized } from '#types/utils';
+import { ApiEndpoints } from '#constants/api';
+import { TranslateContext } from '#contexts/index';
+import type { Profile } from '#types/profile';
+import { pickWithLocale } from '#utils/index';
 
-export const useProfile = () => {
+export const fetchProfileData = async (): Promise<Profile> => {
+  return fetch(ApiEndpoints.PROFILE).then((r) => r.json());
+};
+
+export const useProfile = (profileData: Profile) => {
   const { lang } = useContext(TranslateContext);
 
-  const res: Localized<(typeof ProfileData)['profile']> = Object.fromEntries(
-    Object.entries(ProfileData.profile).map(([_key, _content]) => {
-      if (typeof _content === 'object' && 'en' in _content) {
-        return [_key, _content[lang]];
-      } else {
-        return [_key, _content];
-      }
-    }),
-  );
-
-  return res;
+  return {
+    profile: pickWithLocale(profileData, lang),
+  };
 };

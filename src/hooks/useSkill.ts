@@ -1,9 +1,12 @@
 import { useCallback, useContext, useMemo } from 'react';
-import { TranslateContext } from '#contexts/TranslateContext';
-import { Skill } from '#data/index';
+import { ApiEndpoints } from '#constants/api';
+import { TranslateContext } from '#contexts/index';
+import type { Skill } from '#types/skill';
 import { getColor } from '#utils/index';
 
-const { skills } = Skill;
+export const fetchSkillData = async (): Promise<Skill[]> => {
+  return fetch(ApiEndpoints.SKILL).then((r) => r.json());
+};
 
 /**
  * Provides processed skill data derived from the static `skills.json`.
@@ -14,12 +17,12 @@ const { skills } = Skill;
  * - `coloredSkills` – skill groups enriched with `totalValue` (sum of item values)
  *   and per-item `colorHex` derived from the group's `colorCode` via {@link getColor}
  */
-export const useSkill = () => {
+export const useSkill = (skills: Skill[]) => {
   const { lang } = useContext(TranslateContext);
 
   const skillGroupNames = useMemo(
-    () => skills.map(({ groupName }) => groupName[lang]),
-    [lang],
+    () => (skills || []).map(({ groupName }) => groupName[lang]),
+    [lang, skills],
   );
 
   /**
@@ -27,7 +30,10 @@ export const useSkill = () => {
    *
    * @param index - Index into the `skills` array
    */
-  const getSkillGroup = useCallback((index: number) => skills[index], []);
+  const getSkillGroup = useCallback(
+    (index: number) => (skills || [])[index],
+    [skills],
+  );
 
   const coloredSkills = useMemo(
     () =>
@@ -37,8 +43,6 @@ export const useSkill = () => {
           0,
         );
         return {
-          ...skill,
-          groupName: skill.groupName[lang],
           totalValue,
           items: skill.items.map((skillItem, index) => ({
             ...skillItem,
@@ -46,7 +50,7 @@ export const useSkill = () => {
           })),
         };
       }),
-    [lang],
+    [skills],
   );
 
   return {
