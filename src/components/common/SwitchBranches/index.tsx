@@ -1,5 +1,4 @@
 import { Trans, useLingui } from '@lingui/react/macro';
-import type { Endpoints } from '@octokit/types';
 import {
   type HTMLAttributes,
   useEffect,
@@ -11,19 +10,22 @@ import { createPortal } from 'react-dom';
 import { useLocation, useNavigate, useSearchParams } from 'react-router';
 import { useSortBranch } from '#hooks/index';
 import { CheckSvg, SearchSvg, XmarkSvg } from '#icons/index';
+import type {
+  GetRepositoryBranchesResponseType,
+  GetRepositoryTagsResponseType,
+} from '#types/octokitApi';
 import {
   GithubBranchDropdownButton,
   GithubTab,
   GithubTabItem,
 } from '#ui/index';
 import { filterByText, overrideSearchParams } from '#utils/index';
+import { type SwitchBranchesTab, SwitchBranchesTabs } from './constants';
 
-const TAB_BRANCH = 1;
-const TAB_TAG = 2;
 type SwitchBranchesProps = HTMLAttributes<HTMLDivElement> & {
   defaultBranch: string;
-  branches: Endpoints['GET /repos/{owner}/{repo}/branches']['response']['data'];
-  tags: Endpoints['GET /repos/{owner}/{repo}/tags']['response']['data'];
+  branches: GetRepositoryBranchesResponseType;
+  tags: GetRepositoryTagsResponseType;
   value: string;
 };
 export const SwitchBranches = (props: SwitchBranchesProps) => {
@@ -31,7 +33,7 @@ export const SwitchBranches = (props: SwitchBranchesProps) => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const [tab, setTab] = useState(TAB_BRANCH);
+  const [tab, setTab] = useState<SwitchBranchesTab>(SwitchBranchesTabs.BRANCH);
   const sortedBranches = useSortBranch(branches, defaultBranch);
 
   const { t } = useLingui();
@@ -158,20 +160,20 @@ export const SwitchBranches = (props: SwitchBranchesProps) => {
             <div className='grid grid-cols-1 grid-rows-[min-content_minmax(0,1fr)] pt-2'>
               <GithubTab $variant='lift'>
                 <GithubTabItem
-                  $active={tab === TAB_BRANCH}
-                  onClick={setTab.bind(null, TAB_BRANCH)}
+                  $active={tab === SwitchBranchesTabs.BRANCH}
+                  onClick={() => setTab(SwitchBranchesTabs.BRANCH)}
                 >
                   <Trans>Branches</Trans>
                 </GithubTabItem>
                 <GithubTabItem
-                  $active={tab === TAB_TAG}
-                  onClick={setTab.bind(null, TAB_TAG)}
+                  $active={tab === SwitchBranchesTabs.TAG}
+                  onClick={() => setTab(SwitchBranchesTabs.TAG)}
                 >
                   <Trans>Tags</Trans>
                 </GithubTabItem>
               </GithubTab>
               <ul className='overflow-y-auto px-2'>
-                {tab === TAB_BRANCH &&
+                {tab === SwitchBranchesTabs.BRANCH &&
                   filterByText(sortedBranches, 'name', searchingText).map(
                     (branch) => (
                       <li key={branch.name} className='my-2 rounded-lg'>
@@ -205,7 +207,7 @@ export const SwitchBranches = (props: SwitchBranchesProps) => {
                       </li>
                     ),
                   )}
-                {tab === TAB_TAG &&
+                {tab === SwitchBranchesTabs.TAG &&
                   filterByText(tags, 'name', searchingText).map((tag) => (
                     <li key={tag.name} className='my-2 rounded-lg'>
                       <button
