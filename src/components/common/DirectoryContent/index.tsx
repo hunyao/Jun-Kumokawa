@@ -1,6 +1,5 @@
 import { Trans } from '@lingui/react/macro';
 import type { components } from '@octokit/openapi-types';
-import type { Endpoints } from '@octokit/types';
 import { useMemo } from 'react';
 import { Await, NavLink, useLocation, useSearchParams } from 'react-router';
 import {
@@ -15,12 +14,8 @@ import type { unpackArray } from '#types/utils';
 import { getAllCommitCounts, overrideSearchParams } from '#utils/index';
 
 export const sorting = (
-  a: unpackArray<
-    Endpoints['GET /repos/{owner}/{repo}/git/trees/{tree_sha}']['response']['data']['tree']
-  >,
-  b: unpackArray<
-    Endpoints['GET /repos/{owner}/{repo}/git/trees/{tree_sha}']['response']['data']['tree']
-  >,
+  a: unpackArray<components['schemas']['git-tree']['tree']>,
+  b: unpackArray<components['schemas']['git-tree']['tree']>,
 ) => {
   if (a.type !== b.type) {
     return a.type === 'tree' ? -1 : 1;
@@ -100,7 +95,7 @@ export const DirectoryContentWrapper = ({
 };
 type DirectoryContentProps = {
   ref: Array<components['schemas']['commit']>;
-  tree: Endpoints['GET /repos/{owner}/{repo}/git/trees/{tree_sha}']['response']['data'];
+  tree: components['schemas']['git-tree'];
   totalCommitCount: number;
   owner: string;
   repo: string;

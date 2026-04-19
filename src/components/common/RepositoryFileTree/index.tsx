@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/react/macro';
-import type { Endpoints } from '@octokit/types';
+import type { components } from '@octokit/openapi-types';
 import { useEffect, useState } from 'react';
 import { RepositoryFileTreeItem, sorting } from '#components/index';
 import { octokit } from '#lib/index';
@@ -14,9 +14,9 @@ type RepositoryFileTreeProps = {
 export const RepositoryFileTree = (props: RepositoryFileTreeProps) => {
   const { owner, repo, branch, path } = props;
   const [showAll, setShowAll] = useState(false);
-  const [tree, setTree] = useState<
-    Endpoints['GET /repos/{owner}/{repo}/git/trees/{tree_sha}']['response']['data']['tree']
-  >([]);
+  const [tree, setTree] = useState<components['schemas']['git-tree']['tree']>(
+    [],
+  );
   const [isLoading, setIsLoading] = useState(false);
   const maxItems = 500;
 

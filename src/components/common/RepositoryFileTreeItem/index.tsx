@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/react/macro';
-import type { Endpoints } from '@octokit/types';
+import type { components } from '@octokit/openapi-types';
 import { type ToggleEvent, useEffect, useRef, useState } from 'react';
 import {
   NavLink,
@@ -18,18 +18,16 @@ type RepositoryFileTreeItemProps = {
   repo: string;
   branch: string;
   path: string;
-  treeItem: unpackArray<
-    Endpoints['GET /repos/{owner}/{repo}/git/trees/{tree_sha}']['response']['data']['tree']
-  >;
+  treeItem: unpackArray<components['schemas']['git-tree']['tree']>;
 };
 export const RepositoryFileTreeItem = (props: RepositoryFileTreeItemProps) => {
   const { treeItem, path, owner, repo, branch } = props;
 
   const ref = useRef<HTMLDetailsElement>(null);
   const requestIdRef = useRef(0);
-  const [tree, setTree] = useState<
-    Endpoints['GET /repos/{owner}/{repo}/git/trees/{tree_sha}']['response']['data']['tree']
-  >([]);
+  const [tree, setTree] = useState<components['schemas']['git-tree']['tree']>(
+    [],
+  );
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const { pathname } = location;

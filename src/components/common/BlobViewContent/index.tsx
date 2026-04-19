@@ -1,5 +1,4 @@
 import { Trans, useLingui } from '@lingui/react/macro';
-import type { Endpoints } from '@octokit/types';
 import DOMPurify from 'dompurify';
 import hljs from 'highlight.js';
 import { type CSSProperties, useMemo, useRef } from 'react';
@@ -8,6 +7,7 @@ import { SuspenseWithComponent } from '#components/index';
 import { ChildrenError } from '#features/errors';
 import { CopyContentSvg, DownloadSvg } from '#icons/index';
 import { octokit } from '#lib/index';
+import type { GetRepositoryContentResponseType } from '#types/octokitApi';
 import {
   b64ToUtf8,
   type ContentType,
@@ -61,7 +61,7 @@ export const BlobViewContentWrapper = (props: BlobViewContentWrapperProps) => {
   );
 };
 type BlobViewContentProps = {
-  content: Endpoints['GET /repos/{owner}/{repo}/contents/{path}']['response']['data'];
+  content: GetRepositoryContentResponseType;
   contentType: ContentType;
   path: string;
 };
