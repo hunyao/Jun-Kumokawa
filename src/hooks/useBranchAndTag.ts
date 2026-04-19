@@ -1,11 +1,12 @@
-import type { Endpoints } from '@octokit/types';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
+import type {
+  GetRepositoryBranchesResponseType,
+  GetRepositoryTagsResponseType,
+} from '#types/octokitApi';
 
 const getCommitSha = (
-  branches:
-    | Endpoints['GET /repos/{owner}/{repo}/branches']['response']['data']
-    | Endpoints['GET /repos/{owner}/{repo}/tags']['response']['data'],
+  branches: GetRepositoryBranchesResponseType | GetRepositoryTagsResponseType,
   targetBranchName: string,
 ) => {
   const defaultBranchRef = branches.find(
@@ -17,8 +18,8 @@ const getCommitSha = (
 };
 
 type useBranchAndTagProps = {
-  branches: Endpoints['GET /repos/{owner}/{repo}/branches']['response']['data'];
-  tags: Endpoints['GET /repos/{owner}/{repo}/tags']['response']['data'];
+  branches: GetRepositoryBranchesResponseType;
+  tags: GetRepositoryTagsResponseType;
   defaultBranch: string;
 };
 export const useBranchAndTag = (props: useBranchAndTagProps) => {
@@ -29,8 +30,8 @@ export const useBranchAndTag = (props: useBranchAndTagProps) => {
   );
 
   const getRef = (
-    _branches: Endpoints['GET /repos/{owner}/{repo}/branches']['response']['data'],
-    _tags: Endpoints['GET /repos/{owner}/{repo}/tags']['response']['data'],
+    _branches: GetRepositoryBranchesResponseType,
+    _tags: GetRepositoryTagsResponseType,
   ) => {
     const refQuery = searchParams.get('ref');
     if (refQuery === null) {

@@ -1,7 +1,7 @@
-import type { Endpoints } from '@octokit/types';
+import type { GetRepositoryBranchesResponseType } from '#types/octokitApi';
 
 export const useSortBranch = (
-  branches: Endpoints['GET /repos/{owner}/{repo}/branches']['response']['data'],
+  branches: GetRepositoryBranchesResponseType,
   defaultBranch: string,
 ) => {
   const sortedBranches = branches.slice().sort((a, b) => {
