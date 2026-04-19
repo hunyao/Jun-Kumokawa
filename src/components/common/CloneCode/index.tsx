@@ -2,55 +2,49 @@ import { Trans, useLingui } from '@lingui/react/macro';
 import { type CSSProperties, type HTMLAttributes, useState } from 'react';
 import { CopyContentButton } from '#components/index';
 import { CodeSvg, FolderZipSvg, HelpSvg, TerminalSvg } from '#icons/index';
+import type { GetRepositoryResponseType } from '#types/octokitApi';
 import {
   GithubButton,
   GithubDropdownButton,
   GithubTab,
   GithubTabItem,
 } from '#ui/index';
+import { type CLONE_CODE_TAB, CLONE_CODE_TABS } from './constants';
 
-type CLONE_CODE_TAB_HTTPS = 'https';
-type CLONE_CODE_TAB_SSH = 'ssh';
-type CLONE_CODE_TAB_GITHUB = 'github';
-type CLONE_CODE_TAB =
-  | CLONE_CODE_TAB_HTTPS
-  | CLONE_CODE_TAB_SSH
-  | CLONE_CODE_TAB_GITHUB;
 type CloneCodeProps = HTMLAttributes<HTMLDivElement> & {
-  https_url: string;
-  ssh_url: string;
-  github_url: string;
+  repository: GetRepositoryResponseType;
   branch: string;
   owner: string;
   repo: string;
 };
 export const CloneCode = (props: CloneCodeProps) => {
-  const { https_url, ssh_url, github_url, branch, owner, repo, ...rest } =
-    props;
-  const [tab, setTab] = useState<CLONE_CODE_TAB>('https');
+  const { repository, branch, owner, repo, ...rest } = props;
+  const [tab, setTab] = useState<CLONE_CODE_TAB>(CLONE_CODE_TABS.HTTPS);
 
   const { t } = useLingui();
 
   const getUrl = () => {
     switch (tab) {
-      case 'https':
-        return https_url;
-      case 'ssh':
-        return ssh_url;
-      case 'github':
-        return github_url;
+      case CLONE_CODE_TABS.HTTPS:
+        return repository.clone_url;
+      case CLONE_CODE_TABS.SSH:
+        return repository.ssh_url;
+      case CLONE_CODE_TABS.GITHUB:
+        return `gh repo clone ${repository.full_name}`;
     }
   };
   const getDescription = () => {
     switch (tab) {
-      case 'https':
+      case CLONE_CODE_TABS.HTTPS:
         return t`Clone using the web URL.`;
-      case 'ssh':
+      case CLONE_CODE_TABS.SSH:
         return t`Use a password-protected SSH key.`;
-      case 'github':
+      case CLONE_CODE_TABS.GITHUB:
         return t`Work fast with our official CLI.`;
     }
   };
+
+  const downloadURL = `https://github.com/${owner}/${repo}/archive/refs/heads/${branch}.zip`;
 
   return (
     <div className={['dropdown dropdown-end', rest.className].join(' ')}>
@@ -87,20 +81,20 @@ export const CloneCode = (props: CloneCodeProps) => {
           <div className='p-2'>
             <GithubTab $variant='border'>
               <GithubTabItem
-                $active={tab === 'https'}
-                onClick={setTab.bind(null, 'https')}
+                $active={tab === CLONE_CODE_TABS.HTTPS}
+                onClick={() => setTab(CLONE_CODE_TABS.HTTPS)}
               >
                 HTTPS
               </GithubTabItem>
               <GithubTabItem
-                $active={tab === 'ssh'}
-                onClick={setTab.bind(null, 'ssh')}
+                $active={tab === CLONE_CODE_TABS.SSH}
+                onClick={() => setTab(CLONE_CODE_TABS.SSH)}
               >
                 SSH
               </GithubTabItem>
               <GithubTabItem
-                $active={tab === 'github'}
-                onClick={setTab.bind(null, 'github')}
+                $active={tab === CLONE_CODE_TABS.GITHUB}
+                onClick={() => setTab(CLONE_CODE_TABS.GITHUB)}
               >
                 Github CLI
               </GithubTabItem>
@@ -120,11 +114,7 @@ export const CloneCode = (props: CloneCodeProps) => {
           </div>
         </div>
         <div className='p-2'>
-          <a
-            href={`https://github.com/${owner}/${repo}/archive/refs/heads/${branch}.zip`}
-            target='_blank'
-            rel='noreferrer'
-          >
+          <a href={downloadURL} target='_blank' rel='noreferrer'>
             <GithubButton $variant='ghost' className='text-sm'>
               <FolderZipSvg className='h-4 w-4 fill-current' />
               <Trans>Download ZIP</Trans>
