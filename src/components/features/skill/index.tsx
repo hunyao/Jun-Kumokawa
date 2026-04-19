@@ -1,29 +1,21 @@
 import { useLingui } from '@lingui/react/macro';
-import highcharts, { type Chart } from 'highcharts';
-import { useEffect, useRef, useState } from 'react';
-import { Await, type LoaderFunction, useLoaderData } from 'react-router';
+import { useEffect, useState } from 'react';
+import { Await, useLoaderData } from 'react-router';
 import { SuspenseWithComponent } from '#components/index';
-import { fetchSkillData, useSkill, useThemeController } from '#hooks/index';
-import type { Skill } from '#types/skill';
+import { useSkill, useThemeController } from '#hooks/index';
 import { Container, GithubNavMenu, GithubNavMenuItem } from '#ui/index';
+import { useHighCharts } from './hooks/useHighCharts';
+import type { SkillPageLoaderResponse } from './loader';
+import { SkillPageSkeleton } from './skeleton';
 
-const SkillPageSkeleton = () => (
-  <Container className='grid grid-cols-4 gap-4 py-4'>
-    <div className='row-span-3 space-y-1'>
-      {[...Array(6)].map((_, i) => (
-        // biome-ignore lint/suspicious/noArrayIndexKey: skeleton rows have no meaningful key
-        <div key={i} className='skeleton h-9 w-full rounded-lg' />
-      ))}
-    </div>
-    <div className='col-span-3'>
-      <div className='skeleton my-2 h-8 w-40' />
-      <div className='divider m-0' />
-    </div>
-    <div className='col-span-3 flex items-center justify-center'>
-      <div className='skeleton h-64 w-64 rounded-full' />
-    </div>
-  </Container>
-);
+const getCssVariableValue = (prop: string) => {
+  return getComputedStyle(document.documentElement)
+    .getPropertyValue(prop)
+    .trim();
+};
+const getColorBaseContentValue = () => {
+  return getCssVariableValue('--color-base-content');
+};
 
 export const SkillPageWrapper = () => {
   const { promise } = useLoaderData();
@@ -36,22 +28,12 @@ export const SkillPageWrapper = () => {
   );
 };
 
-const skillDataPromise = fetchSkillData();
-export type SkillPageLoaderResponse = [Skill[]];
-export const getSKillPageLoader: LoaderFunction = () => {
-  return {
-    promise: Promise.all([skillDataPromise]),
-  };
-};
 type SkillPageProps = {
   resolvedData: SkillPageLoaderResponse;
 };
 export const SkillPage = (props: SkillPageProps) => {
   const { resolvedData } = props;
   const [skills] = resolvedData;
-  const mountRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const chartRef = useRef<Chart | null>(null);
   const [menu, setMenu] = useState(0);
 
   const { t } = useLingui();
@@ -116,16 +98,15 @@ export const SkillPage = (props: SkillPageProps) => {
       ],
     }) as const as Highcharts.Options;
 
+  const { mountRef, chartRef } = useHighCharts(
+    getChartOptions(getColorBaseContentValue(), skillGroup),
+  );
+
   const onChangeMenu = (i: number) => {
     setMenu(i);
     if (chartRef.current === null) return;
     chartRef.current.update(
-      getChartOptions(
-        getComputedStyle(document.documentElement)
-          .getPropertyValue('--color-base-content')
-          .trim(),
-        coloredSkills[i],
-      ),
+      getChartOptions(getColorBaseContentValue(), coloredSkills[i]),
     );
   };
 
@@ -134,12 +115,7 @@ export const SkillPage = (props: SkillPageProps) => {
     const func = () => {
       if (chartRef.current === null) return;
       chartRef.current.update(
-        getChartOptions(
-          getComputedStyle(document.documentElement)
-            .getPropertyValue('--color-base-content')
-            .trim(),
-          skillGroup,
-        ),
+        getChartOptions(getColorBaseContentValue(), skillGroup),
       );
     };
     addEventListener(func);
@@ -148,52 +124,6 @@ export const SkillPage = (props: SkillPageProps) => {
       removeEventListener(func);
     };
   }, [addEventListener, removeEventListener]);
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: reason
-  useEffect(() => {
-    if (!mountRef.current) return;
-    if (!containerRef.current) return;
-    if (!chartRef.current) return;
-
-    chartRef.current.update(
-      getChartOptions(
-        getComputedStyle(document.documentElement)
-          .getPropertyValue('--color-base-content')
-          .trim(),
-        skillGroup,
-      ),
-    );
-  }, [skillGroup]);
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: reason
-  useEffect(() => {
-    if (!mountRef.current) return;
-
-    if (!containerRef.current) {
-      containerRef.current = document.createElement('div');
-      mountRef.current.appendChild(containerRef.current);
-    }
-
-    const container = containerRef.current;
-
-    const instance = highcharts.chart(
-      container,
-      getChartOptions(
-        getComputedStyle(document.documentElement)
-          .getPropertyValue('--color-base-content')
-          .trim(),
-        skillGroup,
-      ),
-      () => {},
-    );
-
-    chartRef.current = instance;
-
-    return () => {
-      instance.destroy();
-      chartRef.current = null;
-    };
-  }, []);
 
   return (
     <Container className='grid grid-cols-4 gap-4 py-4'>
@@ -220,3 +150,5 @@ export const SkillPage = (props: SkillPageProps) => {
     </Container>
   );
 };
+
+export { getSKillPageLoader } from './loader';
