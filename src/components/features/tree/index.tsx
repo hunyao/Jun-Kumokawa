@@ -1,13 +1,6 @@
 import { Trans } from '@lingui/react/macro';
-import type { Endpoints } from '@octokit/types';
 import { useId, useRef } from 'react';
-import {
-  Await,
-  type LoaderFunction,
-  useLoaderData,
-  useParams,
-  useSearchParams,
-} from 'react-router';
+import { Await, useLoaderData, useParams, useSearchParams } from 'react-router';
 import {
   BlobViewContentWrapper,
   Breadcrumbs,
@@ -21,59 +14,9 @@ import {
 } from '#components/index';
 import { useBranchAndTag, useResizePanel } from '#hooks/index';
 import { BottomPanelCloseSvg } from '#icons/index';
-import { octokit } from '#lib/index';
 import { GithubButton } from '#ui/index';
-import { requestRecursively } from '#utils/api';
-
-const TreePageSkeleton = () => (
-  <div className='flex'>
-    <div className='flex w-auto min-w-[300px] border-base-content/20 border-r-[1px]'>
-      <div className='sticky top-0 grid max-h-screen flex-1 grid-rows-[min-content_min-content_min-content_min-content_minmax(0,1fr)] gap-2 p-4'>
-        <div className='flex items-center gap-2'>
-          <div className='skeleton h-8 w-8' />
-          <div className='skeleton h-5 w-12' />
-        </div>
-        <div className='skeleton h-8 w-full' />
-        <div className='skeleton h-8 w-full' />
-        <div className='divider m-0' />
-        <div className='space-y-1 overflow-hidden'>
-          <div className='skeleton h-6 w-3/4' />
-          <div className='skeleton h-6 w-1/2' />
-          <div className='skeleton h-6 w-2/3' />
-          <div className='skeleton h-6 w-1/2' />
-          <div className='skeleton h-6 w-3/4' />
-          <div className='skeleton h-6 w-1/3' />
-          <div className='skeleton h-6 w-2/3' />
-          <div className='skeleton h-6 w-1/2' />
-        </div>
-      </div>
-    </div>
-    <div className='min-w-0 flex-1 p-4'>
-      <div className='mb-4 flex items-center gap-2'>
-        <div className='skeleton h-6 w-28' />
-        <div className='skeleton h-4 w-4' />
-        <div className='skeleton h-6 w-20' />
-        <div className='skeleton h-6 w-6 rounded' />
-      </div>
-      <div>
-        <div className='skeleton h-10 w-full' />
-        <div className='skeleton mt-px h-9 w-full' />
-        <div className='skeleton mt-px h-9 w-full' />
-        <div className='skeleton mt-px h-9 w-full' />
-        <div className='skeleton mt-px h-9 w-full' />
-        <div className='skeleton mt-px h-9 w-full' />
-      </div>
-      <div className='mt-4'>
-        <div className='skeleton h-10 w-full' />
-        <div className='skeleton mt-3 h-4 w-full' />
-        <div className='skeleton mt-2 h-4 w-5/6' />
-        <div className='skeleton mt-2 h-4 w-3/4' />
-        <div className='skeleton mt-2 h-4 w-2/3' />
-        <div className='skeleton mt-2 h-4 w-4/5' />
-      </div>
-    </div>
-  </div>
-);
+import type { TreePageLoaderResponse } from './loader';
+import { TreePageSkeleton } from './skeleton';
 
 export const TreePageWrapper = () => {
   const { promise } = useLoaderData();
@@ -85,37 +28,6 @@ export const TreePageWrapper = () => {
       </Await>
     </SuspenseWithComponent>
   );
-};
-
-export type TreePageLoaderResponse = [
-  Endpoints['GET /repos/{owner}/{repo}']['response']['data'],
-  Endpoints['GET /repos/{owner}/{repo}/branches']['response']['data'],
-  Endpoints['GET /repos/{owner}/{repo}/tags']['response']['data'],
-];
-export const getTreePageLoader: LoaderFunction = ({ params }) => {
-  const { owner = '', id: repo = '' } = params;
-
-  const repository = octokit.rest.repos
-    .get({
-      owner,
-      repo,
-    })
-    .then(({ data }) => data);
-  const branches = requestRecursively(octokit.rest.repos.listBranches, {
-    owner,
-    repo,
-  })
-    .then((items) => items.map((item) => item.data))
-    .then((items) => items.flat());
-  const tags = requestRecursively(octokit.rest.repos.listTags, {
-    owner,
-    repo,
-  })
-    .then((items) => items.map((item) => item.data))
-    .then((items) => items.flat());
-  return {
-    promise: Promise.all([repository, branches, tags]),
-  };
 };
 
 type TreePageProps = {
@@ -250,3 +162,5 @@ export const TreePage = (props: TreePageProps) => {
     </div>
   );
 };
+
+export { getTreePageLoader } from './loader';
