@@ -1,5 +1,5 @@
-import type { Endpoints, RequestParameters } from '@octokit/types';
 import { octokit } from '#lib/index';
+import type { GetListCommitsParameters } from '#types/octokitApi';
 import { extractPageInfo } from './extractPageInfo';
 
 const commitCountCache = new Map<string, number>();
@@ -16,8 +16,7 @@ const cacheAndReturn = (key: string, value: number) => {
  * @returns {Promise<number>} total number of commits
  */
 export async function getAllCommitCounts(
-  options: RequestParameters &
-    Endpoints['GET /repos/{owner}/{repo}/commits']['parameters'],
+  options: Exclude<GetListCommitsParameters, undefined>,
 ): Promise<number> {
   const cacheKey = JSON.stringify(options);
   const cached = commitCountCache.get(cacheKey);

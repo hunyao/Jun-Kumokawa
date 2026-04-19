@@ -1,5 +1,4 @@
 import { Trans } from '@lingui/react/macro';
-import type { Endpoints } from '@octokit/types';
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router';
 import { Routes } from '#constants/index';
@@ -13,6 +12,7 @@ import {
   XmarkSvg,
 } from '#icons/index';
 import { octokit } from '#lib/index';
+import type { GetRepositoryListForAuthenticatedUser } from '#types/octokitApi';
 import { GithubButton } from '#ui/index';
 import { genRepositoryPath } from '#utils/index';
 
@@ -23,9 +23,7 @@ export const SideBarMenu = () => {
   const { isSignedIn, redirectToSignIn } = useGithub();
   const [isLoading, setIsLoading] = useState(false);
 
-  const [repos, setRepos] = useState<
-    Endpoints['GET /user/repos']['response']['data']
-  >([]);
+  const [repos, setRepos] = useState<GetRepositoryListForAuthenticatedUser>([]);
 
   const close = () => {
     const ele = document.getElementById('sidebarmenu');
