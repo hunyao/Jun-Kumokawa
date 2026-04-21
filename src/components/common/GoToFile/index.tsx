@@ -9,10 +9,10 @@ import {
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { useNavigate } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router';
 import { FileSvg, SearchSvg } from '#icons/index';
 import { octokit } from '#lib/index';
-import { genTreePath } from '#utils/index';
+import { genTreePath, overrideSearchParams } from '#utils/index';
 
 type TreeItem = {
   path: string;
@@ -22,12 +22,13 @@ type TreeItem = {
 type GoToFileProps = HTMLAttributes<HTMLDivElement> & {
   owner: string;
   repo: string;
-  branch: string;
+  commitRef: string;
 };
 
 export const GoToFile = (props: GoToFileProps) => {
-  const { owner, repo, branch, className, ...rest } = props;
+  const { owner, repo, commitRef, className, ...rest } = props;
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const anchorRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -54,7 +55,7 @@ export const GoToFile = (props: GoToFileProps) => {
   }, [isOpen]);
 
   useEffect(() => {
-    if (!isOpen || files.length > 0) return;
+    if (!isOpen) return;
     let cancelled = false;
     const load = async () => {
       try {
@@ -63,7 +64,7 @@ export const GoToFile = (props: GoToFileProps) => {
         const { data } = await octokit.rest.git.getTree({
           owner,
           repo,
-          tree_sha: branch,
+          tree_sha: commitRef,
           recursive: '1',
         });
         if (!cancelled) {
@@ -83,7 +84,7 @@ export const GoToFile = (props: GoToFileProps) => {
     return () => {
       cancelled = true;
     };
-  }, [isOpen, files.length, owner, repo, branch]);
+  }, [isOpen, owner, repo, commitRef]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -168,8 +169,7 @@ export const GoToFile = (props: GoToFileProps) => {
   const moveToFile = (path: string) => {
     navigate({
       pathname: genTreePath(owner, repo),
-      search: new URLSearchParams({
-        branch,
+      search: overrideSearchParams(searchParams, {
         path,
         mode: 'blob',
       }).toString(),
@@ -263,7 +263,7 @@ export const GoToFile = (props: GoToFileProps) => {
               )}
               {!isLoading &&
                 !hasError &&
-                filteredFiles.map((item) => (
+                filteredFiles.map((item, i) => (
                   <li key={item.path} className='rounded-lg'>
                     <button
                       type='button'
@@ -277,9 +277,7 @@ export const GoToFile = (props: GoToFileProps) => {
                         if (!item.path) return;
                         moveToFile(item.path);
                       }}
-                      onMouseEnter={() =>
-                        setHighlightedIndex(filteredFiles.indexOf(item))
-                      }
+                      onMouseEnter={() => setHighlightedIndex(i)}
                     >
                       <FileSvg className='h-4 w-4 fill-current' />
                       <span className='truncate'>{item.path}</span>
