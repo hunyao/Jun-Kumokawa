@@ -17,6 +17,9 @@ importers:
       '@lingui/react':
         specifier: ^5.9.4
         version: 5.9.4(@lingui/babel-plugin-lingui-macro@5.9.5(babel-plugin-macros@3.1.0)(typescript@6.0.2))(babel-plugin-macros@3.1.0)(react@19.2.4)
+      '@octokit/plugin-throttling':
+        specifier: ^11.0.3
+        version: 11.0.3(@octokit/core@7.0.6)
       '@octokit/types':
         specifier: ^16.0.0
         version: 16.0.0
