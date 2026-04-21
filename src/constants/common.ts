@@ -1,9 +1,11 @@
+import { ENV } from './env';
+
 /**
  * Defining routing
  */
 export const Routes = {
-  HOME: '/repo/hunyao/Jun-Kumokawa',
-  MYTREE: '/tree/hunyao/Jun-Kumokawa',
+  HOME: `/repo/${ENV.REPOSITORY_OWNER}/${ENV.REPOSITORY_NAME}`,
+  MYTREE: `/tree/${ENV.REPOSITORY_OWNER}/${ENV.REPOSITORY_NAME}`,
   TREE: '/tree/:owner/:id',
   REPOSITORY: '/repo/:owner/:id',
   EXPERIENCES: '/experiences',

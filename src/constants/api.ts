@@ -1,5 +1,7 @@
+import { ENV } from './env';
+
 const createApiEndpointURL = (endpoint: string) =>
-  `${import.meta.env.VITE_API_ENDPOINT}${endpoint}`;
+  `${ENV.API_ENDPOINT}${endpoint}`;
 
 export const ApiEndpoints = {
   CALLBACK: createApiEndpointURL('/callback'),
