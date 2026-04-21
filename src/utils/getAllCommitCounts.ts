@@ -20,7 +20,7 @@ export async function getAllCommitCounts(
 ): Promise<number> {
   const cacheKey = JSON.stringify(options);
   const cached = commitCountCache.get(cacheKey);
-  if (cached) {
+  if (cached !== undefined) {
     return cached;
   }
   try {
