@@ -7,13 +7,20 @@ const isDarkMode = () => {
   }
   return window.matchMedia('(prefers-color-scheme: dark)').matches;
 };
+const getDefaultThemeName = () => {
+  const themeFromLocalStrage = window.localStorage.getItem('theme');
+  if (themeFromLocalStrage === null) {
+    return isDarkMode() ? 'dark' : 'light';
+  }
+  return themeFromLocalStrage;
+};
 
 type ThemeControlCallbackListener = (e: Event) => void;
 let listeners: Array<ThemeControlCallbackListener> = [];
 
 export const useThemeController = () => {
   const themeControlRef = useContext(ThemeControlContext);
-  const value = isDarkMode() ? 'light' : 'dark';
+  const value = getDefaultThemeName() === 'dark';
 
   const addEventListener = (callback: ThemeControlCallbackListener) => {
     listeners.push(callback);
@@ -22,6 +29,7 @@ export const useThemeController = () => {
     listeners = listeners.filter((listener) => listener !== callback);
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: reason
   useEffect(() => {
     if (
       themeControlRef?.current === undefined ||
@@ -30,6 +38,12 @@ export const useThemeController = () => {
       return;
     }
     const func = (e: Event) => {
+      if (e.target instanceof HTMLInputElement) {
+        window.localStorage.setItem(
+          'theme',
+          e.target.checked ? 'dark' : 'light',
+        );
+      }
       listeners.forEach((listener) => {
         listener(e);
       });
@@ -45,7 +59,12 @@ export const useThemeController = () => {
       }
       themeControlRef.current.removeEventListener('change', func);
     };
-  }, [themeControlRef?.current]);
+  }, []);
 
-  return { themeControlRef, value, addEventListener, removeEventListener };
+  return {
+    themeControlRef,
+    value,
+    addEventListener,
+    removeEventListener,
+  };
 };
