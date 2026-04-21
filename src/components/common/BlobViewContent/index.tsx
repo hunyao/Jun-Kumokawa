@@ -35,16 +35,10 @@ export const BlobViewContentWrapper = (props: BlobViewContentWrapperProps) => {
         Accept: 'application/vnd.github.object+json',
       },
     });
-    const downloadUrl =
-      !Array.isArray(contentResponse.data) &&
-      contentResponse.data.type === 'file'
-        ? contentResponse.data.download_url
-        : null;
-    if (!downloadUrl) {
-      throw new Error('Failed to resolve download URL for the file');
-    }
-    const contentTypeResponse = await getContentType(downloadUrl);
-    return { content: contentResponse, contentType: contentTypeResponse };
+    return {
+      content: contentResponse,
+      contentType: getContentType(contentResponse.data),
+    };
   }, [repo, path, owner, branch]);
   return (
     <SuspenseWithComponent>

@@ -1,4 +1,5 @@
-import { getSha1Digest } from './getSha1Digest';
+import type { GetRepositoryContentResponseType } from '#types/octokitApi';
+import { b64ToBuf } from './b64ToBuf';
 
 export type ContentType = {
   mimeType: string;
@@ -7,95 +8,201 @@ export type ContentType = {
   isBinary: boolean;
 };
 
-const cache = new Map<string, ContentType>();
+const mimeByExtension: Record<string, string> = {
+  c: 'text/x-c',
+  cpp: 'text/x-c++src',
+  css: 'text/css',
+  gif: 'image/gif',
+  html: 'text/html',
+  java: 'text/x-java',
+  jpeg: 'image/jpeg',
+  jpg: 'image/jpeg',
+  js: 'text/javascript',
+  json: 'application/json',
+  jsx: 'text/jsx',
+  md: 'text/markdown',
+  png: 'image/png',
+  py: 'text/x-python',
+  sh: 'text/x-shellscript',
+  sql: 'text/x-sql',
+  svg: 'image/svg+xml',
+  ts: 'text/typescript',
+  tsx: 'text/typescript',
+  txt: 'text/plain',
+  webp: 'image/webp',
+  xml: 'application/xml',
+  yaml: 'application/yaml',
+  yml: 'application/yaml',
+};
+
+const textMimeTypes = new Set([
+  'application/json',
+  'application/xml',
+  'application/yaml',
+  'image/svg+xml',
+]);
+
+const getExtension = (filename: string) => {
+  const ext = filename.split('.').pop();
+  return ext === undefined ? '' : ext.toLowerCase();
+};
+
+const looksLikeText = (buf: Uint8Array) => {
+  const sample = buf.slice(0, 4096);
+  if (sample.includes(0)) return false;
+
+  try {
+    const decoded = new TextDecoder('utf-8', { fatal: true }).decode(sample);
+    return [...decoded].every((char) => {
+      const code = char.charCodeAt(0);
+      return !(
+        (code >= 0x01 && code <= 0x08) ||
+        code === 0x0b ||
+        code === 0x0c ||
+        (code >= 0x0e && code <= 0x1f) ||
+        code === 0x7f
+      );
+    });
+  } catch {
+    return false;
+  }
+};
 
 /**
- * Returns information about the given `url`
+ * Returns information about GitHub repository file content.
  *
- * @param {string} url a url you want to know
- * @returns {Promise<ContentType>} Promise object represents the information about the given `url`
+ * Infers whether the file should be treated as text, image, or binary using
+ * GitHub's Contents API response and filename extension only.
  */
-export const getContentType = async (url: string): Promise<ContentType> => {
-  const cacheKey = await getSha1Digest(`getContentType:${url}`);
-  if (cache.has(cacheKey)) {
-    return cache.get(cacheKey) as ContentType;
+export const getContentType = (
+  content: GetRepositoryContentResponseType,
+): ContentType => {
+  if (Array.isArray(content) || content.type !== 'file') {
+    return {
+      mimeType: 'application/octet-stream',
+      isText: false,
+      isImage: false,
+      isBinary: true,
+    };
   }
-  const response = await fetch(url);
-  const headers = Object.fromEntries(response.headers.entries());
-  const res = {
-    mimeType: headers['content-type'],
-    isText: headers['content-type'].startsWith('text'),
-    isImage: headers['content-type'].startsWith('image'),
-    isBinary: !/^text|image/.test(headers['content-type']),
+
+  const mimeType =
+    mimeByExtension[getExtension(content.name)] || 'application/octet-stream';
+  const isImage = mimeType.startsWith('image/');
+  if (isImage) {
+    return {
+      mimeType,
+      isText: false,
+      isImage: true,
+      isBinary: false,
+    };
+  }
+
+  const isKnownTextMime =
+    mimeType.startsWith('text/') || textMimeTypes.has(mimeType);
+  if (content.encoding !== 'base64' || content.content === '') {
+    return {
+      mimeType,
+      isText: isKnownTextMime,
+      isImage: false,
+      isBinary: !isKnownTextMime,
+    };
+  }
+
+  const decoded = new Uint8Array(b64ToBuf(content.content.replace(/\n/g, '')));
+  const isText = isKnownTextMime || looksLikeText(decoded);
+  return {
+    mimeType:
+      isText && mimeType === 'application/octet-stream'
+        ? 'text/plain'
+        : mimeType,
+    isText,
+    isImage: false,
+    isBinary: !isText,
   };
-  cache.set(cacheKey, res);
-  return res;
 };
 
 if (import.meta.vitest) {
-  const { beforeEach, expect, test, vi } = import.meta.vitest;
-  vi.mock('./getSha1Digest.ts', () => ({
-    getSha1Digest: vi
-      .fn()
-      .mockResolvedValue('3b2c6c10d0e78072d14e02cc4c587814d0f10f3a'),
-  }));
-  const responseMock = vi.fn();
-  vi.stubGlobal('fetch', responseMock);
+  const { expect, test } = import.meta.vitest;
 
-  beforeEach(() => {
-    responseMock.mockRestore();
-    cache.clear();
-  });
-
-  test('requesting text/plain', async () => {
-    responseMock.mockImplementation(() => {
-      const body = new Blob(['text'], { type: 'text/plain' });
-      const headers = new Headers();
-      headers.set('content-type', 'text/plain');
-      const response = new Response(body, {
-        status: 200,
-        headers,
-      });
-      return response;
-    });
-    expect(await getContentType('https://hogehuga.com/text')).toEqual({
+  test('detects utf-8 text content', () => {
+    expect(
+      getContentType({
+        content: 'aGVsbG8gd29ybGQ=',
+        download_url: 'https://example.com/download',
+        encoding: 'base64',
+        git_url: 'https://example.com/git',
+        html_url: 'https://example.com/html',
+        name: 'README',
+        path: 'README',
+        sha: 'sha',
+        size: 11,
+        type: 'file',
+        url: 'https://example.com',
+        _links: {
+          git: 'https://example.com/git',
+          html: 'https://example.com/html',
+          self: 'https://example.com/self',
+        },
+      }),
+    ).toEqual({
       mimeType: 'text/plain',
       isText: true,
       isImage: false,
       isBinary: false,
     });
   });
-  test('requesting image/*', async () => {
-    responseMock.mockImplementation(() => {
-      const body = new Blob(['image'], { type: 'image/jpeg' });
-      const headers = new Headers();
-      headers.set('content-type', 'image/jpeg');
-      const response = new Response(body, {
-        status: 200,
-        headers,
-      });
-      return response;
-    });
-    expect(await getContentType('https://hogehuga1.com/image')).toEqual({
-      mimeType: 'image/jpeg',
+
+  test('detects image content by extension', () => {
+    expect(
+      getContentType({
+        content: '',
+        download_url: 'https://example.com/download',
+        encoding: 'none',
+        git_url: 'https://example.com/git',
+        html_url: 'https://example.com/html',
+        name: 'image.png',
+        path: 'image.png',
+        sha: 'sha',
+        size: 10,
+        type: 'file',
+        url: 'https://example.com',
+        _links: {
+          git: 'https://example.com/git',
+          html: 'https://example.com/html',
+          self: 'https://example.com/self',
+        },
+      }),
+    ).toEqual({
+      mimeType: 'image/png',
       isText: false,
       isImage: true,
       isBinary: false,
     });
   });
-  test('requesting other type', async () => {
-    responseMock.mockImplementation(() => {
-      const body = new Blob(['zip'], { type: 'application/zip' });
-      const headers = new Headers();
-      headers.set('content-type', 'application/zip');
-      const response = new Response(body, {
-        status: 200,
-        headers,
-      });
-      return response;
-    });
-    expect(await getContentType('https://hogehuga1.com/zip')).toEqual({
-      mimeType: 'application/zip',
+
+  test('detects binary content from non-text bytes', () => {
+    expect(
+      getContentType({
+        content: 'AAECAwQF',
+        download_url: 'https://example.com/download',
+        encoding: 'base64',
+        git_url: 'https://example.com/git',
+        html_url: 'https://example.com/html',
+        name: 'archive.bin',
+        path: 'archive.bin',
+        sha: 'sha',
+        size: 6,
+        type: 'file',
+        url: 'https://example.com',
+        _links: {
+          git: 'https://example.com/git',
+          html: 'https://example.com/html',
+          self: 'https://example.com/self',
+        },
+      }),
+    ).toEqual({
+      mimeType: 'application/octet-stream',
       isText: false,
       isImage: false,
       isBinary: true,
