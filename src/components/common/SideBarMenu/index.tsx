@@ -1,8 +1,6 @@
 import { Trans } from '@lingui/react/macro';
-import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router';
 import { Routes } from '#constants/index';
-import { useGithub } from '#hooks/index';
 import {
   BriefcaseSvg,
   CatSvg,
@@ -11,51 +9,17 @@ import {
   ScrewdriverWrenchSvg,
   XmarkSvg,
 } from '#icons/index';
-import { octokit } from '#lib/index';
-import type { GetRepositoryListForAuthenticatedUser } from '#types/octokitApi';
-import { GithubButton } from '#ui/index';
-import { genRepositoryPath } from '#utils/index';
+import { RepositoryWrapper } from './components/Repository';
 
 export const SideBarMenuState = () => (
   <input type='checkbox' id='sidebarmenu' className='peer hidden' />
 );
 export const SideBarMenu = () => {
-  const { isSignedIn, redirectToSignIn } = useGithub();
-  const [isLoading, setIsLoading] = useState(false);
-
-  const [repos, setRepos] = useState<GetRepositoryListForAuthenticatedUser>([]);
-
   const close = () => {
     const ele = document.getElementById('sidebarmenu');
     if (ele instanceof HTMLInputElement === false) return;
     ele.checked = false;
   };
-
-  useEffect(() => {
-    if (!isSignedIn) {
-      setRepos([]);
-      return;
-    }
-    let cancelled = false;
-    const load = async () => {
-      try {
-        setIsLoading(true);
-        const { data } = await octokit.rest.repos
-          .listForAuthenticatedUser({ per_page: 100 })
-          .catch((e) => {
-            if (e.status === 401) return { data: [] };
-            throw e;
-          });
-        if (!cancelled) setRepos(data);
-      } finally {
-        if (!cancelled) setIsLoading(false);
-      }
-    };
-    load();
-    return () => {
-      cancelled = true;
-    };
-  }, [isSignedIn]);
 
   return (
     <>
@@ -121,57 +85,7 @@ export const SideBarMenu = () => {
           <div className='py-2 font-bold text-base-content/50 text-sm'>
             <Trans>Repositories</Trans>
           </div>
-          {isLoading && (
-            <div>
-              <div className='skeleton h-4 w-full'></div>
-              <div className='skeleton h-4 w-full'></div>
-              <div className='skeleton h-4 w-full'></div>
-              <div className='skeleton h-4 w-full'></div>
-              <div className='skeleton h-4 w-full'></div>
-              <div className='skeleton h-4 w-full'></div>
-            </div>
-          )}
-          {repos.map((repository) => (
-            <NavLink
-              to={genRepositoryPath(repository.owner.login, repository.name)}
-              key={repository.node_id}
-            >
-              {({ isPending }) => (
-                // biome-ignore lint/a11y/useKeyWithClickEvents: reason
-                // biome-ignore lint/a11y/noStaticElementInteractions: reason
-                <div
-                  className='link-element flex cursor-pointer items-center gap-2'
-                  onClick={close}
-                >
-                  <span
-                    className='loading loading-spinner loading-xs'
-                    hidden={!isPending}
-                  />
-                  <img
-                    src={repository.owner.avatar_url}
-                    className='h-4 w-4 rounded-full'
-                    alt={`${repository.owner.login} avatar`}
-                  />
-                  <span>
-                    {repository.owner.login} / {repository.name}
-                  </span>
-                </div>
-              )}
-            </NavLink>
-          ))}
-          {!isLoading && isSignedIn && repos.length === 0 && (
-            <div className='mt-2 text-base-content/60 text-sm'>
-              No repositories found.
-            </div>
-          )}
-          {!isLoading && !isSignedIn && (
-            <div className='mt-2 flex flex-col gap-2 text-base-content/60 text-sm'>
-              <span>Sign in to view your repositories.</span>
-              <GithubButton $variant='border' onClick={redirectToSignIn}>
-                Sign in
-              </GithubButton>
-            </div>
-          )}
+          <RepositoryWrapper onClick={close} />
         </div>
       </div>
     </>
