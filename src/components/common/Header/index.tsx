@@ -1,7 +1,7 @@
 import { useLingui } from '@lingui/react/macro';
 import { NavLink } from 'react-router';
 import { TranslateMenu } from '#components/index';
-import { Routes } from '#constants/index';
+import { ENV, Routes } from '#constants/index';
 import { useGithub, useThemeController } from '#hooks/index';
 import {
   CatSvg,
@@ -26,11 +26,11 @@ export const Header = () => {
         <CatSvg className='h-10 w-10 rounded-full fill-current' />
         <div className='mr-auto'>
           <NavLink to={Routes.HOME} className='link-element'>
-            hunyao
+            {ENV.REPOSITORY_OWNER}
           </NavLink>
           <span className='mx-2'>/</span>
           <NavLink to={Routes.HOME} className='link-element'>
-            Jun-Kumokawa
+            {ENV.REPOSITORY_NAME}
           </NavLink>
         </div>
         {!isSignedIn ? (
@@ -65,7 +65,8 @@ export const Header = () => {
           <input
             type='checkbox'
             className='theme-controller'
-            value={value}
+            value='dark'
+            defaultChecked={value}
             ref={themeControlRef}
           />
           <LightOnSvg className='swap-off h-6 w-6 fill-current' />

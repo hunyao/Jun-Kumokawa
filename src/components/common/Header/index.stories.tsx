@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, within } from 'storybook/test';
+import { ENV } from '#constants/index';
 import { SetToastContext, ToastContext } from '#contexts/index';
 import { Header } from '.';
 
@@ -35,7 +36,7 @@ export const Primary: Story = {
   ],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText('hunyao')).toBeInTheDocument();
-    expect(canvas.getByText('Jun-Kumokawa')).toBeInTheDocument();
+    expect(canvas.getByText(ENV.REPOSITORY_OWNER)).toBeInTheDocument();
+    expect(canvas.getByText(ENV.REPOSITORY_NAME)).toBeInTheDocument();
   },
 };

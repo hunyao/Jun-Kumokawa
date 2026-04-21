@@ -1,4 +1,5 @@
 import { Trans } from '@lingui/react/macro';
+import { useMemo } from 'react';
 import {
   Await,
   NavLink,
@@ -16,6 +17,8 @@ import {
   SuspenseWithComponent,
   SwitchBranches,
 } from '#components/index';
+import { ENV } from '#constants/index';
+import { ChildrenError } from '#features/errors';
 import { useBranchAndTag } from '#hooks/index';
 import {
   CodeBranchSvg,
@@ -37,7 +40,7 @@ export const RepositoryPageWrapper = () => {
   const { owner = '', id = '' } = useParams();
   return (
     <SuspenseWithComponent fallback={<RepositoryPageSkeleton />}>
-      <Await resolve={promise}>
+      <Await resolve={promise} errorElement={<ChildrenError />}>
         {(resolved) => (
           <RepositoryPage key={owner + id} resolvedData={resolved} />
         )}
@@ -56,13 +59,40 @@ export const RepositoryPage = (props: RepositoryPageProps) => {
   const [repository, branches, tags] = resolvedData;
   const owner = repository.owner.login;
   const repo = repository.name;
-  const isMyRepository = owner === 'hunyao' && repo === 'Jun-Kumokawa';
+  const isMyRepository =
+    owner === ENV.REPOSITORY_OWNER && repo === ENV.REPOSITORY_NAME;
 
   const { currentRef = '' } = useBranchAndTag({
     branches,
     tags,
     defaultBranch: repository.default_branch,
   });
+
+  const aboutDetailItems = useMemo(
+    () => [
+      {
+        Icon: MenuBookSvg,
+        text: 'Readme',
+      },
+      {
+        Icon: CopyrightSvg,
+        text: 'MIT License',
+      },
+      {
+        Icon: StarSvg,
+        text: `${numberFormat(repository.watchers_count, true)} stars`,
+      },
+      {
+        Icon: VisibilitySvg,
+        text: `${numberFormat(repository.subscribers_count, true)} watchers`,
+      },
+      {
+        Icon: GitForkSvg,
+        text: `${numberFormat(repository.forks_count, true)} forks`,
+      },
+    ],
+    [repository],
+  );
 
   return (
     <Container className='py-4'>
@@ -104,7 +134,7 @@ export const RepositoryPage = (props: RepositoryPageProps) => {
               className='ml-auto'
               owner={owner}
               repo={repo}
-              branch={currentRef}
+              commitRef={currentRef}
             />
             <CloneCode
               repository={repository}
@@ -161,28 +191,7 @@ export const RepositoryPage = (props: RepositoryPageProps) => {
               ))}
             </div>
             <div className='my-3 grid grid-flow-row'>
-              {[
-                {
-                  Icon: MenuBookSvg,
-                  text: 'Readme',
-                },
-                {
-                  Icon: CopyrightSvg,
-                  text: 'MIT License',
-                },
-                {
-                  Icon: StarSvg,
-                  text: `${numberFormat(repository.watchers_count, true)} stars`,
-                },
-                {
-                  Icon: VisibilitySvg,
-                  text: `${numberFormat(repository.subscribers_count, true)} watchers`,
-                },
-                {
-                  Icon: GitForkSvg,
-                  text: `${numberFormat(repository.forks_count, true)} forks`,
-                },
-              ].map(({ Icon, text }, i) => (
+              {aboutDetailItems.map(({ Icon, text }, i) => (
                 // biome-ignore lint/suspicious/noArrayIndexKey: reason
                 <div key={i}>
                   <span className='inline-flex cursor-default items-center gap-2 text-gray-500 text-sm hover:text-[#4493f8]'>

@@ -12,6 +12,7 @@ import {
   SuspenseWithComponent,
   SwitchBranches,
 } from '#components/index';
+import { ChildrenError } from '#features/errors';
 import { useBranchAndTag, useResizePanel } from '#hooks/index';
 import { BottomPanelCloseSvg } from '#icons/index';
 import { GithubButton } from '#ui/index';
@@ -23,7 +24,7 @@ export const TreePageWrapper = () => {
   const { owner = '', id = '' } = useParams();
   return (
     <SuspenseWithComponent fallback={<TreePageSkeleton />}>
-      <Await resolve={promise}>
+      <Await resolve={promise} errorElement={<ChildrenError />}>
         {(resolved) => <TreePage key={owner + id} resolvedData={resolved} />}
       </Await>
     </SuspenseWithComponent>
@@ -84,7 +85,7 @@ export const TreePage = (props: TreePageProps) => {
             tags={tags}
             className='w-full'
           />
-          <GoToFile owner={owner} repo={repo} branch={currentRef} />
+          <GoToFile owner={owner} repo={repo} commitRef={currentRef} />
           <div className='divider m-0'></div>
           <RepositoryFileTree
             key={currentRef}
