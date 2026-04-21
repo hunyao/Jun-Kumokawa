@@ -8,7 +8,7 @@ export type GetRepositoryBranchesResponseType =
   GetResponseDataTypeFromEndpointMethod<typeof octokit.rest.repos.listBranches>;
 export type GetRepositoryTagsResponseType =
   GetResponseDataTypeFromEndpointMethod<typeof octokit.rest.repos.listTags>;
-export type GetRepositoryListForAuthenticatedUser =
+export type GetRepositoryListForAuthenticatedUserResponseType =
   GetResponseDataTypeFromEndpointMethod<
     typeof octokit.rest.repos.listForAuthenticatedUser
   >;

@@ -16,7 +16,6 @@ const getCommitSha = (
     ? undefined
     : defaultBranchRef.commit.sha;
 };
-
 type useBranchAndTagProps = {
   branches: GetRepositoryBranchesResponseType;
   tags: GetRepositoryTagsResponseType;
