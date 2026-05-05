@@ -94,15 +94,15 @@ src/
 ### GitHub API / 認証フロー
 
 - Octokit ラッパー: `src/lib/octokit.ts`
-- GET リクエストは SHA1 キーでメモリキャッシュ
+- GET リクエストは SHA1 キーでメモリキャッシュ（TTL: `VITE_CACHE_TTL_MS`、`setTimeout` で自動削除）
 - 401 発生時は `github-access-token` を消去し、`octokit:unauthorized` イベントを発火
 - 認証状態管理: `src/hooks/useGithub.tsx`
 
 ## Context
 
-現状の Context は `ToastContext` のみ:
-
-- `src/contexts/ToastContext.tsx`
+- `src/contexts/ToastContext.tsx` — Toast 通知
+- `src/contexts/ThemeControlContext.tsx` — テーマ切替チェックボックスへの ref
+- `src/contexts/TranslateContext.tsx` — 言語切替
 
 `main.tsx` で Provider をアプリ全体に適用。
 
@@ -125,6 +125,7 @@ src/
 | `#constants/*` | `src/constants/*` |
 | `#data/*` | `src/data/*` |
 | `#types/*` | `src/types/*` |
+| `#errors/*` | `src/errors/index.ts` |
 
 ## React 設計方針
 
@@ -191,12 +192,15 @@ MyComponent/
 
 ## 環境変数
 
-`.env` で以下を利用:
+`.env` で以下を利用（`src/constants/env.ts` の `ENV` 定数で一元管理、起動時に未設定チェックあり）:
 
 - `VITE_GITHUB_API_CLIENT_ID`
 - `VITE_GITHUB_API_REDIRECT_URI`
 - `VITE_GITHUB_API_SCOPE`
-- `VITE_COMMIT_TTL_MS`
+- `VITE_API_ENDPOINT`
+- `VITE_REPOSITORY_OWNER` — 表示対象のリポジトリオーナー
+- `VITE_REPOSITORY_NAME` — 表示対象のリポジトリ名
+- `VITE_CACHE_TTL_MS` — Octokit GET レスポンスのキャッシュ TTL（ミリ秒）
 
 機密情報はコミットしないこと。
 
