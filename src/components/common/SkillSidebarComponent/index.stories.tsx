@@ -1,9 +1,39 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, within } from 'storybook/test';
-import { Skill } from '#data/index';
 import { SkillSidebarComponent } from '.';
 
-const { skills } = Skill;
+const skills = [
+  {
+    groupName: {
+      en: 'Coding Languages',
+      ja: 'プログラミング言語',
+    },
+    colorCode: [0, 0, 255],
+    items: [
+      {
+        label: 'JavaScript',
+        value: 10,
+      },
+    ],
+  },
+  {
+    groupName: {
+      en: 'Shell Languages',
+      ja: 'シェル言語',
+    },
+    colorCode: [0, 128, 255],
+    items: [
+      {
+        label: 'Bash',
+        value: 10,
+      },
+      {
+        label: 'sh',
+        value: 10,
+      },
+    ],
+  },
+];
 
 const meta = {
   title: 'components/common/SkillSidebarComponent',

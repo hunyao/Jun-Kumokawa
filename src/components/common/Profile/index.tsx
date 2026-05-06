@@ -13,7 +13,6 @@ import {
   HomeSvg,
   LinkedinSvg,
   LocationSvg,
-  PhoneSvg,
   ScrewdriverWrenchSvg,
 } from '#icons/index';
 import type { Profile } from '#types/profile';
@@ -80,18 +79,6 @@ export const ProfileComponent = (props: ProfileComponentProps) => {
         content: (
           <a href={`mailto:${profile.email}`} className='link link-hover'>
             {profile.email}
-          </a>
-        ),
-      },
-      {
-        key: 'phone',
-        Icon: PhoneSvg,
-        content: (
-          <a
-            href={`tel:+${profile.tel[0]}${profile.tel[1]}${profile.tel[2]}`}
-            className='link link-hover'
-          >
-            +({profile.tel[0]}) {profile.tel[1]} {profile.tel[2]}
           </a>
         ),
       },

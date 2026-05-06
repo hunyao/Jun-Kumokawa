@@ -24,7 +24,6 @@
       "#constants/*": ["./src/constants/*"],
       "#hooks/*": ["./src/hooks/*"],
       "#lib/*": ["./src/lib/*"],
-      "#data/*": ["./src/data/*"],
       "#components/*": ["./src/components/common/*"],
       "#ui/*": ["./src/components/ui/*"],
       "#layouts/*": ["./src/components/layouts/*"],

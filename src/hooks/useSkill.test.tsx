@@ -2,12 +2,42 @@ import { renderHook } from '@testing-library/react';
 import type { PropsWithChildren } from 'react';
 import { describe, expect, it } from 'vitest';
 import { TranslateProvider } from '#contexts/index';
-import { Skill } from '#data/index';
 import { I18nProvider, i18n } from '#lib/lingui';
 import { getColor } from '#utils/getColor';
 import { useSkill } from './useSkill';
 
-const { skills } = Skill;
+const skills = [
+  {
+    groupName: {
+      en: 'Coding Languages',
+      ja: 'プログラミング言語',
+    },
+    colorCode: [0, 0, 255],
+    items: [
+      {
+        label: 'JavaScript',
+        value: 10,
+      },
+    ],
+  },
+  {
+    groupName: {
+      en: 'Shell Languages',
+      ja: 'シェル言語',
+    },
+    colorCode: [0, 128, 255],
+    items: [
+      {
+        label: 'Bash',
+        value: 10,
+      },
+      {
+        label: 'sh',
+        value: 10,
+      },
+    ],
+  },
+];
 
 const wrapper = ({ children }: PropsWithChildren) => {
   return (
