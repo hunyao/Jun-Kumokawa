@@ -131,7 +131,7 @@ export const OverviewContent = (props: OverviewContentProps) => {
   return (
     <div className='rounded-lg ring ring-base-content/20'>
       <div className='sticky top-0 rounded-lg border-base-content/20 border-b-[1px] bg-base-100 p-2 pb-0'>
-        <GithubTab $variant='border'>
+        <GithubTab $variant='border' className='overflow-x-auto'>
           {contents.map((file) => (
             <GithubTabItem
               key={file.name}

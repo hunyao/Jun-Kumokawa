@@ -10,4 +10,14 @@
     padding-top: 0;
     font-size: 1rem;
   }
+
+  pre {
+    overflow-x: auto;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
+  }
 }
