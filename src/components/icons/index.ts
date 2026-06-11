@@ -35,6 +35,7 @@ import LocationSvg from './location.svg?react';
 import LoginSvg from './login.svg?react';
 import LogoutSvg from './logout.svg?react';
 import MenuBookSvg from './menu-book.svg?react';
+import MoreVertSvg from './more_vert.svg?react';
 import PhoneSvg from './phone.svg?react';
 import ScrewdriverWrenchSvg from './screwdriver-wrench.svg?react';
 import SearchSvg from './search.svg?react';
@@ -86,6 +87,7 @@ export {
   LoginSvg,
   LogoutSvg,
   MenuBookSvg,
+  MoreVertSvg,
   PhoneSvg,
   ScrewdriverWrenchSvg,
   SearchSvg,
