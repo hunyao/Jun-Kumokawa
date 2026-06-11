@@ -14,15 +14,15 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. placeholder {0}: branches.length
-#: src/components/features/repository/index.tsx:131
+#: src/components/features/repository/index.tsx:127
 msgid "{0} Branches"
 msgstr "{0} Branches"
 
 #. placeholder {0}: tags.length
-#: src/components/features/repository/index.tsx:135
+#: src/components/features/repository/index.tsx:131
 msgid "{0} Tags"
 msgstr "{0} Tags"
 
-#: src/components/features/repository/index.tsx:175
+#: src/components/features/repository/index.tsx:165
 msgid "About"
 msgstr "About"

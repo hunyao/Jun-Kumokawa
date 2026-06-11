@@ -113,35 +113,32 @@ export const RepositoryPage = (props: RepositoryPageProps) => {
         </span>
       </div>
       <div className='divider'></div>
-      <div className='grid grid-cols-4 gap-6'>
-        <div className='col-span-3'>
-          <div className='flex items-center gap-2'>
+      <div className='grid grid-cols-1 gap-6 md:grid-cols-4'>
+        <div className='md:col-span-3'>
+          <div className='flex flex-wrap items-center gap-2'>
             <SwitchBranches
               defaultBranch={repository.default_branch}
               value={currentRef}
               branches={branches}
               tags={tags}
             />
-            <GithubButton $variant='ghost'>
+            <GithubButton $variant='ghost' className='hidden md:flex'>
               <CodeBranchSvg className='h-4 w-4 fill-current' />
               <Trans>{branches.length} Branches</Trans>
             </GithubButton>
-            <GithubButton $variant='ghost'>
+            <GithubButton $variant='ghost' className='hidden md:flex'>
               <TagSvg className='h-4 w-4 fill-current' />
               <Trans>{tags.length} Tags</Trans>
             </GithubButton>
-            <GoToFile
-              className='ml-auto'
-              owner={owner}
-              repo={repo}
-              commitRef={currentRef}
-            />
-            <CloneCode
-              repository={repository}
-              owner={owner}
-              repo={repo}
-              branch={currentRef}
-            />
+            <div className='ml-auto hidden items-center gap-2 md:flex'>
+              <GoToFile owner={owner} repo={repo} commitRef={currentRef} />
+              <CloneCode
+                repository={repository}
+                owner={owner}
+                repo={repo}
+                branch={currentRef}
+              />
+            </div>
           </div>
           <div className='mt-4'>
             <DirectoryContentWrapper
