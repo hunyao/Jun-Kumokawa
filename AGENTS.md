@@ -34,14 +34,17 @@ src/
 │   ├── common/              # 汎用コンポーネント群
 │   │   ├── Activity/
 │   │   ├── BlobViewContent/ # ファイル内容表示
+│   │   ├── Breadcrumbs/
 │   │   ├── CloneCode/       # クローン用コードパネル
 │   │   ├── CopyContentButton/
 │   │   ├── DirectoryContent/
 │   │   ├── DirectoryContentRow/
+│   │   ├── DirectoryContentRowSkelton/
 │   │   ├── ErrorPanel/
 │   │   ├── Footer/
 │   │   ├── GoToFile/
 │   │   ├── Header/
+│   │   ├── LanguageUsage/
 │   │   ├── LatestCommit/
 │   │   ├── OverviewContent/ # README 表示
 │   │   ├── Profile/
@@ -53,6 +56,7 @@ src/
 │   │   ├── SwitchBranches/
 │   │   ├── Timeline/
 │   │   ├── Toast/
+│   │   ├── TranslateMenu/
 │   │   └── index.ts         # 全コンポーネントの再エクスポート
 │   ├── features/            # ページ単位の機能コンポーネント
 │   │   ├── cow/             # イースターエッグ
@@ -64,15 +68,18 @@ src/
 │   ├── icons/               # SVG アイコン (.svg, index.ts)
 │   ├── layouts/             # ページ共通レイアウト
 │   ├── middlewares/         # HOC（OauthCallback など）
-│   └── ui/                  # デザインシステムコンポーネント
-│       ├── Container/
-│       ├── GithubButton
-│       ├── GithubChip
-│       ├── GithubTab
+│   └── ui/                  # デザインシステムコンポーネント（主にフラット .tsx ファイル）
+│       ├── Container/       # (ディレクトリ)
+│       ├── DetailBoxTitle.tsx
+│       ├── GithubBreadcrumbs.tsx
+│       ├── GithubButton.tsx
+│       ├── GithubChip.tsx
+│       ├── GithubMenuButton.tsx
+│       ├── GithubNavMenu.tsx
+│       ├── GithubTab.tsx
 │       └── index.ts
 ├── constants/               # 定数定義 (Routes など)
 ├── contexts/                # React Context (ToastContext)
-├── data/                    # 静的 JSON データ (skills, experience, profile)
 ├── hooks/                   # カスタムフック
 ├── lib/                     # 外部ライブラリラッパー (octokit, markdownIt, dayjs)
 ├── types/                   # 型定義
@@ -123,7 +130,6 @@ src/
 | `#utils/*` | `src/utils/*` |
 | `#lib/*` | `src/lib/*` |
 | `#constants/*` | `src/constants/*` |
-| `#data/*` | `src/data/*` |
 | `#types/*` | `src/types/*` |
 | `#errors/*` | `src/errors/index.ts` |
 
