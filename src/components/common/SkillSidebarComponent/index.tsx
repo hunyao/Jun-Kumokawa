@@ -29,7 +29,7 @@ export const SkillSidebarComponent = (props: SkillSidebarComponentProps) => {
   return coloredSkills.map((skill, i) => (
     <div key={skillGroupNames[i]}>
       <DetailBoxTitle>{skillGroupNames[i]}</DetailBoxTitle>
-      <div className='mb-2 flex h-2 gap-0.5'>
+      <div className='mb-2 flex h-2 gap-0.5 overflow-hidden'>
         {skill.items.map((item) => (
           <span
             key={item.label}
