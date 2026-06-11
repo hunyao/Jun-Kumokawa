@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ThemeControlContext } from '#contexts/index';
 
 const isDarkMode = () => {
@@ -20,7 +20,7 @@ let listeners: Array<ThemeControlCallbackListener> = [];
 
 export const useThemeController = () => {
   const themeControlRef = useContext(ThemeControlContext);
-  const value = getDefaultThemeName() === 'dark';
+  const [value, setValue] = useState(getDefaultThemeName() === 'dark');
 
   const addEventListener = (callback: ThemeControlCallbackListener) => {
     listeners.push(callback);
@@ -43,6 +43,7 @@ export const useThemeController = () => {
           'theme',
           e.target.checked ? 'dark' : 'light',
         );
+        setValue(e.target.checked);
       }
       listeners.forEach((listener) => {
         listener(e);
