@@ -3,7 +3,6 @@ import { useMemo } from 'react';
 import { Await, NavLink } from 'react-router';
 import { SuspenseWithComponent } from '#components/index';
 import { Routes } from '#constants/index';
-import { ChildrenError } from '#features/errors';
 import { fetchProfileData, useProfile } from '#hooks/index';
 import {
   BriefcaseSvg,
@@ -23,7 +22,7 @@ const profileDataPromise = fetchProfileData();
 export const ProfileWrapper = () => {
   return (
     <SuspenseWithComponent>
-      <Await resolve={profileDataPromise} errorElement={<ChildrenError />}>
+      <Await resolve={profileDataPromise} errorElement={<div>ERROR</div>}>
         {(profileData) => {
           return <ProfileComponent profileData={profileData} />;
         }}
@@ -89,28 +88,28 @@ export const ProfileComponent = (props: ProfileComponentProps) => {
   return (
     <div className='separater w-full bg-[linear-gradient(var(--tw-gradient-stops)),url(/images/forest-background.jpg)] bg-cover bg-linear-to-b from-base-300/70 to-100% to-base-300'>
       <Container>
-        <div className='grid h-32 grid-cols-[max-content_minmax(0,1fr)] grid-rows-3 gap-x-4 gap-y-2 pt-4'>
-          <div className='row-span-full'>
-            <img
-              src='/images/avatar.jpg'
-              className='h-full w-full rounded-lg'
-              alt='Profile avatar'
-            />
-          </div>
-          <div className='flex items-center gap-2'>
-            <div className='font-bold text-2xl'>{profile.displayName}</div>
-          </div>
-          <div>{profile.title}</div>
-          <div className='flex gap-4'>
-            {socialLinks.map(({ key, Icon, content }) => (
-              <div className='flex items-center gap-1' key={key}>
-                <Icon className='h-5 w-5 fill-current' />
-                <span className='link-text'>{content}</span>
-              </div>
-            ))}
+        <div className='flex items-start gap-4 pt-4'>
+          <img
+            src='/images/avatar.jpg'
+            className='h-24 w-24 flex-shrink-0 rounded-lg'
+            alt='Profile avatar'
+          />
+          <div className='flex min-w-0 flex-col gap-y-2'>
+            <div className='flex items-center gap-2'>
+              <div className='font-bold text-2xl'>{profile.displayName}</div>
+            </div>
+            <div>{profile.title}</div>
+            <div className='flex flex-wrap gap-x-4 gap-y-1'>
+              {socialLinks.map(({ key, Icon, content }) => (
+                <div className='flex items-center gap-1' key={key}>
+                  <Icon className='h-5 w-5 fill-current' />
+                  <span className='link-text'>{content}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-        <GithubTab className='mt-4' $variant='border'>
+        <GithubTab className='mt-4 overflow-x-auto' $variant='border'>
           <NavLink to={Routes.HOME} className='h-full'>
             {({ isActive, isPending }) => (
               <GithubTabItem $active={isActive} $pending={isPending}>

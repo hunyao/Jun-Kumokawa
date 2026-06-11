@@ -13,19 +13,19 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/common/Profile/index.tsx:121
+#: src/components/common/Profile/index.tsx:127
 msgctxt "profile"
 msgid "Code"
 msgstr "コード"
 
-#: src/components/common/Profile/index.tsx:129
+#: src/components/common/Profile/index.tsx:135
 msgid "Experiences"
 msgstr "経歴"
 
-#: src/components/common/Profile/index.tsx:112
+#: src/components/common/Profile/index.tsx:118
 msgid "Overview"
 msgstr "概要"
 
-#: src/components/common/Profile/index.tsx:137
+#: src/components/common/Profile/index.tsx:143
 msgid "Skills"
 msgstr "スキル"
