@@ -13,12 +13,32 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/common/Header/index.tsx:40
-#: src/components/common/Header/index.tsx:44
+#: src/components/common/Header/index.tsx:130
+msgid "Dark mode"
+msgstr "Dark mode"
+
+#: src/components/common/Header/index.tsx:130
+msgid "Light mode"
+msgstr "Light mode"
+
+#: src/components/common/Header/index.tsx:91
+msgid "More options"
+msgstr "More options"
+
+#: src/components/common/Header/index.tsx:147
+msgid "Sign in"
+msgstr "Sign in"
+
+#: src/components/common/Header/index.tsx:48
+#: src/components/common/Header/index.tsx:52
 msgid "Sign in to GitHub"
 msgstr "Sign in to GitHub"
 
-#: src/components/common/Header/index.tsx:53
-#: src/components/common/Header/index.tsx:57
+#: src/components/common/Header/index.tsx:142
+msgid "Sign out"
+msgstr "Sign out"
+
+#: src/components/common/Header/index.tsx:61
+#: src/components/common/Header/index.tsx:65
 msgid "Sign out from GitHub"
 msgstr "Sign out from GitHub"
