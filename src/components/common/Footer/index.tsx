@@ -5,7 +5,7 @@ import { Container } from '#ui/index';
 
 export const Footer = () => {
   return (
-    <footer className='pt-4'>
+    <footer className='py-4'>
       <Container>
         <div>
           <Trans>This Jun-Kumokawa has Super Cow Powers.</Trans>
