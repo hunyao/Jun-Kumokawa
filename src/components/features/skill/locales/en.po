@@ -13,10 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/features/skill/index.tsx:97
+#: src/components/features/skill/index.tsx:92
 msgid "Experience"
 msgstr "Experience"
 
-#: src/components/features/skill/index.tsx:64
+#: src/components/features/skill/index.tsx:59
 msgid "y"
 msgstr "y"

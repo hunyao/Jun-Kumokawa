@@ -13,57 +13,57 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/features/experience/index.tsx:137
+#: src/components/features/experience/components/Project.tsx:130
 msgid "Achievements"
 msgstr "Achievements"
 
 #. placeholder {0}: i18n.date(project.assignedAt)
-#: src/components/features/experience/index.tsx:51
+#: src/components/features/experience/components/Project.tsx:44
 msgid "assigned on {0}"
 msgstr "assigned on {0}"
 
-#: src/components/features/experience/index.tsx:66
+#: src/components/features/experience/components/Project.tsx:59
 msgid "location"
 msgstr "location"
 
-#: src/components/features/experience/index.tsx:131
+#: src/components/features/experience/components/Project.tsx:124
 msgid "Responsibilities"
 msgstr "Responsibilities"
 
-#: src/components/features/experience/index.tsx:63
+#: src/components/features/experience/components/Project.tsx:56
 msgid "role"
 msgstr "role"
 
-#: src/components/features/experience/index.tsx:149
+#: src/components/features/experience/components/Project.tsx:142
 msgid "Scopes"
 msgstr "Scopes"
 
-#: src/components/features/experience/index.tsx:96
+#: src/components/features/experience/components/Project.tsx:89
 msgid "Show details"
 msgstr "Show details"
 
-#: src/components/features/experience/index.tsx:73
+#: src/components/features/experience/components/Project.tsx:66
 msgid "size of project overall"
 msgstr "size of project overall"
 
-#: src/components/features/experience/index.tsx:80
+#: src/components/features/experience/components/Project.tsx:73
 msgid "size of team"
 msgstr "size of team"
 
 #. js-lingui-explicit-id
-#: src/components/features/experience/index.tsx:177
+#: src/components/features/experience/components/Project.tsx:170
 msgid "experience.no-achievement"
 msgstr "Sorry...I couldn't remember any achievement I did during working or Perhaps you erased my memories and you would ask to hire me to let me have achievements you and I will make in the future at your project."
 
 #. js-lingui-explicit-id
-#: src/components/features/experience/index.tsx:159
+#: src/components/features/experience/components/Project.tsx:152
 msgid "experience.no-responsibility"
 msgstr "Sorry...I couldn't remember any responsibility I had during working or Perhaps you erased my memories since it was long time ago."
 
-#: src/components/features/experience/index.tsx:143
+#: src/components/features/experience/components/Project.tsx:136
 msgid "Technologies"
 msgstr "Technologies"
 
-#: src/components/features/experience/index.tsx:232
+#: src/components/features/experience/index.tsx:31
 msgid "Working activity"
 msgstr "Working activity"

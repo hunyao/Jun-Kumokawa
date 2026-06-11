@@ -13,57 +13,57 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/features/experience/index.tsx:137
+#: src/components/features/experience/components/Project.tsx:130
 msgid "Achievements"
 msgstr "実績や取り組み"
 
 #. placeholder {0}: i18n.date(project.assignedAt)
-#: src/components/features/experience/index.tsx:51
+#: src/components/features/experience/components/Project.tsx:44
 msgid "assigned on {0}"
 msgstr "{0}に参画"
 
-#: src/components/features/experience/index.tsx:66
+#: src/components/features/experience/components/Project.tsx:59
 msgid "location"
 msgstr "場所"
 
-#: src/components/features/experience/index.tsx:131
+#: src/components/features/experience/components/Project.tsx:124
 msgid "Responsibilities"
 msgstr "担当業務"
 
-#: src/components/features/experience/index.tsx:63
+#: src/components/features/experience/components/Project.tsx:56
 msgid "role"
 msgstr "担当役割"
 
-#: src/components/features/experience/index.tsx:149
+#: src/components/features/experience/components/Project.tsx:142
 msgid "Scopes"
 msgstr "担当領域"
 
-#: src/components/features/experience/index.tsx:96
+#: src/components/features/experience/components/Project.tsx:89
 msgid "Show details"
 msgstr "詳細を開く"
 
-#: src/components/features/experience/index.tsx:73
+#: src/components/features/experience/components/Project.tsx:66
 msgid "size of project overall"
 msgstr "プロジェクト全体規模"
 
-#: src/components/features/experience/index.tsx:80
+#: src/components/features/experience/components/Project.tsx:73
 msgid "size of team"
 msgstr "チーム規模"
 
 #. js-lingui-explicit-id
-#: src/components/features/experience/index.tsx:177
+#: src/components/features/experience/components/Project.tsx:170
 msgid "experience.no-achievement"
 msgstr "ごめんなさい。参画中に取り組んだことを何一つ思い出せませんでした。あるいはひょっとすると、私の記憶が消され、あなたのプロジェクトで今後一緒に何かを取り組ませるために私を採用しようとしているのかもしれませんね。"
 
 #. js-lingui-explicit-id
-#: src/components/features/experience/index.tsx:159
+#: src/components/features/experience/components/Project.tsx:152
 msgid "experience.no-responsibility"
 msgstr "ごめんなさい。参画中の担当領域を何一つ思い出せませんでした。あるいはひょっとすると、あなたによって私の記憶が消されたかもしれませんね。なんせ昔のことなので。"
 
-#: src/components/features/experience/index.tsx:143
+#: src/components/features/experience/components/Project.tsx:136
 msgid "Technologies"
 msgstr "技術スタック"
 
-#: src/components/features/experience/index.tsx:232
+#: src/components/features/experience/index.tsx:31
 msgid "Working activity"
 msgstr "経歴"

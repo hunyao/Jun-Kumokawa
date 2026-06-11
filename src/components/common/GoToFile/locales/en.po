@@ -25,6 +25,6 @@ msgstr "Go to file"
 msgid "Loading files..."
 msgstr "Loading files..."
 
-#: src/components/common/GoToFile/index.tsx:291
+#: src/components/common/GoToFile/index.tsx:289
 msgid "No files found."
 msgstr "No files found."

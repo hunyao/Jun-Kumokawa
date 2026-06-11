@@ -13,31 +13,31 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/common/CloneCode/index.tsx:73
+#: src/components/common/CloneCode/index.tsx:67
 msgid "Clone"
 msgstr "クローン"
 
-#: src/components/common/CloneCode/index.tsx:47
+#: src/components/common/CloneCode/index.tsx:39
 msgid "Clone using the web URL."
 msgstr "URLでクローンします"
 
-#: src/components/common/CloneCode/index.tsx:63
+#: src/components/common/CloneCode/index.tsx:57
 msgctxt "clonecode"
 msgid "Code"
 msgstr "コード"
 
-#: src/components/common/CloneCode/index.tsx:130
+#: src/components/common/CloneCode/index.tsx:120
 msgid "Download ZIP"
 msgstr "ZIPダウンロード"
 
-#: src/components/common/CloneCode/index.tsx:49
+#: src/components/common/CloneCode/index.tsx:41
 msgid "Use a password-protected SSH key."
 msgstr "保護されたSSHキーを使います"
 
-#: src/components/common/CloneCode/index.tsx:76
+#: src/components/common/CloneCode/index.tsx:70
 msgid "Which remote URL should I use?"
 msgstr "どのリモートURLを使うべきですか？"
 
-#: src/components/common/CloneCode/index.tsx:51
+#: src/components/common/CloneCode/index.tsx:43
 msgid "Work fast with our official CLI."
 msgstr "CLIを使うと早くできます"

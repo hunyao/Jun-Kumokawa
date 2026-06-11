@@ -13,6 +13,6 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/features/tree/index.tsx:147
+#: src/components/features/tree/index.tsx:79
 msgid "Files"
 msgstr "Files"

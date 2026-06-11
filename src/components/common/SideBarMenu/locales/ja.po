@@ -13,23 +13,23 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/common/SideBarMenu/index.tsx:96
+#: src/components/common/SideBarMenu/index.tsx:59
 msgctxt "sidebar"
 msgid "Code"
 msgstr "コード"
 
-#: src/components/common/SideBarMenu/index.tsx:107
+#: src/components/common/SideBarMenu/index.tsx:70
 msgid "Experiences"
 msgstr ""
 
-#: src/components/common/SideBarMenu/index.tsx:85
+#: src/components/common/SideBarMenu/index.tsx:48
 msgid "Overview"
 msgstr ""
 
-#: src/components/common/SideBarMenu/index.tsx:123
+#: src/components/common/SideBarMenu/index.tsx:86
 msgid "Repositories"
 msgstr "リポジトリ"
 
-#: src/components/common/SideBarMenu/index.tsx:118
+#: src/components/common/SideBarMenu/index.tsx:81
 msgid "Skills"
 msgstr ""

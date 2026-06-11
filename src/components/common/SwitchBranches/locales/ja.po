@@ -13,22 +13,22 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/common/SwitchBranches/index.tsx:145
+#: src/components/common/SwitchBranches/index.tsx:166
 msgid "Branches"
 msgstr "ブランチ"
 
-#: src/components/common/SwitchBranches/index.tsx:178
+#: src/components/common/SwitchBranches/index.tsx:203
 msgid "default"
 msgstr "デフォルト"
 
-#: src/components/common/SwitchBranches/index.tsx:133
+#: src/components/common/SwitchBranches/index.tsx:154
 msgid "Find a branch..."
 msgstr "ブランチを探す"
 
-#: src/components/common/SwitchBranches/index.tsx:116
+#: src/components/common/SwitchBranches/index.tsx:137
 msgid "Switch branches/tags"
 msgstr "ブランチ/タグの切替"
 
-#: src/components/common/SwitchBranches/index.tsx:151
+#: src/components/common/SwitchBranches/index.tsx:172
 msgid "Tags"
 msgstr "タグ"

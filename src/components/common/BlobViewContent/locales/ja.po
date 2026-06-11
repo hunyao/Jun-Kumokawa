@@ -13,24 +13,24 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/common/BlobViewContent/index.tsx:101
+#: src/components/common/BlobViewContent/index.tsx:95
 msgid "Copied!"
 msgstr "コピー完了!"
 
-#: src/components/common/BlobViewContent/index.tsx:107
-#: src/components/common/BlobViewContent/index.tsx:139
+#: src/components/common/BlobViewContent/index.tsx:101
+#: src/components/common/BlobViewContent/index.tsx:133
 msgid "Copy raw file"
 msgstr "クリップボードにコピーする"
 
-#: src/components/common/BlobViewContent/index.tsx:148
+#: src/components/common/BlobViewContent/index.tsx:142
 msgid "Download raw file"
 msgstr "ファイルをダウンロードする"
 
 #. placeholder {0}: numberFormat(maxLines)
-#: src/components/common/BlobViewContent/index.tsx:201
+#: src/components/common/BlobViewContent/index.tsx:195
 msgid "Showing first {0} lines. View raw for full file."
 msgstr "最初の{0}件を表示しています。全てを見るには、元データを参照してください。"
 
-#: src/components/common/BlobViewContent/index.tsx:170
+#: src/components/common/BlobViewContent/index.tsx:164
 msgid "view raw"
 msgstr "元データを見る"

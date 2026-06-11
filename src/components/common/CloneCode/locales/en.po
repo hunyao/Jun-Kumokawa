@@ -13,31 +13,31 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/common/CloneCode/index.tsx:73
+#: src/components/common/CloneCode/index.tsx:67
 msgid "Clone"
 msgstr "Clone"
 
-#: src/components/common/CloneCode/index.tsx:47
+#: src/components/common/CloneCode/index.tsx:39
 msgid "Clone using the web URL."
 msgstr "Clone using the web URL."
 
-#: src/components/common/CloneCode/index.tsx:63
+#: src/components/common/CloneCode/index.tsx:57
 msgctxt "clonecode"
 msgid "Code"
 msgstr "Code"
 
-#: src/components/common/CloneCode/index.tsx:130
+#: src/components/common/CloneCode/index.tsx:120
 msgid "Download ZIP"
 msgstr "Download ZIP"
 
-#: src/components/common/CloneCode/index.tsx:49
+#: src/components/common/CloneCode/index.tsx:41
 msgid "Use a password-protected SSH key."
 msgstr "Use a password-protected SSH key."
 
-#: src/components/common/CloneCode/index.tsx:76
+#: src/components/common/CloneCode/index.tsx:70
 msgid "Which remote URL should I use?"
 msgstr "Which remote URL should I use?"
 
-#: src/components/common/CloneCode/index.tsx:51
+#: src/components/common/CloneCode/index.tsx:43
 msgid "Work fast with our official CLI."
 msgstr "Work fast with our official CLI."
