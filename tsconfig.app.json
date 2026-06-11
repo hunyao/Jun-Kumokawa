@@ -35,7 +35,6 @@
     },
     "types": [
       "vitest/importMeta"
-      // "./node_modules/@storybook/addon-vitest",
     ]
   },
   "include": ["src/**/*", ".storybook/**/*.ts", ".storybook/**/*.tsx"],
