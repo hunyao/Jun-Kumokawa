@@ -14,18 +14,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. placeholder {0}: tree.tree.length
-#: src/components/common/DirectoryContent/index.tsx:252
+#: src/components/common/DirectoryContent/index.tsx:225
 msgid "All {0} entries are not shown. The list is truncated to 100 files."
 msgstr "全{0}件は表示されません。最初の100件のみ表示しています。"
 
-#: src/components/common/DirectoryContent/index.tsx:175
+#: src/components/common/DirectoryContent/index.tsx:148
 msgid "Last commit date"
 msgstr "最新コミット日時"
 
-#: src/components/common/DirectoryContent/index.tsx:172
+#: src/components/common/DirectoryContent/index.tsx:145
 msgid "Last commit message"
 msgstr "最新コミットメッセージ"
 
-#: src/components/common/DirectoryContent/index.tsx:169
+#: src/components/common/DirectoryContent/index.tsx:142
 msgid "Name"
 msgstr "名前"

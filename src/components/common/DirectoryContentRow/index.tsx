@@ -111,7 +111,7 @@ export const DirectoryContentRow = (props: DirectoryContentRowProps) => {
   return (
     <div
       className={[
-        'grid grid-cols-[min-content_minmax(0,1fr)_minmax(0,1fr)_7rem] items-center gap-2 border-base-content/20 border-b-[1px] p-2 last:border-b-0',
+        'grid grid-cols-[min-content_minmax(0,1fr)_7rem] items-center gap-2 border-base-content/20 border-b-[1px] p-2 last:border-b-0 md:grid-cols-[min-content_minmax(0,1fr)_minmax(0,1fr)_7rem]',
         isSubmodule
           ? 'cursor-not-allowed opacity-50'
           : 'cursor-pointer hover:bg-base-content/5',
@@ -139,7 +139,7 @@ export const DirectoryContentRow = (props: DirectoryContentRowProps) => {
           </NavLink>
         )}
       </span>
-      <span className='truncate'>
+      <span className='hidden truncate md:block'>
         {commit ? commit.commit.message.split('\n')[0] : '-'}
       </span>
       <span

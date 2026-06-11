@@ -137,11 +137,11 @@ export const DirectoryContent = (props: DirectoryContentProps) => {
           className='mb-4 rounded-lg ring ring-base-content/20'
         />
         <div className='rounded-lg ring ring-base-content/20'>
-          <div className='grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_min-content] gap-2 border-base-content/20 border-b-[1px] bg-base-content/5 p-2 text-sm'>
+          <div className='grid grid-cols-[minmax(0,1fr)_min-content] gap-2 border-base-content/20 border-b-[1px] bg-base-content/5 p-2 text-sm md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_min-content]'>
             <div>
               <Trans>Name</Trans>
             </div>
-            <div>
+            <div className='hidden md:block'>
               <Trans>Last commit message</Trans>
             </div>
             <div className='truncate'>
