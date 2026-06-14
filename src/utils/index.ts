@@ -7,6 +7,7 @@ export * from './genRange';
 export * from './getAllCommitCounts';
 export * from './getColor';
 export * from './getContentType';
+export * from './getDefaultThemeName';
 export * from './getSha1Digest';
 export * from './isDarkMode';
 export * from './numberFormat';

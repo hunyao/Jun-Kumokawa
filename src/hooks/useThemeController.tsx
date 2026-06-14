@@ -1,14 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { ThemeControlContext } from '#contexts/index';
-import { isDarkMode } from '#utils/index';
-
-const getDefaultThemeName = () => {
-  const themeFromLocalStrage = window.localStorage.getItem('theme');
-  if (themeFromLocalStrage === null) {
-    return isDarkMode() ? 'dark' : 'light';
-  }
-  return themeFromLocalStrage;
-};
+import { getDefaultThemeName } from '#utils/index';
 
 type ThemeControlCallbackListener = (e: Event) => void;
 let listeners: Array<ThemeControlCallbackListener> = [];

@@ -7,11 +7,11 @@ import {
   SideBarMenuState,
   Toast,
 } from '#components/index';
-import { isDarkMode } from '#utils/isDarkMode';
+import { getDefaultThemeName } from '#utils/index';
 
 export const MainLayout = ({ children }: PropsWithChildren) => {
   useEffect(() => {
-    document.documentElement.dataset.theme = isDarkMode() ? 'dark' : 'light';
+    document.documentElement.dataset.theme = getDefaultThemeName();
   }, []);
 
   return (
