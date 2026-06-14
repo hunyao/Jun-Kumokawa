@@ -1,12 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { ThemeControlContext } from '#contexts/index';
+import { isDarkMode } from '#utils/index';
 
-const isDarkMode = () => {
-  if (!window.matchMedia) {
-    return false;
-  }
-  return window.matchMedia('(prefers-color-scheme: dark)').matches;
-};
 const getDefaultThemeName = () => {
   const themeFromLocalStrage = window.localStorage.getItem('theme');
   if (themeFromLocalStrage === null) {
@@ -41,6 +36,10 @@ export const useThemeController = () => {
       if (e.target instanceof HTMLInputElement) {
         window.localStorage.setItem(
           'theme',
+          e.target.checked ? 'dark' : 'light',
+        );
+        document.documentElement.setAttribute(
+          'data-theme',
           e.target.checked ? 'dark' : 'light',
         );
         setValue(e.target.checked);

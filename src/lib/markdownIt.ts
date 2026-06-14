@@ -2,7 +2,6 @@ import Highlight from 'highlight.js/lib/core';
 import markdownit from 'markdown-it';
 import { full as emoji } from 'markdown-it-emoji';
 import highlightjs from 'markdown-it-highlightjs';
-import 'highlight.js/styles/github-dark.css';
 import { plugin as markdownItNamedHeadings } from './markdownItNamedHeadings';
 
 // full options list (defaults)

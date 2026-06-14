@@ -1,5 +1,10 @@
 @import "tailwindcss";
+@import "highlight.js/styles/github.css";
 @plugin "daisyui";
+
+html[data-theme="dark"] {
+  @import "highlight.js/styles/github-dark.css";
+}
 
 :root {
   --separater-color: oklch(0.38 0.02 254.79);
