@@ -21,9 +21,28 @@ export function plugin(md: MarkdownIt) {
         ids[uniqId] = true;
         setAttr(token, 'id', uniqId);
       }
+      const linkText = isLinkToken(token);
+      if (linkText === undefined) {
+        return;
+      }
+      if (token.children !== null) {
+        setAttr(
+          token.children[0],
+          'href',
+          `#${kebabcase(unidecode(linkText))}`,
+        );
+      }
     });
   });
 }
+
+const isLinkToken = (token: Token): string | undefined => {
+  const match = token.content.match(/^\[.*\]\((.*)\)$/);
+  if (match === null) {
+    return;
+  }
+  return match[1];
+};
 
 function uncollide(ids: namedHeadingsIdType, id: string) {
   if (!ids[id]) return id;
