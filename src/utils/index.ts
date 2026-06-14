@@ -8,6 +8,7 @@ export * from './getAllCommitCounts';
 export * from './getColor';
 export * from './getContentType';
 export * from './getSha1Digest';
+export * from './isDarkMode';
 export * from './numberFormat';
 export * from './numberFormatWithUnit';
 export * from './overrideSearchParams';
