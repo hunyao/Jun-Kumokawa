@@ -1,7 +1,5 @@
 # Jun-Kumokawa
 
-[English version](./README.md)
-
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://mit-license.org/)
 [![13 years experience](https://img.shields.io/badge/experience-13%20years-green)](https://portfolio.kumoti.jp)
 [![Remote Ready](https://img.shields.io/badge/remote-ready-blue)](https://portfolio.kumoti.jp)
