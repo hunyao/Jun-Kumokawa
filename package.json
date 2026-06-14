@@ -1,7 +1,20 @@
 {
-  "name": "Jun-Kumokawa2",
+  "$schema": "http://json.schemastore.org/package",
+  "name": "Jun-Kumokawa",
+  "homepage": "https://portfolio.kumoti.jp",
+  "description": "An efficient, flexible, useful, adaptable and friendly Human library for making web systems",
+  "bugs": {
+    "url": "https://github.com/hunyao/Jun-Kumokawa/issues",
+    "email": "jun@kumoti.jp"
+  },
+  "license": "MIT",
   "private": true,
-  "version": "0.0.0",
+  "author": "Jun Kumokawa <jun@kumoti.jp> (https://portfolio.kumoti.jp)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hunyao/Jun-Kumokawa.git"
+  },
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,7 +26,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "extract": "lingui extract",
-    "compile": "lingui compile --typescript"
+    "compile": "lingui compile --typescript",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@lingui/core": "^5.9.4",
@@ -65,6 +79,7 @@
     "babel-plugin-macros": "^3.1.0",
     "baseline-browser-mapping": "^2.10.0",
     "daisyui": "^5.5.19",
+    "gh-pages": "^6.3.0",
     "globals": "^16.5.0",
     "happy-dom": "^20.7.0",
     "playwright": "^1.58.2",
