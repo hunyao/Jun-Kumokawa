@@ -18,7 +18,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && cp dist/index.html dist/404.html",
     "lint": "biome lint src",
     "preview": "vite preview",
     "test": "vitest",
@@ -27,7 +27,7 @@
     "build-storybook": "storybook build",
     "extract": "lingui extract",
     "compile": "lingui compile --typescript",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist --cname CNAME"
   },
   "dependencies": {
     "@lingui/core": "^5.9.4",
