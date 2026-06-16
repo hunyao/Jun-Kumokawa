@@ -7,16 +7,18 @@
 - React + Vite + TypeScript で構築されたポートフォリオサイト
 - GitHub API は Octokit を利用し、OAuth サインインに対応
 - UI は GitHub 風デザイン（Storybook あり）
+- PWA 対応（manifest.json・favicon・アイコン画像）
 
 ## 主要コマンド
 
 ```bash
 pnpm dev         # Vite 開発サーバー (http://localhost:3000)
-pnpm build       # TypeScript build + Vite build
+pnpm build       # TypeScript build + Vite build（dist/404.html も生成）
 pnpm lint        # Biome lint (src/)
 pnpm test        # Vitest (Storybook + Playwright 連携あり)
 pnpm test:unit   # Vitest (単体テスト)
 pnpm storybook   # Storybook 開発サーバー (:6006)
+pnpm deploy      # gh-pages で dist/ を GitHub Pages へデプロイ
 ```
 
 単一テストの実行:
@@ -28,6 +30,14 @@ pnpm exec src/path/to/file.test.ts
 ## ディレクトリ構造
 
 ```
+public/
+├── images/                  # 公開画像（avatar.jpg、背景など）
+├── avatar_192x192.jpg       # PWA アイコン (192px)
+├── avatar_512x512.jpg       # PWA アイコン (512px)
+├── favicon.ico              # ファビコン
+├── manifest.json            # PWA マニフェスト
+└── robots.txt               # クローラー制御
+
 src/
 ├── assets/                  # 画像などの静的ファイル
 ├── components/
@@ -46,7 +56,7 @@ src/
 │   │   ├── Header/
 │   │   ├── LanguageUsage/
 │   │   ├── LatestCommit/
-│   │   ├── OverviewContent/ # README 表示
+│   │   ├── OverviewContent/ # README 表示（index.module.scss でカスタム Markdown スタイル）
 │   │   ├── Profile/
 │   │   ├── RepositoryFileTree/
 │   │   ├── RepositoryFileTreeItem/
@@ -81,7 +91,7 @@ src/
 ├── constants/               # 定数定義 (Routes など)
 ├── contexts/                # React Context (ToastContext)
 ├── hooks/                   # カスタムフック
-├── lib/                     # 外部ライブラリラッパー (octokit, markdownIt, dayjs)
+├── lib/                     # 外部ライブラリラッパー (octokit, markdownIt, dayjs, lingui)
 ├── types/                   # 型定義
 ├── utils/                   # 汎用ユーティリティ関数
 ├── main.tsx                 # エントリーポイント
@@ -104,6 +114,23 @@ src/
 - GET リクエストは SHA1 キーでメモリキャッシュ（TTL: `VITE_CACHE_TTL_MS`、`setTimeout` で自動削除）
 - 401 発生時は `github-access-token` を消去し、`octokit:unauthorized` イベントを発火
 - 認証状態管理: `src/hooks/useGithub.tsx`
+
+### テーマ管理
+
+- DaisyUI テーマを `html[data-theme]` 属性（`"light"` / `"dark"`）で制御
+- 初期テーマ: `mainLayout.tsx` の `useEffect` 内で `getDefaultThemeName()` を呼び出して設定
+  - `getDefaultThemeName()` — `localStorage["theme"]` を優先し、未設定なら `isDarkMode()` でシステム設定を参照（`src/utils/getDefaultThemeName.ts`）
+  - `isDarkMode()` — `window.matchMedia('(prefers-color-scheme: dark)')` を参照（`src/utils/isDarkMode.ts`）
+- テーマ切替: `useThemeController.tsx` のチェックボックス change ハンドラー内で `document.documentElement.setAttribute('data-theme', ...)` と `localStorage` を更新
+- highlight.js テーマ: `src/index.css` で `html[data-theme="dark"]` セレクター内に `github-dark.css` を @import し、自動切替
+
+### Markdown レンダリング（OverviewContent）
+
+- `src/lib/markdownIt.ts` — markdown-it インスタンス（highlight.js 連携済み）
+- `src/lib/markdownItNamedHeadings.ts` — 見出しに id 付与 + 見出し内リンクの href 自動生成
+- スタイリング: `src/components/common/OverviewContent/index.module.scss`
+  - Tailwind Preflight のリセットを補うカスタム GitHub 風 CSS（テーブルボーダー・リスト・見出しなど）
+  - DaisyUI CSS 変数（`--color-base-content` など）を使用してライト/ダーク双方に対応
 
 ## Context
 
