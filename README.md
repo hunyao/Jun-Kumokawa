@@ -1,6 +1,6 @@
 # Jun-Kumokawa
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://mit-license.org/)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://jun-kumokawa.mit-license.org/)
 [![13 years experience](https://img.shields.io/badge/experience-13%20years-green)](https://portfolio.kumoti.jp)
 [![Remote Ready](https://img.shields.io/badge/remote-ready-blue)](https://portfolio.kumoti.jp)
 [![Full-Stack](https://img.shields.io/badge/type-full--stack-orange)](https://portfolio.kumoti.jp)
@@ -438,7 +438,7 @@ Self-taught Full-Stack Engineer made in Japan.
 
 ## Availability & Contact
 
-**Current Status:** Available from April 2025
+**Current Status:** Available from July 2026
 
 **Preferred Engagement:**
 - Full-time contract (160h/month)

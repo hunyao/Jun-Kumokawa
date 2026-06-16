@@ -1,6 +1,6 @@
 # Jun-Kumokawa
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://mit-license.org/)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://jun-kumokawa.mit-license.org/)
 [![13 years experience](https://img.shields.io/badge/experience-13%20years-green)](https://portfolio.kumoti.jp)
 [![Remote Ready](https://img.shields.io/badge/remote-ready-blue)](https://portfolio.kumoti.jp)
 [![Full-Stack](https://img.shields.io/badge/type-full--stack-orange)](https://portfolio.kumoti.jp)
@@ -438,7 +438,7 @@ Oracle      ████░░░░░░░░   1 year
 
 ## 稼働状況・連絡先
 
-**Current Status:** 2025年4月から稼働可能
+**Current Status:** 2026年7月から稼働可能
 
 **Preferred Engagement:**
 - フルタイム契約（160h/月）
